@@ -1,0 +1,549 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { naverMapSearchUrl } from '../../../utils/naverMapLinks.js';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const article = {
+  title: '전주 한옥마을 여행 코스와 주차 동선 가이드',
+  description: '전주 한옥마을을 처음 방문하는 여행자를 위해 경기전, 전동성당, 오목대, 남부시장 동선과 주차, 시간대, 숙소 위치 기준을 정리합니다.'
+};
+
+const routePlans = [
+  ['2시간 산책', '경기전 돌담길 → 전동성당 외관 → 태조로 골목 → 오목대 전망대'],
+  ['반나절 코스', '경기전 → 전동성당 → 한복 대여 또는 공방 체험 → 오목대 → 남부시장'],
+  ['1박 2일', '첫날 한옥마을 중심부와 야경, 둘째 날 전주향교와 남부시장 또는 객리단길']
+];
+
+const parkingChoices = [
+  {
+    name: '한옥마을 제1공영주차장',
+    spaces: '293면',
+    address: '기린대로 99',
+    fee: '기본 30분 1,200원, 추가 15분 600원, 1일 최대 14,400원',
+    bestFor: '경기전, 전동성당, 태조로 중심으로 짧게 둘러볼 때',
+    caution: '가장 접근성이 좋아 주말 오전 늦게부터 만차 대기 가능성이 큽니다.'
+  },
+  {
+    name: '한옥마을 제2공영주차장',
+    spaces: '176면',
+    address: '어진길 30-10',
+    fee: '기본 30분 1,200원, 추가 15분 600원, 1일 최대 14,400원',
+    bestFor: '한옥마을 안쪽 숙소, 경기전 주변 식사 동선을 잡을 때',
+    caution: '건물식이라 편하지만 면수가 많지 않아 피크 시간대에는 빠르게 찰 수 있습니다.'
+  },
+  {
+    name: '한옥마을 제3공영주차장',
+    spaces: '72면',
+    address: '간납로 20',
+    fee: '기본 30분 1,200원, 추가 15분 600원, 1일 최대 14,400원',
+    bestFor: '제1·2공영주차장 만차 시 가까운 대안이 필요할 때',
+    caution: '면수가 적어 목적지와 남은 자리 상황을 함께 봐야 합니다.'
+  },
+  {
+    name: '한옥마을 제4공영주차장',
+    spaces: '636면',
+    address: '춘향로 5299',
+    fee: '무료',
+    bestFor: '주말, 공휴일, 성수기에 주차 대기 시간을 줄이고 싶을 때',
+    caution: '한옥마을과 거리가 있어 셔틀 운행 시간 또는 택시 이동을 같이 계산해야 합니다.'
+  },
+  {
+    name: '기린로 노상 공영주차장',
+    spaces: '130면 이상',
+    address: '교동 산 1-11',
+    fee: '기본 30분 1,000원, 추가 15분 500원',
+    bestFor: '오목대, 한벽터널, 한옥마을 북동쪽을 짧게 볼 때',
+    caution: '오목대에서 한벽터널로 이어지는 도로변이라 진입 방향과 남은 자리를 함께 봐야 합니다.'
+  },
+  {
+    name: '남부시장 천변주차장',
+    spaces: '260면',
+    address: '전동 331',
+    fee: '기본 30분 무료, 추가 10분 200원, 1일 최대 5,000원',
+    bestFor: '남부시장 식사, 야시장, 풍남문 동선을 함께 넣을 때',
+    caution: '시장 이용 쿠폰 조건이 있을 수 있어 현장 안내를 확인하는 편이 좋습니다.'
+  },
+  {
+    name: '남부시장 남부주차장',
+    spaces: '75면',
+    address: '전동 187-14',
+    fee: '기본 10분 200원, 추가 10분 200원, 1일 최대 6,000원',
+    bestFor: '남부시장에 먼저 들렀다가 한옥마을로 걸어갈 때',
+    caution: '면수가 적어 식사 피크 시간에는 천변주차장도 함께 봐야 합니다.'
+  },
+  {
+    name: '풍남문상점가고객주차장',
+    spaces: '상점가 고객 주차',
+    address: '풍남문2길 60',
+    fee: '기본 10분 200원, 추가 10분 200원, 1일 최대 6,000원',
+    bestFor: '풍남문, 남부시장, 전동성당을 먼저 보고 한옥마을로 들어갈 때',
+    caution: '상점가 이용 동선과 맞을 때 편합니다. 한옥마을 중심부만 보는 일정이면 걷는 거리를 계산해야 합니다.'
+  },
+  {
+    name: '국립무형유산원',
+    spaces: '305면',
+    address: '서학로 95',
+    fee: '무료',
+    bestFor: '무형유산원, 남천교, 전주천 산책을 함께 넣을 때',
+    caution: '한옥마을 중심부까지는 걸어야 하므로 부모님 동반이면 동선을 짧게 잡습니다.'
+  },
+  {
+    name: '한국전통문화전당',
+    spaces: '144면',
+    address: '현무1길 20',
+    fee: '24시간 연중무휴, 전당 방문객 중심 이용',
+    bestFor: '전당 방문이나 객리단길 쪽 일정을 함께 잡을 때',
+    caution: '전당 방문 외 주차가 제한될 수 있어 단순 한옥마을 주차 대안으로만 보기에는 변수가 있습니다.'
+  }
+];
+
+const parkingMapRows = parkingChoices.map((parking) => ({
+  ...parking,
+  mapUrl: naverMapSearchUrl({
+    region: '전주 한옥마을',
+    name: parking.name,
+    address: parking.address
+  })
+}));
+
+const naverMapNcpKeyId = import.meta.env.PUBLIC_NAVER_MAP_NCP_KEY_ID;
+const parkingMapData = parkingMapRows.map((parking) => ({
+  name: parking.name,
+  address: parking.address,
+  searchAddress: parking.address.includes('~') ? `${parking.name} 전주 한옥마을` : `전주시 ${parking.address}`,
+  mapUrl: parking.mapUrl
+}));
+
+const parkingStrategies = [
+  ['평일 오전 방문', '제1·2공영주차장을 먼저 확인해도 무난합니다. 짧은 관람이라면 이동 거리를 줄이는 쪽이 편합니다.'],
+  ['주말 오후 방문', '제1·2공영주차장 진입 대기보다 제4공영주차장과 셔틀을 먼저 고려하는 편이 스트레스가 적습니다.'],
+  ['남부시장 식사 포함', '남부시장 천변주차장이나 남부주차장을 기준점으로 잡고 풍남문, 전동성당, 경기전 순서로 걷습니다.'],
+  ['부모님 동반', '가까운 주차장에 실패하면 무리해서 골목을 돌기보다 제4공영주차장 셔틀 또는 택시 이동을 계산합니다.'],
+  ['한옥 숙박', '숙소 자체 주차 가능 여부를 먼저 확인하고, 불가하다면 숙소가 안내하는 제휴 주차장을 우선합니다.']
+];
+
+const fieldCheckpoints = [
+  {
+    title: '중심 골목은 오후보다 오전이 편합니다',
+    body: '한복 대여점과 간식 가게가 몰린 길은 오후로 갈수록 멈춰 서는 시간이 늘어납니다. 사진과 경기전 관람을 먼저 끝내고, 간식은 이동 중간에 끊어 넣는 편이 동선이 덜 늘어집니다.'
+  },
+  {
+    title: '오목대는 “갈까 말까”를 일찍 정합니다',
+    body: '전망은 좋지만 오르막이 있어 부모님, 아이, 더운 날 일정에서는 피로가 빨리 쌓입니다. 경기전과 전동성당을 본 뒤 컨디션이 괜찮을 때만 올리고, 어렵다면 남부시장이나 카페 휴식으로 바꾸는 편이 낫습니다.'
+  },
+  {
+    title: '남부시장은 식사 대안이 아니라 별도 일정입니다',
+    body: '한옥마을 간식까지 먹은 뒤 남부시장 식사를 붙이면 양보다 대기와 이동이 부담이 됩니다. 점심을 남부시장으로 잡을지, 한옥마을 안에서 먹고 시장은 저녁 또는 야시장으로 볼지 먼저 나누면 좋습니다.'
+  },
+  {
+    title: '주차는 10분 넘게 막히면 전환 기준이 필요합니다',
+    body: '가까운 주차장을 계속 기다리면 관람, 식사, 카페 시간이 한꺼번에 밀립니다. 주말에는 제4공영주차장 셔틀이나 남부시장 권역 주차로 바꿀 기준을 미리 정해두는 편이 현실적입니다.'
+  }
+];
+
+const fieldPhotos = [
+  {
+    src: '/images/jeonju-hanok-village/gyeonggijeon-main-gate.jpg',
+    alt: '전주 경기전 정문과 그늘진 입구 풍경',
+    width: 1800,
+    height: 1013,
+    caption: '경기전은 한옥마을 동선의 기준점입니다. 입구에서 관람 여부와 골목 방향을 먼저 정하면 이후 이동이 단순해집니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/jeondong-cathedral.jpg',
+    alt: '파란 하늘 아래 전주 전동성당 외관',
+    width: 1800,
+    height: 1013,
+    caption: '전동성당은 경기전과 붙여 보기 좋습니다. 내부 관람보다 외관 사진만 잡아도 코스의 만족도가 올라갑니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/quiet-hanok-alley.jpg',
+    alt: '전주 한옥마을의 조용한 한옥 골목',
+    width: 1600,
+    height: 901,
+    caption: '큰길에서 한 블록만 벗어나도 훨씬 조용한 골목이 나옵니다. 사진 중심 일정이라면 중심 상권만 고집하지 않는 편이 좋습니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/hanok-garden-pavilion.jpg',
+    alt: '전주 한옥마을 정원 속 한옥 정자',
+    width: 1600,
+    height: 901,
+    caption: '정자와 작은 정원은 더운 날 쉬어 가는 포인트가 됩니다. 짧은 코스라도 휴식 지점을 하나 넣어두면 체감 피로가 줄어듭니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/hanok-village-map-sign.jpg',
+    alt: '전주 한옥마을 안내 지도 표지판',
+    width: 1600,
+    height: 901,
+    caption: '초입의 안내 지도는 한 번 찍어두는 것이 좋습니다. 주차장, 경기전, 오목대, 남부시장 방향을 현장에서 다시 확인하기 쉽습니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/white-western-style-house.jpg',
+    alt: '전주 한옥마을 하얀양옥집 입구',
+    width: 1600,
+    height: 901,
+    caption: '하얀양옥집처럼 한옥 사이에 다른 결의 건축물이 섞여 있어, 산책 코스를 문화공간 위주로 잡아도 지루하지 않습니다.'
+  }
+];
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '전주 한옥마을은 몇 시간 정도 잡아야 하나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '대표 지점만 빠르게 보면 2시간도 가능하지만, 경기전 관람과 식사, 오목대 전망까지 넣으면 반나절이 안정적입니다.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: '전주 한옥마을 주차는 어디가 좋나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '가까운 공영주차장은 편하지만 혼잡할 수 있습니다. 주말에는 제4공영주차장과 셔틀, 남부시장 연계 주차도 함께 검토하는 편이 좋습니다.'
+      }
+    }
+  ]
+};
+
+const heroImage = getTourApiImage('jeonju', {
+  src: '/images/domestic-places/jeonju-hanok-village-hero.jpg',
+  alt: '전주 한옥마을 한옥 지붕과 골목 풍경',
+  caption: '전주 한옥마을은 골목 산책, 문화유산, 먹거리 동선을 함께 봐야 만족도가 높습니다. 사진: Bernard Gagnon, Wikimedia Commons, CC0'
+});
+---
+<BaseLayout title={`${article.title} - Tourpick360`} description={article.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a>
+      <span>/</span>
+      <a href="/domestic/">국내여행</a>
+      <span>/</span>
+      <span>전주</span>
+    </nav>
+
+    <p class="eyebrow">전북 전주 여행</p>
+    <h1>{article.title}</h1>
+    <p class="lead">
+      전주 한옥마을은 검색량과 방문 수요가 꾸준한 대표 국내 여행지입니다. 하지만 막상 가보면
+      한복 대여, 길거리 음식, 경기전, 전동성당, 오목대, 남부시장까지 선택지가 많아 동선이 쉽게 흩어집니다.
+      이 글은 처음 방문하는 여행자가 반나절 또는 1박 2일 일정으로 무리 없이 걷도록 주차, 시간대,
+      숙소 위치, 식사 동선을 함께 정리합니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>핵심 요약</h2>
+    <table>
+      <tbody>
+        <tr><th>추천 대상</th><td>전주 첫 방문자, 가족 여행, 커플 여행, 부모님 동반 여행</td></tr>
+        <tr><th>추천 시간</th><td>대표 코스 2시간, 여유 코스 반나절, 야경과 숙박까지 보면 1박 2일</td></tr>
+        <tr><th>주요 동선</th><td>경기전, 전동성당, 태조로, 오목대, 전주향교, 남부시장</td></tr>
+        <tr><th>주의사항</th><td>주말 오후에는 주차와 식사 대기, 한복 대여점 주변 혼잡이 커질 수 있습니다.</td></tr>
+      </tbody>
+    </table>
+
+    <section>
+      <h2>전주 한옥마을은 시간대 선택이 중요합니다</h2>
+      <p>
+        한옥마을은 연중무휴 24시간 개방되는 공간이지만, 여행 만족도는 방문 시간대에 따라 크게 달라집니다.
+        오전에는 단체 관광객이 몰리기 전 경기전과 전동성당 주변을 차분하게 볼 수 있고, 오후에는 한복 대여와
+        길거리 음식 수요가 늘어 중심 골목이 붐빕니다. 사진을 목적으로 한다면 오전 늦게 경기전 돌담길을 보고,
+        해 질 무렵 오목대나 경기전 담장길 야경으로 마무리하는 흐름이 좋습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>현장에서 바로 갈리는 체크 포인트</h2>
+      <p>
+        한옥마을은 지도에서 보면 모든 지점이 가까워 보이지만, 실제로는 골목 혼잡도와 식사 대기,
+        오목대 오르막, 주차장 진입 대기 때문에 체감 시간이 달라집니다. 방문 전에는 명소를 많이 넣기보다
+        “어디서 멈추고 어디를 포기할지”를 정해두면 일정이 훨씬 편해집니다.
+      </p>
+      <div class="route-notes">
+        {fieldCheckpoints.map((checkpoint) => (
+          <section>
+            <h3>{checkpoint.title}</h3>
+            <p>{checkpoint.body}</p>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>2026년 6월 현장 사진으로 본 동선</h2>
+      <p>
+        오늘 현장 사진 기준으로 보면, 경기전과 전동성당은 여전히 첫 방문자가 가장 먼저 잡기 좋은 축입니다.
+        다만 큰길과 상점 골목은 차량, 전동 이동수단, 보행자가 섞이는 구간이 있어 사진을 찍을 때 잠깐 멈춰 설 공간까지
+        같이 봐야 합니다. 지도 표지판을 먼저 찍어두고, 경기전에서 전동성당, 조용한 골목, 오목대 방향으로 흐름을
+        나누면 초행이어도 길을 잃을 가능성이 줄어듭니다.
+      </p>
+      <div class="article-photo-grid">
+        {fieldPhotos.map((photo) => (
+          <figure>
+            <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" />
+            <figcaption>{photo.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>처음 방문자에게 좋은 기본 코스</h2>
+      <p>
+        처음이라면 코스를 넓게 벌리기보다 한옥마을 중심부를 먼저 이해하는 것이 좋습니다. 경기전은 전주
+        한옥마을의 기준점처럼 잡기 쉽고, 전동성당은 외관만 보더라도 동선상 자연스럽게 이어집니다. 이후
+        태조로와 은행로 골목을 지나 오목대 전망대로 올라가면 한옥 지붕이 모인 풍경을 한 번에 볼 수 있습니다.
+        남부시장은 식사나 야시장 일정과 연결할 때 넣으면 좋고, 부모님과 함께라면 오목대 오르막을 무리하게
+        넣지 않는 편이 낫습니다.
+      </p>
+      <div class="route-notes">
+        {routePlans.map(([title, body]) => (
+          <section>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>주차는 가까운 곳보다 빠져나갈 길까지 봅니다</h2>
+      <p>
+        전주 한옥마을은 중심부에 가까운 주차장이 편하지만, 그만큼 주말과 성수기에는 진입 대기 시간이 길어질 수 있습니다.
+        공식 안내 기준으로 제1·2·3공영주차장은 기본 30분 1,200원, 추가 15분 600원, 1일 최대 14,400원입니다.
+        반면 제4공영주차장은 무료이고 주차면수가 많지만 한옥마을 중심부까지 셔틀 또는 추가 이동이 필요합니다.
+        남부시장까지 함께 볼 계획이라면 한옥마을 바로 앞 주차장보다 남부시장 쪽 주차장이 더 자연스러울 때도 있습니다.
+      </p>
+      {naverMapNcpKeyId && (
+        <div class="parking-map-panel">
+          <div>
+            <p class="eyebrow">Naver Maps API</p>
+            <h3>전주 한옥마을 주차장 지도</h3>
+            <p>주소를 네이버 지도 API로 좌표 변환해 주차장 위치를 한 화면에 표시합니다.</p>
+          </div>
+          <div id="jeonju-parking-map" class="parking-map" aria-label="전주 한옥마을 주차장 네이버 지도"></div>
+          <p id="jeonju-parking-map-status" class="parking-map-status">네이버 지도 정보를 불러오는 중입니다.</p>
+        </div>
+      )}
+      <table>
+        <thead>
+          <tr><th>주차장</th><th>면수·위치</th><th>요금</th><th>이럴 때 유리</th></tr>
+        </thead>
+        <tbody>
+          {parkingMapRows.map((parking) => (
+            <tr>
+              <td>
+                <strong>{parking.name}</strong>
+                <a class="map-link" href={parking.mapUrl} target="_blank" rel="noopener noreferrer">네이버지도</a>
+                <br />{parking.caution}
+              </td>
+              <td>{parking.spaces}<br />{parking.address}</td>
+              <td>{parking.fee}</td>
+              <td>{parking.bestFor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        한옥마을 제4공영주차장 셔틀버스는 전주시 공식 안내 기준 연중무휴 무료로 운영됩니다.
+        운행 구간은 제4공영주차장, 자만벽화마을 경유, 태조로 승강장, 제4공영주차장 순서입니다.
+        평일은 제4공영주차장 기준 10:20부터 18:30까지 정해진 시간표 중심으로 운행하고,
+        토·일요일과 공휴일은 10:00~18:30 사이 수시 운행으로 안내되어 있습니다.
+        다만 셔틀은 승용차 이용 고객 대상 무료 운행이므로, 늦은 저녁 야경이나 남부시장 야시장까지 보는 일정이라면 복귀 교통을 따로 계산해야 합니다.
+      </p>
+    </section>
+
+    {naverMapNcpKeyId && (
+      <>
+        <script is:inline src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${naverMapNcpKeyId}&submodules=geocoder`}></script>
+        <script type="application/json" id="jeonju-parking-map-data" set:html={JSON.stringify(parkingMapData)} />
+        <script is:inline>
+          (() => {
+            const statusEl = document.getElementById('jeonju-parking-map-status');
+            const mapEl = document.getElementById('jeonju-parking-map');
+            const dataEl = document.getElementById('jeonju-parking-map-data');
+
+            if (!statusEl || !mapEl || !dataEl) return;
+
+            const setStatus = (message) => {
+              statusEl.textContent = message;
+            };
+
+            const renderMap = () => {
+              if (!window.naver?.maps?.Service) {
+                setStatus('네이버 지도 API를 불러오지 못했습니다. 지도 버튼으로 위치를 확인해 주세요.');
+                return;
+              }
+
+              const parkingRows = JSON.parse(dataEl.textContent || '[]');
+              const map = new naver.maps.Map(mapEl, {
+                center: new naver.maps.LatLng(35.815, 127.153),
+                zoom: 14
+              });
+              const bounds = new naver.maps.LatLngBounds();
+              const infoWindow = new naver.maps.InfoWindow({ borderWidth: 0 });
+              let completed = 0;
+              let markerCount = 0;
+
+              parkingRows.forEach((parking) => {
+                naver.maps.Service.geocode({ address: parking.searchAddress }, (status, response) => {
+                  completed += 1;
+                  const result = response?.v2?.addresses?.[0];
+
+                  if (status === naver.maps.Service.Status.OK && result) {
+                    const position = new naver.maps.LatLng(Number(result.y), Number(result.x));
+                    const marker = new naver.maps.Marker({
+                      map,
+                      position,
+                      title: parking.name
+                    });
+
+                    naver.maps.Event.addListener(marker, 'click', () => {
+                      infoWindow.setContent(
+                        `<div class="parking-info-window"><strong>${parking.name}</strong><span>${parking.address}</span><a href="${parking.mapUrl}" target="_blank" rel="noopener noreferrer">네이버지도에서 보기</a></div>`
+                      );
+                      infoWindow.open(map, marker);
+                    });
+
+                    bounds.extend(position);
+                    markerCount += 1;
+                  }
+
+                  if (completed === parkingRows.length) {
+                    if (markerCount > 1) {
+                      map.fitBounds(bounds);
+                      setStatus(`${markerCount}개 주차장 위치를 지도에 표시했습니다.`);
+                    } else if (markerCount === 1) {
+                      setStatus('1개 주차장 위치를 지도에 표시했습니다. 나머지는 네이버지도 버튼으로 확인해 주세요.');
+                    } else {
+                      setStatus('좌표 변환 결과가 없습니다. 네이버지도 버튼으로 위치를 확인해 주세요.');
+                    }
+                  }
+                });
+              });
+            };
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', renderMap, { once: true });
+            } else {
+              renderMap();
+            }
+          })();
+        </script>
+      </>
+    )}
+
+    <section>
+      <h2>상황별 주차 선택 기준</h2>
+      <p>
+        전주 한옥마을 주차는 “가장 가까운 곳” 하나만 정해두면 현장에서 막히기 쉽습니다. 출발 전에는 1순위와
+        대체 주차장 1곳을 함께 정해두고, 식사 위치와 마지막으로 빠져나갈 방향까지 같이 보는 편이 좋습니다.
+      </p>
+      <div class="route-notes">
+        {parkingStrategies.map(([title, body]) => (
+          <section>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>숙소는 한옥마을 안과 밖의 장단점이 다릅니다</h2>
+      <p>
+        한옥마을 안의 한옥 숙소는 밤 산책과 아침 골목 분위기를 즐기기 좋습니다. 대신 방음, 주차, 객실 크기,
+        욕실 구조를 꼼꼼히 봐야 합니다. 가족이나 부모님 동반 여행이라면 엘리베이터, 침대형 객실, 주차 편의가
+        있는 한옥마을 외곽 또는 전주역·객리단길 권역 숙소가 더 편할 수 있습니다. 한옥 체험이 목적이면 마을 안,
+        이동 편의와 객실 컨디션이 목적이면 마을 밖을 우선 검토하는 식으로 나누면 선택이 쉬워집니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>먹거리 동선은 한 번에 몰아넣지 않습니다</h2>
+      <p>
+        한옥마을 여행에서 길거리 음식과 전주비빔밥, 콩나물국밥, 남부시장 먹거리를 모두 넣으면 생각보다
+        일정이 무거워집니다. 점심은 한옥마을 중심부에서 해결하고, 저녁은 남부시장이나 객리단길로 분리하면
+        대기 시간을 줄이기 쉽습니다. 아이와 함께라면 간식 위주로 걷는 시간을 늘리기보다, 앉아서 먹을 수 있는
+        식당을 먼저 정해두는 편이 안정적입니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>동행 유형별 추천 흐름</h2>
+      <ul>
+        <li><strong>커플 여행:</strong> 오후 한복 대여, 경기전 돌담길, 오목대 전망, 저녁 카페 또는 남부시장 순서가 무난합니다.</li>
+        <li><strong>가족 여행:</strong> 오전 경기전과 전동성당을 보고, 점심 뒤에는 체험 하나만 넣어 피로를 줄입니다.</li>
+        <li><strong>부모님 동반:</strong> 오르막과 골목 체류 시간을 줄이고, 주차장과 식당 사이 거리를 먼저 계산합니다.</li>
+        <li><strong>당일치기:</strong> 전주역 도착 후 택시 또는 버스로 한옥마을에 들어가고, 남부시장까지 본 뒤 복귀하는 흐름이 효율적입니다.</li>
+      </ul>
+    </section>
+
+    <section class="checklist-box">
+      <h2>방문 전 체크리스트</h2>
+      <ul>
+        <li>공영주차장 만차 시 대체 주차장</li>
+        <li>경기전 관람 여부와 운영 정보</li>
+        <li>한복 대여를 할 경우 반납 시간</li>
+        <li>오목대까지 걸을 수 있는 동행자 컨디션</li>
+        <li>남부시장 또는 객리단길 식사 연계 여부</li>
+        <li>한옥 숙소 예약 시 방음, 주차, 욕실 구조</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <details>
+          <summary>전주 한옥마을은 당일치기로 충분한가요?</summary>
+          <p>대표 지점만 본다면 당일치기도 가능합니다. 다만 야경, 남부시장, 한옥 숙박 경험까지 넣고 싶다면 1박 2일이 훨씬 여유롭습니다.</p>
+        </details>
+        <details>
+          <summary>차 없이 가도 괜찮나요?</summary>
+          <p>한옥마을 안은 도보 이동이 중심이라 차 없이도 가능합니다. 전주역이나 고속버스터미널에서 들어온 뒤 한옥마을 내부는 걷는 방식이 오히려 편할 수 있습니다.</p>
+        </details>
+        <details>
+          <summary>한옥마을 안 숙소가 항상 좋은 선택인가요?</summary>
+          <p>분위기는 좋지만 주차와 방음, 객실 크기에서 호불호가 있습니다. 숙소에서 쉬는 시간이 길거나 가족 여행이라면 한옥마을 인근 호텔도 함께 비교하는 것이 좋습니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="source-note">
+      <h2>최종 확인 기준</h2>
+      <p>
+        최종 확인일: 2026년 6월 16일. 전주시 공식 관광 안내의 주차장 및 셔틀버스 안내,
+        주요 풍경·문화유적지 정보를 기준으로 작성했습니다. 주차 요금, 셔틀 시간, 시설 운영은 방문 전
+        <a href="https://tour.jeonju.go.kr/index.jeonju?menuCd=DOM_000000106010000000" target="_blank" rel="noopener noreferrer">전주시 주차장 안내</a>와
+        <a href="https://tour.jeonju.go.kr/index.jeonju?menuCd=DOM_000000106011000000" target="_blank" rel="noopener noreferrer">전주시 셔틀버스 안내</a>에서 다시 확인하는 것이 안전합니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>함께 보면 좋은 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/jeonju/hanok-village-nearby-trip-guide/">
+          <span>전주 확장 코스</span>
+          <strong>전주 한옥마을과 전주 인근 여행 코스</strong>
+        </a>
+        <a href="/travel-tips/hotel-booking-checklist/">
+          <span>숙소 준비</span>
+          <strong>숙소 예약 전 확인해야 할 12가지</strong>
+        </a>
+        <a href="/travel-tips/rainy-day-backup-plan/">
+          <span>우천 대체</span>
+          <strong>비 오는 날 대체 일정 준비법</strong>
+        </a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

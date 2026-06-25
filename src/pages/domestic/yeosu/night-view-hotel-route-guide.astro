@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const heroImage = {
+  src: '/images/yeosu-course/jangdo-sea-view.jpg',
+  alt: '여수 바다와 섬을 바라보는 전망 데크',
+  caption: '여수 여행은 낮에는 섬과 해변을 천천히 걷고, 저녁에는 야경 동선을 짧게 잡으면 만족도가 높습니다.'
+};
+
+const courseCards = [
+  {
+    title: '장도와 웅천 산책',
+    time: '반나절',
+    body: '여수예술의섬 장도 입구에서 시작해 해안 산책로와 바다 전망을 보고, 웅천 해변 쪽으로 이어 가기 좋은 코스입니다. 카페나 점심을 곁들이면 무리 없는 낮 일정이 됩니다.'
+  },
+  {
+    title: '낭도 드라이브',
+    time: '반나절 확장',
+    body: '시간과 차량이 있다면 낭도까지 넓혀 보세요. 해변 표지, 섬 사이로 이어지는 다리 전망, 조용한 바다 풍경이 있어 여수 도심과 다른 분위기를 만날 수 있습니다.'
+  },
+  {
+    title: '돌산 야경과 숙소 복귀',
+    time: '저녁',
+    body: '해상 케이블카, 돌산 전망, 낭만포차를 모두 넣기보다 숙소 위치에 맞춰 하나나 두 곳만 고르는 편이 좋습니다. 밤에는 택시와 주차 대기까지 함께 계산해야 합니다.'
+  }
+];
+
+const gallery = [
+  {
+    src: '/images/yeosu-course/jangdo-art-island-sign.jpg',
+    alt: '여수예술의섬 장도 입구 표지',
+    title: '여수예술의섬 장도',
+    caption: '장도는 예술 산책과 바다 전망을 함께 넣기 좋은 낮 코스입니다.'
+  },
+  {
+    src: '/images/yeosu-course/jangdo-rocky-coast.jpg',
+    alt: '여수 장도 해안 바위와 바다',
+    title: '장도 해안 산책',
+    caption: '바위 해안과 잔잔한 바다가 이어져 사진 찍으며 걷기 좋습니다.'
+  },
+  {
+    src: '/images/yeosu-course/ungcheon-shade-beach.jpg',
+    alt: '나무 그늘 아래에서 바라본 여수 해변',
+    title: '웅천 해변 주변',
+    caption: '장도와 가까워 더운 계절에는 그늘과 휴식 지점을 함께 잡기 좋습니다.'
+  },
+  {
+    src: '/images/yeosu-course/jangdo-forest-sea-window.jpg',
+    alt: '숲 사이로 보이는 여수 바다와 섬',
+    title: '숲 사이 바다 전망',
+    caption: '해안만 걷지 말고 숲길 전망까지 넣으면 코스가 한결 입체적입니다.'
+  },
+  {
+    src: '/images/yeosu-course/nangdo-beach-sign.jpg',
+    alt: '여수 낭도 해변 표지와 바다',
+    title: '낭도',
+    caption: '낭도는 조용한 섬 분위기와 드라이브 풍경을 더하고 싶을 때 어울립니다.'
+  },
+  {
+    src: '/images/yeosu-course/nangdo-purple-flowers.jpg',
+    alt: '여수 여행길에서 만난 보라색 꽃',
+    title: '여수의 계절감',
+    caption: '바다 코스 중간중간 만나는 꽃과 산책길도 낮 여행의 분위기를 살려 줍니다.'
+  },
+  {
+    src: '/images/yeosu-course/nangdo-bridge-view.jpg',
+    alt: '여수 바다 위를 지나는 다리와 전망대',
+    title: '낭도 다리 전망',
+    caption: '섬과 섬 사이 바다를 크게 볼 수 있어 이동 중 쉬어 가기 좋습니다.'
+  }
+];
+---
+<BaseLayout title="여수 여행 코스 가이드 - 장도·웅천·낭도와 야경 동선 - Tourpick360" description="여수 여행에서 여수예술의섬 장도, 웅천 해변, 낭도 드라이브, 돌산 야경과 숙소 권역을 하루 동선 기준으로 정리합니다.">
+  <article class="article-page longform yeosu-course-page">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>여수</span>
+    </nav>
+    <p class="eyebrow">여수 여행 코스</p>
+    <h1>여수 장도·웅천·낭도 낮 코스와 야경 숙소 동선</h1>
+    <p class="lead">여수는 바다를 보는 낮 일정과 야경을 보는 저녁 일정의 성격이 다릅니다. 사진 속 코스를 기준으로 장도와 웅천을 가볍게 걷고, 시간이 있으면 낭도까지 넓힌 뒤, 저녁에는 숙소 권역에 맞춰 야경 동선을 짧게 잡는 흐름이 좋습니다.</p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="720" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <section class="quick-route" aria-label="여수 추천 코스 요약">
+      <h2>사진 속 코스로 짜는 하루 흐름</h2>
+      <div class="route-strip">
+        <span>여수예술의섬 장도</span>
+        <span>웅천 해변</span>
+        <span>낭도 드라이브</span>
+        <span>돌산 야경</span>
+        <span>숙소 복귀</span>
+      </div>
+      <p>장도와 웅천은 가까워 한 묶음으로 보기 좋고, 낭도는 이동 시간이 더해지므로 차량이 있거나 여유 있는 날에 넣는 편이 안정적입니다. 저녁 야경은 욕심내기보다 숙소에서 돌아오기 쉬운 곳을 기준으로 고르세요.</p>
+    </section>
+
+    <section class="course-grid" aria-label="여수 코스 구성">
+      {courseCards.map((course) => (
+        <article class="course-card">
+          <span>{course.time}</span>
+          <h2>{course.title}</h2>
+          <p>{course.body}</p>
+        </article>
+      ))}
+    </section>
+
+    <h2>장도와 웅천은 낮 산책으로 묶습니다</h2>
+    <p>여수예술의섬 장도는 입구 표지부터 바다 전망까지 사진 포인트가 뚜렷합니다. 해안 바위와 숲길 사이로 바다가 열리는 구간이 있어 오래 걷지 않아도 여행 온 느낌이 잘 납니다. 웅천 해변 주변은 그늘, 쉼터, 식사 동선을 붙이기 좋아 더운 날에도 쉬어 가며 움직일 수 있습니다.</p>
+
+    <h2>낭도는 조용한 섬 드라이브로 더합니다</h2>
+    <p>낭도는 여수 중심부의 번화한 분위기와 다르게 한적한 바다 풍경이 강점입니다. 낭도 표지와 해변, 다리 전망을 함께 보면 짧은 드라이브 코스로 충분합니다. 다만 대중교통만으로는 시간이 늘어질 수 있으니 자차나 렌터카 일정에 넣는 편이 좋습니다.</p>
+
+    <section class="photo-gallery" aria-label="여수 코스 사진">
+      <h2>코스별 사진 포인트</h2>
+      <div class="gallery-grid">
+        {gallery.map((item) => (
+          <figure>
+            <img src={item.src} alt={item.alt} width="720" height="406" loading="lazy" />
+            <figcaption>
+              <strong>{item.title}</strong>
+              <span>{item.caption}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <h2>저녁은 숙소 권역을 먼저 정합니다</h2>
+    <p>기차나 대중교통으로 도착한다면 여수엑스포역, 오동도, 해양공원 주변이 편합니다. 낮에는 장도나 오동도 산책을 넣고 저녁에는 택시나 버스로 야경 코스를 연결하기 좋습니다. 돌산 권역은 숙소 전망이 강점이지만 식사 선택지와 대중교통은 도심보다 제한될 수 있습니다.</p>
+
+    <h2>낭만포차 주변은 복귀 동선까지 봅니다</h2>
+    <p>저녁 식사와 포차 거리를 중심으로 잡는다면 숙소까지 돌아가는 방법이 중요합니다. 밤에는 택시 수요가 몰릴 수 있고, 도보 이동도 피로가 커질 수 있습니다. 숙소를 너무 멀리 잡기보다 저녁 이후 이동을 줄이는 권역을 고르는 것이 좋습니다.</p>
+
+    <section class="checklist-box">
+      <h2>예약 전 체크리스트</h2>
+      <ul>
+        <li>장도와 웅천을 같은 낮 코스로 묶을지 확인</li>
+        <li>낭도까지 갈 경우 차량 이동 시간과 주차 위치 확인</li>
+        <li>저녁 식사 후 숙소까지 택시, 버스, 도보 이동 방법 확인</li>
+        <li>해상 케이블카, 돌산 전망, 낭만포차 중 우선순위 정하기</li>
+        <li>숙소 주변 편의점, 카페, 아침 식사 선택지 확인</li>
+      </ul>
+    </section>
+
+    <section class="source-note">
+      <h2>최종 확인 기준</h2>
+      <p>작성일: 2026년 6월 18일. 장도 출입 가능 시간, 낭도 이동편, 케이블카 운영 시간, 주차장, 숙소 요금, 현장 대기 상황은 방문일에 따라 달라질 수 있으므로 출발 전 공식 안내를 다시 확인해야 합니다.</p>
+    </section>
+
+    <section>
+      <h2>함께 볼 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/"><span>국내여행</span><strong>지역과 계절 기준으로 여행지 고르기</strong></a>
+        <a href="/domestic/festivals/autumn-food-festival-route/"><span>축제 여행</span><strong>가을 미식 축제 여행 동선 짜는 법</strong></a>
+        <a href="/travel-tips/late-checkin-plan/"><span>여행 준비</span><strong>늦은 체크인 일정 해결법</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .yeosu-course-page .quick-route {
+    border: 1px solid #d9e6df;
+    border-radius: 8px;
+    padding: 1.25rem;
+    background: #f7fbf8;
+  }
+
+  .yeosu-course-page .route-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0 1rem;
+  }
+
+  .yeosu-course-page .route-strip span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    border: 1px solid #c8d9d0;
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    background: #fff;
+    color: #244136;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .yeosu-course-page .course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .yeosu-course-page .course-card {
+    border: 1px solid #dde3e0;
+    border-radius: 8px;
+    padding: 1rem;
+    background: #fff;
+  }
+
+  .yeosu-course-page .course-card span {
+    color: #28745a;
+    font-size: 0.86rem;
+    font-weight: 800;
+  }
+
+  .yeosu-course-page .course-card h2 {
+    margin-top: 0.4rem;
+    font-size: 1.15rem;
+  }
+
+  .yeosu-course-page .photo-gallery {
+    margin: 2rem 0;
+  }
+
+  .yeosu-course-page .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .yeosu-course-page .gallery-grid figure {
+    margin: 0;
+    border: 1px solid #dde3e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .yeosu-course-page .gallery-grid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .yeosu-course-page .gallery-grid figcaption {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.85rem;
+    color: #44534c;
+    font-size: 0.92rem;
+  }
+
+  .yeosu-course-page .gallery-grid strong {
+    color: #1d2d26;
+  }
+
+  @media (max-width: 760px) {
+    .yeosu-course-page .course-grid,
+    .yeosu-course-page .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

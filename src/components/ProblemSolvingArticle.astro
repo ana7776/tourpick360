@@ -1,0 +1,146 @@
+---
+import { pickTourApiImage } from '../data/tourApiImages.js';
+
+const { article, related = [] } = Astro.props;
+
+const imageKeysBySlug = {
+  'family-trip-schedule-delays': ['family_trip', 'busan'],
+  'hotel-cancellation-policy-check': ['seoul', 'busan'],
+  'rainy-trip-route-change': ['museum', 'busan_centum'],
+  'late-arrival-first-day-plan': ['gangneung', 'seoul'],
+  'festival-hotel-sold-out-alternative': ['festival_summer', 'festival_spring'],
+  'trip-budget-overrun-fix': ['festival_autumn', 'jeonju'],
+  'luggage-before-checkin-plan': ['seoul', 'gangneung'],
+  'parking-full-travel-route-fix': ['gyeongju', 'busan'],
+  'jeju-rental-car-return-last-day-plan': ['jeju_yongduam', 'jeju'],
+  'busan-rainy-day-indoor-family-course': ['busan_centum', 'busan'],
+  'gangneung-late-ktx-hotel-area': ['gangneung', 'seoul'],
+  'jeonju-hanok-parking-alternative-route': ['jeonju', 'gyeongju'],
+  'parents-trip-walking-distance-reduction': ['gyeongju', 'jeonju'],
+  'no-car-trip-hotel-area-choice': ['gangneung', 'busan'],
+  'summer-beach-hotel-area-alternative': ['busan', 'gangneung']
+};
+
+const heroImage = pickTourApiImage(imageKeysBySlug[article.slug] ?? ['seoul'], {
+  src: '/images/domestic-season-guide.svg',
+  alt: `${article.title} 안내 이미지`,
+  caption: '문제, 해결 방법, 예시를 함께 보는 Tourpick360 여행 준비 기준'
+});
+
+const pageUrl = `https://tourpick360.com/travel-tips/problems/${article.slug}/`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.title,
+  description: article.description,
+  author: { '@type': 'Organization', name: 'Tourpick360' },
+  publisher: { '@type': 'Organization', name: 'Tourpick360' },
+  datePublished: article.datePublished ?? '2026-06-06',
+  dateModified: article.dateModified ?? '2026-06-09',
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR'
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<article class="article-page longform">
+  <nav class="breadcrumb" aria-label="현재 위치">
+    <a href="/">홈</a>
+    <span>/</span>
+    <a href="/travel-tips/">여행 준비</a>
+    <span>/</span>
+    <span>문제 해결</span>
+  </nav>
+
+  <p class="eyebrow">{article.category}</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.intro}</p>
+
+  <figure class="article-hero-image">
+    <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+    <figcaption>{heroImage.caption}</figcaption>
+  </figure>
+
+  <h2>문제와 해결 방향</h2>
+  <table>
+    <tbody>
+      <tr><th>자주 생기는 문제</th><td>{article.problem}</td></tr>
+      <tr><th>해결 방법</th><td>{article.solution}</td></tr>
+      <tr><th>예시</th><td>{article.example}</td></tr>
+    </tbody>
+  </table>
+
+  {heroImage.contentId && (
+    <section class="source-note">
+      <h2>공공데이터 참고 정보</h2>
+      <p>
+        대표 사진과 장소 정보는 한국관광공사 국문 관광정보 서비스_GW의 이미지정보와 공통정보를 참고했습니다.
+        기준 장소는 {heroImage.title}{heroImage.address ? `, 주소는 ${heroImage.address}` : ''}입니다.
+        콘텐츠 ID: {heroImage.contentId}.
+      </p>
+      {heroImage.overview && <p>{heroImage.overview}</p>}
+    </section>
+  )}
+
+  {article.steps.map(([heading, body]) => (
+    <section>
+      <h2>{heading}</h2>
+      <p>{body}</p>
+    </section>
+  ))}
+
+  <section class="checklist-box">
+    <h2>실행 체크리스트</h2>
+    <ul>
+      {article.checklist.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-list">
+      {article.faqs.map(([question, answer]) => (
+        <details>
+          <summary>{question}</summary>
+          <p>{answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="method-box">
+    <h2>도구로 비교해 보기</h2>
+    <p>비슷한 상황이라면 <a href="/tools/itinerary-comparison/">기본 vs 개선 일정 비교 도구</a>에서 여행 유형을 선택해 동선을 줄이는 이유를 함께 확인할 수 있습니다.</p>
+  </section>
+
+  {article.internalLinks && (
+    <section>
+      <h2>함께 보면 좋은 내부 가이드</h2>
+      <div class="related-grid">
+        {article.internalLinks.map((item) => (
+          <a href={item.href}>
+            <span>{item.label}</span>
+            <strong>{item.title}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="source-note">
+    <h2>최종 확인 기준</h2>
+    <p>최종 확인일: {article.sourceCheckedDate ?? '2026년 6월 9일'}. 숙소 요금, 운영 시간, 취소 규정, 축제 일정은 여행일에 따라 달라질 수 있으므로 예약 전 공식 안내를 다시 확인해야 합니다.</p>
+  </section>
+
+  <section>
+    <h2>관련 글</h2>
+    <div class="related-grid">
+      {related.map((item) => (
+        <a href={item.href}>
+          <span>{item.category}</span>
+          <strong>{item.title}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+</article>

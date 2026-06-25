@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '합천 해인사 방문 가이드 - 가야산 숲길과 팔만대장경 하루 코스';
+const description = '합천 해인사의 가야산 숲길, 일주문, 대적광전, 전각 지붕과 연등 풍경을 차분하게 둘러보는 사찰 여행 가이드입니다.';
+const heroImage = '/images/hapcheon-haeinsa/haeinsa-forest-lantern-road.jpg';
+const pageUrl = 'https://tourpick360.com/domestic/hapcheon/haeinsa-temple-guide/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: new URL(heroImage, 'https://tourpick360.com').toString(),
+  author: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  datePublished: '2026-06-17',
+  dateModified: '2026-06-18',
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR'
+};
+
+const quickInfo = [
+  ['위치', '경남 합천군 가야산 해인사 일대'],
+  ['핵심 볼거리', '가야산 숲길, 해인사 경내, 장경판전, 대적광전, 연등길'],
+  ['코스 성격', '사찰 문화유산과 숲길 산책을 함께 보는 조용한 여행지'],
+  ['추천 흐름', '숲길과 일주문 방향으로 천천히 들어가 경내와 주요 전각 주변을 둘러보기'],
+  ['함께 묶기 좋은 곳', '거창 Y자형 출렁다리와 차량 이동으로 하루 코스를 구성하기 좋습니다.']
+];
+
+const routeTips = [
+  {
+    title: '해인사 중심 코스',
+    text: '가야산 숲길을 따라 천천히 들어가고, 경내에서는 대적광전과 장경판전 주변을 여유 있게 둘러봅니다.'
+  },
+  {
+    title: '사진 중심 코스',
+    text: '연등길, 숲길 입구, 전각 지붕 디테일, 고목과 소원지 구간을 순서대로 담으면 해인사의 분위기가 잘 살아납니다.'
+  },
+  {
+    title: '거창 연계 코스',
+    text: '오전에는 거창 Y자형 출렁다리에서 전망을 보고, 오후에는 해인사에서 숲과 사찰을 차분하게 보는 흐름이 좋습니다.'
+  }
+];
+
+const etiquette = [
+  ['촬영', '전각 내부, 문화재 보존 구역, 안내문이 있는 제한 구역은 현장 안내를 우선합니다.'],
+  ['소리', '사찰 경내에서는 대화와 통화 소리를 낮추는 것이 좋습니다.'],
+  ['동선', '장경판전과 주요 문화재 주변은 정해진 관람 동선을 따릅니다.'],
+  ['시간', '주말과 연등 행사 시기에는 이동과 사진 촬영 시간이 더 걸릴 수 있습니다.']
+];
+
+const gallery = [
+  ['/images/hapcheon-haeinsa/haeinsa-forest-lantern-road.jpg', '합천 해인사 숲길에 연등이 걸리고 방문객이 걷는 풍경', '숲길과 연등이 함께 보여 해인사 방문의 첫 분위기를 잡아줍니다.'],
+  ['/images/hapcheon-haeinsa/unesco-marker.jpg', '세계문화유산 해인사 고려대장경 판전 표지석', '해인사의 역사성을 보여주는 기록 사진으로 좋습니다.'],
+  ['/images/hapcheon-haeinsa/lantern-courtyard.jpg', '분홍색과 노란색 연등 아래 석등이 놓인 해인사 경내', '연등이 걸린 시기에는 색감이 강해 경내 분위기가 뚜렷하게 살아납니다.'],
+  ['/images/hapcheon-haeinsa/temple-lantern-walk.jpg', '해인사 전각 옆 난간에 걸린 알록달록한 연등', '경내를 걸으며 사찰 건축과 연등 장식을 함께 담기 좋습니다.'],
+  ['/images/hapcheon-haeinsa/temple-roof-bell.jpg', '해인사 전각 지붕 처마와 풍경, 뒤로 이어지는 계단길', '처마와 단청, 풍경 같은 디테일을 가까이서 보기 좋은 장면입니다.'],
+  ['/images/hapcheon-haeinsa/old-tree-wishes.jpg', '오래된 나무 주변에 노란 소원지가 걸린 해인사 경내', '고목과 소원지는 해인사의 차분한 분위기를 보여줍니다.'],
+  ['/images/hapcheon-haeinsa/daejeokgwangjeon-detail.jpg', '해인사 대적광전 지붕과 단청을 가까이서 본 모습', '전각의 지붕선과 단청 무늬를 살펴보기 좋은 사진입니다.']
+];
+---
+<BaseLayout title={title} description={description} image={heroImage}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a>
+      <span>/</span>
+      <a href="/domestic/">국내여행</a>
+      <span>/</span>
+      <span>합천</span>
+    </nav>
+
+    <p class="eyebrow">Hapcheon Temple Course</p>
+    <h1>합천 해인사 방문 가이드</h1>
+    <p class="lead">
+      합천 해인사는 가야산 숲길과 사찰 경내, 장경판전과 전각의 디테일을 함께 보는 여행지입니다.
+      빠르게 인증 사진만 남기기보다 숲길에서 속도를 낮추고, 경내에서는 소리와 동선을 차분하게 맞추는 일정이 잘 어울립니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage} alt="합천 해인사 숲길에 연등이 걸리고 방문객들이 걸어가는 풍경" width="1440" height="811" loading="eager" />
+      <figcaption>해인사는 숲길에서 경내로 들어가는 흐름이 좋아, 초입부터 천천히 걷는 일정으로 잡기 좋습니다.</figcaption>
+    </figure>
+
+    <section class="method-box">
+      <p class="eyebrow">Quick Info</p>
+      <h2>방문 전 핵심 정보</h2>
+      <table>
+        <tbody>
+          {quickInfo.map(([label, value]) => (
+            <tr>
+              <th>{label}</th>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>해인사에서 무엇을 보면 좋을까</h2>
+      <p>
+        해인사는 팔만대장경과 장경판전으로 널리 알려진 사찰입니다.
+        문화재 보존이 우선인 공간이므로 가까이서 볼 수 있는 범위와 촬영 가능 여부는 현장 안내를 따르는 것이 중요합니다.
+      </p>
+      <p>
+        사찰 여행의 매력은 전각 하나하나를 빠르게 체크하는 데만 있지 않습니다.
+        숲길, 오래된 나무, 전각의 처마와 단청, 연등이 걸린 길을 천천히 보는 시간이 해인사의 분위기를 더 잘 남깁니다.
+      </p>
+    </section>
+
+    <section class="checklist-box">
+      <h2>추천 동선</h2>
+      <div class="guide-list">
+        {routeTips.map((tip) => (
+          <article>
+            <h3>{tip.title}</h3>
+            <p>{tip.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>사찰 관람 예절과 주의사항</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>확인할 점</th>
+            </tr>
+          </thead>
+          <tbody>
+            {etiquette.map(([label, value]) => (
+              <tr>
+                <td>{label}</td>
+                <td>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>현장 사진으로 보는 해인사</h2>
+      <div class="article-photo-grid">
+        {gallery.map(([src, alt, caption]) => (
+          <figure>
+            <img src={src} alt={alt} width="1440" height="811" loading="lazy" />
+            <figcaption>{caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>거창 Y자형 출렁다리와 순서 잡기</h2>
+      <p>
+        두 곳을 같은 날 본다면 체력과 햇빛을 기준으로 순서를 정하는 편이 좋습니다.
+        더운 날에는 오전에 거창 출렁다리의 계단과 전망 구간을 먼저 보고, 오후에는 해인사 숲길과 경내를 차분하게 둘러보는 흐름이 편합니다.
+      </p>
+      <p>
+        반대로 해인사를 조용히 먼저 보고 싶다면 오전 해인사, 오후 거창 순서도 가능합니다.
+        다만 거창 코스는 생각보다 걷는 시간이 길어질 수 있으니 늦은 오후 출발은 피하는 편이 안전합니다.
+      </p>
+    </section>
+
+    <section class="source-note">
+      <h2>공식 정보 확인</h2>
+      <p>
+        문화재 관람 동선, 행사, 촬영 제한, 주차 안내는 시기별로 달라질 수 있습니다.
+        방문 직전 해인사 공식 안내와 현장 표지판을 다시 확인하세요.
+      </p>
+      <p>
+        참고: <a href="http://www.haeinsa.or.kr/" target="_blank" rel="noopener noreferrer">해인사 공식 사이트</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>함께 보면 좋은 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/geochang/y-shaped-suspension-bridge-guide/"><span>거창 Y자형 출렁다리</span><strong>우두산 암릉과 견암폭포를 함께 걷는 전망 코스</strong></a>
+        <a href="/domestic/"><span>국내여행</span><strong>지역과 계절 기준으로 여행지 고르기</strong></a>
+        <a href="/travel-tips/itinerary-before-after/"><span>일정 조정</span><strong>무리한 여행 일정 Before / After 사례</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

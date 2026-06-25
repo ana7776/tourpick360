@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const article = {
+  title: '강릉 차 없이 1박 2일 여행 코스와 숙소 위치',
+  description: '강릉을 KTX와 택시, 버스로 여행할 때 강릉역, 경포, 안목, 중앙시장 동선을 기준으로 1박 2일 코스와 숙소 위치를 정리합니다.'
+};
+
+const heroImage = getTourApiImage('gangneung', {
+  src: '/images/domestic-season-guide.svg',
+  alt: '강릉 차 없는 주말여행 안내 이미지',
+  caption: 'KTX 강릉 여행은 역, 숙소, 바다 권역을 삼각형으로 놓고 이동을 줄이는 것이 좋습니다.'
+});
+
+const transportRows = [
+  ['강릉역 주변 숙소', '도착과 출발, 짐 보관, 중앙시장 이동이 편합니다.', '바다를 숙소 앞에서 보기 어렵고 해변 이동은 택시나 버스를 써야 합니다.'],
+  ['경포 숙소', '아침 해변 산책과 오션뷰 숙소 만족도가 높습니다.', 'KTX 도착 후 이동이 필요하고 성수기에는 택시 대기와 주차 혼잡이 생길 수 있습니다.'],
+  ['안목 주변 숙소', '카페거리와 바다 산책을 짧게 묶기 좋습니다.', '숙소 선택지가 제한적이라 가격과 객실 조건을 더 꼼꼼히 봐야 합니다.'],
+  ['도심 숙소', '식사, 시장, 택시 이동이 단순하고 가성비 선택지가 있습니다.', '바다 중심 여행이라면 매번 이동해야 하는 단점이 있습니다.']
+];
+
+const weekendPlan = [
+  ['1일차 오전', 'KTX로 강릉역 도착 후 짐 보관 또는 숙소 이동을 먼저 처리합니다.'],
+  ['1일차 오후', '경포와 안목 중 한 권역만 선택해 바다 산책과 카페를 묶습니다.'],
+  ['1일차 저녁', '숙소 권역에서 식사하고 먼 야경 이동은 줄입니다.'],
+  ['2일차 오전', '중앙시장, 도심 카페, 가까운 해변 중 하나만 추가합니다.'],
+  ['2일차 오후', '기차 시간 1시간 30분 전에는 강릉역 권역으로 돌아옵니다.']
+];
+---
+<BaseLayout title={`${article.title} - Tourpick360`} description={article.description}>
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>강릉</span>
+    </nav>
+
+    <p class="eyebrow">강릉 뚜벅이 여행</p>
+    <h1>{article.title}</h1>
+    <p class="lead">
+      강릉은 KTX로 접근하기 좋아 차 없이도 1박 2일 여행이 가능한 도시입니다. 다만 바다, 카페거리,
+      중앙시장, 숙소를 모두 욕심내면 택시 이동과 짐 보관이 반복되어 생각보다 피곤해집니다.
+      차 없는 강릉 여행은 관광지를 많이 넣는 것보다 강릉역과 숙소, 해변 권역의 거리를 단순하게 만드는 것이 핵심입니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>핵심 요약</h2>
+    <table>
+      <tbody>
+        <tr><th>추천 대상</th><td>KTX 주말여행, 운전 없는 커플 여행, 친구 여행, 짧은 바다 여행</td></tr>
+        <tr><th>핵심 권역</th><td>강릉역, 경포, 안목, 중앙시장</td></tr>
+        <tr><th>숙소 기준</th><td>도착·출발 편의와 바다 접근성 중 무엇을 우선할지 먼저 결정</td></tr>
+        <tr><th>주의사항</th><td>성수기와 주말에는 택시 대기, 카페거리 혼잡, 기차 시간 압박을 함께 고려해야 합니다.</td></tr>
+      </tbody>
+    </table>
+
+    {heroImage.contentId && (
+      <section class="source-note">
+        <h2>공공데이터 참고 정보</h2>
+        <p>대표 사진은 한국관광공사 국문 관광정보 서비스_GW의 이미지정보를 참고했습니다. 기준 장소는 {heroImage.title}{heroImage.address ? `, 주소는 ${heroImage.address}` : ''}입니다. 콘텐츠 ID: {heroImage.contentId}.</p>
+        {heroImage.overview && <p>{heroImage.overview}</p>}
+      </section>
+    )}
+
+    <section>
+      <h2>차 없는 강릉 여행은 숙소 위치가 절반입니다</h2>
+      <p>
+        렌터카가 없으면 강릉역에서 숙소까지, 숙소에서 바다까지, 바다에서 식사 장소까지 이동이 모두 비용과 시간으로
+        이어집니다. 강릉역 근처 숙소는 이동이 편하지만 바다 감성이 약하고, 경포 숙소는 해변 만족도가 높지만 역과의
+        이동이 필요합니다. 1박 2일이라면 숙소를 한 번 정한 뒤 그 주변에서 저녁과 다음 날 오전까지 해결할 수 있는지가 중요합니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>숙소 권역별 선택 기준</h2>
+      <table>
+        <thead>
+          <tr><th>숙소 권역</th><th>장점</th><th>주의할 점</th></tr>
+        </thead>
+        <tbody>
+          {transportRows.map(([area, advantage, caution]) => (
+            <tr>
+              <td><strong>{area}</strong></td>
+              <td>{advantage}</td>
+              <td>{caution}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>강릉역 숙소가 좋은 일정</h2>
+      <p>
+        도착 시간이 늦거나 돌아가는 기차 시간이 이른 여행자는 강릉역 주변 숙소가 안정적입니다. 체크인 전후 짐 처리,
+        중앙시장 식사, 택시 이동이 단순합니다. 바다를 숙소 앞에서 바로 보는 만족도는 낮지만, 1박 2일 짧은 일정에서는
+        이동 피로를 줄이는 효과가 큽니다. 부모님과 함께하거나 짐이 많다면 강릉역 권역의 장점이 더 커집니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>경포와 안목은 한 번에 모두 넣지 않는 편이 좋습니다</h2>
+      <p>
+        경포와 안목은 모두 바다 여행지이지만 동선상 계속 이어 붙이면 택시 이동이 반복될 수 있습니다. 경포는 숙소와
+        아침 산책, 해변 체류에 강하고 안목은 카페거리와 짧은 바다 산책에 강합니다. 처음 가는 강릉 1박 2일이라면
+        첫날 오후에 둘 중 하나를 고르고, 다음 날 오전에는 중앙시장이나 강릉역 주변을 가볍게 보는 편이 현실적입니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>차 없는 강릉 1박 2일 기본 흐름</h2>
+      <ol>
+        {weekendPlan.map(([time, body]) => (
+          <li><strong>{time}</strong> {body}</li>
+        ))}
+      </ol>
+    </section>
+
+    <section>
+      <h2>택시와 버스는 목적을 나눠서 씁니다</h2>
+      <p>
+        차 없는 강릉 여행에서 모든 이동을 버스로 해결하려 하면 대기 시간이 길어질 수 있습니다. 짐이 있거나 기차 시간이
+        가까운 구간은 택시를 쓰고, 시간 여유가 있는 낮 이동은 버스를 섞는 방식이 낫습니다. 택시비가 아깝다고 먼 거리를
+        걷기 시작하면 바다를 즐길 시간이 줄어들 수 있으므로, 예산에 이동비를 따로 잡아두는 편이 좋습니다.
+      </p>
+    </section>
+
+    <section class="checklist-box">
+      <h2>예약 전 체크리스트</h2>
+      <ul>
+        <li>KTX 도착 시간과 숙소 체크인 시간</li>
+        <li>강릉역 또는 숙소 짐 보관 가능 여부</li>
+        <li>숙소에서 경포 또는 안목까지 이동 시간</li>
+        <li>둘째 날 기차 시간 전 강릉역 복귀 여유</li>
+        <li>택시비와 카페 대기 시간을 포함한 예산</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <details>
+          <summary>강릉은 차 없이 여행하기 괜찮나요?</summary>
+          <p>가능합니다. 다만 경포, 안목, 중앙시장, 숙소를 모두 촘촘히 넣기보다 한두 권역으로 줄여야 피로가 적습니다.</p>
+        </details>
+        <details>
+          <summary>숙소는 강릉역과 경포 중 어디가 좋나요?</summary>
+          <p>도착과 출발 편의가 중요하면 강릉역, 바다 산책과 숙소 만족도가 중요하면 경포가 더 잘 맞습니다.</p>
+        </details>
+        <details>
+          <summary>택시비를 줄이려면 어떻게 해야 하나요?</summary>
+          <p>숙소 권역에서 저녁과 다음 날 오전까지 해결하고, 경포와 안목 중 하나만 선택하면 이동 횟수를 줄일 수 있습니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="source-note">
+      <h2>최종 확인 기준</h2>
+      <p>최종 확인일: 2026년 6월 9일. KTX 시간표, 버스 배차, 택시 대기, 숙소 짐 보관과 체크인 조건은 여행일에 따라 달라질 수 있으므로 출발 전 공식 안내와 예약 정보를 다시 확인해야 합니다.</p>
+    </section>
+
+    <section>
+      <h2>함께 보면 좋은 내부 가이드</h2>
+      <div class="related-grid">
+        <a href="/domestic/gangneung/ktx-weekend-trip-guide/"><span>강릉 주말여행</span><strong>강릉 KTX 주말여행 동선과 숙소 위치</strong></a>
+        <a href="/travel-tips/problems/luggage-before-checkin-plan/"><span>짐 보관</span><strong>체크인 전 짐 보관이 안 될 때 일정 바꾸는 법</strong></a>
+        <a href="/travel-tips/problems/parking-full-travel-route-fix/"><span>주차 변수</span><strong>관광지 주차장이 만차일 때 일정 바꾸는 법</strong></a>
+        <a href="/domestic/festivals/public-transport-festival-daytrip-overnight/"><span>대중교통</span><strong>대중교통 축제 여행 당일치기와 1박 선택 기준</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

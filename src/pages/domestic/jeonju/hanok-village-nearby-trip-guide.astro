@@ -1,0 +1,359 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { naverMapSearchUrl } from '../../../utils/naverMapLinks.js';
+
+const article = {
+  title: '전주 한옥마을과 전주 인근 여행 코스',
+  description:
+    '전주 한옥마을 사진을 바탕으로 경기전, 전동성당, 오목대, 전주향교, 한벽당, 남부시장, 전라감영까지 반나절과 하루 여행 동선을 정리합니다.'
+};
+
+const heroPhoto = {
+  src: '/images/jeonju-hanok-village/gyeonggijeon-main-gate.jpg',
+  alt: '전주 경기전 정문과 한옥마을 입구 풍경',
+  width: 1800,
+  height: 1013,
+  caption: '한옥마을 여행은 경기전과 전동성당을 기준점으로 잡으면 주변 코스까지 길을 잃지 않고 이어가기 쉽습니다.'
+};
+
+const fieldPhotos = [
+  {
+    src: '/images/jeonju-hanok-village/gyeonggijeon-main-gate.jpg',
+    alt: '전주 경기전 정문과 나무 그늘',
+    width: 1800,
+    height: 1013,
+    caption: '경기전은 한옥마을의 가장 좋은 출발점입니다. 표지석, 정문, 담장길을 먼저 잡고 움직이면 동선이 단순해집니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/jeondong-cathedral.jpg',
+    alt: '푸른 하늘 아래 전주 전동성당',
+    width: 1800,
+    height: 1013,
+    caption: '전동성당은 경기전과 붙여 보기 좋습니다. 건축물 사진을 남기고 풍남문, 남부시장 방향으로 자연스럽게 이어집니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/quiet-hanok-alley.jpg',
+    alt: '전주 한옥마을의 조용한 한옥 골목',
+    width: 1600,
+    height: 901,
+    caption: '중심 상점가에서 한두 골목만 벗어나도 조용한 한옥 골목이 나옵니다. 사진 산책은 이 구간을 꼭 넣는 편이 좋습니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/tourist-information-center.jpg',
+    alt: '전주 한옥마을 관광안내소 건물',
+    width: 1600,
+    height: 901,
+    caption: '관광안내소는 지도, 해설투어, 화장실, 휴식 동선을 다시 정리하기 좋은 지점입니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/white-western-style-house.jpg',
+    alt: '전주 하얀양옥집 외관',
+    width: 1600,
+    height: 901,
+    caption: '하얀양옥집처럼 한옥 사이에 다른 결의 건물이 섞인 지점은 전주의 도시 변화를 함께 보여줍니다.'
+  },
+  {
+    src: '/images/jeonju-hanok-village/hanok-village-hydrangea-street.jpg',
+    alt: '전주 한옥마을 골목의 수국과 거리 풍경',
+    width: 1600,
+    height: 901,
+    caption: '여름에는 골목의 수국, 그늘, 담장 식재가 걷는 재미를 만들어줍니다. 더운 날은 이런 그늘길을 섞어 잡아야 덜 지칩니다.'
+  }
+];
+
+const routeOptions = [
+  {
+    title: '2~3시간 핵심 산책',
+    pace: '처음 방문하거나 더운 날에 적합',
+    path: ['경기전', '전동성당', '태조로', '은행로 골목', '한옥마을 관광안내소'],
+    tip: '사진은 경기전 정문과 전동성당을 먼저 찍고, 상점가가 붐비기 전 조용한 골목으로 빠지는 흐름이 좋습니다.'
+  },
+  {
+    title: '반나절 확장 코스',
+    pace: '한옥마을을 보고 주변 전망까지 넣는 일정',
+    path: ['경기전', '전동성당', '오목대', '전주향교', '남천교 또는 한벽당'],
+    tip: '오목대는 전망이 좋지만 오르막이 있습니다. 부모님 동반이나 한여름에는 전주향교와 남천교 쪽으로 완만하게 조정하세요.'
+  },
+  {
+    title: '하루 전주 확장 코스',
+    pace: '전주 도심까지 묶는 당일치기 또는 1박 2일 첫날',
+    path: ['한옥마을', '남부시장', '풍남문', '전라감영', '객사 또는 객리단길'],
+    tip: '점심은 한옥마을, 저녁은 남부시장이나 객리단길로 나누면 대기 시간과 이동 피로를 줄이기 쉽습니다.'
+  }
+];
+
+const nearbyPlaces = [
+  {
+    name: '오목대·이목대',
+    fit: '전망과 역사 해설을 함께 보고 싶을 때',
+    move: '한옥마을 동쪽 오르막 도보',
+    note: '사진은 좋지만 여름 낮에는 체감 피로가 큽니다. 해가 기울 때나 오전에 넣는 편이 안정적입니다.'
+  },
+  {
+    name: '전주향교',
+    fit: '조용한 산책과 전통 건축을 보고 싶을 때',
+    move: '향교길 쪽 도보 확장',
+    note: '상점가보다 차분한 분위기라 한옥마을의 소란을 잠시 끊어가기에 좋습니다.'
+  },
+  {
+    name: '한벽당·한벽굴·전주천',
+    fit: '한옥마을 이후 물길 산책을 붙이고 싶을 때',
+    move: '전주천 방향 도보 또는 짧은 택시',
+    note: '걷는 양이 늘어나므로 남부시장까지 한 번에 묶기보다 반나절 코스에서 선택지로 두는 편이 좋습니다.'
+  },
+  {
+    name: '남부시장·청년몰',
+    fit: '식사, 간식, 야시장까지 이어갈 때',
+    move: '전동성당, 풍남문에서 도보 연결',
+    note: '한옥마을 간식을 많이 먹었다면 남부시장은 저녁 일정으로 분리하는 것이 편합니다.'
+  },
+  {
+    name: '전라감영·풍패지관·객사',
+    fit: '전주 도심 역사와 카페 거리를 함께 보고 싶을 때',
+    move: '풍남문에서 도보 확장 또는 택시',
+    note: '전주시 공식 도보해설 코스에도 전라감영과 경기전에서 감영가는 길이 있어 역사 동선으로 묶기 좋습니다.'
+  },
+  {
+    name: '동문예술거리·영화의거리',
+    fit: '한옥마을 다음에 가볍게 도심 산책을 붙일 때',
+    move: '한옥마을 외곽에서 도보 또는 짧은 이동',
+    note: '사진 속 표지 기준으로 동문예술거리는 가까운 확장지, 영화의거리는 조금 더 걸어가는 도심 코스로 보면 됩니다.'
+  },
+  {
+    name: '덕진공원',
+    fit: '차량이나 버스로 전주 북쪽까지 넓히는 하루 일정',
+    move: '도보보다 차량·대중교통 권장',
+    note: '한옥마을과 바로 이어 걷기보다는 숙소 이동 전후 또는 다음 일정으로 분리하는 편이 좋습니다.'
+  }
+];
+
+const travelRules = [
+  ['사진 중심', '경기전 정문, 전동성당, 조용한 골목, 하얀양옥집, 수국 골목처럼 질감이 다른 장면을 순서대로 담습니다.'],
+  ['부모님 동반', '오목대 오르막을 무리해서 넣지 말고 관광안내소, 경기전, 전동성당, 점심 식당 사이 거리를 짧게 잡습니다.'],
+  ['여름 여행', '11시 이후에는 그늘과 실내 문화공간을 섞고, 오목대와 전주향교는 오전이나 늦은 오후로 돌립니다.'],
+  ['비 오는 날', '경기전 관람, 전주부채문화관, 최명희문학관, 전라감영, 카페를 중심으로 실내 비중을 높입니다.'],
+  ['차량 여행', '가까운 공영주차장만 고집하지 말고 제4공영주차장과 셔틀버스까지 대안으로 둡니다.']
+];
+
+const mapLinks = [
+  '경기전',
+  '전동성당',
+  '오목대',
+  '전주향교',
+  '한벽당',
+  '남부시장',
+  '전라감영',
+  '덕진공원'
+].map((name) => ({
+  name,
+  url: naverMapSearchUrl({ region: '전주', name })
+}));
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '전주 한옥마을과 인근 여행지는 하루에 같이 볼 수 있나요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '경기전, 전동성당, 한옥 골목, 오목대나 전주향교, 남부시장까지는 하루에 묶을 수 있습니다. 전라감영과 덕진공원까지 모두 넣으면 이동 피로가 커져 1박 2일로 나누는 편이 좋습니다.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: '전주 한옥마을에서 오목대와 전주향교는 걸어갈 만한가요?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '도보로 연결할 수 있지만 오목대는 오르막이 있어 여름 낮이나 부모님 동반 일정에서는 부담이 될 수 있습니다. 전주향교와 향교길은 비교적 차분한 산책 코스로 붙이기 좋습니다.'
+      }
+    }
+  ]
+};
+---
+<BaseLayout title={`${article.title} - Tourpick360`} description={article.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a>
+      <span>/</span>
+      <a href="/domestic/">국내여행</a>
+      <span>/</span>
+      <span>전주</span>
+    </nav>
+
+    <p class="eyebrow">전주 한옥마을 확장 코스</p>
+    <h1>{article.title}</h1>
+    <p class="lead">
+      오늘 사진을 기준으로 보면 전주 한옥마을은 경기전과 전동성당 같은 대표 지점만 찍고 끝내기보다,
+      조용한 한옥 골목, 관광안내소, 하얀양옥집, 오목대·전주향교 방향, 남부시장과 전라감영까지
+      어디까지 넓힐지 정하는 여행지에 가깝습니다. 이 글은 한옥마을을 중심으로 전주 인근 여행지를
+      반나절과 하루 코스로 나누어 정리한 추가 가이드입니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroPhoto.src} alt={heroPhoto.alt} width={heroPhoto.width} height={heroPhoto.height} loading="eager" />
+      <figcaption>{heroPhoto.caption}</figcaption>
+    </figure>
+
+    <section>
+      <h2>먼저 정할 것은 어디까지 볼지입니다</h2>
+      <p>
+        한옥마을은 지도상으로는 작아 보여도 실제로는 사진을 찍고, 간식을 먹고, 문화공간에 들어가고,
+        오목대나 남부시장까지 붙이는 순간 일정이 금방 길어집니다. 처음부터 모든 명소를 넣기보다
+        핵심 산책, 반나절 확장, 하루 전주 확장 중 하나를 고르는 것이 좋습니다.
+      </p>
+      <div class="route-notes">
+        {routeOptions.map((route) => (
+          <section>
+            <h3>{route.title}</h3>
+            <p><strong>{route.pace}</strong></p>
+            <p>{route.path.join(' → ')}</p>
+            <p>{route.tip}</p>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>사진으로 본 한옥마을 현장 포인트</h2>
+      <p>
+        이번 사진에서는 경기전 입구와 하마비, 전동성당, 한옥 지붕이 이어지는 골목, 안내지도, 하얀양옥집,
+        수국이 핀 거리까지 확인됩니다. 그래서 이 코스는 “대표 명소를 찍고 끝나는 여행”보다
+        “한옥마을의 중심부와 주변 길을 천천히 넓혀보는 여행”으로 잡는 편이 잘 맞습니다.
+      </p>
+      <div class="article-photo-grid">
+        {fieldPhotos.map((photo) => (
+          <figure>
+            <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} loading="lazy" />
+            <figcaption>{photo.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>한옥마을에서 붙이기 좋은 전주 인근 여행지</h2>
+      <p>
+        전주 인근 여행은 거리를 많이 늘리는 방식보다, 한옥마을과 결이 이어지는 곳을 하나씩 붙이는 방식이 좋습니다.
+        오목대와 전주향교는 한옥마을의 동쪽 산책지, 남부시장과 풍남문은 식사 동선, 전라감영과 객사는 도심 역사 동선으로
+        나누면 선택이 쉬워집니다.
+      </p>
+      <table>
+        <thead>
+          <tr><th>장소</th><th>어울리는 일정</th><th>이동 감각</th><th>현장 판단</th></tr>
+        </thead>
+        <tbody>
+          {nearbyPlaces.map((place) => (
+            <tr>
+              <td><strong>{place.name}</strong></td>
+              <td>{place.fit}</td>
+              <td>{place.move}</td>
+              <td>{place.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>동행자와 날씨에 따라 이렇게 조정합니다</h2>
+      <div class="route-notes">
+        {travelRules.map(([title, body]) => (
+          <section>
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>주차와 셔틀은 대안을 먼저 잡아둡니다</h2>
+      <p>
+        전주시 공식 안내에 따르면 한옥마을 제1·2·3공영주차장은 기본 30분 1,200원, 추가 15분 600원,
+        1일 최대 14,400원 기준으로 안내되어 있습니다. 제4공영주차장은 무료로 안내되지만 중심부까지 이동이 필요하므로,
+        주말이나 성수기에는 셔틀버스와 함께 보는 편이 현실적입니다. 셔틀은 제4공영주차장, 자만벽화마을 경유,
+        태조로 승강장, 제4공영주차장 구간으로 안내되어 있습니다.
+      </p>
+      <p>
+        남부시장까지 넣는 일정이면 남부시장 권역 주차장을 함께 검토하고, 전라감영·객사까지 넓히는 일정이면
+        차를 계속 옮기기보다 한 번 세우고 도보와 택시를 섞는 편이 더 편할 수 있습니다.
+      </p>
+    </section>
+
+    <section class="checklist-box">
+      <h2>출발 전 체크리스트</h2>
+      <ul>
+        <li>경기전 관람 여부와 운영 정보</li>
+        <li>오목대 오르막을 동행자가 감당할 수 있는지</li>
+        <li>전주향교, 한벽당, 남부시장 중 어디까지 볼지</li>
+        <li>한옥마을 제1·2·3공영주차장 만차 시 대체 주차장</li>
+        <li>제4공영주차장 이용 시 셔틀버스 운행 여부</li>
+        <li>더운 날에는 관광안내소, 카페, 실내 문화공간 휴식 지점</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>지도에서 바로 찾기</h2>
+      <div class="related-grid">
+        {mapLinks.map((link) => (
+          <a href={link.url} target="_blank" rel="noopener noreferrer">
+            <span>네이버 지도</span>
+            <strong>{link.name}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <details>
+          <summary>전주 한옥마을만 보면 몇 시간이 적당한가요?</summary>
+          <p>경기전, 전동성당, 중심 골목만 보면 2~3시간도 가능합니다. 오목대, 전주향교, 남부시장까지 붙이면 반나절 이상으로 보는 것이 편합니다.</p>
+        </details>
+        <details>
+          <summary>전주 인근까지 하루에 묶는다면 어디를 빼야 하나요?</summary>
+          <p>처음 방문이면 덕진공원처럼 거리가 있는 곳은 빼고, 한옥마을, 오목대 또는 전주향교, 남부시장, 전라감영 정도로 압축하는 편이 좋습니다.</p>
+        </details>
+        <details>
+          <summary>사진 여행이라면 어느 시간이 좋은가요?</summary>
+          <p>오전에는 경기전과 전동성당이 비교적 여유롭고, 오후 늦게는 한옥 골목과 오목대 전망이 좋습니다. 한여름 정오 전후는 그늘과 실내 휴식을 섞어야 합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="source-note">
+      <h2>최종 확인 기준</h2>
+      <p>
+        최종 확인일: 2026년 6월 16일. 전주시 공식 관광 안내의
+        <a href="https://tour.jeonju.go.kr/index.jeonju?menuCd=DOM_000000101006001000" target="_blank" rel="noopener noreferrer">역사·전통 명소 목록</a>,
+        <a href="https://tour.jeonju.go.kr/index.jeonju?menuCd=DOM_000000106008000000" target="_blank" rel="noopener noreferrer">도보해설투어 안내</a>,
+        <a href="https://tour.jeonju.go.kr/index.jeonju?menuCd=DOM_000000106010000000" target="_blank" rel="noopener noreferrer">주차장 안내</a>,
+        <a href="https://tour.jeonju.go.kr/index.jeonju?menuCd=DOM_000000106011000000" target="_blank" rel="noopener noreferrer">셔틀버스 안내</a>를 기준으로 작성했습니다.
+        시설 운영, 해설 시간, 주차 요금, 셔틀 운행은 방문 전 다시 확인하는 것이 안전합니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>함께 보면 좋은 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/jeonju/hanok-village-walking-guide/">
+          <span>전주 기본 코스</span>
+          <strong>전주 한옥마을 여행 코스와 주차 동선 가이드</strong>
+        </a>
+        <a href="/travel-tips/rainy-day-backup-plan/">
+          <span>우천 대체</span>
+          <strong>비 오는 날 대체 일정 준비법</strong>
+        </a>
+        <a href="/travel-tips/hotel-booking-checklist/">
+          <span>숙소 준비</span>
+          <strong>숙소 예약 전 확인해야 할 12가지</strong>
+        </a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

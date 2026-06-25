@@ -1,0 +1,364 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { allProblemSolvingArticles } from '../data/problemSolvingArticles.js';
+
+const heroImage = {
+  src: '/images/brand/tourpick-pastel-reference.png',
+  alt: '파스텔톤 여행 플래너 화면과 한국 여행 일러스트',
+  caption: 'Tourpick360 파스텔 여행 플래너 콘셉트'
+};
+
+const trendTags = [
+  '서울국악축제',
+  '김포 아라마린페스티벌',
+  '보령머드축제',
+  '조치원 복숭아 축제',
+  '부산 핸드메이드페어',
+  '수국 여행',
+  '여름 바다 숙소',
+  '비 오는 날 코스'
+];
+
+const liveFestivals = [
+  {
+    label: '내일 출발',
+    title: '서울국악축제',
+    date: '2026.06.19',
+    place: '반포한강공원 달빛광장',
+    point: '올해는 한강 야외 무대에서 전통 공연과 시민 체험을 함께 운영합니다.',
+    href: '/domestic/seoul/rainy-day-indoor-route-guide/'
+  },
+  {
+    label: '이번 주말',
+    title: '김포 아라마린페스티벌',
+    date: '2026.06.19 - 06.21',
+    place: '김포 아라마리나 일원',
+    point: '수상 레저, 공연, 로컬 마켓을 한 번에 묶어 수도권 당일치기 후보로 보기 좋습니다.',
+    href: '/domestic/festivals/summer-family-festival-rest-plan/'
+  },
+  {
+    label: '7월 대표',
+    title: '보령머드축제',
+    date: '2026.07.24 - 08.09',
+    place: '대천해수욕장 일원',
+    point: '일반존, 패밀리존, 워터파크존을 나눠 보고 숙소와 귀가 동선을 먼저 잡는 편이 좋습니다.',
+    href: '/domestic/festivals/summer-beach-festival-checklist/'
+  },
+  {
+    label: '가족 여행',
+    title: '세종 조치원 복숭아 축제',
+    date: '2026.07.24 - 07.26',
+    place: '조치원읍 대첩로 일대',
+    point: '무료 입장 축제지만 체험 프로그램과 먹거리 대기 시간을 일정에 따로 반영해야 합니다.',
+    href: '/domestic/festivals/family-spring-festival-choice/'
+  },
+  {
+    label: '실내 선택지',
+    title: 'K-핸드메이드페어 부산',
+    date: '2026.07.24 - 07.26',
+    place: '벡스코 제2전시장 4홀',
+    point: '비가 오거나 폭염이 강한 날 부산 여행의 실내 일정으로 연결하기 좋습니다.',
+    href: '/domestic/busan/rainy-day-family-route/'
+  }
+];
+
+const freshBriefs = [
+  {
+    title: '축제 먼저 고르지 말고, 퇴장 동선부터 확인하세요',
+    summary: '여름 축제는 입장보다 귀가가 더 어렵습니다. 막차, 택시 승차 위치, 숙소 복귀 시간을 먼저 고정하면 일정 실패가 줄어듭니다.',
+    href: '/travel-tips/problems/festival-hotel-sold-out-alternative/'
+  },
+  {
+    title: '비 예보가 있으면 야외 코스 2개를 실내 후보 1개로 바꿉니다',
+    summary: '무리하게 모두 소화하기보다 이동 반경을 줄이고 식사·카페·전시를 같은 권역에 묶는 편이 안정적입니다.',
+    href: '/travel-tips/problems/rainy-trip-route-change/'
+  },
+  {
+    title: '바다 여행 숙소는 오션뷰보다 체크아웃 후 보관이 먼저입니다',
+    summary: '퇴실 후 짐 보관, 샤워 가능 여부, 터미널 접근성을 같이 보면 마지막 날 피로가 크게 줄어듭니다.',
+    href: '/travel-tips/problems/luggage-before-checkin-plan/'
+  }
+];
+
+const destinationCards = [
+  {
+    region: '제주',
+    image: '/images/tourapi/jeju_yongduam.jpg',
+    alt: '제주 용두암 해안 풍경',
+    summary: '렌터카 반납, 비 오는 날 대체 코스, 공항권 숙소를 함께 봅니다.',
+    href: '/domestic/jeju/'
+  },
+  {
+    region: '부산',
+    image: '/images/domestic-places/busan-haeundae-beach-hero.jpg',
+    alt: '부산 해운대 바다 풍경',
+    summary: '해운대·센텀·서면을 가족 여행, 실내 코스, 숙소 접근성 기준으로 나눕니다.',
+    href: '/domestic/busan/family-hotel-area-guide/'
+  },
+  {
+    region: '강릉',
+    image: '/images/domestic-places/gangneung-anmok-beach-hero.jpg',
+    alt: '강릉 안목해변 풍경',
+    summary: 'KTX 도착 시간과 바다권 숙소, 뚜벅이 주말 코스를 같이 설계합니다.',
+    href: '/domestic/gangneung/ktx-weekend-trip-guide/'
+  }
+];
+
+const jeonbukThemes = [
+  {
+    label: '느린 여행',
+    title: '시간을 걷는 전북',
+    summary: '전주 한옥마을, 익산 함라한옥체험단지, 군산 말랭이마을처럼 골목과 이야기가 남아 있는 곳을 천천히 잇습니다.',
+    image: '/images/domestic-places/jeonju-hanok-village-hero.jpg',
+    alt: '전주 한옥마을 풍경',
+    href: '/domestic/jeonju/hanok-village-walking-guide/'
+  },
+  {
+    label: '시원전북',
+    title: '숲과 바다가 있는 여름 쉼표',
+    summary: '부안 변산반도, 진안 산길, 고창 선운산처럼 더운 날에도 동선에 그늘과 물길을 넣기 좋은 후보를 봅니다.',
+    image: '/images/tourapi/festival_summer.jpg',
+    alt: '여름 여행의 푸른 하늘과 축제 풍경',
+    href: '/domestic/festivals/summer-beach-festival-checklist/'
+  },
+  {
+    label: '먹거리·체험',
+    title: '임실 치즈와 순창 발효 여행',
+    summary: '가족 여행은 체험 시간을 중심에 두고, 식사 대기와 이동 피로를 줄이는 순서로 일정을 잡습니다.',
+    image: '/images/tourapi/family_trip.jpg',
+    alt: '가족 여행을 떠올리게 하는 야외 풍경',
+    href: '/domestic/festivals/family-spring-festival-choice/'
+  }
+];
+
+const jeonbukCities = [
+  ['전주', '한옥마을·덕진공원·전통문화 산책', '/domestic/jeonju/hanok-village-walking-guide/'],
+  ['익산', '미륵사지·함라한옥체험단지·국립익산박물관', '/domestic/festivals/train-arrival-luggage-festival-route/'],
+  ['군산', '근대 골목·말랭이마을·초원사진관 감성 코스', '/domestic/festivals/friday-night-arrival-festival-weekend-plan/'],
+  ['정읍', '쌍화차거리·내장산·역사 기행', '/domestic/festivals/autumn-parents-festival-overnight-choice/'],
+  ['남원', '광한루·아담원·춘향 이야기 여행', '/domestic/festivals/couple-night-festival-route/'],
+  ['부안', '변산반도·위도·여름 바다 쉼터', '/domestic/festivals/summer-beach-festival-checklist/'],
+  ['고창', '선운산·농악 상설굿판·고창 드라이브', '/domestic/festivals/gochang-bluefarm-lavender-yeonggwang-drive/'],
+  ['순창', '발효테마파크·강천산·로컬 먹거리', '/domestic/festivals/public-transport-festival-daytrip-overnight/']
+];
+
+const jeonbukEvents = [
+  ['전주 단오', '2026.06.19 - 06.20', '전통 명절 분위기를 도심 여행과 함께 묶기 좋습니다.'],
+  ['이리농악 상설공연', '2026.05.06 - 10.07', '익산 일정에 공연 시간을 더해 역사·공연 코스로 확장합니다.'],
+  ['고창농악 상설굿판', '2026.05.29 - 07.31', '고창 선운산·로컬 먹거리와 함께 보기 좋은 문화유산 공연입니다.'],
+  ['완주 전시: 꿈을 그리는 소년 밥장', '2026.01.27 - 06.30', '비 오는 날 전북 실내 일정 후보로 넣어둘 만합니다.']
+];
+
+const bookingChecks = [
+  ['숙소', '무료 취소 마감일, 짐 보관, 주차 가능 시간을 먼저 확인합니다.', '/travel-tips/hotel-booking-checklist/'],
+  ['교통', '행사 종료 뒤 막차·셔틀·택시 승차 지점을 지도에 저장합니다.', '/travel-tips/rental-car-checklist/'],
+  ['예산', '입장료보다 식사, 카페, 사물함, 주차비 같은 반복 지출을 따로 잡습니다.', '/travel-tips/travel-budget-plan/'],
+  ['대체안', '폭염·우천·만차 상황에서 바로 바꿀 실내 코스와 식당을 준비합니다.', '/travel-tips/rainy-day-backup-plan/']
+];
+
+const latestGuides = allProblemSolvingArticles.slice(-6).reverse();
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Tourpick360',
+  url: 'https://tourpick360.com',
+  description: '2026 국내 여행, 축제, 숙소 위치, 이동 동선을 함께 정리하는 여행 정보 사이트',
+  inLanguage: 'ko-KR'
+};
+---
+<BaseLayout
+  title="Tourpick360 - 2026 국내 여행과 축제 일정 브리핑"
+  description="Tourpick360은 2026년 국내 축제, 계절 여행지, 숙소 위치, 이동 동선, 예약 전 체크포인트를 한 번에 정리하는 여행 정보 사이트입니다."
+  image={heroImage.src}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
+
+  <section class="travel-hero">
+    <div class="travel-hero-copy">
+      <p class="eyebrow">2026 Travel Briefing</p>
+      <h1>이번 여행은 장소보다 흐름부터 고릅니다</h1>
+      <p>
+        Tourpick360은 최신 축제 일정, 계절 여행지, 숙소 권역, 이동 동선을 한 화면에서 이어 봅니다.
+        어디가 유명한지보다 언제 가야 덜 지치고, 어디서 자야 다음 일정이 편한지를 먼저 정리합니다.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="/domestic/festivals/">축제 일정 보기</a>
+        <a class="button" href="/travel-tips/">여행 문제 해결</a>
+      </div>
+    </div>
+    <figure class="travel-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="900" height="620" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+  </section>
+
+  <section class="today-strip" aria-label="오늘 살펴볼 여행 키워드">
+    <strong>Today</strong>
+    {trendTags.map((tag) => <a href="/domestic/festivals/">{tag}</a>)}
+  </section>
+
+  <section class="live-board">
+    <div class="section-heading">
+      <p class="eyebrow">Fresh Picks</p>
+      <h2>지금 새로 넣어둘 2026 여행 정보</h2>
+      <p class="muted">참고 사이트의 매거진형 구성은 살리되, 투어픽에는 임박 일정과 예약 전 판단 포인트를 더 앞에 배치했습니다.</p>
+    </div>
+    <div class="live-festival-grid">
+      {liveFestivals.map((item) => (
+        <a href={item.href}>
+          <span>{item.label}</span>
+          <strong>{item.title}</strong>
+          <dl>
+            <div>
+              <dt>기간</dt>
+              <dd>{item.date}</dd>
+            </div>
+            <div>
+              <dt>장소</dt>
+              <dd>{item.place}</dd>
+            </div>
+          </dl>
+          <p>{item.point}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="brief-flow">
+    <div>
+      <p class="eyebrow">Route First</p>
+      <h2>축제, 숙소, 교통을 따로 보지 않습니다</h2>
+      <p>
+        같은 여행지라도 비 예보, 주차 만차, 늦은 체크인, 짐 보관 여부에 따라 좋은 일정이 달라집니다.
+        그래서 투어픽은 여행 글을 읽는 흐름과 예약 전 체크 흐름을 한 페이지에서 연결합니다.
+      </p>
+    </div>
+    <div class="brief-flow-list">
+      {freshBriefs.map((item, index) => (
+        <a href={item.href}>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <strong>{item.title}</strong>
+          <small>{item.summary}</small>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="destination-board">
+    <div class="section-title-row">
+      <div>
+        <p class="eyebrow">Destination Mood</p>
+        <h2>여행 분위기에 맞춘 지역별 첫 선택</h2>
+      </div>
+      <a href="/domestic/">국내 여행 전체 보기</a>
+    </div>
+    <div class="destination-card-grid">
+      {destinationCards.map((item) => (
+        <a href={item.href}>
+          <img src={item.image} alt={item.alt} width="720" height="460" loading="lazy" />
+          <span>{item.region}</span>
+          <strong>{item.summary}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="jeonbuk-board">
+    <div class="section-heading">
+      <p class="eyebrow">Jeonbuk Travel</p>
+      <h2>전북 여행은 느리게 머물수록 깊어집니다</h2>
+      <p class="muted">
+        전북을 자연, 역사, 먹거리, 전통시장, 행사 정보로 다시 묶었습니다.
+        전주만 보고 끝내지 않고 익산, 군산, 정읍, 남원, 부안, 고창, 순창까지 이어 봅니다.
+      </p>
+    </div>
+    <div class="jeonbuk-theme-grid">
+      {jeonbukThemes.map((item) => (
+        <a href={item.href}>
+          <img src={item.image} alt={item.alt} width="720" height="460" loading="lazy" />
+          <div>
+            <span>{item.label}</span>
+            <strong>{item.title}</strong>
+            <p>{item.summary}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="jeonbuk-map-panel">
+      <div>
+        <p class="eyebrow">14 Cities & Counties</p>
+        <h3>전북 시·군별 여행 포인트</h3>
+        <p>투어픽에서는 실제 일정으로 연결하기 쉬운 권역부터 정리했습니다.</p>
+      </div>
+      <div class="jeonbuk-city-grid">
+        {jeonbukCities.map(([city, point, href]) => (
+          <a href={href}>
+            <strong>{city}</strong>
+            <span>{point}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="jeonbuk-event-strip">
+      <div>
+        <p class="eyebrow">Now in Jeonbuk</p>
+        <h3>지금 확인할 전북 행사</h3>
+      </div>
+      <div>
+        {jeonbukEvents.map(([title, date, summary]) => (
+          <article>
+            <strong>{title}</strong>
+            <span>{date}</span>
+            <p>{summary}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="booking-board">
+    <div>
+      <p class="eyebrow">Booking Check</p>
+      <h2>예약 전에는 가격보다 취소·이동·대체안을 먼저 봅니다</h2>
+    </div>
+    <div class="booking-check-grid">
+      {bookingChecks.map(([label, summary, href]) => (
+        <a href={href}>
+          <strong>{label}</strong>
+          <span>{summary}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="news-section">
+    <div class="section-heading">
+      <p class="eyebrow">Latest Guides</p>
+      <h2>최근 여행 문제 해결 가이드</h2>
+      <p class="muted">일정이 어긋나는 순간 바로 바꿔 쓸 수 있는 체크리스트형 글을 모았습니다.</p>
+    </div>
+    <div class="brief-list">
+      {latestGuides.map((item) => (
+        <article>
+          <p>{item.category}</p>
+          <h3><a href={item.href}>{item.title}</a></h3>
+          <span>{item.description}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="source-standard">
+    <div>
+      <p class="eyebrow">Sources</p>
+      <h2>확인한 기준</h2>
+    </div>
+    <ul>
+      <li>참고 사이트는 최신 글, 가볼 만한 곳, 예약 전 체크, 큐레이션 허브 구조를 확인했습니다.</li>
+      <li>전북 여행 정보는 자연, 역사, 먹거리, 전통시장, 행사 정보 흐름으로 재구성했습니다.</li>
+      <li>축제 일정은 대한민국 구석구석, 보령머드축제 공식 사이트, 김포 아라마린페스티벌 공식 사이트, K-핸드메이드페어 안내를 기준으로 반영했습니다.</li>
+      <li>일정과 요금은 주최 측 사정으로 바뀔 수 있어 출발 전 공식 페이지 확인을 전제로 안내합니다.</li>
+    </ul>
+  </section>
+</BaseLayout>

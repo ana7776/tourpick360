@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allProblemSolvingArticles } from '../../data/problemSolvingArticles.js';
+
+const coreGuides = [
+  ['숙소 예약 전 확인해야 할 12가지', '/travel-tips/hotel-booking-checklist/'],
+  ['렌터카 예약 전 확인해야 할 10가지', '/travel-tips/rental-car-checklist/'],
+  ['국내여행 예산표 짜는 법', '/travel-tips/travel-budget-plan/'],
+  ['비 오는 날 대체 일정 준비법', '/travel-tips/rainy-day-backup-plan/'],
+  ['늦은 체크인 일정 해결법', '/travel-tips/late-checkin-plan/'],
+  ['아이 동반 여행 피로 줄이는 법', '/travel-tips/child-travel-fatigue-solution/'],
+  ['무리한 여행 일정 Before / After', '/travel-tips/itinerary-before-after/']
+];
+---
+<BaseLayout title="여행 준비 가이드 - Tourpick360" description="숙소 예약, 렌터카, 여행 예산, 비 오는 날 대체 코스, 가족여행 문제 해결법을 정리한 Tourpick360 여행 준비 허브입니다.">
+  <section class="page">
+    <p class="eyebrow">Travel Tips</p>
+    <h1>여행 준비 가이드</h1>
+    <p>예약 전 확인해야 할 항목과 여행 중 자주 생기는 문제를 해결하는 방법을 정리합니다. 각 글은 문제 제기, 해결 방법, 예시, 체크리스트, 관련 도구 연결을 기준으로 구성합니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Problem Solving</p>
+      <h2>문제 해결형 콘텐츠</h2>
+      <p class="muted">여행 중 자주 생기는 문제를 상황별로 나누어 해결 순서와 체크리스트로 정리합니다.</p>
+    </div>
+    <div class="article-grid">
+      {allProblemSolvingArticles.map((item) => (
+        <article class="article-card">
+          <p>{item.category}</p>
+          <h3><a href={item.href}>{item.title}</a></h3>
+          <span>{item.description}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Core Guides</p>
+      <h2>기본 여행 준비 글</h2>
+    </div>
+    <div class="link-list">
+      {coreGuides.map(([title, href]) => <a href={href}>{title}</a>)}
+    </div>
+  </section>
+</BaseLayout>

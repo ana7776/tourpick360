@@ -1,0 +1,239 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="기본 vs 개선 여행 일정 비교 도구 - Tourpick360" description="여행 유형을 선택하면 무리한 기본 일정과 더 안정적인 개선 일정을 비교하고, 왜 개선안이 나은지 확인할 수 있는 Tourpick360 도구입니다.">
+  <section class="tool-page">
+    <div class="section-heading">
+      <p class="eyebrow">Comparison Tool</p>
+      <h1>기본 vs 개선 여행 일정 비교 도구</h1>
+      <p class="muted">여행 유형을 선택하면 자주 실패하는 기본 일정과 실제로 더 안정적인 개선 일정을 비교합니다. 각 결과에는 추천 이유와 확인할 체크포인트를 함께 제공합니다.</p>
+    </div>
+
+    <div class="tool-controls" aria-label="여행 유형 선택">
+      <button type="button" class="tool-tab active" data-mode="family">가족여행</button>
+      <button type="button" class="tool-tab" data-mode="couple">커플여행</button>
+      <button type="button" class="tool-tab" data-mode="parents">부모님 여행</button>
+      <button type="button" class="tool-tab" data-mode="rain">비 오는 날</button>
+      <button type="button" class="tool-tab" data-mode="festival">축제 여행</button>
+      <button type="button" class="tool-tab" data-mode="budget">예산 절약</button>
+      <button type="button" class="tool-tab" data-mode="noCar">차 없는 여행</button>
+      <button type="button" class="tool-tab" data-mode="lateArrival">늦은 도착</button>
+      <button type="button" class="tool-tab" data-mode="parking">주차 만차</button>
+      <button type="button" class="tool-tab" data-mode="jejuReturn">제주 반납일</button>
+    </div>
+
+    <div class="comparison-grid">
+      <article>
+        <p class="eyebrow">Basic</p>
+        <h2 id="basic-title">기본 일정</h2>
+        <ul id="basic-list"></ul>
+      </article>
+      <article>
+        <p class="eyebrow">Improved</p>
+        <h2 id="improved-title">개선 일정</h2>
+        <ul id="improved-list"></ul>
+      </article>
+    </div>
+
+    <section class="reason-box">
+      <h2>추천 이유</h2>
+      <p id="reason-text"></p>
+      <div class="reason-detail-grid" aria-label="개선 효과와 점검 기준">
+        <article>
+          <h3>개선 효과</h3>
+          <ul id="impact-list"></ul>
+        </article>
+        <article>
+          <h3>확인 포인트</h3>
+          <ul id="check-list"></ul>
+        </article>
+      </div>
+      <p><a id="related-link" href="/travel-tips/">관련 글 보기</a></p>
+      <ul id="related-link-list"></ul>
+    </section>
+  </section>
+
+  <script>
+    const data = {
+      family: {
+        basic: ['오전부터 여러 권역 관광지 이동', '대기 긴 맛집 방문', '오후에 다른 권역 카페 추가', '저녁 야경까지 이동'],
+        improved: ['숙소 근처 핵심 코스 1곳', '대체 식당 2곳 준비', '체크인 후 휴식 시간 확보', '저녁은 숙소 주변 산책'],
+        reason: '가족여행은 이동 횟수와 식사 실패를 줄이는 것이 가장 중요합니다. 숙소 주변으로 일정을 묶으면 아이 컨디션 변화와 부모님의 피로에 대응하기 쉽습니다.',
+        impact: ['권역 이동이 줄어 식사 시간이 밀릴 가능성이 낮아집니다.', '체크인 후 휴식이 생겨 다음 날 일정 회복력이 좋아집니다.', '대체 식당을 준비해 대기 시간이 길어져도 바로 바꿀 수 있습니다.'],
+        checks: ['숙소 주변 도보 식당', '아이 또는 부모님 휴식 시간', '첫날 핵심 코스 1곳', '비상 이동수단'],
+        href: '/travel-tips/problems/family-trip-schedule-delays/'
+      },
+      couple: {
+        basic: ['사진 명소를 여러 권역에 배치', '식사와 카페 이동 반복', '숙소 복귀가 늦어짐', '다음 날 운전 일정까지 빽빽함'],
+        improved: ['사진 명소는 1곳만 선택', '카페와 저녁 식사를 같은 권역에 배치', '숙소 분위기 활용', '다음 날 오전은 느슨하게 시작'],
+        reason: '커플여행은 많은 장소보다 체류 분위기와 여유가 만족도를 좌우합니다. 같은 권역 안에서 식사와 산책을 연결하면 피로가 줄고 숙소 선택의 장점도 살아납니다.',
+        impact: ['사진 명소와 식사 동선이 겹쳐 이동 피로가 줄어듭니다.', '숙소 체류 시간이 늘어 예약한 공간의 장점을 활용할 수 있습니다.', '다음 날 운전을 비워 여행 전체 만족도가 낮아지는 일을 줄입니다.'],
+        checks: ['저녁 식사 예약 가능 여부', '숙소 주변 산책 동선', '다음 날 체크아웃 시간', '야간 이동 안전성'],
+        href: '/domestic/festivals/couple-night-festival-route/'
+      },
+      parents: {
+        basic: ['도보 이동이 긴 관광지 선택', '계단 많은 코스 포함', '식사 시간이 불규칙함', '숙소 주차 동선 미확인'],
+        improved: ['걷는 거리 짧은 코스 선택', '엘리베이터와 휴식 공간 확인', '식사 시간을 먼저 고정', '숙소 주차와 조식 확인'],
+        reason: '부모님 여행은 볼거리보다 이동 편의가 먼저입니다. 걷는 거리, 식사, 주차가 안정되면 전체 일정의 부담이 줄어듭니다.',
+        impact: ['걷는 거리와 계단 변수가 줄어 체력 부담이 낮아집니다.', '식사 시간을 고정해 컨디션을 유지하기 쉽습니다.', '주차와 조식을 미리 확인해 현장 대기 시간을 줄입니다.'],
+        checks: ['도보 거리', '계단과 엘리베이터', '조식 또는 아침 식사', '숙소 주차 방식'],
+        href: '/domestic/festivals/parents-walking-festival-guide/'
+      },
+      rain: {
+        basic: ['야외 코스를 그대로 유지', '비 오는 시간대 장거리 이동', '주차장과 입구 거리 미확인', '취소 불가 예약 선택'],
+        improved: ['야외 코스마다 실내 대체지 준비', '숙소 주변 코스로 전환', '주차와 입구 동선 확인', '취소 가능 예약부터 비교'],
+        reason: '비 오는 날은 이동 시간이 길어지고 피로가 커집니다. 숙소 주변 실내 코스를 미리 준비하면 일정 변경이 자연스럽습니다.',
+        impact: ['강수 시간대에 맞춰 야외 노출 시간을 줄일 수 있습니다.', '숙소 주변 코스로 전환해 계산과 짐을 들고 이동하는 시간을 줄입니다.', '취소 가능 예약으로 비용 손실을 낮춥니다.'],
+        checks: ['강수 시간대', '실내 대체 코스', '주차장과 입구 거리', '취소 가능 기한'],
+        href: '/travel-tips/problems/rainy-trip-route-change/'
+      },
+      festival: {
+        basic: ['축제장 바로 앞 숙소만 검색', '행사 종료 후 복귀 방법 미확인', '식사 후보 없음', '취소 규정 확인 없이 결제'],
+        improved: ['2순위 숙소 권역까지 비교', '셔틀과 대중교통 확인', '숙소 주변 식당 준비', '무료 취소 기한 기록'],
+        reason: '축제 여행은 행사장과의 거리보다 복귀 동선과 숙소 조건이 중요합니다. 주변 숙소가 마감되어도 이동이 단순한 권역을 찾으면 대안이 됩니다.',
+        impact: ['숙소 마감 상황에서도 대체 권역을 빠르게 비교할 수 있습니다.', '행사 종료 후 복귀 실패를 미리 줄일 수 있습니다.', '취소 기한을 기록해 더 나은 숙소가 나왔을 때 갈아타기 쉽습니다.'],
+        checks: ['2순위 숙소 권역', '셔틀 운행 여부', '행사 종료 후 복귀', '무료 취소 마감'],
+        href: '/travel-tips/problems/festival-hotel-sold-out-alternative/'
+      },
+      budget: {
+        basic: ['최저가 숙소만 선택', '식비와 카페 비용 미계산', '택시와 주차비 누락', '현장 결제를 즉흥적으로 사용'],
+        improved: ['숙소 위치와 교통비를 함께 비교', '하루 식비 한도 설정', '택시와 주차비 포함', '현장 결제 예산 분리'],
+        reason: '여행 예산은 숙소비보다 현장 지출에서 자주 초과합니다. 고정비와 현장비를 분리하면 줄일 항목이 명확해집니다.',
+        impact: ['숙소 최저가와 실제 총액의 차이를 확인할 수 있습니다.', '식비와 카페 비용을 나눠 현장 지출을 통제하기 쉽습니다.', '택시와 주차비를 포함해 예산 초과를 미리 줄입니다.'],
+        checks: ['숙소 총액', '교통비', '하루 식비 한도', '현장 결제 예비비'],
+        href: '/travel-tips/problems/trip-budget-overrun-fix/'
+      },
+      noCar: {
+        basic: ['관광지와 가까운 숙소만 선택', '역에서 숙소까지 환승 2번', '저녁 식사 동선 미확인', '체크아웃 후 짐 처리 미정'],
+        improved: ['역과 숙소 이동을 먼저 확인', '숙소 도보권 식사 후보 확보', '하루 권역을 하나로 제한', '짐 보관과 복귀 동선 확인'],
+        reason: '차 없는 여행은 관광지 거리보다 역, 식사, 짐 보관, 복귀 동선이 중요합니다. 숙소를 이동 거점으로 고르면 택시비와 대기 시간이 줄어듭니다.',
+        impact: ['첫날 짐을 든 이동 피로가 줄어듭니다.', '늦은 시간 식사 실패 가능성이 낮아집니다.', '체크아웃 후 일정이 꼬이지 않습니다.'],
+        checks: ['역 또는 터미널 접근성', '숙소 주변 식사', '짐 보관', '야간 택시 예산'],
+        href: '/travel-tips/problems/no-car-trip-hotel-area-choice/'
+      },
+      lateArrival: {
+        basic: ['늦은 도착 후 먼 식당 이동', '야경 코스 추가', '체크인 직후 외출', '다음 날 아침 일찍 출발'],
+        improved: ['첫날은 이동과 회복 중심', '숙소 주변 식사로 제한', '야경은 선택 코스로 변경', '다음 날 오전 시작을 늦춤'],
+        reason: '늦은 도착 여행은 첫날 욕심을 줄여야 다음 날 만족도가 유지됩니다. 도착지 가까운 숙소와 식사를 먼저 정하면 일정이 흔들리지 않습니다.',
+        impact: ['체크인과 식사 시간이 안정됩니다.', '밤 이동 위험과 택시 대기를 줄입니다.', '다음 날 일정 회복력이 좋아집니다.'],
+        checks: ['도착 시간', '라스트오더', '숙소까지 이동 시간', '다음 날 오전 여유'],
+        href: '/travel-tips/problems/late-arrival-first-day-plan/'
+      },
+      parking: {
+        basic: ['가까운 주차장만 계속 대기', '점심 시간이 밀림', '관광지 입장 순서 유지', '대체 주차장 미확인'],
+        improved: ['주차 대기 포기 시간 설정', '식사 또는 카페 먼저 전환', '대체 주차장 2곳 확인', '혼잡 빠진 시간에 관광지 재접근'],
+        reason: '주차 만차는 현장에서 오래 버티는 문제가 아니라 방문 순서를 바꾸는 문제입니다. 대체 주차장과 식사 전환 기준이 있으면 일정 손실을 줄일 수 있습니다.',
+        impact: ['주차 대기로 하루 일정이 밀리는 일을 줄입니다.', '배고픔과 대기 피로를 동시에 낮춥니다.', '아이와 부모님 동반 시 걷는 부담을 조절할 수 있습니다.'],
+        checks: ['대체 주차장', '도보 거리', '점심 후보', '주차 대기 포기 기준'],
+        href: '/travel-tips/problems/jeonju-hanok-parking-alternative-route/'
+      },
+      jejuReturn: {
+        basic: ['마지막 날 먼 관광지 추가', '반납 직전 주유', '맛집 대기 후 공항 이동', '렌터카 셔틀 시간 미확인'],
+        improved: ['공항 반경 코스로 제한', '전날 주유와 짐 정리', '대기 적은 식사 선택', '출발 2시간 30분 전 반납 기준'],
+        reason: '제주 마지막 날은 관광지보다 렌터카 반납 안정성이 중요합니다. 공항 반경으로 줄이면 반납, 셔틀, 항공 수속 변수를 관리하기 쉽습니다.',
+        impact: ['항공편을 놓칠 위험을 낮춥니다.', '주유와 짐 정리로 막판 지연을 줄입니다.', '비가 와도 공항권 실내 일정으로 전환하기 쉽습니다.'],
+        checks: ['반납 마감 시간', '주유 위치', '공항권 식사', '셔틀 소요 시간'],
+        href: '/travel-tips/problems/jeju-rental-car-return-last-day-plan/'
+      }
+    };
+
+    const relatedLinksByMode = {
+      family: [
+        { label: '문제 해결', title: '가족여행 일정이 계속 밀릴 때 해결하는 법', href: '/travel-tips/problems/family-trip-schedule-delays/' },
+        { label: '템플릿', title: '가족여행 일정표 템플릿', href: '/templates/family-trip-plan-template/' },
+        { label: '사례', title: '부산 가족여행 숙소 동선 Before / After', href: '/case-studies/busan-family-route-before-after/' }
+      ],
+      couple: [
+        { label: '축제 여행', title: '커플 여행에 좋은 야간 축제 동선 짜기', href: '/domestic/festivals/couple-night-festival-route/' },
+        { label: '숙소 기준', title: '숙소 비교표 템플릿', href: '/templates/hotel-comparison-template/' },
+        { label: '사례', title: '경주 도보 여행 동선 Before / After', href: '/case-studies/gyeongju-walking-route-before-after/' }
+      ],
+      parents: [
+        { label: '문제 해결', title: '부모님 동반 여행에서 걷는 거리 줄이는 법', href: '/travel-tips/problems/parents-trip-walking-distance-reduction/' },
+        { label: '숙소 기준', title: '숙소 비교표 템플릿', href: '/templates/hotel-comparison-template/' },
+        { label: '사례', title: '경주 도보 여행 동선 Before / After', href: '/case-studies/gyeongju-walking-route-before-after/' }
+      ],
+      rain: [
+        { label: '문제 해결', title: '비 오는 날 국내여행 동선 바꾸는 법', href: '/travel-tips/problems/rainy-trip-route-change/' },
+        { label: '템플릿', title: '비 오는 날 대체 일정 템플릿', href: '/templates/rainy-day-itinerary-template/' },
+        { label: '사례', title: '제주 비 오는 날 일정 Before / After', href: '/case-studies/jeju-rainy-day-before-after/' }
+      ],
+      festival: [
+        { label: '문제 해결', title: '축제 기간 숙소가 마감됐을 때 대안 찾는 법', href: '/travel-tips/problems/festival-hotel-sold-out-alternative/' },
+        { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
+        { label: '허브', title: '국내 축제 여행 가이드', href: '/domestic/festivals/' }
+      ],
+      budget: [
+        { label: '문제 해결', title: '국내여행 예산이 초과될 때 줄이는 순서', href: '/travel-tips/problems/trip-budget-overrun-fix/' },
+        { label: '템플릿', title: '국내여행 예산표 템플릿', href: '/templates/travel-budget-template/' },
+        { label: '가이드', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' }
+      ],
+      noCar: [
+        { label: '문제 해결', title: '차 없이 국내여행할 때 숙소 위치 고르는 법', href: '/travel-tips/problems/no-car-trip-hotel-area-choice/' },
+        { label: '국내여행', title: '강릉 차 없이 1박2일 여행 코스와 숙소 위치', href: '/domestic/gangneung/no-car-weekend-course/' },
+        { label: '사례', title: '차 없는 국내여행 숙소 위치 Before / After', href: '/case-studies/no-car-hotel-area-before-after/' }
+      ],
+      lateArrival: [
+        { label: '문제 해결', title: '늦은 도착 여행 첫날 일정 줄이는 법', href: '/travel-tips/problems/late-arrival-first-day-plan/' },
+        { label: '가이드', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
+        { label: '사례', title: '강릉 1박2일 일정 Before / After', href: '/case-studies/gangneung-weekend-before-after/' }
+      ],
+      parking: [
+        { label: '문제 해결', title: '전주 한옥마을 주차 실패했을 때 대체 동선', href: '/travel-tips/problems/jeonju-hanok-parking-alternative-route/' },
+        { label: '국내여행', title: '전주 한옥마을 여행 코스와 주차 동선 가이드', href: '/domestic/jeonju/hanok-village-walking-guide/' },
+        { label: '사례', title: '전주 한옥마을 주차 동선 Before / After', href: '/case-studies/jeonju-parking-route-before-after/' }
+      ],
+      jejuReturn: [
+        { label: '문제 해결', title: '제주 렌터카 반납일 마지막 날 일정 관리법', href: '/travel-tips/problems/jeju-rental-car-return-last-day-plan/' },
+        { label: '가이드', title: '렌터카 예약 전 확인해야 할 10가지', href: '/travel-tips/rental-car-checklist/' },
+        { label: '사례', title: '제주 렌터카 반납일 Before / After', href: '/case-studies/jeju-rental-return-before-after/' }
+      ]
+    };
+
+    const tabs = document.querySelectorAll('.tool-tab');
+    const basicList = document.querySelector('#basic-list');
+    const improvedList = document.querySelector('#improved-list');
+    const reasonText = document.querySelector('#reason-text');
+    const impactList = document.querySelector('#impact-list');
+    const checkList = document.querySelector('#check-list');
+    const relatedLink = document.querySelector('#related-link');
+    const relatedLinkList = document.querySelector('#related-link-list');
+
+    function renderList(list, items) {
+      list.replaceChildren();
+      items.forEach((text) => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        list.appendChild(li);
+      });
+    }
+
+    function render(mode) {
+      const item = data[mode];
+      if (!item) return;
+      renderList(basicList, item.basic);
+      renderList(improvedList, item.improved);
+      reasonText.textContent = item.reason;
+      renderList(impactList, item.impact);
+      renderList(checkList, item.checks);
+      relatedLink.href = item.href;
+      relatedLink.textContent = item.href.includes('problems') ? '문제 해결 글 보기' : '관련 가이드 보기';
+      relatedLinkList.replaceChildren();
+      (relatedLinksByMode[mode] || []).forEach((link) => {
+        const li = document.createElement('li');
+        const anchor = document.createElement('a');
+        anchor.href = link.href;
+        anchor.textContent = `${link.label}: ${link.title}`;
+        li.appendChild(anchor);
+        relatedLinkList.appendChild(li);
+      });
+      tabs.forEach((tab) => tab.classList.toggle('active', tab.dataset.mode === mode));
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => render(tab.dataset.mode));
+    });
+
+    render('family');
+  </script>
+</BaseLayout>

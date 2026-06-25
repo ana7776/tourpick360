@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.wrangler-config/
+.tmp/
+*.log
+KakaoTalk_*.jpg
+tmp-*
+.env
+.env.*
+!.env.example

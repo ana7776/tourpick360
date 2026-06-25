@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Jeju travel guide illustration</title>
+  <desc id="desc">A calm island landscape with sea, road, and travel markers.</desc>
+  <rect width="1200" height="630" fill="#e9f4f1"/>
+  <path d="M0 430c150-42 290-48 420-18 160 38 285 28 424-25 140-54 250-54 356-20v263H0z" fill="#1f7770"/>
+  <path d="M0 470c140-24 260-18 390 24 162 52 302 44 430-2 150-54 268-48 380-12v150H0z" fill="#12312b"/>
+  <path d="M145 430c130-116 242-174 346-174 118 0 220 76 328 174z" fill="#f6f1e8"/>
+  <path d="M271 430c87-72 159-108 216-108 69 0 130 48 190 108z" fill="#d8ddd6"/>
+  <circle cx="895" cy="160" r="58" fill="#f4c95d"/>
+  <path d="M120 540c180-64 360-62 540 8 152 59 292 58 420-4" fill="none" stroke="#f4c95d" stroke-width="18" stroke-linecap="round"/>
+  <g fill="#d96b4f">
+    <path d="M845 281c0-47 38-85 85-85s85 38 85 85c0 70-85 154-85 154s-85-84-85-154z"/>
+    <circle cx="930" cy="281" r="34" fill="#fff"/>
+  </g>
+  <g fill="#fff" opacity=".82">
+    <rect x="96" y="82" width="220" height="18" rx="9"/>
+    <rect x="96" y="118" width="320" height="18" rx="9"/>
+    <rect x="96" y="154" width="270" height="18" rx="9"/>
+  </g>
+</svg>

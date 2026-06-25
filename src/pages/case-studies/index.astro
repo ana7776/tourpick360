@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const cases = [
+  {
+    category: '가족여행',
+    title: '부산 가족여행 숙소 동선 Before / After',
+    summary: '해운대, 광안리, 부산역을 하루에 모두 넣은 일정을 숙소 권역 중심으로 줄입니다.',
+    href: '/case-studies/busan-family-route-before-after/'
+  },
+  {
+    category: '날씨 대응',
+    title: '제주 비 오는 날 일정 Before / After',
+    summary: '야외 코스가 많은 제주 일정을 실내 대체 코스와 숙소 주변 동선으로 바꿉니다.',
+    href: '/case-studies/jeju-rainy-day-before-after/'
+  },
+  {
+    category: '주말여행',
+    title: '강릉 1박 2일 일정 Before / After',
+    summary: 'KTX 도착 후 이동이 많은 강릉 일정을 경포와 강릉역 중심으로 정리합니다.',
+    href: '/case-studies/gangneung-weekend-before-after/'
+  },
+  {
+    category: '주차 대응',
+    title: '전주 한옥마을 주차 동선 Before / After',
+    summary: '공영주차장 만차 상황에서 식사, 대체 주차장, 도보 루트를 다시 정리합니다.',
+    href: '/case-studies/jeonju-parking-route-before-after/'
+  },
+  {
+    category: '부모님 여행',
+    title: '경주 도보 여행 동선 Before / After',
+    summary: '대릉원, 첨성대, 황리단길을 부모님 동반 기준으로 줄여 걷는 피로를 낮춥니다.',
+    href: '/case-studies/gyeongju-walking-route-before-after/'
+  },
+  {
+    category: '제주 렌터카',
+    title: '제주 렌터카 반납일 Before / After',
+    summary: '마지막 날 관광 욕심을 공항 반경 동선으로 줄여 반납과 탑승 시간을 안정시킵니다.',
+    href: '/case-studies/jeju-rental-return-before-after/'
+  },
+  {
+    category: '차 없는 여행',
+    title: '차 없는 국내여행 숙소 위치 Before / After',
+    summary: '관광지 거리보다 역, 식사, 짐 보관 기준으로 숙소를 다시 고르는 사례입니다.',
+    href: '/case-studies/no-car-hotel-area-before-after/'
+  },
+  {
+    category: '일정 설계',
+    title: '무리한 여행 일정 Before / After 사례',
+    summary: '하루에 세 권역을 도는 일정을 핵심 코스와 숙소 권역 중심으로 줄입니다.',
+    href: '/travel-tips/itinerary-before-after/'
+  }
+];
+---
+<BaseLayout title="여행 Before / After 사례 - Tourpick360" description="국내여행 일정, 숙소 위치, 날씨 대응을 Before / After 방식으로 개선하는 사례 모음입니다.">
+  <section class="page">
+    <p class="eyebrow">Case Studies</p>
+    <h1>여행 Before / After 사례</h1>
+    <p class="lead">무리한 일정이 어떻게 바뀌면 더 편해지는지 실제 여행 상황별로 비교합니다. 각 사례는 문제, 개선 방식, 결과를 나누어 정리합니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="article-grid">
+      {cases.map((item) => (
+        <article class="article-card">
+          <p>{item.category}</p>
+          <h3><a href={item.href}>{item.title}</a></h3>
+          <span>{item.summary}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

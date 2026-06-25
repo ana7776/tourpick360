@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ApprovalArticle from '../../../components/ApprovalArticle.astro';
+import { jejuApprovalArticles, allJejuArticles } from '../../../data/jejuApprovalArticles.js';
+
+export function getStaticPaths() {
+  return jejuApprovalArticles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+const { article } = Astro.props;
+const related = allJejuArticles.filter((item) => item.title !== article.title).slice(0, 4);
+const seoDescription = article.description.length >= 50
+  ? article.description
+  : `${article.description} 숙소 권역, 렌터카 동선, 식사 접근성과 방문 전 확인 기준을 함께 정리합니다.`;
+---
+<BaseLayout title={`${article.title} - Tourpick360`} description={seoDescription}>
+  <ApprovalArticle article={article} related={related} />
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('gangneung', {
+  src: '/images/domestic-season-guide.svg',
+  alt: '차 없는 국내여행 숙소 위치 개선 사례',
+  caption: '차 없는 여행에서는 숙소를 이동 거점으로 보는 것이 핵심입니다.'
+});
+---
+<BaseLayout title="차 없는 국내여행 숙소 위치 Before / After - Tourpick360" description="대중교통 국내여행에서 관광지 가까운 숙소보다 역, 식사, 짐 보관 기준으로 숙소를 고르는 Before / After 사례입니다.">
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/case-studies/">사례</a><span>/</span><span>차 없는 여행</span>
+    </nav>
+    <p class="eyebrow">Before / After</p>
+    <h1>차 없는 국내여행 숙소 위치 Before / After</h1>
+    <p class="lead">대중교통 여행은 숙소 위치 하나로 이동 난이도가 크게 달라집니다. 관광지와 가까운 숙소라도 역, 식사, 짐 보관이 불편하면 택시비와 대기 시간이 늘어납니다.</p>
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>Before: 관광지 거리만 보고 고른 숙소</h2>
+    <table>
+      <tbody>
+        <tr><th>도착</th><td>역에서 숙소까지 환승과 도보 이동이 길어짐</td></tr>
+        <tr><th>저녁</th><td>숙소 주변 식당이 적어 택시 이동</td></tr>
+        <tr><th>다음 날</th><td>체크아웃 후 짐을 들고 관광지 이동</td></tr>
+        <tr><th>복귀</th><td>역으로 돌아가는 시간이 예상보다 길어짐</td></tr>
+      </tbody>
+    </table>
+    <p>관광지와 가까운 숙소가 항상 좋은 것은 아닙니다. 짐이 있거나 비가 오면 역과 숙소 사이의 첫 이동이 더 큰 피로가 될 수 있습니다.</p>
+
+    <h2>After: 역, 식사, 짐 보관 기준 숙소</h2>
+    <table>
+      <tbody>
+        <tr><th>도착</th><td>역 또는 터미널에서 한 번에 이동 가능한 숙소 선택</td></tr>
+        <tr><th>저녁</th><td>숙소 도보권 식사와 카페 후보 확보</td></tr>
+        <tr><th>다음 날</th><td>숙소 또는 역 보관함에 짐을 맡긴 뒤 관광</td></tr>
+        <tr><th>복귀</th><td>역 복귀 시간을 기준으로 마지막 코스 조정</td></tr>
+      </tbody>
+    </table>
+    <p>개선 후에는 숙소가 이동 거점이 됩니다. 여행지가 조금 멀어도 도착과 복귀가 단순해지고, 현장 택시비를 예측하기 쉬워집니다.</p>
+
+    <h2>결과</h2>
+    <ul>
+      <li>짐을 든 이동 시간이 줄어 첫날 피로가 낮아집니다.</li>
+      <li>저녁 식사와 야간 이동이 안정됩니다.</li>
+      <li>체크아웃 후 마지막 일정까지 자연스럽게 연결됩니다.</li>
+    </ul>
+    <p>자세한 기준은 <a href="/travel-tips/problems/no-car-trip-hotel-area-choice/">차 없이 국내여행할 때 숙소 위치 고르는 법</a>에서 확인할 수 있습니다.</p>
+  </article>
+</BaseLayout>

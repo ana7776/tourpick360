@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('jeju_indoor', getTourApiImage('jeju', {
+  src: '/images/jeju-guide.svg',
+  alt: '제주 비 오는 날 대체 일정 사례',
+  caption: '비 오는 날은 숙소 복귀와 실내 코스 전환이 쉬운 동선이 안전합니다.'
+}));
+---
+<BaseLayout title="제주 비 오는 날 일정 Before / After - Tourpick360" description="제주 여행에서 비가 올 때 야외 중심 일정을 실내 대체 코스와 숙소 주변 동선으로 바꾸는 사례입니다.">
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/case-studies/">사례</a><span>/</span><span>제주 비 오는 날</span>
+    </nav>
+    <p class="eyebrow">Before / After</p>
+    <h1>제주 비 오는 날 일정 Before / After</h1>
+    <p class="lead">제주는 야외 코스 비중이 높아 비가 오면 일정 만족도가 크게 달라집니다. 핵심은 모든 코스를 취소하는 것이 아니라 숙소 권역과 실내 대체지를 연결하는 것입니다.</p>
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>Before: 야외 코스를 그대로 유지</h2>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>오름 또는 해변 산책</td></tr>
+        <tr><th>점심</th><td>먼 권역 맛집 이동</td></tr>
+        <tr><th>오후</th><td>해안도로 카페와 사진 명소 방문</td></tr>
+        <tr><th>저녁</th><td>숙소와 먼 식당 예약</td></tr>
+      </tbody>
+    </table>
+    <p>비가 오면 야외 체류 시간이 줄고 주차장과 입구 사이 이동도 불편해집니다. 특히 아이나 부모님 동행이라면 차량 승하차와 젖은 짐 관리만으로도 피로가 큽니다.</p>
+
+    <h2>After: 숙소 주변 실내 코스 중심으로 전환</h2>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>숙소 주변 실내 전시 또는 카페</td></tr>
+        <tr><th>점심</th><td>주차 쉬운 식당 후보 중 선택</td></tr>
+        <tr><th>오후</th><td>체험형 실내 코스 또는 숙소 휴식</td></tr>
+        <tr><th>저녁</th><td>숙소 반경 20분 이내 식사</td></tr>
+      </tbody>
+    </table>
+    <p>개선 후에는 관광지 수가 줄지만 날씨 영향을 덜 받습니다. 숙소로 돌아오기 쉬워 일정 변경 스트레스가 줄고, 비가 약해지는 시간에 짧은 산책을 추가할 수 있습니다.</p>
+
+    <h2>결과</h2>
+    <ul>
+      <li>날씨 때문에 버리는 시간이 줄어듭니다.</li>
+      <li>아이와 부모님 동행 일정에서 체력 소모가 줄어듭니다.</li>
+      <li>취소 가능한 예약을 유지하면서 현장 선택지를 넓힐 수 있습니다.</li>
+    </ul>
+    <p>함께 볼 글: <a href="/travel-tips/rainy-day-backup-plan/">비 오는 날 대체 일정 준비법</a></p>
+  </article>
+</BaseLayout>

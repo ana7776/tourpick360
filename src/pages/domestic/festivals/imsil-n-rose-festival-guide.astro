@@ -1,0 +1,313 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '5월의 장미가 밤까지 피어 있던 곳, 임실N장미축제 5월 29일 방문기';
+const description =
+  '2026년 5월 29일 저녁에 직접 다녀온 임실N장미축제 방문 가이드. 임실치즈테마파크 장미정원, 공연장, 포토존, 야간 조명 산책 동선을 정리했습니다.';
+const heroImage = '/images/imsil-n-rose-festival/night-rose-garden.jpg';
+const pageUrl = 'https://tourpick360.com/domestic/festivals/imsil-n-rose-festival-guide/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  image: new URL(heroImage, 'https://tourpick360.com').toString(),
+  author: {
+    '@type': 'Organization',
+    name: 'Tourpick360',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Tourpick360',
+  },
+  datePublished: '2026-06-18',
+  dateModified: '2026-06-18',
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR',
+  about: {
+    '@type': 'Event',
+    name: '임실N장미축제',
+    startDate: '2026-05-28',
+    endDate: '2026-05-31',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    location: {
+      '@type': 'Place',
+      name: '임실치즈테마파크 일원',
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: '전북특별자치도',
+        addressLocality: '임실군',
+        addressCountry: 'KR',
+      },
+    },
+  },
+};
+---
+
+<BaseLayout title={title} description={description} image={heroImage}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <main class="article-page longform">
+    <nav class="breadcrumb" aria-label="breadcrumb">
+      <a href="/">홈</a>
+      <span>›</span>
+      <a href="/domestic/">국내여행</a>
+      <span>›</span>
+      <a href="/domestic/festivals/">축제</a>
+    </nav>
+
+    <p class="eyebrow">Imsil N Rose Festival</p>
+    <h1>{title}</h1>
+    <p class="lead">
+      임실N장미축제는 낮에만 보고 돌아오기에는 아쉬운 축제였습니다. 2026년 5월 29일 오후 늦게
+      임실치즈테마파크에 도착해 장미정원을 먼저 걷고, 해가 기운 뒤에는 공연장과 야간 조명까지
+      이어서 둘러봤습니다. 같은 장소인데도 시간대가 바뀌자 분위기가 확 달라져, 하루 일정 안에
+      산책형 여행과 저녁 축제의 느낌을 함께 담을 수 있었습니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img
+        src="/images/imsil-n-rose-festival/night-rose-garden.jpg"
+        alt="임실N장미축제 밤 정원에 조명이 켜지고 무대 불빛이 보이는 풍경"
+        width="1440"
+        height="811"
+        loading="eager"
+      />
+      <figcaption>5월 29일 저녁, 장미정원과 무대 조명이 함께 보이던 임실치즈테마파크.</figcaption>
+    </figure>
+
+    <section class="method-box">
+      <h2>방문 정보</h2>
+      <dl>
+        <div>
+          <dt>방문일</dt>
+          <dd>2026년 5월 29일</dd>
+        </div>
+        <div>
+          <dt>축제 기간</dt>
+          <dd>2026년 5월 28일~5월 31일, 현장 현수막 기준</dd>
+        </div>
+        <div>
+          <dt>장소</dt>
+          <dd>임실치즈테마파크 일원</dd>
+        </div>
+        <div>
+          <dt>추천 시간대</dt>
+          <dd>오후 4시 이후부터 야간 조명 시간대까지</dd>
+        </div>
+        <div>
+          <dt>추천 동선</dt>
+          <dd>입구 게이트 -> 장미터널 -> 장미정원과 분수정원 -> 메인무대와 먹거리 부스 -> 야간 산책</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>오후 늦게 도착하면 낮과 밤을 함께 볼 수 있습니다</h2>
+      <p>
+        이번 방문에서 가장 좋았던 선택은 너무 이른 시간에 일정을 몰아넣지 않은 것이었습니다.
+        5월 말의 임실은 해가 길어서 오후 늦게 도착해도 장미 색이 충분히 살아 있었고, 햇빛이
+        부드러워지는 시간에는 붉은 장미와 분수, 언덕길이 사진에 차분하게 담겼습니다. 낮에는
+        정원을 넓게 훑고, 해 질 무렵에는 장미터널과 계단 주변을 천천히 다시 걸었습니다. 이후
+        조명이 켜지자 같은 길이 야간 산책 코스로 바뀌어 한 번의 방문으로 두 가지 분위기를
+        경험한 느낌이 들었습니다.
+      </p>
+      <p>
+        임실N장미축제는 규모가 큰 편이지만 동선이 복잡하게 느껴지지는 않았습니다. 임실치즈테마파크
+        입구를 지나면 장미로 꾸민 게이트와 터널, 분수정원, 전망이 트이는 계단 구간이 자연스럽게
+        이어집니다. 곳곳에 앉을 수 있는 공간이 있고, 무대와 먹거리 구역도 멀지 않아 부모님이나
+        아이와 함께 온 가족 단위 방문객도 쉬엄쉬엄 움직이기 좋았습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>낮 코스는 입구, 장미터널, 분수정원 순서</h2>
+      <p>
+        낮 코스의 시작은 꽃으로 감싼 입구 게이트였습니다. 임실치즈테마파크라는 장소성이 분명한
+        데다, 입구 자체가 포토존처럼 꾸며져 있어 첫 사진을 남기기 좋았습니다. 안쪽으로 들어가면
+        장미터널이 이어지는데, 이 구간은 사람들이 많아도 기다리며 찍을 만한 가치가 있었습니다.
+        터널 안쪽은 그늘과 꽃이 함께 만들어내는 색감이 좋고, 바깥에서 보면 큰 장미 조형물이
+        축제의 분위기를 한눈에 보여줍니다.
+      </p>
+      <div class="article-photo-grid">
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/cheese-theme-park-gate.jpg"
+            alt="임실치즈테마파크 입구를 장미와 꽃으로 장식한 임실N장미축제 게이트"
+            width="1440"
+            height="811"
+            loading="lazy"
+          />
+          <figcaption>꽃으로 꾸민 임실치즈테마파크 입구.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/rose-tunnel.jpg"
+            alt="커다란 장미 조형물이 있는 임실N장미축제 장미터널 입구"
+            width="4000"
+            height="2252"
+            loading="lazy"
+          />
+          <figcaption>축제에서 가장 먼저 눈에 들어오는 장미터널.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/fountain-garden.jpg"
+            alt="분수와 화분, 장미가 함께 놓인 임실N장미축제 분수정원"
+            width="4000"
+            height="2252"
+            loading="lazy"
+          />
+          <figcaption>분수정원은 잠시 쉬어가며 사진을 찍기 좋은 구간입니다.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/wide-rose-garden.jpg"
+            alt="언덕 아래로 넓게 펼쳐진 임실N장미축제 장미정원과 행사장 전경"
+            width="4000"
+            height="2252"
+            loading="lazy"
+          />
+          <figcaption>위쪽 전망 구간에서는 축제장 규모가 한눈에 들어옵니다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>공연과 먹거리 구간은 쉬어가는 중심점</h2>
+      <p>
+        장미정원을 걷다 보면 자연스럽게 메인무대 방향으로 발길이 이어집니다. 5월 29일에는 무대
+        앞 관람객이 꽤 많았고, 대형 스크린을 통해 공연 장면을 뒤쪽에서도 볼 수 있었습니다.
+        축제장 전체가 꽃 구경만으로 끝나는 곳이 아니라, 공연을 보며 앉아 쉬고 간단한 먹거리를
+        곁들이는 저녁 나들이 장소처럼 운영되고 있었습니다. 사진 속 일정표에는 날짜별 프로그램과
+        구역 배치가 함께 정리되어 있었는데, 실제 방문 전에는 이런 현장 안내를 먼저 확인하면
+        원하는 공연 시간에 맞춰 움직이기 좋습니다.
+      </p>
+      <div class="article-photo-grid">
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/main-stage-crowd.jpg"
+            alt="임실N장미축제 메인무대 앞에 관람객이 모여 공연을 기다리는 모습"
+            width="1440"
+            height="811"
+            loading="lazy"
+          />
+          <figcaption>메인무대 주변은 저녁으로 갈수록 사람들이 모였습니다.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/festival-screen.jpg"
+            alt="임실N장미축제 대형 스크린에 공연장 화면이 송출되는 모습"
+            width="1440"
+            height="811"
+            loading="lazy"
+          />
+          <figcaption>대형 스크린 덕분에 뒤쪽에서도 무대 분위기를 볼 수 있었습니다.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/festival-map-schedule.jpg"
+            alt="임실N장미축제 행사장 배치도와 5월 29일 프로그램 일정표"
+            width="4000"
+            height="2252"
+            loading="lazy"
+          />
+          <figcaption>현장 안내판에는 행사장 배치와 날짜별 프로그램이 함께 정리되어 있었습니다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>밤이 되면 축제의 표정이 완전히 달라집니다</h2>
+      <p>
+        임실N장미축제는 낮의 장미도 좋지만, 개인적으로는 밤 풍경이 더 오래 남았습니다. 정원
+        곳곳에 조명이 켜지면 장미 색은 낮보다 진하게 보이고, 치즈테마파크 건물은 야경 사진의
+        배경이 됩니다. 무대의 빛, 산 아래로 번지는 저녁 공기, 조명을 단 나무들이 겹치면서 낮의
+        가족 나들이 분위기가 밤 산책 분위기로 자연스럽게 바뀝니다. 오래 걷지 않아도 볼거리가
+        이어지기 때문에, 해가 지기 전에 돌아가기보다 조금 더 머무르는 일정을 추천하고 싶습니다.
+      </p>
+      <figure class="article-inline-photo">
+        <img
+          src="/images/imsil-n-rose-festival/night-cheese-theme-park.jpg"
+          alt="밤 조명이 켜진 임실치즈테마파크 건물 야경"
+          width="4000"
+          height="2252"
+          loading="lazy"
+        />
+        <figcaption>조명이 켜진 임실치즈테마파크 건물은 야간 산책의 중심 배경이 됩니다.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>사진을 남기기 좋은 포인트</h2>
+      <p>
+        사진을 목적으로 방문한다면 장미터널과 하트 포토존은 기본으로 넣고, 해가 낮아지는 시간의
+        계단길도 놓치지 않는 편이 좋습니다. 장미가 빽빽한 구간에서는 가까이 찍는 사진이 잘 나오고,
+        언덕 위에서는 정원 전체와 행사장을 함께 담을 수 있습니다. 사람 없는 사진을 고집하기보다는
+        축제 현장답게 방문객이 자연스럽게 들어간 컷을 남기는 쪽이 이날의 분위기를 더 잘 보여줬습니다.
+      </p>
+      <div class="article-photo-grid">
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/rose-heart-photo-zone.jpg"
+            alt="분홍 장미 벽과 하트 조형물이 있는 임실N장미축제 포토존"
+            width="1440"
+            height="811"
+            loading="lazy"
+          />
+          <figcaption>장미 포토월은 짧게 들러도 기억에 남는 사진을 만들기 좋습니다.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/flower-entrance-path.jpg"
+            alt="꽃길 사이로 임실N장미축제 입구를 향해 걸어가는 산책로"
+            width="4000"
+            height="2252"
+            loading="lazy"
+          />
+          <figcaption>입구 주변 꽃길은 동선이 넓어 가족 사진을 찍기 편했습니다.</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/imsil-n-rose-festival/sunset-rose-steps.jpg"
+            alt="해 질 무렵 장미로 장식된 계단과 정원 산책로"
+            width="1440"
+            height="811"
+            loading="lazy"
+          />
+          <figcaption>해 질 무렵에는 계단과 장미 장식의 색이 부드럽게 살아납니다.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="checklist-box">
+      <h2>방문 팁</h2>
+      <ul>
+        <li>5월 말에는 오후 늦게 방문하면 뜨거운 햇빛을 피하면서 낮 정원과 야간 조명을 함께 볼 수 있습니다.</li>
+        <li>장미터널과 입구 게이트는 사람이 몰리는 구간이라, 먼저 찍고 안쪽 정원으로 이동하는 동선이 편합니다.</li>
+        <li>부모님과 함께라면 분수정원, 그늘, 무대 주변 좌석을 기준으로 쉬는 시간을 자주 넣는 것이 좋습니다.</li>
+        <li>아이와 방문한다면 공연장과 먹거리 구역을 중간 지점으로 잡고, 장시간 이동보다 짧은 순환 동선을 추천합니다.</li>
+        <li>축제 일정과 무대 프로그램은 해마다 달라질 수 있으니 방문 전 임실군 또는 임실치즈테마파크 안내를 다시 확인하세요.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>마무리 감상</h2>
+      <p>
+        임실N장미축제는 장미가 예쁜 축제라는 설명만으로는 조금 부족했습니다. 낮에는 꽃과 정원이
+        중심이었고, 저녁에는 공연과 조명, 산책의 흐름이 더해졌습니다. 특히 5월 29일처럼 축제 기간
+        한가운데 방문하면 정원은 가장 생기 있고, 무대 주변은 저녁 분위기가 살아납니다. 꽃을 보러
+        갔다가 밤 풍경까지 기억에 남는 여행지를 찾는다면, 임실치즈테마파크에서 열리는 이 축제는
+        하루 코스로 충분히 계획해볼 만합니다.
+      </p>
+    </section>
+
+    <p class="source-note">
+      이 글의 방문일은 2026년 5월 29일이며, 축제 기간과 장소는 현장 현수막 및 안내판에 적힌
+      2026년 5월 28일~5월 31일, 임실치즈테마파크 일원 기준으로 정리했습니다. 다음 방문 시에는
+      공식 안내에서 최신 일정과 운영 정보를 확인하는 것이 좋습니다.
+    </p>
+  </main>
+</BaseLayout>

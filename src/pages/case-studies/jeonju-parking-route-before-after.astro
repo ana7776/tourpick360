@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('jeonju', {
+  src: '/images/domestic-season-guide.svg',
+  alt: '전주 한옥마을 주차 동선 개선 사례',
+  caption: '주차 대기가 길어질 때는 식사와 도보 순서를 바꾸는 편이 안정적입니다.'
+});
+---
+<BaseLayout title="전주 한옥마을 주차 동선 Before / After - Tourpick360" description="전주 한옥마을 공영주차장이 만차일 때 식사, 대체 주차장, 도보 루트를 바꾸는 Before / After 사례입니다.">
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/case-studies/">사례</a><span>/</span><span>전주 주차 동선</span>
+    </nav>
+    <p class="eyebrow">Before / After</p>
+    <h1>전주 한옥마을 주차 동선 Before / After</h1>
+    <p class="lead">전주 한옥마을은 점심 시간대와 주말에 가까운 주차장부터 막히기 쉽습니다. 주차 대기를 오래 버티기보다 식사 순서와 걷는 방향을 바꾸면 일정 손실을 줄일 수 있습니다.</p>
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>Before: 가까운 주차장만 기다리는 일정</h2>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>한옥마을 공영주차장 진입 대기</td></tr>
+        <tr><th>점심</th><td>대기 시간이 길어져 인기 식당 웨이팅까지 겹침</td></tr>
+        <tr><th>오후</th><td>경기전, 전동성당, 오목대를 왕복 동선으로 이동</td></tr>
+        <tr><th>저녁</th><td>피로가 커져 남부시장 또는 카페 일정을 포기</td></tr>
+      </tbody>
+    </table>
+    <p>가까운 주차장을 계속 기다리면 식사와 관람 시간이 함께 밀립니다. 부모님이나 아이와 함께라면 배고픔, 주차 스트레스, 도보 피로가 동시에 커질 수 있습니다.</p>
+
+    <h2>After: 식사 우선 전환과 원형 도보 루트</h2>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>주차 대기 10분 후 대체 주차장으로 전환</td></tr>
+        <tr><th>점심</th><td>남부시장 또는 외곽 식사 후보 중 빠른 곳 선택</td></tr>
+        <tr><th>오후</th><td>경기전, 전동성당, 한옥마을 골목을 한 방향으로 걷기</td></tr>
+        <tr><th>저녁</th><td>귀가 방향에 맞춰 카페 또는 시장 코스 선택</td></tr>
+      </tbody>
+    </table>
+    <p>개선 후에는 가까운 주차장 집착을 줄이고 식사와 관광 순서를 바꿉니다. 한옥마을을 한 방향으로 걸으면 같은 길을 되돌아가는 시간이 줄어듭니다.</p>
+
+    <h2>결과</h2>
+    <ul>
+      <li>주차 대기로 하루 일정이 밀리는 일을 줄입니다.</li>
+      <li>점심 대기와 관광 피로가 겹치는 상황을 피할 수 있습니다.</li>
+      <li>부모님 동반 여행에서도 계단과 왕복 도보를 줄이기 쉽습니다.</li>
+    </ul>
+    <p>세부 기준은 <a href="/travel-tips/problems/jeonju-hanok-parking-alternative-route/">전주 한옥마을 주차 실패했을 때 대체 동선</a>에서 확인할 수 있습니다.</p>
+  </article>
+</BaseLayout>

@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const article = {
+  title: '부산 비 오는 날 가족여행 코스와 숙소 권역 고르는 법',
+  description: '부산 가족여행 중 비 예보가 있을 때 해운대, 센텀, 부산역, 남포동 권역을 기준으로 실내 코스와 숙소 위치를 조정하는 방법입니다.'
+};
+
+const heroImage = getTourApiImage('busan_centum', getTourApiImage('busan', {
+  src: '/images/domestic-season-guide.svg',
+  alt: '부산 비 오는 날 가족여행 안내 이미지',
+  caption: '비 오는 부산 여행은 해변 체류보다 실내 코스와 숙소 복귀 동선이 중요합니다.'
+}));
+
+const areaRows = [
+  ['해운대', '바다 산책을 짧게 남기고 실내 쇼핑, 카페, 호텔 휴식을 섞기 좋습니다.', '해변 바로 앞 일정은 강풍 예보가 있으면 줄여야 합니다.'],
+  ['센텀', '대형 실내 공간과 식사 선택지가 있어 아이 동반 우천 일정에 안정적입니다.', '숙소가 센텀 밖이면 이동 시간과 택시비를 함께 계산합니다.'],
+  ['부산역', 'KTX 도착과 출발이 편하고 짐 보관, 택시 이동을 연결하기 좋습니다.', '해변 분위기는 약하므로 남포동이나 영도 일정을 함께 봅니다.'],
+  ['남포동', '시장, 실내 식사, 근대 골목, 영도 이동을 묶기 좋습니다.', '비 오는 날 시장 골목은 사람이 몰릴 수 있어 식사 시간을 피크 밖으로 둡니다.']
+];
+
+const oneDayPlan = [
+  ['오전', '숙소 또는 역에 짐을 맡기고 실내 식사 장소를 먼저 확보합니다.'],
+  ['점심', '비가 강한 시간대에는 이동을 줄이고 숙소 권역 안에서 식사와 카페를 해결합니다.'],
+  ['오후', '센텀, 남포동, 부산역 주변 실내 코스 중 하나만 선택합니다.'],
+  ['저녁', '비가 약해지면 숙소 주변 산책이나 짧은 야경 코스만 남깁니다.']
+];
+---
+<BaseLayout title={`${article.title} - Tourpick360`} description={article.description}>
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>부산</span>
+    </nav>
+
+    <p class="eyebrow">부산 가족여행</p>
+    <h1>{article.title}</h1>
+    <p class="lead">
+      부산은 바다 여행지라는 이미지가 강하지만, 비가 와도 일정을 완전히 포기할 필요는 없습니다.
+      가족여행에서는 비 오는 날의 핵심이 관광지 개수보다 짧은 이동, 식사 접근성, 바로 쉴 수 있는 숙소 위치입니다.
+      해운대와 광안리만 보고 숙소를 잡기보다 센텀, 부산역, 남포동까지 함께 비교하면 우천 일정이 훨씬 안정적입니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>핵심 요약</h2>
+    <table>
+      <tbody>
+        <tr><th>추천 대상</th><td>아이 동반 가족, 부모님 동반 부산 여행, 장마철 또는 비 예보가 있는 주말 여행</td></tr>
+        <tr><th>핵심 권역</th><td>해운대, 센텀, 부산역, 남포동</td></tr>
+        <tr><th>일정 기준</th><td>야외 코스는 하나만 남기고 숙소 권역 실내 코스를 먼저 확보</td></tr>
+        <tr><th>주의사항</th><td>강풍 예보가 있으면 해변 산책, 케이블카, 해안 전망 코스는 줄이는 편이 안전합니다.</td></tr>
+      </tbody>
+    </table>
+
+    {heroImage.contentId && (
+      <section class="source-note">
+        <h2>공공데이터 참고 정보</h2>
+        <p>대표 사진은 한국관광공사 국문 관광정보 서비스_GW의 이미지정보를 참고했습니다. 기준 장소는 {heroImage.title}{heroImage.address ? `, 주소는 ${heroImage.address}` : ''}입니다. 콘텐츠 ID: {heroImage.contentId}.</p>
+        {heroImage.overview && <p>{heroImage.overview}</p>}
+      </section>
+    )}
+
+    <section>
+      <h2>비 오는 날 부산 가족여행은 권역을 줄여야 합니다</h2>
+      <p>
+        부산은 지도상으로는 한 도시지만 해운대, 광안리, 남포동, 영도, 송도, 부산역 권역을 하루에 모두
+        묶으면 이동 시간이 길어집니다. 비가 오면 우산, 젖은 신발, 아이 짐 때문에 환승 한 번도 피로가 됩니다.
+        따라서 비 예보가 있는 날에는 숙소에서 30분 안팎으로 움직일 수 있는 코스를 우선하고, 해변과 시장을
+        같은 날 무리하게 넣지 않는 편이 좋습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>숙소 권역별 우천 일정 판단표</h2>
+      <table>
+        <thead>
+          <tr><th>권역</th><th>비 오는 날 장점</th><th>확인할 점</th></tr>
+        </thead>
+        <tbody>
+          {areaRows.map(([area, advantage, caution]) => (
+            <tr>
+              <td><strong>{area}</strong></td>
+              <td>{advantage}</td>
+              <td>{caution}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>해운대 숙소가 좋은 경우</h2>
+      <p>
+        이미 해운대 숙소를 예약했다면 비 오는 날에도 장점은 있습니다. 숙소 주변에서 식사와 카페를 해결하기 쉽고,
+        비가 잠깐 그쳤을 때 해변 산책을 짧게 넣을 수 있습니다. 다만 강풍이나 호우가 있으면 해변 체류를 줄이고,
+        실내 쇼핑, 호텔 휴식, 숙소 주변 식당 중심으로 조정해야 합니다. 아이가 있다면 수영장, 키즈 시설, 객실 내
+        휴식 가능 여부가 실제 만족도를 좌우합니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>센텀 권역은 실내 대체 코스가 강점입니다</h2>
+      <p>
+        센텀은 비 오는 날 가족여행에서 안정적인 선택지입니다. 대형 실내 공간, 식사, 카페, 쇼핑 동선을 한 번에
+        묶기 쉬워 날씨 영향을 덜 받습니다. 부산에 처음 온 여행자라면 바다 감성은 줄어들 수 있지만, 아이 컨디션과
+        부모님 이동 피로를 생각하면 센텀을 하루 대체 코스로 두는 것이 훨씬 현실적일 때가 많습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>부산역과 남포동은 도착·출발일에 유리합니다</h2>
+      <p>
+        KTX를 이용하는 가족이라면 부산역 권역은 첫날과 마지막 날에 특히 편합니다. 짐 보관, 택시 이동, 짧은 식사
+        동선을 만들기 쉽고 비가 와도 이동 범위를 줄일 수 있습니다. 남포동은 시장과 식사, 영도 이동을 연결하기 좋지만
+        비 오는 날에는 골목 혼잡과 우산 이동이 불편할 수 있어 식사 시간을 조금 앞당기는 편이 좋습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>비 오는 날 1일 일정 예시</h2>
+      <ol>
+        {oneDayPlan.map(([time, body]) => (
+          <li><strong>{time}</strong> {body}</li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="checklist-box">
+      <h2>예약 전 체크리스트</h2>
+      <ul>
+        <li>숙소에서 실내 코스까지 택시 또는 대중교통 이동 시간</li>
+        <li>아이와 부모님이 쉴 수 있는 카페나 실내 공간</li>
+        <li>해변 산책을 대체할 식사와 쇼핑 동선</li>
+        <li>숙소 짐 보관과 체크인 가능 시간</li>
+        <li>강풍 또는 호우 예보 시 취소 가능한 야외 일정</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <details>
+          <summary>부산 비 오는 날에도 해운대 숙소가 괜찮나요?</summary>
+          <p>괜찮습니다. 다만 해변 체류를 줄이고 숙소 주변 식사, 카페, 실내 시설을 활용하는 일정으로 바꾸는 것이 좋습니다.</p>
+        </details>
+        <details>
+          <summary>아이와 함께라면 어느 권역이 가장 안정적인가요?</summary>
+          <p>실내 이동과 식사가 쉬운 센텀, 숙소 시설이 좋은 해운대, 도착과 출발이 편한 부산역 권역을 우선 비교하면 좋습니다.</p>
+        </details>
+        <details>
+          <summary>비 오는 날 부산에서 차를 가져가는 게 좋나요?</summary>
+          <p>짐이 많으면 편하지만 실내 명소와 쇼핑 공간 주변은 주차 대기가 생길 수 있습니다. 숙소 주차 후 택시를 섞는 방법도 비교해야 합니다.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="source-note">
+      <h2>최종 확인 기준</h2>
+      <p>최종 확인일: 2026년 6월 9일. 비 예보, 실내 시설 운영 시간, 주차 조건, 숙소 체크인과 짐 보관 가능 여부는 여행일에 따라 달라질 수 있으므로 방문 전 공식 안내와 숙소 공지를 다시 확인해야 합니다.</p>
+    </section>
+
+    <section>
+      <h2>함께 보면 좋은 내부 가이드</h2>
+      <div class="related-grid">
+        <a href="/domestic/busan/family-hotel-area-guide/"><span>부산 숙소</span><strong>부산 가족여행 숙소 권역 고르는 법</strong></a>
+        <a href="/travel-tips/problems/rainy-trip-route-change/"><span>우천 대응</span><strong>비 오는 날 국내여행 동선 바꾸는 법</strong></a>
+        <a href="/travel-tips/problems/luggage-before-checkin-plan/"><span>짐 보관</span><strong>체크인 전 짐 보관이 안 될 때 일정 바꾸는 법</strong></a>
+        <a href="/domestic/festivals/rainy-season-festival-travel-plan/"><span>축제 여행</span><strong>비 예보가 있는 축제 여행 숙소와 일정 조정법</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

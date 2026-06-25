@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { allJejuArticles } from '../../../data/jejuApprovalArticles.js';
+---
+<BaseLayout title="제주 여행 가이드 - Tourpick360" description="제주 숙소 권역, 렌터카 동선, 가족 여행 코스, 비 오는 날 대체 일정과 계절별 여행 준비 기준을 비교해 정리합니다.">
+  <section class="page category-page">
+    <p class="eyebrow">Jeju Guide</p>
+    <h1>제주 여행 가이드</h1>
+    <p class="lead">제주는 숙소 위치에 따라 여행 만족도가 크게 달라집니다. Tourpick360은 공항권, 애월, 중문, 성산을 단순 추천 순위가 아니라 도착 편의성, 식사 접근성, 날씨 대응, 가족 편의성 같은 360도 기준으로 비교합니다.</p>
+    <div class="category-summary">
+      <div>
+        <strong>10</strong>
+        <span>제주 핵심 가이드</span>
+      </div>
+      <div>
+        <strong>6</strong>
+        <span>360도 판단 항목</span>
+      </div>
+      <div>
+        <strong>2026.06.05</strong>
+        <span>최종 구조 점검일</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Articles</p>
+      <h2>제주 콘텐츠 목록</h2>
+    </div>
+    <div class="article-grid">
+      {allJejuArticles.map((item) => (
+        <article class="article-card">
+          <p>{item.category}</p>
+          <h3><a href={item.href}>{item.title}</a></h3>
+          <span>{item.summary}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

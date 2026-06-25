@@ -1,0 +1,178 @@
+---
+const {
+  title = 'Tourpick360 - 국내 계절 축제 여행 가이드',
+  description = 'Tourpick360은 국내 계절 여행과 축제 여행을 중심으로 숙소 위치, 이동 동선, 주차, 이용 시간, 여행 준비 정보를 정리하는 전문 여행 정보 사이트입니다.',
+  lang = 'ko',
+  image = '/images/domestic-places/busan-haeundae-beach-hero.jpg'
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, 'https://tourpick360.com').toString();
+const ogImageUrl = new URL(image, 'https://tourpick360.com').toString();
+
+const languageLinks = [
+  { code: 'ko', hreflang: 'ko-KR', label: '한국어', href: '/' },
+  { code: 'zh-CN', hreflang: 'zh-CN', label: '简体中文', href: '/zh-CN/' },
+  { code: 'ja', hreflang: 'ja-JP', label: '日本語', href: '/ja/' },
+  { code: 'en', hreflang: 'en', label: 'English', href: '/en/' },
+  { code: 'es', hreflang: 'es', label: 'Español', href: '/es/' }
+];
+
+const langKey = lang === 'zh-CN' ? 'zh' : lang;
+
+const navByLang = {
+  ko: ['국내여행', '축제 여행', '제주 집중 가이드', '여행 준비', '사례', '템플릿', '비교 도구', '편집 기준', '소개'],
+  zh: ['韩国旅行', '节庆旅行', '济州指南', '旅行准备', '案例', '模板', '比较工具', '编辑标准', '关于'],
+  ja: ['韓国旅行', '祭り旅行', '済州ガイド', '旅行準備', '事例', 'テンプレート', '比較ツール', '編集基準', '紹介'],
+  en: ['Korea Travel', 'Festival Trips', 'Jeju Guide', 'Travel Tips', 'Case Studies', 'Templates', 'Compare Tool', 'Editorial Policy', 'About'],
+  es: ['Viajes por Corea', 'Festivales', 'Guía de Jeju', 'Preparativos', 'Casos', 'Plantillas', 'Comparador', 'Criterios editoriales', 'Acerca de']
+};
+
+const footerGroupsByLang = {
+  ko: {
+    service: '서비스',
+    destinations: '인기 여행지',
+    policy: '운영 정보',
+    links: ['국내여행 허브', '축제 여행', '제주 가이드', '여행 준비', '비교 도구', '서울', '부산', '강릉', '경주', '여수', '소개', '편집 기준', '문의', '개인정보처리방침', '이용약관', '광고/제휴 고지']
+  },
+  zh: {
+    service: '服务',
+    destinations: '热门目的地',
+    policy: '运营信息',
+    links: ['韩国旅行主页', '节庆旅行', '济州指南', '旅行准备', '比较工具', '首尔', '釜山', '江陵', '庆州', '丽水', '关于', '编辑标准', '联系', '隐私政策', '使用条款', '广告/合作说明']
+  },
+  ja: {
+    service: 'サービス',
+    destinations: '人気旅行地',
+    policy: '運営情報',
+    links: ['韓国旅行ハブ', '祭り旅行', '済州ガイド', '旅行準備', '比較ツール', 'ソウル', '釜山', '江陵', '慶州', '麗水', '紹介', '編集基準', 'お問い合わせ', 'プライバシーポリシー', '利用規約', '広告/提携表示']
+  },
+  en: {
+    service: 'Services',
+    destinations: 'Popular Destinations',
+    policy: 'Site Info',
+    links: ['Korea Travel Hub', 'Festival Trips', 'Jeju Guide', 'Travel Tips', 'Compare Tool', 'Seoul', 'Busan', 'Gangneung', 'Gyeongju', 'Yeosu', 'About', 'Editorial Policy', 'Contact', 'Privacy Policy', 'Terms', 'Ad/Affiliate Disclosure']
+  },
+  es: {
+    service: 'Servicios',
+    destinations: 'Destinos Populares',
+    policy: 'Información',
+    links: ['Centro de viajes por Corea', 'Festivales', 'Guía de Jeju', 'Preparativos', 'Comparador', 'Seúl', 'Busan', 'Gangneung', 'Gyeongju', 'Yeosu', 'Acerca de', 'Criterios editoriales', 'Contacto', 'Privacidad', 'Términos', 'Aviso de publicidad/afiliados']
+  }
+};
+
+const footerHrefs = [
+  '/domestic/',
+  '/domestic/festivals/',
+  '/domestic/jeju/',
+  '/travel-tips/',
+  '/tools/itinerary-comparison/',
+  '/domestic/seoul/purpose-area-hotel-guide/',
+  '/domestic/busan/family-hotel-area-guide/',
+  '/domestic/gangneung/ktx-weekend-trip-guide/',
+  '/domestic/gyeongju/walking-route-hotel-area-guide/',
+  '/domestic/yeosu/night-view-hotel-route-guide/',
+  '/about/',
+  '/editorial-policy/',
+  '/contact/',
+  '/privacy/',
+  '/terms/',
+  '/disclosure/'
+];
+
+const footerTextByLang = {
+  ko: '국내 계절 여행과 축제 여행을 중심으로 숙소 위치, 이동 동선, 준비 정보를 정리하는 여행 정보 사이트입니다.',
+  zh: 'Tourpick360 整理韩国季节旅行、节庆路线、住宿位置、交通动线和出发前准备信息。',
+  ja: 'Tourpick360は韓国の季節旅行、祭り、宿泊エリア、移動ルート、準備情報を整理する旅行情報サイトです。',
+  en: 'Tourpick360 organizes Korea seasonal travel, festival routes, hotel areas, transit plans, and trip-prep information.',
+  es: 'Tourpick360 organiza viajes de temporada por Corea, festivales, zonas de alojamiento, rutas y preparación del viaje.'
+};
+
+const navLabels = navByLang[langKey] ?? navByLang.ko;
+const footerGroups = footerGroupsByLang[langKey] ?? footerGroupsByLang.ko;
+const footerText = footerTextByLang[langKey] ?? footerTextByLang.ko;
+const footerMenuLabel = lang === 'ko' ? '푸터 메뉴' : 'Footer menu';
+const mainMenuLabel = lang === 'ko' ? '주요 메뉴' : 'Main menu';
+const serviceLinks = footerGroups.links.slice(0, 5).map((label, index) => ({ label, href: footerHrefs[index] }));
+const destinationLinks = footerGroups.links.slice(5, 10).map((label, index) => ({ label, href: footerHrefs[index + 5] }));
+const policyLinks = footerGroups.links.slice(10).map((label, index) => ({ label, href: footerHrefs[index + 10] }));
+const languageHomePaths = ['/', '/en/', '/ja/', '/zh-CN/', '/es/'];
+const shouldEmitLanguageAlternates = languageHomePaths.includes(Astro.url.pathname);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="naver-site-verification" content="0c61f2bbe652e60a3afb42af50833fc3f04eeb27" />
+    <link rel="canonical" href={canonicalUrl} />
+    {shouldEmitLanguageAlternates && languageLinks.map((item) => (
+      <link rel="alternate" hreflang={item.hreflang} href={new URL(item.href, 'https://tourpick360.com').toString()} />
+    ))}
+    {shouldEmitLanguageAlternates && <link rel="alternate" hreflang="x-default" href="https://tourpick360.com/" />}
+    <link rel="alternate" type="application/rss+xml" title="Tourpick360 RSS" href="/rss.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tourpick360" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5804969457082424" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Tourpick360 홈">
+        <span class="brand-mark">360</span>
+        <span>Tourpick360</span>
+      </a>
+      <nav class="main-nav" aria-label={mainMenuLabel}>
+        <a href="/domestic/">{navLabels[0]}</a>
+        <a href="/domestic/festivals/">{navLabels[1]}</a>
+        <a href="/domestic/jeju/">{navLabels[2]}</a>
+        <a href="/travel-tips/">{navLabels[3]}</a>
+        <a href="/case-studies/">{navLabels[4]}</a>
+        <a href="/templates/">{navLabels[5]}</a>
+        <a href="/tools/itinerary-comparison/">{navLabels[6]}</a>
+        <a href="/editorial-policy/">{navLabels[7]}</a>
+        <a href="/about/">{navLabels[8]}</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div>
+        <strong>Tourpick360</strong>
+        <p>{footerText}</p>
+      </div>
+      <nav class="footer-link-group" aria-label={footerMenuLabel}>
+        <strong>{footerGroups.service}</strong>
+        {serviceLinks.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+      <nav class="footer-link-group" aria-label={footerGroups.destinations}>
+        <strong>{footerGroups.destinations}</strong>
+        {destinationLinks.map((item) => <a href={item.href}>{item.label}</a>)}
+      </nav>
+      <nav class="footer-link-group" aria-label={footerGroups.policy}>
+        <strong>{footerGroups.policy}</strong>
+        {policyLinks.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href="/sitemap-index.xml">Sitemap</a>
+        <a href="/rss.xml">RSS</a>
+      </nav>
+      <nav class="language-nav" aria-label="Language">
+        <strong>Language</strong>
+        {languageLinks.map((item) => (
+          <a href={item.href} aria-current={item.code === lang ? 'page' : undefined}>{item.label}</a>
+        ))}
+      </nav>
+    </footer>
+  </body>
+</html>

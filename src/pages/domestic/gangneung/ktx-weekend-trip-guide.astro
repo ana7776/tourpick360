@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('gangneung', {
+  src: '/images/domestic-places/gangneung-anmok-beach-hero.jpg',
+  alt: '강릉 안목해변과 바다 풍경',
+  caption: '강릉 주말여행은 강릉역, 경포, 안목 중 한 권역을 중심으로 잡으면 이동 피로가 줄어듭니다. 사진: Mobius6, Wikimedia Commons, CC BY-SA 4.0'
+});
+---
+<BaseLayout title="강릉 KTX 주말여행 동선과 숙소 위치 - Tourpick360" description="강릉 KTX 주말여행에서 강릉역, 경포, 안목 권역을 1박 2일 이동 피로도와 숙소 위치 기준으로 정리합니다.">
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>강릉</span>
+    </nav>
+    <p class="eyebrow">강릉 주말여행</p>
+    <h1>강릉 KTX 주말여행 동선과 숙소 위치</h1>
+    <p class="lead">강릉은 KTX 접근성이 좋아 짧은 주말여행에 적합하지만, 숙소 위치를 잘못 잡으면 바다와 카페, 식사 동선이 계속 끊깁니다. 1박 2일은 이동 횟수를 줄이는 쪽이 만족도가 높습니다.</p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>강릉역 주변 숙소가 맞는 경우</h2>
+    <p>도착 시간이 늦거나 다음 날 일찍 돌아가야 한다면 강릉역 주변이 안정적입니다. 짐 보관과 이동이 쉽고, 중앙시장이나 도심 식사 동선을 묶기 좋습니다. 바다 풍경은 약하지만 대중교통과 택시 이동을 섞기 쉽습니다.</p>
+
+    <h2>경포 권역이 맞는 경우</h2>
+    <p>바다 산책, 오션뷰, 가족 단위 숙소를 우선한다면 경포 권역을 먼저 봅니다. 숙소에서 해변까지 걸어갈 수 있으면 아침과 저녁 시간을 활용하기 좋습니다. 다만 성수기에는 주차와 체크인 대기가 길어질 수 있어 도착 시간을 여유 있게 잡아야 합니다.</p>
+
+    <h2>안목과 카페거리 중심 일정</h2>
+    <p>짧은 커플 여행이나 친구 여행은 안목 카페거리와 해변 산책을 중심으로 구성할 수 있습니다. 숙소 선택지는 경포보다 제한적일 수 있으므로, 숙소는 경포나 도심에 두고 안목은 반나절 코스로 넣는 방식도 현실적입니다.</p>
+
+    <h2>강릉역, 경포, 안목 선택 기준</h2>
+    <p>KTX로 강릉에 간다면 숙소 권역은 도착 시간과 체크아웃 이후 동선에 맞춰 고르는 것이 좋습니다. 저녁 도착이거나 다음 날 오전 기차라면 강릉역 주변이 편하고, 바다 체류 시간이 여행의 목적이라면 경포가 유리합니다. 안목은 카페거리와 짧은 해변 산책에 강하지만, 숙소를 안목에만 맞추면 다른 일정과의 연결이 애매해질 수 있습니다.</p>
+    <table>
+      <thead>
+        <tr><th>기준</th><th>추천 권역</th><th>이유</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>저녁 KTX 도착</td><td>강릉역</td><td>체크인, 식사, 짐 이동을 짧게 줄일 수 있습니다.</td></tr>
+        <tr><td>아침 바다 산책</td><td>경포</td><td>숙소에서 해변까지 이동이 단순하고 체류 시간이 늘어납니다.</td></tr>
+        <tr><td>카페거리 중심</td><td>안목 또는 경포</td><td>안목은 반나절 코스로 넣고 숙소는 경포나 도심과 비교하는 편이 현실적입니다.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>1박 2일 기본 흐름</h2>
+    <ol>
+      <li>첫날: 강릉역 도착 후 짐 보관 또는 숙소 체크인</li>
+      <li>첫날 오후: 경포 또는 안목 중 한 권역만 선택</li>
+      <li>첫날 저녁: 숙소 주변 식사와 산책</li>
+      <li>둘째 날: 중앙시장, 도심 카페, 가까운 해변 중 하나만 추가</li>
+    </ol>
+
+    <h2>도착 시간별 1박 2일 예시</h2>
+    <p>오전이나 점심 무렵 도착한다면 첫날에 경포 또는 안목을 보고, 저녁은 숙소 주변에서 마무리하는 흐름이 좋습니다. 저녁 도착이라면 첫날은 강릉역 주변 식사와 체크인만 하고, 다음 날 오전에 경포 산책 또는 안목 카페거리를 넣는 편이 피로가 적습니다.</p>
+    <p>둘째 날에는 기차 시간 1시간 30분 전부터 강릉역 복귀를 기준으로 잡습니다. 중앙시장, 도심 카페, 해변 산책을 모두 넣으면 이동이 늘어나므로 한 가지 목적만 남기고 짐 보관 위치와 택시 대기 시간을 함께 확인하는 것이 안전합니다.</p>
+
+    <h2>최종 확인 기준</h2>
+    <p>작성일: 2026년 6월 5일. KTX 시간표, 택시 대기, 숙소 주차와 체크인 조건은 날짜별로 달라질 수 있으므로 출발 전 다시 확인해야 합니다.</p>
+
+    <section>
+      <h2>함께 볼 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/"><span>국내여행</span><strong>지역과 계절 기준으로 여행지 고르기</strong></a>
+        <a href="/domestic/festivals/winter-light-festival-hotel-area/"><span>겨울 여행</span><strong>겨울 빛 축제 여행에서 숙소 위치가 중요한 이유</strong></a>
+        <a href="/travel-tips/late-checkin-plan/"><span>여행 준비</span><strong>늦은 체크인 일정 해결법</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

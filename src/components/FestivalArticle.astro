@@ -1,0 +1,233 @@
+---
+import { pickTourApiImage } from '../data/tourApiImages.js';
+
+const { article, related = [] } = Astro.props;
+
+const imageKeysBySlug = {
+  'spring-flower-festival-hotel-area': ['festival_spring', 'gyeongju'],
+  'summer-beach-festival-checklist': ['festival_summer', 'busan'],
+  'autumn-food-festival-route': ['festival_autumn', 'jeonju'],
+  'winter-light-festival-hotel-area': ['festival_winter', 'seoul'],
+  'family-spring-festival-choice': ['festival_spring', 'family_trip'],
+  'couple-night-festival-route': ['festival_winter', 'yeosu'],
+  'parents-walking-festival-guide': ['gyeongju', 'jeonju'],
+  'rainy-day-indoor-festival-backup': ['museum', 'busan_centum'],
+  'festival-hotel-booking-checklist': ['festival_summer', 'busan'],
+  'festival-travel-budget-plan': ['festival_autumn', 'jeonju'],
+  'public-transport-festival-daytrip-overnight': ['festival_spring', 'gangneung'],
+  'early-summer-night-festival-heat-plan': ['festival_summer', 'yeosu'],
+  'rainy-season-festival-travel-plan': ['museum', 'festival_winter'],
+  'long-drive-festival-overnight-area': ['festival_autumn', 'gyeongju'],
+  'train-arrival-luggage-festival-route': ['gangneung', 'festival_spring'],
+  'friday-night-arrival-festival-weekend-plan': ['yeosu', 'festival_summer'],
+  'summer-family-festival-rest-plan': ['family_trip', 'festival_summer'],
+  'friends-festival-room-budget-plan': ['festival_autumn', 'busan'],
+  'autumn-parents-festival-overnight-choice': ['festival_autumn', 'gyeongju'],
+  'pet-friendly-festival-travel-checklist': ['family_trip', 'festival_spring'],
+  'gochang-bluefarm-lavender-yeonggwang-drive': ['festival_spring', 'jeonju']
+};
+
+const fallbackHeroImage = pickTourApiImage(imageKeysBySlug[article.slug] ?? ['festival_spring'], {
+  src: '/images/domestic-season-guide.svg',
+  alt: `${article.title} 안내 이미지`,
+  caption: '계절, 숙소 위치, 이동 동선을 함께 보는 국내 축제 여행 기준'
+});
+const heroImage = article.heroImage ?? fallbackHeroImage;
+const quickFacts = article.quickFacts ?? [
+  ['추천 대상', article.target],
+  ['시즌', article.season],
+  ['예산 기준', article.budget],
+  ['주요 지역', article.area],
+  ['주의사항', article.caution]
+];
+
+const pageUrl = `https://tourpick360.com/domestic/festivals/${article.slug}/`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.title,
+  description: article.description,
+  author: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  datePublished: article.datePublished ?? '2026-06-06',
+  dateModified: article.dateModified ?? '2026-06-09',
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR'
+};
+jsonLd.image = new URL(heroImage.src, 'https://tourpick360.com').toString();
+
+const sourceCheckedDate = article.sourceCheckedDate ?? '2026년 6월 9일';
+---
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<article class="article-page longform travel-guide-article">
+  <nav class="breadcrumb" aria-label="현재 위치">
+    <a href="/">홈</a>
+    <span>/</span>
+    <a href="/domestic/">국내여행</a>
+    <span>/</span>
+    <a href="/domestic/festivals/">축제 여행</a>
+  </nav>
+
+  <p class="eyebrow">{article.category}</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.intro}</p>
+
+  {article.highlights && (
+    <div class="travel-highlight-strip" aria-label="여행 핵심 정보">
+      {article.highlights.map((item) => (
+        <div>
+          <span>{item.label}</span>
+          <strong>{item.value}</strong>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <figure class="article-hero-image">
+    <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+    <figcaption>{heroImage.caption}</figcaption>
+  </figure>
+
+  <section class="travel-summary-panel" aria-labelledby="summary-heading">
+    <div>
+      <p class="eyebrow">여행 정보 요약</p>
+      <h2 id="summary-heading">이 코스에서 먼저 확인할 것</h2>
+      <p>장소 자체보다 이동 순서, 주차, 걷는 양, 식사 시간을 먼저 정하면 실제 여행 만족도가 높아집니다.</p>
+    </div>
+    <dl>
+      {quickFacts.map(([label, value]) => (
+        <div>
+          <dt>{label}</dt>
+          <dd>{value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  {article.routePlan && (
+    <section class="route-plan-box" aria-labelledby="route-plan-heading">
+      <p class="eyebrow">추천 동선</p>
+      <h2 id="route-plan-heading">{article.routePlan.title}</h2>
+      <ol>
+        {article.routePlan.steps.map((step) => (
+          <li>
+            <strong>{step.place}</strong>
+            <span>{step.note}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+  <section class="method-box">
+    <p class="eyebrow">여행 준비 체크포인트</p>
+    <h2>예약 전 확인할 정보</h2>
+    <p>축제 여행은 행사 자체보다 숙소 위치, 주차, 식사, 복귀 동선이 만족도를 좌우합니다. 이 글은 여행자가 실제 예약 전에 확인하고 비교해야 할 정보를 중심으로 정리했습니다.</p>
+  </section>
+
+  {heroImage.contentId && (
+    <section class="source-note">
+      <h2>공공데이터 참고 정보</h2>
+      <p>
+        대표 사진과 장소 정보는 한국관광공사 국문 관광정보 서비스_GW의 이미지정보와 공통정보를 참고했습니다.
+        기준 장소는 {heroImage.title}{heroImage.address ? `, 주소는 ${heroImage.address}` : ''}입니다.
+        콘텐츠 ID: {heroImage.contentId}.
+      </p>
+      {heroImage.overview && <p>{heroImage.overview}</p>}
+    </section>
+  )}
+
+  {article.sections.map((section) => (
+    <section>
+      <h2>{section.heading}</h2>
+      <p>{section.body}</p>
+    </section>
+  ))}
+
+  {article.gallery && (
+    <section>
+      <h2>{article.galleryTitle ?? '사진으로 보는 여행 포인트'}</h2>
+      <div class="article-photo-grid">
+        {article.gallery.map((image) => (
+          <figure>
+            <img src={image.src} alt={image.alt} width={image.width ?? 1600} height={image.height ?? 901} loading="lazy" />
+            <figcaption>{image.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {article.nearbyPlaces && (
+    <section class="nearby-place-section">
+      <p class="eyebrow">함께 보면 좋은 곳</p>
+      <h2>{article.nearbyPlaces.title}</h2>
+      <div class="nearby-place-grid">
+        {article.nearbyPlaces.items.map((item) => (
+          <article>
+            <span>{item.type}</span>
+            <h3>{item.name}</h3>
+            <p>{item.note}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="checklist-box">
+    <h2>예약 전 체크리스트</h2>
+    <ul>
+      {article.checklist.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-list">
+      {article.faqs.map(([question, answer]) => (
+        <details>
+          <summary>{question}</summary>
+          <p>{answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="source-note">
+    <h2>최종 확인 기준</h2>
+    <p>최종 확인일: {sourceCheckedDate}. 실제 축제 일정, 운영 시간, 주차장, 셔틀, 숙소 요금과 취소 조건은 지자체 공식 안내와 숙소 공식 채널에서 다시 확인해야 합니다.</p>
+  </section>
+
+  <section>
+    <h2>관련 글</h2>
+    <div class="related-grid">
+      {related.map((item) => (
+        <a href={item.href}>
+          <span>{item.category}</span>
+          <strong>{item.title}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {article.internalLinks && (
+    <section>
+      <h2>함께 보면 좋은 내부 가이드</h2>
+      <div class="related-grid">
+        {article.internalLinks.map((item) => (
+          <a href={item.href}>
+            <span>{item.label}</span>
+            <strong>{item.title}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</article>

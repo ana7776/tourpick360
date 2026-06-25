@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '곡성 세계장미축제 방문 가이드 - 기간, 장소, 동선, 사진 포인트';
+const description = '곡성 섬진강기차마을에서 열리는 곡성 세계장미축제의 일정, 장소, 관람 동선, 더위 대비, 사진 포인트를 정리한 정보성 여행 가이드입니다.';
+const heroImage = '/images/gokseong-rose-festival/rose-tunnel.jpg';
+const pageUrl = 'https://tourpick360.com/domestic/festivals/gokseong-rose-festival-guide/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: new URL(heroImage, 'https://tourpick360.com').toString(),
+  author: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  datePublished: '2026-06-17',
+  dateModified: '2026-06-17',
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR'
+};
+---
+<BaseLayout title={title} description={description} image={heroImage}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a>
+      <span>/</span>
+      <a href="/domestic/">국내여행</a>
+      <span>/</span>
+      <a href="/domestic/festivals/">축제 여행</a>
+    </nav>
+
+    <p class="eyebrow">Gokseong Rose Festival</p>
+    <h1>곡성 세계장미축제 방문 가이드</h1>
+    <p class="lead">
+      곡성 세계장미축제는 섬진강기차마을 안 장미공원을 중심으로 즐기는 초여름 꽃 축제입니다.
+      장미터널, 포토존, 분수와 그늘 쉼터가 한 공간에 모여 있어 사진을 찍기 좋지만,
+      낮에는 햇볕과 대기 시간이 길어질 수 있어 동선과 휴식 지점을 미리 정해두는 편이 좋습니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage} alt="곡성 세계장미축제 장미터널을 걷는 관람객들" width="1920" height="1081" loading="eager" />
+      <figcaption>곡성 섬진강기차마을 장미공원의 장미터널. 방문자가 몰리는 시간에는 사진 포인트 앞 대기 시간이 생길 수 있습니다.</figcaption>
+    </figure>
+
+    <section class="method-box">
+      <p class="eyebrow">Quick Info</p>
+      <h2>방문 전 핵심 정보</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th>축제명</th>
+            <td>곡성 세계장미축제</td>
+          </tr>
+          <tr>
+            <th>장소</th>
+            <td>전남 곡성군 오곡면 기차마을로 232, 섬진강기차마을 일원</td>
+          </tr>
+          <tr>
+            <th>2026년 일정</th>
+            <td>2026년 5월 22일 금요일부터 2026년 6월 7일 일요일까지</td>
+          </tr>
+          <tr>
+            <th>공식 안내 기준</th>
+            <td>운영 시간, 입장료, 공연 일정은 방문 전 곡성군 문화관광 공식 페이지에서 다시 확인하는 것이 안전합니다.</td>
+          </tr>
+          <tr>
+            <th>추천 대상</th>
+            <td>장미 사진을 찍고 싶은 커플, 부모님 동반 여행, 기차마을과 함께 묶는 당일치기 여행</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>곡성 세계장미축제는 어떤 축제인가요?</h2>
+      <p>
+        곡성 세계장미축제는 곡성의 대표 관광지인 섬진강기차마을 안에서 열리는 장미 중심 축제입니다.
+        장미공원에는 여러 색의 장미와 꽃길, 아치형 장미터널, 조형 포토존이 이어져 있어
+        한 바퀴를 천천히 걷는 것만으로도 축제 분위기를 느끼기 쉽습니다.
+      </p>
+      <p>
+        공식 관광 안내에 따르면 2026년 축제는 5월 22일부터 6월 7일까지 열릴 예정입니다.
+        장미 개화 상태와 현장 프로그램은 날씨와 운영 상황에 따라 달라질 수 있으므로,
+        일정이 가까워지면 공식 페이지의 최신 공지를 확인하고 이동 계획을 확정하는 편이 좋습니다.
+      </p>
+    </section>
+
+    <div class="article-photo-grid">
+      <figure>
+        <img src="/images/gokseong-rose-festival/rose-garden-close.jpg" alt="곡성 세계장미축제 분홍 장미 정원" width="1600" height="901" loading="lazy" />
+        <figcaption>장미공원 안쪽은 꽃밭과 관람로가 가까워 클로즈업 사진을 찍기 좋습니다.</figcaption>
+      </figure>
+      <figure>
+        <img src="/images/gokseong-rose-festival/pink-roses.jpg" alt="곡성 세계장미축제 분홍 장미 클로즈업" width="1600" height="901" loading="lazy" />
+        <figcaption>햇빛이 강한 시간에는 장미 색이 또렷하게 나오지만, 사람도 함께 몰리기 쉽습니다.</figcaption>
+      </figure>
+    </div>
+
+    <section>
+      <h2>추천 동선은 장미터널, 포토존, 물가 쉼터 순서</h2>
+      <p>
+        처음 입장했다면 장미터널과 중심 꽃밭을 먼저 보는 동선이 좋습니다.
+        오전에는 장미터널 쪽 빛이 비교적 깨끗하고, 사람이 많아지기 전 사진을 남기기 쉽습니다.
+        이후에는 큰 조형물 포토존과 분수 주변으로 이동하면 장미 사진과 축제 인증 사진을 함께 챙길 수 있습니다.
+      </p>
+      <p>
+        낮 기온이 올라가는 시기에는 모든 구간을 한 번에 돌기보다 중간에 그늘과 물가 쉼터를 끼워 넣는 편이 편합니다.
+        부모님이나 아이와 함께라면 장미공원 안쪽을 오래 걷기보다 사진 포인트를 2-3곳만 골라 짧게 보고,
+        기차마을 안 쉼터에서 쉬었다가 다음 코스로 이동하는 방식이 현실적입니다.
+      </p>
+    </section>
+
+    <div class="article-photo-grid">
+      <figure>
+        <img src="/images/gokseong-rose-festival/rose-photo-zone.jpg" alt="곡성 세계장미축제 장미 장식 포토존" width="1600" height="901" loading="lazy" />
+        <figcaption>대형 조형물 포토존은 축제 인증 사진을 남기기 좋은 구간입니다.</figcaption>
+      </figure>
+      <figure>
+        <img src="/images/gokseong-rose-festival/garden-fountain.jpg" alt="곡성 섬진강기차마을 장미공원 분수와 연못" width="1600" height="901" loading="lazy" />
+        <figcaption>분수와 연못 주변은 더운 시간대에 잠깐 쉬어가기 좋은 구간입니다.</figcaption>
+      </figure>
+    </div>
+
+    <section>
+      <h2>사진 포인트를 고르는 기준</h2>
+      <p>
+        곡성 장미축제 사진은 꽃을 크게 담는 컷과 축제 공간을 넓게 담는 컷을 나누면 좋습니다.
+        장미 클로즈업은 사람이 많아도 배경을 흐리게 만들 수 있어 실패 확률이 낮고,
+        장미터널이나 분수 주변은 축제장 규모를 보여주기 좋아 대표 사진으로 쓰기 좋습니다.
+      </p>
+      <p>
+        인물 사진을 찍는다면 한낮 정면광보다는 그늘이 살짝 걸친 꽃길이나 터널 안쪽이 편합니다.
+        흰 양산, 모자, 밝은 옷은 사진에는 잘 어울리지만 관람로가 좁은 구간에서는 다른 방문객의 이동을 방해하지 않도록
+        짧게 촬영하고 빠지는 것이 좋습니다.
+      </p>
+    </section>
+
+    <figure class="article-inline-photo">
+      <img src="/images/gokseong-rose-festival/shaded-waterway.jpg" alt="곡성 섬진강기차마을 그늘 아래 물길과 쉼터" width="1600" height="901" loading="lazy" />
+      <figcaption>장미 관람 사이에 쉬어가기 좋은 물가 쉼터. 초여름 축제는 휴식 지점을 미리 정해두면 피로가 크게 줄어듭니다.</figcaption>
+    </figure>
+
+    <section class="checklist-box">
+      <h2>방문 체크리스트</h2>
+      <ul>
+        <li>공식 축제 일정과 운영 시간을 방문 전 다시 확인합니다.</li>
+        <li>햇볕이 강한 시기라 모자, 양산, 물, 선크림을 준비합니다.</li>
+        <li>장미터널과 대표 포토존은 오전 또는 늦은 오후에 먼저 봅니다.</li>
+        <li>부모님 동반 여행은 그늘 쉼터와 화장실 위치를 먼저 확인합니다.</li>
+        <li>주말에는 주차와 입장 대기 시간을 넉넉하게 잡습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>함께 묶기 좋은 코스</h2>
+      <p>
+        곡성 세계장미축제는 섬진강기차마을 안에서 열리기 때문에 축제만 보고 끝내기보다
+        기차마을 산책, 증기기관차 또는 레일바이크 같은 주변 체험과 묶기 좋습니다.
+        다만 축제 기간에는 현장 대기가 길어질 수 있으므로, 체험 예약이나 운행 시간은 별도로 확인해야 합니다.
+      </p>
+      <p>
+        당일치기는 장미공원 관람을 중심으로 짧게 잡고, 1박 여행은 곡성 읍내 또는 구례, 순천 방향 숙소까지
+        함께 비교하면 선택지가 넓어집니다. 장미축제가 목적이라면 숙소 위치보다 도착 시간과 귀가 동선이 더 중요합니다.
+      </p>
+    </section>
+
+    <section class="source-note">
+      <h2>공식 정보 확인</h2>
+      <p>
+        이 글은 곡성군 문화관광 공식 축제 안내 페이지를 참고해 작성했습니다.
+        축제 기간, 운영 시간, 입장료, 공연과 체험 프로그램은 변경될 수 있으므로 방문 직전 공식 안내를 다시 확인하세요.
+      </p>
+      <p>
+        참고: <a href="https://www.gokseong.go.kr/tour/festivity" target="_blank" rel="noopener noreferrer">곡성군 문화관광 축제 안내</a>
+      </p>
+    </section>
+  </article>
+</BaseLayout>

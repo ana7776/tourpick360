@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('seoul', {
+  src: '/images/domestic-places/seoul-gyeongbokgung-hyangwonjeong-hero.jpg',
+  alt: '서울 경복궁 향원정과 연못 풍경',
+  caption: '서울 여행은 궁궐, 전시, 쇼핑, 공연 목적에 따라 숙소 권역과 대중교통 동선이 달라집니다. 사진: Basile Morin, Wikimedia Commons, CC BY-SA 4.0'
+});
+---
+<BaseLayout title="서울 여행 목적별 숙소 권역 선택 가이드 - Tourpick360" description="서울 여행에서 전시, 공연, 쇼핑, 가족 일정 목적에 맞춰 숙소 권역과 대중교통 동선을 정하는 기준을 정리합니다.">
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>서울</span>
+    </nav>
+    <p class="eyebrow">서울 목적별 여행</p>
+    <h1>서울 여행 목적별 숙소 권역 선택 가이드</h1>
+    <p class="lead">서울은 어디든 갈 수 있는 도시처럼 보이지만 목적에 따라 좋은 숙소 권역이 크게 달라집니다. 전시, 공연, 쇼핑, 가족 일정 중 무엇이 중심인지 먼저 정하면 이동 시간이 줄어듭니다.</p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>전시와 공연 중심 일정</h2>
+    <p>전시나 공연은 종료 시간이 늦어질 수 있어 숙소 복귀 동선이 중요합니다. 공연장과 가까운 권역을 고르거나 지하철 환승이 단순한 곳을 선택하면 밤 이동 부담이 줄어듭니다.</p>
+
+    <h2>쇼핑과 맛집 중심 일정</h2>
+    <p>쇼핑 목적이라면 짐을 숙소에 두고 다시 나올 수 있는 동선이 편합니다. 명동, 홍대, 성수, 강남 등 목적 권역이 서로 멀기 때문에 하루에 여러 권역을 넣기보다 한두 곳으로 줄이는 편이 좋습니다.</p>
+
+    <h2>가족 여행은 이동 횟수를 줄입니다</h2>
+    <p>아이와 함께라면 관광지 수보다 숙소 주변 식사, 편의점, 대중교통 접근성이 중요합니다. 비가 오거나 피곤할 때 숙소로 돌아오기 쉬운 위치인지 확인하면 일정이 안정적입니다.</p>
+
+    <section class="checklist-box">
+      <h2>예약 전 체크리스트</h2>
+      <ul>
+        <li>주요 목적지까지 환승 횟수</li>
+        <li>늦은 시간 숙소 복귀 방법</li>
+        <li>숙소 주변 식사와 편의시설</li>
+        <li>비 오는 날 대체 가능한 실내 코스</li>
+      </ul>
+    </section>
+
+    <section class="source-note">
+      <h2>최종 확인 기준</h2>
+      <p>작성일: 2026년 6월 8일. 전시·공연 일정, 대중교통 막차, 숙소 요금과 주차 조건은 날짜별로 달라질 수 있으므로 예약 전 다시 확인해야 합니다.</p>
+    </section>
+
+    <section>
+      <h2>함께 볼 글</h2>
+      <div class="related-grid">
+        <a href="/travel-tips/rainy-day-backup-plan/"><span>여행 준비</span><strong>비 오는 날 대체 일정 준비법</strong></a>
+        <a href="/travel-tips/child-travel-fatigue-solution/"><span>가족여행</span><strong>아이 동반 여행 피로 줄이는 법</strong></a>
+        <a href="/templates/hotel-comparison-template/"><span>템플릿</span><strong>숙소 비교표 템플릿</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

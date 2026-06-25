@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FestivalArticle from '../../../components/FestivalArticle.astro';
+import { festivalApprovalArticles, allFestivalArticles } from '../../../data/festivalApprovalArticles.js';
+
+export function getStaticPaths() {
+  return festivalApprovalArticles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+const { article } = Astro.props;
+const related = allFestivalArticles.filter((item) => item.title !== article.title).slice(0, 4);
+const seoDescription = article.description.length >= 50
+  ? article.description
+  : `${article.description} 숙소 위치, 주차, 이동 동선, 예산과 방문 전 확인할 기준을 함께 안내합니다.`;
+---
+<BaseLayout title={`${article.title} - Tourpick360`} description={seoDescription}>
+  <FestivalArticle article={article} related={related} />
+</BaseLayout>

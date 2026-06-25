@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = '거창 Y자형 출렁다리 방문 가이드 - 우두산 전망과 견암폭포 하루 코스';
+const description = '거창 Y자형 출렁다리, 우두산 산림치유랜드, 견암폭포, 마장재 방향 숲길을 함께 보는 산악 전망 코스 가이드입니다.';
+const heroImage = '/images/geochang-y-bridge/y-bridge-overlook.jpg';
+const pageUrl = 'https://tourpick360.com/domestic/geochang/y-shaped-suspension-bridge-guide/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: new URL(heroImage, 'https://tourpick360.com').toString(),
+  author: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  datePublished: '2026-06-17',
+  dateModified: '2026-06-18',
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR'
+};
+
+const quickInfo = [
+  ['위치', '경남 거창군 가조면 우두산 산림치유랜드 일대'],
+  ['핵심 볼거리', 'Y자형 출렁다리, 우두산 암릉 전망, 견암폭포, 숲길과 계단 코스'],
+  ['코스 성격', '계단과 경사 구간이 있는 산악형 전망 코스'],
+  ['추천 흐름', '입구와 숲길을 지나 견암폭포를 보고, 출렁다리와 전망 포인트를 연결'],
+  ['함께 묶기 좋은 곳', '차량 이동 기준으로 합천 해인사와 하루 코스로 엮기 좋습니다.']
+];
+
+const routeTips = [
+  {
+    title: '처음 방문 코스',
+    text: '입구 안내판을 확인한 뒤 숲길과 견암폭포 주변을 먼저 둘러보고, 몸이 풀린 뒤 출렁다리 전망 구간으로 올라갑니다.'
+  },
+  {
+    title: '사진 중심 코스',
+    text: 'Y자 구조가 한눈에 보이는 상단 전망, 다리 중앙, 다리 옆 암릉 전망을 순서대로 잡으면 공간감이 잘 살아납니다.'
+  },
+  {
+    title: '연계 여행 코스',
+    text: '오전에는 거창에서 산악 전망을 보고, 오후에는 합천 해인사로 이동해 숲길과 사찰 경내를 차분하게 보는 구성이 좋습니다.'
+  }
+];
+
+const photoSpots = [
+  ['상단 전망 포인트', 'Y자로 갈라지는 다리와 계곡 깊이가 한 장에 담깁니다.'],
+  ['다리 중앙', '세 방향으로 이어지는 보행로가 가장 또렷하게 보이는 지점입니다.'],
+  ['견암폭포 주변', '그늘과 물소리가 있어 출렁다리 전후 쉬어가기 좋습니다.'],
+  ['마장재 방향 숲길', '표지판, 계단, 소나무 숲이 코스 기록 사진으로 좋습니다.']
+];
+
+const gallery = [
+  ['/images/geochang-y-bridge/y-bridge-valley.jpg', '암릉 사이를 가로지르는 거창 Y자형 출렁다리 전경', '계곡과 다리의 높이감을 함께 보여주는 대표 전망입니다.'],
+  ['/images/geochang-y-bridge/bridge-center-view.jpg', 'Y자형 출렁다리 중앙에서 내려다본 세 방향 보행로', '다리의 구조가 가장 선명하게 보이는 지점입니다.'],
+  ['/images/geochang-y-bridge/bridge-side-view.jpg', '우두산 암릉 위로 길게 이어지는 붉은 출렁다리', '옆에서 보면 다리가 절벽 사이로 뻗은 느낌이 잘 살아납니다.'],
+  ['/images/geochang-y-bridge/bridge-walkway-close.jpg', '출렁다리 보행로 위에서 본 암릉과 숲', '직접 걷는 느낌을 담기 좋은 가까운 시점입니다.'],
+  ['/images/geochang-y-bridge/gyeonam-falls.jpg', '숲속 바위 절벽을 따라 흐르는 견암폭포', '출렁다리 전후로 쉬어가기 좋은 그늘 구간입니다.'],
+  ['/images/geochang-y-bridge/forest-garden-overlook.jpg', '소나무 숲 사이로 내려다본 산림치유랜드 입구', '초입 분위기와 숲길 동선을 함께 보여줍니다.'],
+  ['/images/geochang-y-bridge/valley-creek-trail.jpg', '우두산 숲길 옆 돌계곡과 산책로', '산행 전후 완만한 구간의 분위기를 확인하기 좋습니다.'],
+  ['/images/geochang-y-bridge/healing-land-overlook.jpg', '우두산 숲과 산림치유랜드 시설을 내려다본 전망', '고도를 올리면 산림치유랜드와 주변 숲이 한눈에 들어옵니다.'],
+  ['/images/geochang-y-bridge/mountain-valley-view.jpg', '거창 우두산 계곡과 산줄기가 이어지는 전망', '다리 밖 풍경까지 넓게 담고 싶을 때 좋은 장면입니다.'],
+  ['/images/geochang-y-bridge/udusan-ridge-view.jpg', '푸른 하늘 아래 우두산 암릉과 능선', '맑은 날에는 바위 능선의 윤곽이 또렷하게 살아납니다.'],
+  ['/images/geochang-y-bridge/bridge-info-sign.jpg', '거창 Y자형 출렁다리 제원 안내판', '길이, 폭, 통행하중 등 현장 정보를 기록하기 좋습니다.'],
+  ['/images/geochang-y-bridge/udusan-view-map.jpg', '하늘에서 본 우두산 일원 전망 안내판', '주변 산줄기와 주요 포인트를 이해하는 데 도움이 됩니다.'],
+  ['/images/geochang-y-bridge/forest-stairs.jpg', '숲속 계단을 따라 오르는 우두산 탐방로', '계단 구간이 있어 편한 신발이 필요한 코스입니다.'],
+  ['/images/geochang-y-bridge/majangjae-trail-sign.jpg', '마장재와 힐링랜드 주차장 방향을 알리는 숲길 표지판', '주변 갈림길에서는 표지판을 확인하며 이동하는 편이 좋습니다.'],
+  ['/images/geochang-y-bridge/y-bridge-way-sign.jpg', 'Y자형 출렁다리 가는 길 안내판', '초입에서 방향을 잡는 기록 사진으로 좋습니다.'],
+  ['/images/geochang-y-bridge/trail-signpost-crowd.jpg', '견암폭포와 치유의숲 입구 방향 안내 표지', '사람이 몰리는 구간은 이동 흐름을 보며 사진을 찍는 것이 좋습니다.'],
+  ['/images/geochang-y-bridge/forest-entrance.jpg', '산림치유랜드 입구로 이어지는 소나무 숲길', '방문 시작 지점의 분위기를 보여주는 장면입니다.'],
+  ['/images/geochang-y-bridge/healing-land-sculpture.jpg', '산림치유랜드 소나무 숲 안의 흰 조형물', '입구 주변 산책 구간에서 만나는 포토 포인트입니다.'],
+  ['/images/geochang-y-bridge/majangjae-sign-close.jpg', '마장재와 우두산 철쭉군락지 방향 표지판', '마장재까지 이어 걷는다면 거리감을 확인해두면 좋습니다.']
+];
+---
+<BaseLayout title={title} description={description} image={heroImage}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a>
+      <span>/</span>
+      <a href="/domestic/">국내여행</a>
+      <span>/</span>
+      <span>거창</span>
+    </nav>
+
+    <p class="eyebrow">Geochang Mountain Course</p>
+    <h1>거창 Y자형 출렁다리 방문 가이드</h1>
+    <p class="lead">
+      거창 Y자형 출렁다리는 우두산 암릉과 계곡 사이를 세 방향으로 잇는 산악 전망 코스입니다.
+      단순히 다리만 건너는 곳이라기보다 숲길, 견암폭포, 암릉 전망, 산림치유랜드 입구 풍경을 함께 보는 일정으로 잡을 때 만족도가 높습니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage} alt="거창 우두산 암릉 위로 Y자형 출렁다리가 세 방향으로 이어진 풍경" width="1600" height="901" loading="eager" />
+      <figcaption>Y자형 출렁다리는 위에서 내려다볼 때 구조와 계곡의 깊이가 가장 잘 보입니다.</figcaption>
+    </figure>
+
+    <section class="method-box">
+      <p class="eyebrow">Quick Info</p>
+      <h2>방문 전 핵심 정보</h2>
+      <table>
+        <tbody>
+          {quickInfo.map(([label, value]) => (
+            <tr>
+              <th>{label}</th>
+              <td>{value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>어떤 여행자에게 잘 맞을까</h2>
+      <p>
+        산책보다 조금 더 걷는 전망 코스를 원하고, 짧은 시간 안에 숲과 바위 능선, 출렁다리 사진을 함께 남기고 싶은 여행자에게 잘 맞습니다.
+        다만 계단과 경사 구간이 있어 유모차나 아주 가벼운 산책을 기대했다면 코스를 짧게 잡는 편이 좋습니다.
+      </p>
+      <p>
+        여름에는 햇볕과 오르막 체감이 커질 수 있으므로 오전 방문을 추천합니다.
+        강풍, 우천, 결빙 시에는 출렁다리 운영 여부가 달라질 수 있으니 방문 직전 현장 안내를 확인하는 것이 안전합니다.
+      </p>
+    </section>
+
+    <section class="checklist-box">
+      <h2>추천 동선</h2>
+      <div class="guide-list">
+        {routeTips.map((tip) => (
+          <article>
+            <h3>{tip.title}</h3>
+            <p>{tip.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>사진 포인트</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>포인트</th>
+              <th>촬영 팁</th>
+            </tr>
+          </thead>
+          <tbody>
+            {photoSpots.map(([spot, tip]) => (
+              <tr>
+                <td>{spot}</td>
+                <td>{tip}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>현장 사진으로 보는 코스</h2>
+      <div class="article-photo-grid">
+        {gallery.map(([src, alt, caption]) => (
+          <figure>
+            <img src={src} alt={alt} width="1600" height="901" loading="lazy" />
+            <figcaption>{caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>준비하면 좋은 것</h2>
+      <ul>
+        <li>오르막과 계단이 있으므로 미끄럽지 않은 운동화나 등산화를 준비합니다.</li>
+        <li>여름철에는 물, 모자, 가벼운 간식을 챙기는 편이 좋습니다.</li>
+        <li>고소공포가 있다면 다리 중앙에 오래 머무르지 않는 동선으로 잡습니다.</li>
+        <li>주말에는 사진 포인트가 붐빌 수 있어 오전 시간대가 더 여유롭습니다.</li>
+      </ul>
+    </section>
+
+    <section class="source-note">
+      <h2>공식 정보 확인</h2>
+      <p>
+        운영 시간, 요금, 안전 통제, 기상에 따른 입장 제한은 바뀔 수 있습니다.
+        방문 직전 거창군 또는 대한민국 구석구석의 최신 안내를 다시 확인하세요.
+      </p>
+      <p>
+        참고: <a href="https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=069bf965-c377-4322-99e6-d032eebd9fda" target="_blank" rel="noopener noreferrer">대한민국 구석구석 우두산 출렁다리</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>함께 보면 좋은 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/hapcheon/haeinsa-temple-guide/"><span>합천 해인사</span><strong>가야산 숲길과 사찰 경내를 함께 보는 하루 코스</strong></a>
+        <a href="/domestic/"><span>국내여행</span><strong>지역과 계절 기준으로 여행지 고르기</strong></a>
+        <a href="/travel-tips/itinerary-before-after/"><span>일정 조정</span><strong>무리한 여행 일정 Before / After 사례</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

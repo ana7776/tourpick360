@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ProblemSolvingArticle from '../../../components/ProblemSolvingArticle.astro';
+import { problemSolvingArticles, allProblemSolvingArticles } from '../../../data/problemSolvingArticles.js';
+
+export function getStaticPaths() {
+  return problemSolvingArticles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+const { article } = Astro.props;
+const related = allProblemSolvingArticles.filter((item) => item.title !== article.title).slice(0, 4);
+const seoDescription = article.description.length >= 50
+  ? article.description
+  : `${article.description} 문제 상황, 해결 순서, 체크리스트와 예약 전 확인 기준을 함께 안내합니다.`;
+---
+<BaseLayout title={`${article.title} - Tourpick360`} description={seoDescription}>
+  <ProblemSolvingArticle article={article} related={related} />
+</BaseLayout>

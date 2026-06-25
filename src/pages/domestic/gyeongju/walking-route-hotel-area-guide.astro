@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('gyeongju', {
+  src: '/images/domestic-places/gyeongju-daereungwon-hero.jpg',
+  alt: '경주 대릉원 고분과 산책로 풍경',
+  caption: '경주는 대릉원, 황리단길, 첨성대처럼 가까워 보이는 지점도 실제 걷는 피로를 함께 봐야 합니다. 사진: Bernard Gagnon, Wikimedia Commons, CC0'
+});
+---
+<BaseLayout title="경주 도보 여행 코스와 숙소 위치 고르는 법 - Tourpick360" description="경주 여행에서 황리단길, 대릉원, 첨성대, 월정교 권역을 도보 거리와 숙소 위치 기준으로 정리합니다.">
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>경주</span>
+    </nav>
+    <p class="eyebrow">경주 도보여행</p>
+    <h1>경주 도보 여행 코스와 숙소 위치 고르는 법</h1>
+    <p class="lead">경주는 걷는 시간이 많은 도시입니다. 지도상 거리가 가까워 보여도 사진 촬영, 카페 대기, 야간 산책까지 더해지면 하루 피로가 커질 수 있어 숙소 위치와 도보 코스를 함께 봐야 합니다.</p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>황리단길 주변 숙소가 맞는 경우</h2>
+    <p>카페, 식사, 산책을 한 권역 안에서 해결하고 싶다면 황리단길 주변이 편합니다. 대릉원과 첨성대 접근도 좋아 첫 방문자에게 무난하지만, 주말에는 차량 진입과 주차가 복잡할 수 있습니다.</p>
+
+    <h2>경주역·터미널 접근성을 보는 경우</h2>
+    <p>대중교통으로 이동하거나 짐이 많다면 도착지와 숙소 사이 이동 시간을 먼저 봅니다. 역사 유적 중심 동선과 보문단지, 불국사 방향 일정은 서로 거리가 있어 하루에 모두 넣으면 피로가 커질 수 있습니다.</p>
+
+    <h2>야간 산책은 복귀 길을 기준으로 정합니다</h2>
+    <p>첨성대, 월정교, 동궁과 월지는 밤에 만족도가 높지만 늦은 시간에는 이동 선택지가 줄어듭니다. 부모님이나 아이와 함께라면 야간 명소를 하나로 줄이고 숙소까지 돌아오는 길을 먼저 확인하는 편이 좋습니다.</p>
+
+    <section class="checklist-box">
+      <h2>예약 전 체크리스트</h2>
+      <ul>
+        <li>숙소에서 대릉원·첨성대까지 실제 도보 시간</li>
+        <li>주차 가능 여부와 주말 만차 가능성</li>
+        <li>야간 산책 후 숙소 복귀 방법</li>
+        <li>보문단지 또는 불국사 일정과의 거리</li>
+      </ul>
+    </section>
+
+    <section class="source-note">
+      <h2>최종 확인 기준</h2>
+      <p>작성일: 2026년 6월 8일. 문화재 관람 시간, 야간 개방, 주차장 운영, 숙소 조건은 방문 시점에 따라 달라질 수 있으므로 공식 안내를 다시 확인해야 합니다.</p>
+    </section>
+
+    <section>
+      <h2>함께 볼 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/"><span>국내여행</span><strong>지역과 계절 기준으로 여행지 고르기</strong></a>
+        <a href="/domestic/festivals/spring-flower-festival-hotel-area/"><span>봄 여행</span><strong>봄꽃 축제 여행 숙소 위치 고르는 법</strong></a>
+        <a href="/travel-tips/hotel-booking-checklist/"><span>여행 준비</span><strong>숙소 예약 전 확인해야 할 12가지</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

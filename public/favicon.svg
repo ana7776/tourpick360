@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tourpick360">
+  <defs>
+    <linearGradient id="sky" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#bde7f5"/>
+      <stop offset="0.52" stop-color="#9ddbd8"/>
+      <stop offset="1" stop-color="#b7c9f2"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#sky)"/>
+  <path d="M13 42c6-5 12-5 18 0s13 5 20 0" fill="none" stroke="#ecfeff" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M32 12l8 22-8-4-8 4 8-22Z" fill="#ffffff"/>
+  <path d="M32 12l8 22-8-4V12Z" fill="#cffafe"/>
+  <circle cx="32" cy="32" r="5" fill="#f6d98e"/>
+</svg>

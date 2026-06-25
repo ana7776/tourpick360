@@ -1,0 +1,333 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('gyeongju', {
+  src: '/images/domestic-season-guide.svg',
+  alt: '국내여행 지역별 계절별 가이드 이미지',
+  caption: '지역, 계절, 동행 유형을 함께 보는 국내여행 선택 지도'
+});
+
+const regions = [
+  {
+    name: '제주',
+    href: '/domestic/jeju/',
+    bestSeason: '봄, 가을',
+    angle: '숙소 위치에 따라 여행 피로도가 크게 달라지는 지역',
+    keywords: ['렌터카', '숙소 위치', '날씨 변수'],
+    score: '동선 설계 중요'
+  },
+  {
+    name: '부산',
+    href: '/domestic/busan/family-hotel-area-guide/',
+    bestSeason: '봄, 여름, 가을',
+    angle: '해변, 도심, 시장 동선을 하루 안에 묶기 좋은 도시',
+    keywords: ['해운대', '광안리', '역세권 숙소'],
+    score: '대중교통 유리'
+  },
+  {
+    name: '강릉',
+    href: '/domestic/gangneung/ktx-weekend-trip-guide/',
+    bestSeason: '봄, 여름, 겨울',
+    angle: '바다와 카페, KTX 접근성을 함께 보는 주말 여행지',
+    keywords: ['KTX', '오션뷰', '카페거리'],
+    score: '짧은 일정 적합'
+  },
+  {
+    name: '여수',
+    href: '/domestic/yeosu/night-view-hotel-route-guide/',
+    bestSeason: '봄, 가을',
+    angle: '야경과 해상 케이블카, 섬 여행을 묶기 좋은 남해 여행지',
+    keywords: ['야경', '해상 케이블카', '낭만포차'],
+    score: '저녁 일정 강점'
+  },
+  {
+    name: '고흥',
+    href: '/domestic/goheung/ssookseom-walking-course-guide/',
+    bestSeason: '봄, 초여름, 가을',
+    angle: '나로도항 배편과 섬 안 도보 난이도를 함께 봐야 하는 남도 섬 여행지',
+    keywords: ['쑥섬', '나로도항', '섬 도보 코스'],
+    score: '배편·도보 난이도 중요'
+  },
+  {
+    name: '전주',
+    href: '/domestic/jeonju/hanok-village-walking-guide/',
+    bestSeason: '봄, 가을, 겨울',
+    angle: '한옥마을, 경기전, 남부시장 먹거리 동선을 걷기 좋게 묶는 도시',
+    keywords: ['한옥마을', '경기전', '남부시장'],
+    score: '도보·주차 동선 중요'
+  },
+  {
+    name: '경주',
+    href: '/domestic/gyeongju/walking-route-hotel-area-guide/',
+    bestSeason: '봄, 가을',
+    angle: '걷는 시간이 많아 계절과 숙소 위치가 만족도를 좌우하는 도시',
+    keywords: ['역사 여행', '황리단길', '도보 동선'],
+    score: '도보 동선 중요'
+  },
+  {
+    name: '서울',
+    href: '/domestic/seoul/purpose-area-hotel-guide/',
+    bestSeason: '사계절',
+    angle: '목적에 따라 숙소 권역을 다르게 잡아야 하는 대도시 여행지',
+    keywords: ['전시', '쇼핑', '대중교통'],
+    score: '목적별 권역 선택'
+  }
+];
+
+const seasons = [
+  {
+    name: '봄',
+    months: '3월 - 5월',
+    focus: '벚꽃, 산책, 야외 관광',
+    regions: ['제주', '경주', '여수', '강릉'],
+    tip: '일교차가 커서 숙소 난방과 야간 이동 동선을 함께 확인합니다.'
+  },
+  {
+    name: '여름',
+    months: '6월 - 8월',
+    focus: '바다, 실내 대체 코스, 가족 휴가',
+    regions: ['부산', '강릉', '제주', '서울'],
+    tip: '성수기에는 숙소 가격보다 취소 규정과 주차 가능 여부가 더 중요해집니다.'
+  },
+  {
+    name: '가을',
+    months: '9월 - 11월',
+    focus: '걷기 좋은 날씨, 미식, 사진 여행',
+    regions: ['전주', '경주', '제주', '여수'],
+    tip: '단풍과 축제 일정이 겹치면 숙소가 빨리 마감되므로 권역을 먼저 정합니다.'
+  },
+  {
+    name: '겨울',
+    months: '12월 - 2월',
+    focus: '온천, 실내 전시, 겨울 바다',
+    regions: ['강릉', '서울', '부산', '제주'],
+    tip: '야외 체류 시간이 줄어드니 숙소 주변 식사와 실내 일정 접근성을 봅니다.'
+  }
+];
+
+const purposeRoutes = [
+  ['가족여행', '숙소 시설보다 이동 피로와 식사 접근성을 먼저 봅니다.'],
+  ['커플여행', '숙소 분위기와 저녁 이후 이동하지 않아도 되는지를 함께 봅니다.'],
+  ['부모님 여행', '걷는 거리, 엘리베이터, 조식, 주차 동선이 핵심입니다.'],
+  ['가성비 여행', '최저가보다 교통비와 식비가 늘지 않는 위치인지 확인합니다.']
+];
+
+const regionalGuides = [
+  {
+    category: '거창 Y자형 출렁다리',
+    title: '거창 Y자형 출렁다리 방문 가이드',
+    summary: '우두산 항노화힐링랜드, 견암폭포, Y자형 출렁다리 전망과 합천 해인사를 함께 묶는 하루 코스를 정리합니다.',
+    href: '/domestic/geochang/y-shaped-suspension-bridge-guide/'
+  },
+  {
+    category: '합천 해인사',
+    title: '합천 해인사 방문 가이드',
+    summary: '가야산 숲길, 팔만대장경, 장경판전, 사찰 관람 예절과 거창 Y자형 출렁다리를 함께 보는 하루 코스를 정리합니다.',
+    href: '/domestic/hapcheon/haeinsa-temple-guide/'
+  },
+  {
+    category: '고흥 쑥섬',
+    title: '고흥 쑥섬 도보 코스와 난이도, 주변 관광 가이드',
+    summary: '나로도항 배편, 섬 안 정원·숲·바다 전망 코스, 도보 시간과 난이도, 주변 연계지를 정리합니다.',
+    href: '/domestic/goheung/ssookseom-walking-course-guide/'
+  },
+  {
+    category: '전주 한옥마을',
+    title: '전주 한옥마을 여행 코스와 주차 동선 가이드',
+    summary: '경기전, 전동성당, 오목대, 남부시장 동선을 주차와 시간대 기준으로 정리합니다.',
+    href: '/domestic/jeonju/hanok-village-walking-guide/'
+  },
+  {
+    category: '전주 확장 코스',
+    title: '전주 한옥마을과 전주 인근 여행 코스',
+    summary: '한옥마을 현장 사진을 바탕으로 오목대, 전주향교, 한벽당, 남부시장, 전라감영까지 이어지는 동선을 정리합니다.',
+    href: '/domestic/jeonju/hanok-village-nearby-trip-guide/'
+  },
+  {
+    category: '부산 숙소',
+    title: '부산 가족여행 숙소 권역 고르는 법',
+    summary: '해운대, 광안리, 부산역 권역을 가족 여행 동선과 대중교통 기준으로 비교합니다.',
+    href: '/domestic/busan/family-hotel-area-guide/'
+  },
+  {
+    category: '부산 우천 여행',
+    title: '부산 비 오는 날 가족여행 코스와 숙소 권역 고르는 법',
+    summary: '해운대, 센텀, 부산역, 남포동 권역을 비 예보와 실내 대체 코스 기준으로 비교합니다.',
+    href: '/domestic/busan/rainy-day-family-route/'
+  },
+  {
+    category: '강릉 주말여행',
+    title: '강릉 KTX 주말여행 동선과 숙소 위치',
+    summary: '강릉역, 경포, 안목을 1박 2일 일정 피로도 기준으로 정리합니다.',
+    href: '/domestic/gangneung/ktx-weekend-trip-guide/'
+  },
+  {
+    category: '강릉 뚜벅이 여행',
+    title: '강릉 차 없이 1박 2일 여행 코스와 숙소 위치',
+    summary: 'KTX, 택시, 버스를 섞어 강릉역, 경포, 안목, 중앙시장을 무리 없이 묶는 기준입니다.',
+    href: '/domestic/gangneung/no-car-weekend-course/'
+  },
+  {
+    category: '제주 숙소',
+    title: '제주 가족여행 숙소 지역별 선택 기준',
+    summary: '공항권, 애월, 중문, 성산을 가족 여행 피로도 기준으로 비교합니다.',
+    href: '/domestic/jeju/family-hotel-area-guide/'
+  },
+  {
+    category: '여수 코스',
+    title: '여수 장도·웅천·낭도 낮 코스와 야경 숙소 동선',
+    summary: '장도, 웅천 해변, 낭도 드라이브와 돌산 야경을 하루 흐름으로 정리합니다.',
+    href: '/domestic/yeosu/night-view-hotel-route-guide/'
+  },
+  {
+    category: '경주 도보여행',
+    title: '경주 도보 여행 코스와 숙소 위치 고르는 법',
+    summary: '황리단길, 대릉원, 첨성대 권역을 걷는 거리와 숙소 위치 기준으로 비교합니다.',
+    href: '/domestic/gyeongju/walking-route-hotel-area-guide/'
+  },
+  {
+    category: '서울 목적별 여행',
+    title: '서울 여행 목적별 숙소 권역 선택 가이드',
+    summary: '전시, 쇼핑, 공연, 가족 여행 목적에 맞춰 숙소 권역을 나누어 봅니다.',
+    href: '/domestic/seoul/purpose-area-hotel-guide/'
+  },
+  {
+    category: '서울 우천 여행',
+    title: '서울 비 오는 날 실내 여행 코스와 숙소 권역 고르는 법',
+    summary: '종로, 용산, 잠실, 성수, 강남 권역을 비 예보와 실내 동선 기준으로 비교합니다.',
+    href: '/domestic/seoul/rainy-day-indoor-route-guide/'
+  }
+];
+
+const checklist = [
+  ['숙소 권역', '관광지까지 거리보다 저녁 식사와 다음 날 이동 방향을 먼저 봅니다.'],
+  ['교통 방식', '렌터카, KTX, 대중교통 중 어떤 방식이 일정 피로를 줄이는지 확인합니다.'],
+  ['동행 유형', '아이, 부모님, 커플 여행은 걷는 거리와 휴식 시간이 달라집니다.'],
+  ['날씨 변수', '비나 강풍이 있어도 바꿀 수 있는 실내 코스와 식사 동선을 준비합니다.']
+];
+---
+<BaseLayout title="국내여행 지역별 계절별 가이드 - Tourpick360" description="국내 여행지를 지역별, 계절별, 여행 목적별로 나누고 숙소 위치와 이동 동선을 비교하는 Tourpick360 국내여행 허브입니다.">
+  <section class="domestic-hero atlas-hero">
+    <div>
+      <p class="eyebrow">Domestic Travel 360</p>
+      <h1>국내여행을 지역과 계절 기준으로 다시 고르기</h1>
+      <p>
+        Tourpick360은 여행지를 단순 인기순으로 나열하지 않습니다. 지역의 장점, 계절 변수,
+        숙소 위치, 식사 접근성, 이동 피로를 함께 보며 실제 일정에 맞는 선택 기준을 정리합니다.
+      </p>
+      <div class="hero-chip-row">
+        <a href="#region-board">지역별 판단표</a>
+        <a href="#season-lane">계절별 흐름</a>
+        <a href="#regional-guides">지역 가이드</a>
+      </div>
+    </div>
+    <figure class="domestic-visual">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+  </section>
+
+  <section id="region-board" class="domestic-board atlas-board">
+    <div class="board-intro">
+      <p class="eyebrow">Region Board</p>
+      <h2>지역별 여행 판단표</h2>
+      <p>지역을 고를 때는 유명 관광지보다 이동 방식, 숙소 권역, 식사 동선, 계절 변수를 함께 보는 것이 좋습니다.</p>
+    </div>
+    <div class="region-board">
+      {regions.map((region, index) => (
+        <a class={`region-row region-${index + 1}`} href={region.href}>
+          <span class="region-number">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{region.name}</h3>
+            <p>{region.angle}</p>
+          </div>
+          <dl>
+            <div>
+              <dt>추천 계절</dt>
+              <dd>{region.bestSeason}</dd>
+            </div>
+            <div>
+              <dt>여행 포인트</dt>
+              <dd>{region.score}</dd>
+            </div>
+          </dl>
+          <ul>
+            {region.keywords.map((keyword) => <li>{keyword}</li>)}
+          </ul>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="season-lane" class="season-lane">
+    <div class="section-heading">
+      <p class="eyebrow">Season Lane</p>
+      <h2>계절별 국내여행 선택 흐름</h2>
+    </div>
+    <div class="season-track">
+      {seasons.map((season) => (
+        <article>
+          <span>{season.months}</span>
+          <h3>{season.name}</h3>
+          <p>{season.focus}</p>
+          <div class="season-regions">
+            {season.regions.map((region) => <strong>{region}</strong>)}
+          </div>
+          <small>{season.tip}</small>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="domestic-routes purpose-panel">
+    <div>
+      <p class="eyebrow">Travel Purpose</p>
+      <h2>동행 유형별로 달라지는 선택 기준</h2>
+      <p>같은 지역이라도 누구와 가는지에 따라 좋은 숙소와 코스가 달라집니다. Tourpick360은 이 차이를 글마다 분리해서 설명합니다.</p>
+    </div>
+    <div class="purpose-list">
+      {purposeRoutes.map(([title, body]) => (
+        <span>
+          <strong>{title}</strong>
+          <small>{body}</small>
+        </span>
+      ))}
+    </div>
+  </section>
+
+  <section id="regional-guides" class="section guide-feed">
+    <div class="section-title-row">
+      <div>
+        <p class="eyebrow">Regional Guides</p>
+        <h2>지역별 숙소와 이동 기준 가이드</h2>
+      </div>
+      <a href="/travel-tips/">여행 준비 글 보기</a>
+    </div>
+    <div class="guide-feed-grid">
+      {regionalGuides.map((guide) => (
+        <article>
+          <p>{guide.category}</p>
+          <h3><a href={guide.href}>{guide.title}</a></h3>
+          <span>{guide.summary}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="checklist-roadmap">
+    <div class="section-heading">
+      <p class="eyebrow">Regional Checklist</p>
+      <h2>지역을 정한 뒤 확인할 기준</h2>
+    </div>
+    <div class="roadmap-grid">
+      {checklist.map(([title, body], index) => (
+        <article>
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <h3>{title}</h3>
+          <p>{body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

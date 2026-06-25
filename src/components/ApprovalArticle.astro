@@ -1,0 +1,181 @@
+---
+import { jeju360Angles } from '../data/tourpick360Method.js';
+import { pickTourApiImage } from '../data/tourApiImages.js';
+
+const { article, related = [] } = Astro.props;
+const method = jeju360Angles[article.slug];
+
+const imageKeysBySlug = {
+  'airport-area-hotel-checklist': ['jeju_yongduam', 'jeju'],
+  'jungmun-family-resort-guide': ['jeju_jungmun', 'jeju'],
+  'aewol-hotel-pros-cons': ['jeju_aewol', 'jeju'],
+  'seongsan-hotel-route-guide': ['jeju', 'jeju_yongduam'],
+  'rainy-day-indoor-jeju-hotel-area': ['jeju_indoor', 'jeju_jungmun'],
+  'parents-jeju-hotel-area-guide': ['jeju_jungmun', 'jeju'],
+  'couple-jeju-hotel-choice': ['jeju_aewol', 'jeju'],
+  'budget-jeju-trip-hotel-plan': ['jeju_yongduam', 'jeju'],
+  'no-rental-car-jeju-hotel-area': ['jeju', 'jeju_yongduam'],
+  'jeju-3n4d-split-hotel-plan': ['jeju', 'jeju_jungmun']
+};
+
+const heroImage = pickTourApiImage(imageKeysBySlug[article.slug] ?? ['jeju'], {
+  src: '/images/jeju-guide.svg',
+  alt: `${article.title} 안내 이미지`,
+  caption: '숙소 위치와 여행 동선을 함께 보는 제주 여행 가이드'
+});
+
+const pageUrl = `https://tourpick360.com/domestic/jeju/${article.slug}/`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.title,
+  description: article.description,
+  author: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Tourpick360'
+  },
+  datePublished: article.datePublished ?? '2026-06-05',
+  dateModified: article.dateModified ?? '2026-06-09',
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR'
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<article class="article-page longform">
+  <nav class="breadcrumb" aria-label="현재 위치">
+    <a href="/">홈</a>
+    <span>/</span>
+    <a href="/domestic/">국내여행</a>
+    <span>/</span>
+    <a href="/domestic/jeju/">제주</a>
+  </nav>
+
+  <p class="eyebrow">{article.category}</p>
+  <h1>{article.title}</h1>
+  <p class="lead">{article.intro}</p>
+
+  <figure class="article-hero-image">
+    <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+    <figcaption>{heroImage.caption}</figcaption>
+  </figure>
+
+  <h2>핵심 요약</h2>
+  <table>
+    <tbody>
+      <tr><th>추천 대상</th><td>{article.target}</td></tr>
+      <tr><th>예산 기준</th><td>{article.budget}</td></tr>
+      <tr><th>주요 지역</th><td>{article.area}</td></tr>
+      <tr><th>주의사항</th><td>{article.caution}</td></tr>
+    </tbody>
+  </table>
+
+  {heroImage.contentId && (
+    <section class="source-note">
+      <h2>공공데이터 참고 정보</h2>
+      <p>
+        대표 사진과 장소 정보는 한국관광공사 국문 관광정보 서비스_GW의 이미지정보와 공통정보를 참고했습니다.
+        기준 장소는 {heroImage.title}{heroImage.address ? `, 주소는 ${heroImage.address}` : ''}입니다.
+        콘텐츠 ID: {heroImage.contentId}.
+      </p>
+      {heroImage.overview && <p>{heroImage.overview}</p>}
+    </section>
+  )}
+
+  {method && (
+    <section class="method-box">
+      <p class="eyebrow">여행 준비 체크포인트</p>
+      <h2>예약 전 확인할 정보</h2>
+      <p>{method.angle}</p>
+      <div class="method-grid">
+        <div>
+          <h3>잘 맞는 여행자</h3>
+          <ul>
+            {method.bestFor.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h3>피하는 게 나은 경우</h3>
+          <ul>
+            {method.notFor.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+      <h3>하루 동선 예시</h3>
+      <ol class="route-steps">
+        {method.oneDayPlan.map((item) => <li>{item}</li>)}
+      </ol>
+      <h3>선택 점수표</h3>
+      <div class="score-list">
+        {method.scores.map(([label, score]) => (
+          <div>
+            <span>{label}</span>
+            <meter min="0" max="5" value={score}>{score}/5</meter>
+            <strong>{score}/5</strong>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {article.sections.map((section) => (
+    <section>
+      <h2>{section.heading}</h2>
+      <p>{section.body}</p>
+    </section>
+  ))}
+
+  <section class="checklist-box">
+    <h2>예약 전 체크리스트</h2>
+    <ul>
+      {article.checklist.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-list">
+      {article.faqs.map(([question, answer]) => (
+        <details>
+          <summary>{question}</summary>
+          <p>{answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="source-note">
+    <h2>최종 확인 포인트</h2>
+    <p>최종 확인일: {article.sourceCheckedDate ?? '2026년 6월 9일'}. 본문은 여행자가 숙소 위치와 일정을 비교할 때 필요한 예약 전 확인 포인트를 중심으로 작성했습니다. 실제 요금, 운영 시간, 예약 조건은 숙소 공식 안내와 예약 플랫폼에서 다시 확인해야 합니다.</p>
+  </section>
+
+  <section>
+    <h2>관련 글</h2>
+    <div class="related-grid">
+      {related.map((item) => (
+        <a href={item.href}>
+          <span>{item.category}</span>
+          <strong>{item.title}</strong>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {article.internalLinks && (
+    <section>
+      <h2>함께 보면 좋은 내부 가이드</h2>
+      <div class="related-grid">
+        {article.internalLinks.map((item) => (
+          <a href={item.href}>
+            <span>{item.label}</span>
+            <strong>{item.title}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+</article>

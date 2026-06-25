@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('busan', {
+  src: '/images/domestic-places/busan-haeundae-beach-hero.jpg',
+  alt: '부산 해운대 해변과 도심 스카이라인',
+  caption: '해운대는 바다 산책과 숙소 선택지가 넓어 가족여행의 기준 권역으로 보기 좋습니다. 사진: StephNurnberg, Wikimedia Commons, CC BY 2.0'
+});
+---
+<BaseLayout title="부산 가족여행 숙소 권역 고르는 법 - Tourpick360" description="부산 가족여행에서 해운대, 광안리, 부산역 권역을 숙소 위치, 대중교통, 식사 접근성 기준으로 비교합니다.">
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>부산</span>
+    </nav>
+    <p class="eyebrow">부산 숙소</p>
+    <h1>부산 가족여행 숙소 권역 고르는 법</h1>
+    <p class="lead">부산은 해변, 시장, 도심, 기차역이 모두 강점이지만 한 번에 모두 묶으면 이동 피로가 커집니다. 가족여행은 숙소 권역을 먼저 정한 뒤 하루 동선을 줄이는 방식이 유리합니다.</p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <h2>해운대가 맞는 일정</h2>
+    <p>해운대는 바다와 산책, 식사, 호텔 선택지가 넓어 아이와 함께 이동하기 편합니다. 숙소 주변에서 저녁 시간을 보내기 쉽고, 날씨가 나빠도 실내 시설과 쇼핑 동선을 대체로 잡기 쉽습니다. 다만 부산역, 남포동, 송도 쪽 일정을 많이 넣으면 왕복 이동 시간이 길어질 수 있습니다.</p>
+
+    <h2>광안리가 맞는 일정</h2>
+    <p>광안리는 저녁 풍경과 식사 접근성을 중시하는 가족에게 어울립니다. 해운대보다 숙소 선택 폭은 좁을 수 있지만, 짧은 1박 2일 일정에서 바다와 저녁 산책을 중심으로 잡기 좋습니다. 차량 이동보다 대중교통과 택시를 섞는 일정이 편한 경우가 많습니다.</p>
+
+    <h2>부산역 권역이 맞는 일정</h2>
+    <p>KTX로 부산에 도착하고 남포동, 자갈치, 영도, 송도 쪽을 둘러보는 일정이라면 부산역 권역이 효율적입니다. 해변 휴양 느낌은 약하지만 도착과 출발 동선이 짧아 부모님 동행이나 짐이 많은 가족에게 안정적입니다.</p>
+
+    <h2>권역별 추천 대상 한눈에 보기</h2>
+    <p>부산 숙소는 가격만 비교하기보다 여행의 첫 이동과 마지막 이동을 기준으로 고르는 편이 좋습니다. 해운대는 숙소에서 바다와 식사를 해결하려는 가족, 광안리는 저녁 산책과 짧은 체류를 원하는 여행자, 부산역은 KTX 도착 후 짐을 빨리 맡기고 남포동이나 영도 일정을 보는 가족에게 잘 맞습니다.</p>
+    <table>
+      <thead>
+        <tr><th>권역</th><th>잘 맞는 여행</th><th>주의할 점</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>해운대</td><td>아이 동반, 해변 산책, 호텔 시설 중심 일정</td><td>부산역과 남포동 이동 시간이 길어질 수 있습니다.</td></tr>
+        <tr><td>광안리</td><td>저녁 풍경, 식사 접근성, 짧은 1박 2일</td><td>대형 호텔 선택지는 해운대보다 적을 수 있습니다.</td></tr>
+        <tr><td>부산역</td><td>KTX 이용, 남포동·영도·자갈치 중심 일정</td><td>해변 휴양 분위기는 약하므로 목적을 분명히 해야 합니다.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>이동 동선을 줄이는 예약 전 기준</h2>
+    <p>가족여행에서는 숙소가 유명 관광지와 가까운지보다 체크인 전후 짐 처리, 저녁 식사 후보, 비가 올 때 갈 수 있는 실내 장소가 더 중요할 수 있습니다. 숙소 후보를 고른 뒤에는 첫날 도착지에서 숙소까지, 숙소에서 저녁 식사 장소까지, 마지막 날 숙소에서 역이나 공항까지 이동 시간을 따로 확인합니다.</p>
+    <p>해운대 숙소를 잡았다면 남포동과 영도를 같은 날 무리하게 넣기보다 센텀, 해변 산책, 숙소 주변 식사로 묶는 편이 안정적입니다. 부산역 숙소를 잡았다면 첫날은 짐 보관과 남포동·자갈치 일정을 연결하고, 해운대는 다음 날 오전처럼 이동 방향이 단순한 시간대에 배치하는 방식이 좋습니다.</p>
+
+    <h2>가족여행 체크리스트</h2>
+    <ul>
+      <li>아이 낮잠 시간 또는 부모님 휴식 시간을 숙소 주변 일정으로 남겨둡니다.</li>
+      <li>해변권 숙소는 주차 가능 여부와 출차 대기 시간을 확인합니다.</li>
+      <li>KTX 이용 시 숙소까지 이동하는 택시 대기와 짐 보관 가능 여부를 봅니다.</li>
+      <li>해운대와 남포동을 하루에 모두 넣는 일정은 이동 시간이 길어질 수 있습니다.</li>
+    </ul>
+
+    <h2>최종 확인 기준</h2>
+    <p>작성일: 2026년 6월 5일. 부산 숙소 요금, 주차 조건, 조식 운영, 객실 기준 인원은 예약 플랫폼과 숙소 공식 안내에서 다시 확인해야 합니다.</p>
+
+    <section>
+      <h2>함께 볼 글</h2>
+      <div class="related-grid">
+        <a href="/domestic/"><span>국내여행</span><strong>지역과 계절 기준으로 여행지 고르기</strong></a>
+        <a href="/domestic/festivals/summer-beach-festival-checklist/"><span>여름 여행</span><strong>여름 바다 축제 여행 준비 체크리스트</strong></a>
+        <a href="/travel-tips/child-travel-fatigue-solution/"><span>가족여행</span><strong>아이 동반 여행 피로 줄이는 법</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

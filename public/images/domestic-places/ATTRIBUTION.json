@@ -1,0 +1,68 @@
+[
+  {
+    "key": "jeonju-hanok-village",
+    "dest": "jeonju-hanok-village.jpg",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Jeonju_Hanok_Maeul_02.jpg/960px-Jeonju_Hanok_Maeul_02.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Jeonju_Hanok_Maeul_02.jpg",
+    "author": "Bernard Gagnon",
+    "license": "CC0",
+    "width": 960,
+    "height": 639,
+    "kb": 208
+  },
+  {
+    "key": "busan-haeundae",
+    "dest": "busan-haeundae-beach.jpg",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Haeundae_Beach_in_Busan.jpg/960px-Haeundae_Beach_in_Busan.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Haeundae_Beach_in_Busan.jpg",
+    "author": "StephNurnberg",
+    "license": "CC BY 2.0",
+    "width": 960,
+    "height": 555,
+    "kb": 100
+  },
+  {
+    "key": "gangneung-anmok",
+    "dest": "gangneung-anmok-beach.jpg",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Anmok_Beach_20220430_001.jpg/960px-Anmok_Beach_20220430_001.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Anmok_Beach_20220430_001.jpg",
+    "author": "Mobius6",
+    "license": "CC BY-SA 4.0",
+    "width": 960,
+    "height": 600,
+    "kb": 83
+  },
+  {
+    "key": "yeosu-night",
+    "dest": "yeosu-dolsan-night.jpg",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Korea-Yeosu-Dolsan_Bridge_at_night-01.jpg/960px-Korea-Yeosu-Dolsan_Bridge_at_night-01.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Korea-Yeosu-Dolsan_Bridge_at_night-01.jpg",
+    "author": "Doo-ho Kim",
+    "license": "CC BY-SA 2.0",
+    "width": 960,
+    "height": 1470,
+    "kb": 168
+  },
+  {
+    "key": "gyeongju-daereungwon",
+    "dest": "gyeongju-daereungwon.jpg",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Daereungwon_Tomb_Complex.jpg/960px-Daereungwon_Tomb_Complex.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Daereungwon_Tomb_Complex.jpg",
+    "author": "Bernard Gagnon",
+    "license": "CC0",
+    "width": 960,
+    "height": 640,
+    "kb": 158
+  },
+  {
+    "key": "seoul-gyeongbokgung",
+    "dest": "seoul-gyeongbokgung-hyangwonjeong.jpg",
+    "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Water_reflection_of_Hyangwonjeong_Pavilion_at_Gyeongbokgung_Palace_in_Seoul.jpg/960px-Water_reflection_of_Hyangwonjeong_Pavilion_at_Gyeongbokgung_Palace_in_Seoul.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Water_reflection_of_Hyangwonjeong_Pavilion_at_Gyeongbokgung_Palace_in_Seoul.jpg",
+    "author": "Basile Morin",
+    "license": "CC BY-SA 4.0",
+    "width": 960,
+    "height": 1440,
+    "kb": 306
+  }
+]
