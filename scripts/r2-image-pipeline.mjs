@@ -1,8 +1,12 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
+
+const DEFAULT_QUALITY = 80;
+const DEFAULT_MAX_WIDTH = 1600;
 
 const requiredEnv = [
   'R2_ACCOUNT_ID',
@@ -12,6 +16,31 @@ const requiredEnv = [
   'R2_PUBLIC_BASE_URL'
 ];
 
+async function loadEnvFile(filePath) {
+  if (!existsSync(filePath)) return;
+
+  const contents = await readFile(filePath, 'utf8');
+  for (const line of contents.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+
+    const separatorIndex = trimmed.indexOf('=');
+    if (separatorIndex === -1) continue;
+
+    const key = trimmed.slice(0, separatorIndex).trim();
+    const rawValue = trimmed.slice(separatorIndex + 1).trim();
+    const value = rawValue.replace(/^['"]|['"]$/g, '');
+    if (key && process.env[key] === undefined) {
+      process.env[key] = value;
+    }
+  }
+}
+
+async function loadLocalEnv() {
+  await loadEnvFile(path.join(process.cwd(), '.env'));
+  await loadEnvFile(path.join(process.cwd(), '.env.local'));
+}
+
 function requireConfig() {
   const missing = requiredEnv.filter((key) => !process.env[key]);
   if (missing.length) {
@@ -20,7 +49,7 @@ function requireConfig() {
 }
 
 function slugify(value) {
-  return value
+  return String(value)
     .normalize('NFKD')
     .replace(/[^\w\s.-]/g, '')
     .trim()
@@ -61,20 +90,19 @@ async function downloadImage(imageUrl, workDir) {
 
 async function optimizeToWebp(sourcePath, outputPath) {
   const image = sharp(sourcePath, { animated: false }).rotate();
-  const metadata = await image.metadata();
 
-  await image
+  const output = await image
     .resize({
-      width: 1600,
+      width: DEFAULT_MAX_WIDTH,
       withoutEnlargement: true
     })
     .webp({
-      quality: 80,
+      quality: DEFAULT_QUALITY,
       effort: 5
     })
     .toFile(outputPath);
 
-  return metadata;
+  return output;
 }
 
 async function uploadToR2({ filePath, key }) {
@@ -104,14 +132,21 @@ function parseArgs(argv) {
   for (let index = 0; index < argv.length; index += 1) {
     const value = argv[index];
     if (value.startsWith('--')) {
-      args.set(value.slice(2), argv[index + 1]);
-      index += 1;
+      const key = value.slice(2);
+      const nextValue = argv[index + 1];
+      if (!nextValue || nextValue.startsWith('--')) {
+        args.set(key, true);
+      } else {
+        args.set(key, nextValue);
+        index += 1;
+      }
     }
   }
   return args;
 }
 
 async function main() {
+  await loadLocalEnv();
   requireConfig();
 
   const args = parseArgs(process.argv.slice(2));
@@ -120,8 +155,14 @@ async function main() {
     throw new Error('Usage: npm.cmd run images:r2 -- --url "https://example.com/image.jpg" --prefix posts/post-title --name hero');
   }
 
-  const prefix = slugify(args.get('prefix') ?? 'uploads');
-  const requestedName = slugify(args.get('name') ?? path.basename(new URL(imageUrl).pathname, path.extname(new URL(imageUrl).pathname)) ?? 'image');
+  const parsedUrl = new URL(imageUrl);
+  if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+    throw new Error('Only http and https image URLs are supported.');
+  }
+
+  const prefix = slugify(args.get('prefix') ?? 'uploads') || 'uploads';
+  const sourceBaseName = path.basename(parsedUrl.pathname, path.extname(parsedUrl.pathname));
+  const requestedName = slugify(args.get('name') ?? sourceBaseName ?? 'image');
   const workDir = path.join(process.cwd(), '.tmp', 'r2-images');
 
   await mkdir(workDir, { recursive: true });
@@ -133,6 +174,9 @@ async function main() {
   const publicUrl = await uploadToR2({ filePath: outputPath, key });
 
   await rm(sourcePath, { force: true });
+  if (!args.get('keep-local')) {
+    await rm(outputPath, { force: true });
+  }
 
   console.log(JSON.stringify({
     url: publicUrl,
@@ -141,7 +185,7 @@ async function main() {
     width: metadata.width,
     height: metadata.height,
     format: 'webp',
-    quality: 80
+    quality: DEFAULT_QUALITY
   }, null, 2));
 }
 
