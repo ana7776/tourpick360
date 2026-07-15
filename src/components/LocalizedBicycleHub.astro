@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  beautifulBicycleRoutes100,
+  bicycleOfficialSource,
+  bicycleRouteRegions,
+  getBicycleRoutePlanningNote,
+  nationalBicycleRouteGroups
+} from '../data/bicycleTravel.js';
+
+const { content } = Astro.props;
+const planningNoteLang = content.planningNoteLang ?? content.lang;
+const getNationalUse = (route, index) => content.nationalUseNotes?.[index] ?? route.tourpickUse;
+---
+<BaseLayout title={content.title} description={content.description} lang={content.lang} image="/images/bicycle-route-guide.svg">
+  <article class="article-page bicycle-category-page">
+    <nav class="breadcrumb" aria-label={content.breadcrumbLabel}>
+      <a href={content.homeHref}>{content.homeLabel}</a><span>/</span><span>{content.currentLabel}</span>
+    </nav>
+
+    <section class="article-hero split-hero">
+      <div>
+        <p class="eyebrow">{content.eyebrow}</p>
+        <h1>{content.heading}</h1>
+        <p class="lead">{content.intro}</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="/api/bicycle-routes.json">{content.apiCta}</a>
+          <a class="secondary-button" href={bicycleOfficialSource.url} target="_blank" rel="noopener noreferrer">{content.sourceCta}</a>
+        </div>
+      </div>
+      <figure>
+        <img src="/images/bicycle-route-guide.svg" alt={content.imageAlt} width="1200" height="675" loading="eager" />
+        <figcaption>{content.imageCaption}</figcaption>
+      </figure>
+    </section>
+
+    <section class="travel-summary-panel" aria-labelledby={`${content.lang}-bike-quick-info`}>
+      <div>
+        <p class="eyebrow">Quick Info</p>
+        <h2 id={`${content.lang}-bike-quick-info`}>{content.quickTitle}</h2>
+        <p>{content.quickBody}</p>
+      </div>
+      <dl>
+        <div><dt>{content.quickLabels.source}</dt><dd>{bicycleOfficialSource.organization}</dd></div>
+        <div><dt>{content.quickLabels.checked}</dt><dd>{content.checkedDate}</dd></div>
+        <div><dt>{content.quickLabels.routes}</dt><dd>{beautifulBicycleRoutes100.length}</dd></div>
+        <div><dt>{content.quickLabels.api}</dt><dd>{bicycleOfficialSource.apiPath}</dd></div>
+      </dl>
+    </section>
+
+    <section class="article-section">
+      <div class="section-heading">
+        <p class="eyebrow">{content.masterEyebrow}</p>
+        <h2>{content.masterTitle}</h2>
+        <p>{content.masterBody}</p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{content.table.region}</th>
+              <th scope="col">{content.table.no}</th>
+              <th scope="col">{content.table.route}</th>
+              <th scope="col">{content.table.use}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bicycleRouteRegions.map((group) => (
+              <>
+                {group.routes.map((route, index) => (
+                  <tr id={`${content.lang}-bike-route-${route.no}`}>
+                    {index === 0 && <th scope="rowgroup" rowspan={group.routes.length}>{group.region}</th>}
+                    <td>{String(route.no).padStart(3, '0')}</td>
+                    <td>{route.name}</td>
+                    <td>{getBicycleRoutePlanningNote(route, planningNoteLang)}</td>
+                  </tr>
+                ))}
+              </>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="article-section">
+      <div class="section-heading">
+        <p class="eyebrow">{content.nationalEyebrow}</p>
+        <h2>{content.nationalTitle}</h2>
+      </div>
+      <div class="route-pick-grid">
+        {nationalBicycleRouteGroups.map((route, index) => (
+          <article>
+            <span>{route.distance}</span>
+            <h3>{route.name}</h3>
+            <p><strong>{content.nationalLabels.section}</strong> {route.section}</p>
+            <p><strong>{content.nationalLabels.related}</strong> {route.relatedNumbers.map((number) => String(number).padStart(3, '0')).join(', ')}</p>
+            <p>{getNationalUse(route, index)}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="source-note">
+      <h2>{content.sourceTitle}</h2>
+      <p>{content.sourceIntro} <a href={bicycleOfficialSource.url} target="_blank" rel="noopener noreferrer">{bicycleOfficialSource.name}</a></p>
+      <p>{content.updateLog}</p>
+    </section>
+  </article>
+</BaseLayout>

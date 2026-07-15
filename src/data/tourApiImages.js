@@ -219,6 +219,71 @@ export const tourApiImages = {
     "mapx": "129.1626049105",
     "mapy": "35.1595354549",
     "overview": ""
+  },
+  "geoje_wind_hill": {
+    "src": "/images/tourapi/geoje-wind-hill.jpg",
+    "alt": "바람의 언덕 한국관광공사 TourAPI 사진",
+    "caption": "바람의 언덕 사진: 한국관광공사 TourAPI / 대한민국 구석구석",
+    "title": "바람의 언덕",
+    "contentId": "129479",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 도장포마을",
+    "tel": "",
+    "mapx": "",
+    "mapy": "",
+    "overview": ""
+  },
+  "geoje_sinseondae": {
+    "src": "/images/tourapi/geoje-sinseondae.jpg",
+    "alt": "신선대(거제) 한국관광공사 TourAPI 사진",
+    "caption": "신선대(거제) 사진: 한국관광공사 TourAPI / 대한민국 구석구석",
+    "title": "신선대(거제)",
+    "contentId": "129508",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 갈곶리",
+    "tel": "",
+    "mapx": "",
+    "mapy": "",
+    "overview": ""
+  },
+  "geoje_myeongsa_beach": {
+    "src": "/images/tourapi/geoje-myeongsa-beach.jpg",
+    "alt": "명사해수욕장 한국관광공사 TourAPI 사진",
+    "caption": "명사해수욕장 사진: 한국관광공사 TourAPI / 대한민국 구석구석",
+    "title": "명사해수욕장",
+    "contentId": "126577",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 명사해수욕장길",
+    "tel": "",
+    "mapx": "",
+    "mapy": "",
+    "overview": ""
+  },
+  "geoje_haegeumgang": {
+    "src": "/images/tourapi/geoje-haegeumgang.jpg",
+    "alt": "거제도 해금강 한국관광공사 TourAPI 사진",
+    "caption": "거제도 해금강 사진: 한국관광공사 TourAPI / 대한민국 구석구석",
+    "title": "거제도 해금강",
+    "contentId": "126224",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 갈곶리",
+    "tel": "",
+    "mapx": "",
+    "mapy": "",
+    "overview": ""
+  },
+  "geoje_yeocha_hongpo_observatory": {
+    "src": "/images/tourapi/geoje-yeocha-hongpo-observatory.jpg",
+    "alt": "여차홍포해안도로전망대 한국관광공사 TourAPI 사진",
+    "caption": "여차홍포해안도로전망대 사진: 한국관광공사 TourAPI / 대한민국 구석구석",
+    "title": "여차홍포해안도로전망대",
+    "contentId": "2030003",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 다포리",
+    "tel": "",
+    "mapx": "",
+    "mapy": "",
+    "overview": ""
   }
 };
 

@@ -2,6 +2,7 @@
 import { pickTourApiImage } from '../data/tourApiImages.js';
 
 const { article, related = [] } = Astro.props;
+const feedbackHref = `mailto:anagim7776@gmail.com?subject=${encodeURIComponent(`[Tourpick360 제보] ${article.title}`)}`;
 
 const imageKeysBySlug = {
   'family-trip-schedule-delays': ['family_trip', 'busan'],
@@ -28,12 +29,17 @@ const heroImage = pickTourApiImage(imageKeysBySlug[article.slug] ?? ['seoul'], {
 });
 
 const pageUrl = `https://tourpick360.com/travel-tips/problems/${article.slug}/`;
+const contentAuthor = {
+  '@type': 'Person',
+  name: '김안나',
+  email: 'anagim7776@gmail.com'
+};
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: article.title,
   description: article.description,
-  author: { '@type': 'Organization', name: 'Tourpick360' },
+  author: contentAuthor,
   publisher: { '@type': 'Organization', name: 'Tourpick360' },
   datePublished: article.datePublished ?? '2026-06-06',
   dateModified: article.dateModified ?? '2026-06-09',
@@ -54,6 +60,11 @@ const jsonLd = {
 
   <p class="eyebrow">{article.category}</p>
   <h1>{article.title}</h1>
+  <div class="author-info-box" aria-label="작성자 정보">
+    <span>작성자</span>
+    <strong>김안나</strong>
+    <a href="mailto:anagim7776@gmail.com">anagim7776@gmail.com</a>
+  </div>
   <p class="lead">{article.intro}</p>
 
   <figure class="article-hero-image">
@@ -96,6 +107,16 @@ const jsonLd = {
     </ul>
   </section>
 
+  <section class="closing-summary-box">
+    <h2>마무리 요약</h2>
+    <p>{article.title} 문제는 여행지 자체보다 시간표, 이동 순서, 대체 장소를 얼마나 현실적으로 잡았는지에 따라 결과가 달라집니다.</p>
+    <ul>
+      <li>주말 오후, 비 예보, 체크인 전후 시간처럼 실제로 일정이 흔들리는 구간을 먼저 비워 두는 것이 좋습니다.</li>
+      <li>예약 조건과 운영 시간은 바뀔 수 있으므로 출발 전 공식 안내를 다시 확인해야 합니다.</li>
+      <li>동행자의 체력과 짐 보관 여부를 일정표에 같이 넣으면 현장 수정이 훨씬 쉬워집니다.</li>
+    </ul>
+  </section>
+
   <section>
     <h2>자주 묻는 질문</h2>
     <div class="faq-list">
@@ -130,6 +151,13 @@ const jsonLd = {
   <section class="source-note">
     <h2>최종 확인 기준</h2>
     <p>최종 확인일: {article.sourceCheckedDate ?? '2026년 6월 9일'}. 숙소 요금, 운영 시간, 취소 규정, 축제 일정은 여행일에 따라 달라질 수 있으므로 예약 전 공식 안내를 다시 확인해야 합니다.</p>
+  </section>
+
+  <section class="reader-feedback-box" aria-labelledby="reader-feedback-heading">
+    <p class="eyebrow">정보 업데이트</p>
+    <h2 id="reader-feedback-heading">더 나은 해결 사례를 제보해주세요</h2>
+    <p>실제 여행 중 겪은 문제와 해결 방법이 있다면 본문 개선에 참고합니다. 여행 지역, 방문일, 바뀐 조건, 도움이 된 공식 링크를 함께 보내주시면 확인 후 반영하겠습니다.</p>
+    <a class="feedback-link" href={feedbackHref}>수정 요청 보내기</a>
   </section>
 
   <section>

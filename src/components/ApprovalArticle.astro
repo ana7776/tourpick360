@@ -3,7 +3,26 @@ import { jeju360Angles } from '../data/tourpick360Method.js';
 import { pickTourApiImage } from '../data/tourApiImages.js';
 
 const { article, related = [] } = Astro.props;
-const method = jeju360Angles[article.slug];
+const fallbackMethod = {
+  angle: article.solution ?? article.description,
+  bestFor: [article.target, article.area].filter(Boolean),
+  notFor: [article.caution].filter(Boolean),
+  oneDayPlan: [
+    article.area ? `${article.area} 권역을 먼저 정합니다.` : '여행 권역을 먼저 정합니다.',
+    '숙소 위치와 이동 시간을 함께 비교합니다.',
+    '식사, 주차, 체크인 시간을 마지막에 다시 확인합니다.'
+  ],
+  scores: [
+    ['위치 판단', 4],
+    ['이동 동선', 4],
+    ['식사 접근성', 4],
+    ['가족 편의', 4],
+    ['예산 관리', 4],
+    ['날씨 대체', 3]
+  ]
+};
+const method = jeju360Angles[article.slug] ?? fallbackMethod;
+const feedbackHref = `mailto:anagim7776@gmail.com?subject=${encodeURIComponent(`[Tourpick360 제보] ${article.title}`)}`;
 
 const imageKeysBySlug = {
   'airport-area-hotel-checklist': ['jeju_yongduam', 'jeju'],
@@ -25,15 +44,17 @@ const heroImage = pickTourApiImage(imageKeysBySlug[article.slug] ?? ['jeju'], {
 });
 
 const pageUrl = `https://tourpick360.com/domestic/jeju/${article.slug}/`;
+const contentAuthor = {
+  '@type': 'Person',
+  name: '김안나',
+  email: 'anagim7776@gmail.com'
+};
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: article.title,
   description: article.description,
-  author: {
-    '@type': 'Organization',
-    name: 'Tourpick360'
-  },
+  author: contentAuthor,
   publisher: {
     '@type': 'Organization',
     name: 'Tourpick360'
@@ -57,6 +78,11 @@ const jsonLd = {
 
   <p class="eyebrow">{article.category}</p>
   <h1>{article.title}</h1>
+  <div class="author-info-box" aria-label="작성자 정보">
+    <span>작성자</span>
+    <strong>김안나</strong>
+    <a href="mailto:anagim7776@gmail.com">anagim7776@gmail.com</a>
+  </div>
   <p class="lead">{article.intro}</p>
 
   <figure class="article-hero-image">
@@ -136,6 +162,16 @@ const jsonLd = {
     </ul>
   </section>
 
+  <section class="closing-summary-box">
+    <h2>마무리 요약</h2>
+    <p>{article.title}은 숙소 위치, 이동 시간, 예산, 현장 변수를 함께 놓고 봐야 실제 여행에서 실패가 줄어듭니다.</p>
+    <ul>
+      <li>지도상 거리가 가까워도 주말 주차, 짐 보관, 체크인 시간이 겹치면 체감 동선은 길어질 수 있습니다.</li>
+      <li>요금과 운영 시간은 예약 플랫폼이나 공식 안내에서 다시 확인하는 것이 안전합니다.</li>
+      <li>비 오는 날이나 늦은 도착일에는 욕심을 줄이고 숙소 근처 후보를 하나 더 준비해 두는 편이 좋습니다.</li>
+    </ul>
+  </section>
+
   <section>
     <h2>자주 묻는 질문</h2>
     <div class="faq-list">
@@ -151,6 +187,13 @@ const jsonLd = {
   <section class="source-note">
     <h2>최종 확인 포인트</h2>
     <p>최종 확인일: {article.sourceCheckedDate ?? '2026년 6월 9일'}. 본문은 여행자가 숙소 위치와 일정을 비교할 때 필요한 예약 전 확인 포인트를 중심으로 작성했습니다. 실제 요금, 운영 시간, 예약 조건은 숙소 공식 안내와 예약 플랫폼에서 다시 확인해야 합니다.</p>
+  </section>
+
+  <section class="reader-feedback-box" aria-labelledby="reader-feedback-heading">
+    <p class="eyebrow">정보 업데이트</p>
+    <h2 id="reader-feedback-heading">다녀온 뒤 달라진 점을 알려주세요</h2>
+    <p>운영 시간, 주차, 요금, 예약 조건처럼 현장에서 바뀐 내용이 있으면 확인 후 본문에 반영합니다. 방문일, 장소명, 공식 안내 링크나 사진 한 장을 함께 보내주시면 더 정확하게 검토할 수 있습니다.</p>
+    <a class="feedback-link" href={feedbackHref}>수정 요청 보내기</a>
   </section>
 
   <section>

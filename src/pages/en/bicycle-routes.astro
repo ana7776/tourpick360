@@ -1,0 +1,47 @@
+---
+import LocalizedBicycleHub from '../../components/LocalizedBicycleHub.astro';
+
+const content = {
+  lang: 'en',
+  planningNoteLang: 'en',
+  title: 'Korea Bicycle Routes for Real Trip Planning - Tourpick360',
+  description: 'An original Tourpick360 guide that uses Korea official bicycle-route references as source material, then reframes them by rental, return route, food, restrooms, weather, and recovery planning.',
+  breadcrumbLabel: 'Current location',
+  homeHref: '/en/',
+  homeLabel: 'Home',
+  currentLabel: 'Bicycle Routes 100',
+  eyebrow: 'Korea Bicycle Travel',
+  heading: 'Korea bicycle routes, reframed around how a trip actually works',
+  intro: 'This English page uses the official route names as source markers, but the article is written from a traveler’s point of view: where to rent, where to stop, where to eat, and how to return if the route becomes too long.',
+  apiCta: 'Open JSON data',
+  sourceCta: 'Official source',
+  imageAlt: 'Map-style illustration comparing riverside and coastal bicycle routes in Korea',
+  imageCaption: 'Bicycle travel works best when route recovery, rest stops, and weather are planned before distance.',
+  checkedDate: 'July 6, 2026',
+  quickTitle: 'Trip-planning quick info',
+  quickBody: 'The page keeps source attribution visible while adding Tourpick360 use notes for beginners, families, coastal rides, river routes, and long-distance sections.',
+  quickLabels: { source: 'Source', checked: 'Checked', routes: 'Routes', api: 'API' },
+  masterEyebrow: 'Regional Route Finder',
+  masterTitle: 'Read the 100 official route candidates through a travel-planning lens',
+  masterBody: 'Route names are kept in Korean as official proper nouns, while the notes explain what travelers should check before turning each name into a real itinerary.',
+  table: { region: 'Region', no: 'No.', route: 'Route', use: 'Tourpick360 use' },
+  useBasic: 'Check rental, return, food, restrooms, and transit first.',
+  useSea: 'Check wind, slopes, return transport, and weather first.',
+  nationalEyebrow: 'National Route Axes',
+  nationalTitle: 'Long-distance routes should be split into practical sections',
+  nationalLabels: { section: 'Section:', related: 'Related 100-list numbers:' },
+  nationalUseNotes: [
+    'Useful for a half-day or one-night beginner ride because rail access, riverside stops, and cafe breaks are easy to combine.',
+    'A flat, simple axis for families and first-time riders who want to understand the rhythm of official bicycle routes.',
+    'Better as a one-night plan than a full-distance push. Fix lodging, supply stops, and bailout points before mileage.',
+    'Good with Buyeo or Gunsan travel, but return transport should be decided before adding more distance.',
+    'Works well with Gwangju, Damyang, and Mokpo, especially when season, wind, and meal timing are checked together.',
+    'Strong for cherry blossom and riverside scenery, but peak-season lodging and vehicle recovery should be booked early.',
+    'For Jeju, start with a short coastal section near your lodging instead of forcing a full loop on the first ride.'
+  ],
+  sourceTitle: 'Sources and Update Log',
+  sourceIntro: 'Official reference:',
+  updateLog: 'Updated on July 6, 2026: reframed the route list with Tourpick360 planning notes for rental, return, rest, weather, and trip recovery.'
+};
+---
+<LocalizedBicycleHub content={content} />

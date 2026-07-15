@@ -27,11 +27,19 @@ const regions = [
   },
   {
     name: '강릉',
-    href: '/domestic/gangneung/ktx-weekend-trip-guide/',
+    href: '/domestic/gangneung/attraction-area-guide/',
     bestSeason: '봄, 여름, 겨울',
-    angle: '바다와 카페, KTX 접근성을 함께 보는 주말 여행지',
-    keywords: ['KTX', '오션뷰', '카페거리'],
+    angle: '경포, 안목, 오죽헌, 정동진, 주문진을 권역별로 나눠야 편한 여행지',
+    keywords: ['경포', '안목', '오죽헌'],
     score: '짧은 일정 적합'
+  },
+  {
+    name: '거제',
+    href: '/domestic/geoje/attraction-area-guide/',
+    bestSeason: '봄, 여름, 가을',
+    angle: '외도, 바람의언덕, 해금강, 매미성, 실내 체험을 권역별로 나눠야 편한 섬 여행지',
+    keywords: ['외도', '바람의언덕', '매미성'],
+    score: '권역 분리 중요'
   },
   {
     name: '여수',
@@ -80,14 +88,14 @@ const seasons = [
     name: '봄',
     months: '3월 - 5월',
     focus: '벚꽃, 산책, 야외 관광',
-    regions: ['제주', '경주', '여수', '강릉'],
+    regions: ['제주', '경주', '거제', '강릉'],
     tip: '일교차가 커서 숙소 난방과 야간 이동 동선을 함께 확인합니다.'
   },
   {
     name: '여름',
     months: '6월 - 8월',
     focus: '바다, 실내 대체 코스, 가족 휴가',
-    regions: ['부산', '강릉', '제주', '서울'],
+    regions: ['부산', '강릉', '거제', '제주'],
     tip: '성수기에는 숙소 가격보다 취소 규정과 주차 가능 여부가 더 중요해집니다.'
   },
   {
@@ -114,6 +122,12 @@ const purposeRoutes = [
 ];
 
 const regionalGuides = [
+  {
+    category: '자전거 여행길',
+    title: '국내 자전거 여행길 추천과 코스 고르는 법',
+    summary: '공식 자전거길 후보를 출처로 확인하고, 대여·반납·보급·복귀 동선 등 실제 여행자가 필요한 기준으로 다시 정리했습니다.',
+    href: '/domestic/bicycle/'
+  },
   {
     category: '거창 Y자형 출렁다리',
     title: '거창 Y자형 출렁다리 방문 가이드',
@@ -155,6 +169,24 @@ const regionalGuides = [
     title: '부산 비 오는 날 가족여행 코스와 숙소 권역 고르는 법',
     summary: '해운대, 센텀, 부산역, 남포동 권역을 비 예보와 실내 대체 코스 기준으로 비교합니다.',
     href: '/domestic/busan/rainy-day-family-route/'
+  },
+  {
+    category: '부산 역사 산책',
+    title: '부산 바다 여행에 역사 산책을 섞는 1일 동선',
+    summary: '부산역권, 동래권, 해운대 숙소 기준으로 바다 일정에 역사 산책을 무리 없이 섞는 방법입니다.',
+    href: '/domestic/busan/history-walking-route-guide/'
+  },
+  {
+    category: '강릉 여행지',
+    title: '강릉 여행지 권역별 추천 코스와 동선 가이드',
+    summary: '경포, 안목, 오죽헌·선교장, 정동진, 주문진을 여행 목적과 이동 방식 기준으로 나눠 정리합니다.',
+    href: '/domestic/gangneung/attraction-area-guide/'
+  },
+  {
+    category: '거제 여행지',
+    title: '거제 여행지 권역별 추천 코스와 동선 가이드',
+    summary: '외도 보타니아, 바람의언덕, 해금강, 매미성, 거제식물원, 케이블카를 권역과 동행 유형 기준으로 정리합니다.',
+    href: '/domestic/geoje/attraction-area-guide/'
   },
   {
     category: '강릉 주말여행',

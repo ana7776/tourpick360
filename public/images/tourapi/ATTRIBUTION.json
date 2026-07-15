@@ -168,5 +168,60 @@
     "source": "한국관광공사 TourAPI",
     "originalUrl": "http://tong.visitkorea.or.kr/cms/resource/12/3576412_image2_1.jpg",
     "localPath": "/images/tourapi/festival_winter.jpg"
+  },
+  {
+    "key": "geoje_wind_hill",
+    "title": "바람의 언덕",
+    "contentId": "129479",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 도장포마을",
+    "source": "한국관광공사 TourAPI / 대한민국 구석구석",
+    "originalUrl": "http://tong.visitkorea.or.kr/cms/resource/81/3368081_image2_1.jpg",
+    "localPath": "/images/tourapi/geoje-wind-hill.jpg",
+    "fetchedAt": "2026-06-29"
+  },
+  {
+    "key": "geoje_sinseondae",
+    "title": "신선대(거제)",
+    "contentId": "129508",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 갈곶리",
+    "source": "한국관광공사 TourAPI / 대한민국 구석구석",
+    "originalUrl": "http://tong.visitkorea.or.kr/cms/resource/76/3576176_image2_1.JPG",
+    "localPath": "/images/tourapi/geoje-sinseondae.jpg",
+    "fetchedAt": "2026-06-29"
+  },
+  {
+    "key": "geoje_myeongsa_beach",
+    "title": "명사해수욕장",
+    "contentId": "126577",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 명사해수욕장길",
+    "source": "한국관광공사 TourAPI / 대한민국 구석구석",
+    "originalUrl": "http://tong.visitkorea.or.kr/cms/resource/33/3077233_image2_1.jpg",
+    "localPath": "/images/tourapi/geoje-myeongsa-beach.jpg",
+    "fetchedAt": "2026-06-29"
+  },
+  {
+    "key": "geoje_haegeumgang",
+    "title": "거제도 해금강",
+    "contentId": "126224",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 갈곶리",
+    "source": "한국관광공사 TourAPI / 대한민국 구석구석",
+    "originalUrl": "https://tong.visitkorea.or.kr/cms/resource/71/3519171_image2_1.jpg",
+    "localPath": "/images/tourapi/geoje-haegeumgang.jpg",
+    "fetchedAt": "2026-06-29"
+  },
+  {
+    "key": "geoje_yeocha_hongpo_observatory",
+    "title": "여차홍포해안도로전망대",
+    "contentId": "2030003",
+    "contentTypeId": "12",
+    "address": "경상남도 거제시 남부면 다포리",
+    "source": "한국관광공사 TourAPI / 대한민국 구석구석",
+    "originalUrl": "http://tong.visitkorea.or.kr/cms/resource/23/3371723_image2_1.JPG",
+    "localPath": "/images/tourapi/geoje-yeocha-hongpo-observatory.jpg",
+    "fetchedAt": "2026-06-29"
   }
 ]

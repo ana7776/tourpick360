@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getTourApiImage } from '../../../data/tourApiImages.js';
+
+const heroImage = getTourApiImage('gangneung', {
+  src: '/images/domestic-places/gangneung-anmok-beach-hero.jpg',
+  alt: '강릉 안목해변과 동해 바다 풍경',
+  caption: '강릉 여행지는 바다만 보지 말고 경포, 안목, 오죽헌·선교장, 정동진, 주문진을 권역별로 나누면 일정이 쉬워집니다.'
+});
+
+const placeGroups = [
+  {
+    theme: '첫 강릉 여행',
+    title: '경포·강문 권역',
+    places: ['경포해변', '경포호', '경포대', '강문해변', '강문솟대다리'],
+    fit: '바다 산책, 숙소 만족도, 가족·커플 여행',
+    route: '경포호 산책 - 경포대 - 경포해변 - 강문해변 순서로 묶으면 걷는 흐름이 자연스럽습니다.',
+    caution: '성수기에는 주차와 택시 대기가 길어질 수 있어 숙소를 이 권역에 둘지 먼저 정해야 합니다.'
+  },
+  {
+    theme: '카페와 짧은 바다',
+    title: '안목해변·커피거리 권역',
+    places: ['안목해변', '강릉커피거리', '송정해변'],
+    fit: '반나절 카페 일정, 친구 여행, 비 오는 날 실내 좌석 대체',
+    route: '안목해변 카페거리에서 바다를 보며 쉬고, 날씨가 좋으면 해변 산책을 짧게 붙입니다.',
+    caution: '카페 중심 일정은 체류 시간이 길어지기 쉬워 경포와 정동진까지 같은 날 모두 넣으면 이동이 늘어납니다.'
+  },
+  {
+    theme: '역사와 고택',
+    title: '오죽헌·선교장·경포호 권역',
+    places: ['오죽헌', '강릉 선교장', '경포호', '허균·허난설헌 기념공원'],
+    fit: '부모님 동반, 비 예보, 아이와 역사 체험',
+    route: '오죽헌을 먼저 보고 선교장, 경포호 주변 산책으로 이어가면 바다만 보는 강릉 여행보다 깊이가 생깁니다.',
+    caution: '고택과 전시를 모두 자세히 보면 시간이 길어지므로 1박 2일에서는 대표 2곳만 고르는 편이 좋습니다.'
+  },
+  {
+    theme: '일출과 드라이브',
+    title: '정동진·헌화로 권역',
+    places: ['정동진역', '정동진해변', '모래시계공원', '헌화로'],
+    fit: '일출 여행, 드라이브, 강릉 남부권 숙박',
+    route: '일출을 볼 계획이면 정동진 숙소나 새벽 이동을 기준으로 잡고, 낮에는 헌화로 해안 드라이브를 붙입니다.',
+    caution: '강릉역·경포 중심 숙소에서 정동진을 왕복하면 시간이 꽤 걸리므로 KTX 출발일에는 무리하게 넣지 않는 편이 안전합니다.'
+  },
+  {
+    theme: '북부 해안',
+    title: '주문진·영진해변 권역',
+    places: ['주문진수산시장', '주문진해변', '소돌아들바위공원', '영진해변', '주문진방사제'],
+    fit: '해산물 식사, 드라마 촬영지, 한적한 바다 산책',
+    route: '주문진수산시장 식사 전후로 소돌아들바위공원과 영진해변을 골라 붙이면 북부 해안 분위기가 살아납니다.',
+    caution: '경포·안목과는 방향이 달라 차 없는 여행에서는 택시비와 복귀 시간을 먼저 계산해야 합니다.'
+  }
+];
+
+const routeExamples = [
+  ['차 없이 1박 2일', '1일차 강릉역 도착 - 경포 또는 안목 중 하나 선택 - 숙소 체크인. 2일차 오죽헌 또는 중앙시장만 보고 강릉역 복귀.'],
+  ['가족 1박 2일', '경포 숙소를 잡고 경포해변, 강문해변, 오죽헌·선교장 중 2곳만 넣습니다. 아이가 있으면 카페보다 휴식 시간을 먼저 둡니다.'],
+  ['커플 바다 여행', '안목 카페거리와 경포 야간 산책을 중심으로 잡고, 사진 욕심이 있다면 강문솟대다리나 정동진을 선택 코스로 둡니다.'],
+  ['부모님 동반', '오죽헌, 선교장, 경포호처럼 걷는 길이 비교적 단순한 곳을 먼저 보고, 바다는 경포해변 짧은 산책으로 줄입니다.'],
+  ['드라이브 여행', '정동진과 헌화로, 주문진·소돌아들바위공원을 하루에 묶을 수 있지만 강릉 시내와는 분리해서 보는 편이 좋습니다.']
+];
+
+const decisionRows = [
+  ['강릉역 도착 시간이 늦다', '강릉역 또는 도심 숙소', '첫날은 체크인과 식사만 하고 바다 일정은 다음 날 오전으로 넘깁니다.'],
+  ['바다를 숙소 앞에서 보고 싶다', '경포·강문 권역', '해변 산책 만족도는 높지만 성수기 숙소비와 주차를 함께 봐야 합니다.'],
+  ['카페가 여행 목적이다', '안목해변 권역', '카페 체류 시간이 길어지므로 다른 권역을 많이 붙이지 않습니다.'],
+  ['역사 여행을 섞고 싶다', '오죽헌·선교장 권역', '비 예보나 부모님 동반 일정에 안정적입니다.'],
+  ['일출을 보고 싶다', '정동진 권역', '새벽 이동 여부와 숙소 위치를 먼저 정해야 합니다.'],
+  ['해산물 식사와 한적한 해변이 좋다', '주문진 권역', '차량 이동이면 좋고, 뚜벅이는 복귀 시간을 넉넉히 잡아야 합니다.']
+];
+
+const sourceLinks = [
+  ['대한민국 구석구석 주문진 아들바위 여행기사', 'https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=1a27da7d-f59f-498e-ae34-08f215a105a7'],
+  ['대한민국 구석구석 경포대·정동진 여행기사', 'https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=03c0a3c8-82c9-4fe8-aeab-adf5e613822b'],
+  ['대한민국 구석구석 오죽헌·선교장 여행기사', 'https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=04d56d2d-698c-4695-8978-1d27f99e3a56'],
+  ['대한민국 구석구석 강릉 헌화로 여행기사', 'https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=ffff1046-c005-4dc1-8b71-3dcf1a2e3cbe'],
+  ['대한민국 구석구석 선교장·경포가시연습지 코스', 'https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=6492f78e-079c-4d7f-9aad-4b261401534f']
+];
+---
+<BaseLayout
+  title="강릉 여행지 권역별 추천 코스와 동선 가이드 - Tourpick360"
+  description="대한민국 구석구석 강릉 여행지 정보를 참고해 경포, 안목, 오죽헌·선교장, 정동진, 주문진 권역별로 강릉 여행 코스와 이동 동선을 정리합니다."
+  image={heroImage.src}
+>
+  <article class="article-page longform">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>강릉</span>
+    </nav>
+
+    <p class="eyebrow">강릉 여행지 보강 가이드</p>
+    <h1>강릉 여행지 권역별 추천 코스와 동선 가이드</h1>
+    <p class="lead">
+      강릉은 경포와 안목만 보고 끝내기 아쉬운 도시입니다. 경포해변과 강문해변, 안목 커피거리, 오죽헌과 선교장,
+      정동진, 주문진까지 매력이 다른 여행지가 넓게 퍼져 있어 “어디를 넣을지”보다 “어느 권역을 같은 날 묶을지”가 더 중요합니다.
+      이 글은 대한민국 구석구석 강릉 여행지 자료를 참고해 Tourpick360 방식으로 실제 일정에 맞게 다시 정리한 가이드입니다.
+    </p>
+
+    <figure class="article-hero-image">
+      <img src={heroImage.src} alt={heroImage.alt} width="960" height="540" loading="eager" />
+      <figcaption>{heroImage.caption}</figcaption>
+    </figure>
+
+    <section class="travel-summary-panel" aria-labelledby="gangneung-summary">
+      <div>
+        <p class="eyebrow">핵심 요약</p>
+        <h2 id="gangneung-summary">강릉은 바다 권역과 역사 권역을 나눠야 편합니다</h2>
+        <p>짧은 일정이라면 경포·안목·오죽헌 중 2권역만 고르고, 정동진과 주문진은 별도 반나절 또는 차량 여행으로 보는 편이 좋습니다.</p>
+      </div>
+      <dl>
+        <div><dt>첫 방문</dt><dd>경포·강문 + 안목 또는 오죽헌</dd></div>
+        <div><dt>뚜벅이</dt><dd>강릉역, 경포, 안목 중 2곳만 선택</dd></div>
+        <div><dt>부모님</dt><dd>오죽헌·선교장 + 경포호 산책</dd></div>
+        <div><dt>드라이브</dt><dd>정동진·헌화로 또는 주문진 북부 해안</dd></div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>강릉 여행지 권역별 선택표</h2>
+      <div class="nearby-place-grid">
+        {placeGroups.map((group) => (
+          <article>
+            <span>{group.theme}</span>
+            <h3>{group.title}</h3>
+            <p><strong>대표 여행지:</strong> {group.places.join(', ')}</p>
+            <p><strong>잘 맞는 여행:</strong> {group.fit}</p>
+            <p>{group.route}</p>
+            <p>{group.caution}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>강릉 여행 목적별로 어디를 고르면 좋을까</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>상황</th><th>우선 권역</th><th>이유</th></tr>
+          </thead>
+          <tbody>
+            {decisionRows.map(([situation, area, reason]) => (
+              <tr>
+                <th scope="row">{situation}</th>
+                <td>{area}</td>
+                <td>{reason}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>경포·강문은 첫 강릉 여행의 기본 권역입니다</h2>
+      <p>
+        경포해변은 강릉의 대표 해변이고, 경포호와 경포대, 강문해변을 함께 묶기 쉽습니다. 대한민국 구석구석 자료에서도
+        경포호 주변에는 경포대와 박물관, 고택 여행지가 이어지고, 경포해변은 솔숲 산책로와 바다 풍경을 함께 즐길 수 있는 곳으로 소개됩니다.
+        첫 강릉 여행이라면 경포 숙소를 잡고 아침이나 저녁에 해변을 걷는 방식이 가장 단순합니다.
+      </p>
+      <p>
+        단, 경포와 강문을 본 뒤 안목, 정동진, 주문진까지 같은 날 모두 넣으면 이동이 많아집니다. 1박 2일이라면 경포·강문은 숙소 권역으로 두고,
+        안목은 카페 반나절 코스, 오죽헌·선교장은 역사 산책 코스로 따로 고르는 편이 안정적입니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>안목해변은 커피와 바다를 짧게 즐기기 좋습니다</h2>
+      <p>
+        안목해변은 강릉커피거리와 함께 기억되는 곳입니다. 대한민국 구석구석 강릉 헌화로 여행기사에서도 안목해변 커피거리는
+        커피 자판기에서 시작해 개성 있는 카페와 브랜드 매장이 이어진 명소로 소개됩니다. 강릉에 도착해 “바다를 보며 쉬는 시간”이 필요하다면
+        안목은 만족도가 높은 선택입니다.
+      </p>
+      <p>
+        다만 안목은 카페 체류 시간이 길어지기 쉽습니다. 차 없는 여행에서는 안목과 경포를 모두 넣는 순간 택시 이동이 반복될 수 있으므로,
+        첫날 오후에 안목을 선택했다면 저녁과 숙소는 안목 또는 강릉역·경포 중 한 곳으로 단순하게 잡는 것이 좋습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>오죽헌과 선교장은 강릉 여행에 깊이를 더합니다</h2>
+      <p>
+        오죽헌과 선교장은 강릉을 바다 여행지만으로 보지 않게 해주는 권역입니다. 대한민국 구석구석 자료는 오죽헌을 신사임당과 율곡 이이의
+        자취를 되새기는 곳으로 소개하고, 선교장은 고택과 주변 풍광이 더해지는 한옥 여행지로 설명합니다. 부모님 동반이나 비 예보가 있는 날에는
+        이 권역이 특히 안정적입니다.
+      </p>
+      <p>
+        오죽헌, 선교장, 경포호, 허균·허난설헌 기념공원까지 모두 가까운 편이지만 하나하나 자세히 보면 시간이 꽤 걸립니다.
+        짧은 일정에서는 오죽헌과 선교장 중 한 곳을 중심으로 잡고, 경포호 산책을 가볍게 붙이는 방식이 현실적입니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>정동진은 일출 목적일 때 따로 잡는 편이 좋습니다</h2>
+      <p>
+        정동진은 바다와 기차역, 일출 이미지가 강한 여행지입니다. 대한민국 구석구석 자료는 정동진역을 바다 가까이에 자리한 역이자
+        드라마 ‘모래시계’ 이후 동해 일출 여행 명소로 알려진 곳으로 설명합니다. 강릉 여행에서 일출이 목적이라면 정동진은 충분히 넣을 만합니다.
+      </p>
+      <p>
+        하지만 경포나 강릉역 숙소를 잡은 상태에서 정동진을 왕복하면 시간이 길어질 수 있습니다. 정동진은 새벽 일출 일정 또는 남부 해안 드라이브와
+        묶고, KTX 출발 당일에는 무리하게 넣지 않는 편이 좋습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>주문진과 소돌아들바위는 북부 해안 코스로 봅니다</h2>
+      <p>
+        주문진 쪽은 경포·안목과 분위기가 다릅니다. 대한민국 구석구석 주문진 아들바위 여행기사는 주문진해변의 호젓함,
+        소돌아들바위공원의 전망 데크와 바다 산책로, 주문진수산시장과 북부 해안의 매력을 함께 소개합니다.
+        해산물 식사와 한적한 바다 산책을 원한다면 주문진 권역이 잘 맞습니다.
+      </p>
+      <p>
+        다만 강릉역, 경포, 안목 중심 일정에서 주문진까지 올리면 북쪽으로 이동 거리가 생깁니다. 차량 여행이라면 주문진수산시장,
+        영진해변, 소돌아들바위공원을 묶기 좋고, 차 없는 여행이라면 택시비와 복귀 시간을 먼저 계산해야 합니다.
+      </p>
+    </section>
+
+    <section class="route-plan-box" aria-labelledby="route-examples">
+      <p class="eyebrow">추천 일정</p>
+      <h2 id="route-examples">여행 유형별 강릉 코스 예시</h2>
+      <ol>
+        {routeExamples.map(([type, body]) => (
+          <li>
+            <strong>{type}</strong>
+            <span>{body}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="checklist-box">
+      <h2>강릉 여행지 고르기 전 체크리스트</h2>
+      <ul>
+        <li>숙소를 강릉역, 경포, 안목 중 어디에 둘지 먼저 정합니다.</li>
+        <li>경포와 안목은 같은 바다 권역이지만 이동과 체류 성격이 다르므로 둘 중 하나를 중심으로 봅니다.</li>
+        <li>오죽헌·선교장은 비 예보나 부모님 동반 일정의 안정적인 대체 코스로 둡니다.</li>
+        <li>정동진은 일출 목적이 아니라면 강릉 시내 일정과 무리하게 섞지 않습니다.</li>
+        <li>주문진은 해산물 식사와 북부 해안 산책을 함께 넣을 때 만족도가 높습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>참고한 공식·여행 정보</h2>
+      <div class="related-grid">
+        {sourceLinks.map(([title, href]) => (
+          <a href={href} target="_blank" rel="noopener noreferrer">
+            <span>대한민국 구석구석</span>
+            <strong>{title}</strong>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>함께 보면 좋은 강릉 가이드</h2>
+      <div class="related-grid">
+        <a href="/domestic/gangneung/ktx-weekend-trip-guide/"><span>강릉 KTX</span><strong>강릉 KTX 주말여행 동선과 숙소 위치</strong></a>
+        <a href="/domestic/gangneung/no-car-weekend-course/"><span>뚜벅이 여행</span><strong>강릉 차 없이 1박 2일 여행 코스와 숙소 위치</strong></a>
+        <a href="/case-studies/gangneung-weekend-before-after/"><span>일정 사례</span><strong>강릉 1박 2일 일정 Before / After</strong></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

@@ -5,7 +5,42 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   <section class="page">
     <p class="eyebrow">Template Library</p>
     <h1>여행 템플릿 라이브러리</h1>
-    <p>상황별 여행 계획을 빠르게 정리할 수 있도록 일정표와 대체 코스 템플릿을 제공합니다.</p>
+    <p class="lead">상황별 여행 계획을 빠르게 정리할 수 있도록 일정표와 대체 코스 템플릿을 제공합니다. 각 템플릿은 단순한 빈칸보다 숙소 위치, 이동 시간, 식사 후보, 취소 조건처럼 실제 예약 전에 확인해야 하는 항목을 중심으로 구성했습니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Reader-First Planning</p>
+      <h2>템플릿을 쓰기 전에 정할 것</h2>
+      <p class="muted">여행 템플릿은 목적지가 아니라 실패 가능성을 줄이는 순서로 작성해야 합니다. 먼저 동행자와 이동수단을 정하고, 그다음 숙소 권역과 하루 핵심 코스를 제한하면 과한 일정이 줄어듭니다.</p>
+    </div>
+    <div class="article-grid">
+      <article class="article-card">
+        <p>1단계</p>
+        <h3>동행자 기준 정리</h3>
+        <span>아이, 부모님, 친구, 커플 여행인지에 따라 휴식 시간과 이동 한계가 달라집니다. 템플릿 첫 줄에는 지역보다 동행자의 리듬을 먼저 적습니다.</span>
+      </article>
+      <article class="article-card">
+        <p>2단계</p>
+        <h3>숙소 권역과 복귀 동선 확인</h3>
+        <span>숙소는 관광지와의 직선거리보다 식사, 주차, 체크인 후 복귀가 쉬운지로 비교합니다. 늦은 도착이나 비 예보가 있으면 이 기준이 더 중요합니다.</span>
+      </article>
+      <article class="article-card">
+        <p>3단계</p>
+        <h3>대체 코스와 예산 분리</h3>
+        <span>날씨, 주차, 대기 시간 때문에 일정은 쉽게 바뀝니다. 대체 코스와 현장 결제 예비비를 별도로 두면 여행 중 선택지가 줄어들지 않습니다.</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Templates</p>
+      <h2>상황별 템플릿 선택</h2>
+      <p class="muted">현재 준비 중인 여행에서 가장 불안한 지점을 기준으로 템플릿을 고르세요. 일정이 밀리는 문제라면 가족여행 일정표, 비 예보가 있다면 대체 일정표, 비용이 걱정된다면 예산표부터 작성하는 편이 좋습니다.</p>
+      <p class="muted">빈칸만 채우는 양식보다, 어떤 상황에서 쓰는지와 어떤 항목을 먼저 정해야 하는지가 함께 있으면 실제 여행 준비가 훨씬 쉬워집니다.</p>
+      <p class="muted">처음 방문했다면 가족여행 일정표로 하루 코스를 줄이고, 숙소 비교표로 위치와 취소 조건을 확인한 뒤, 예산표에서 현장 결제와 예비비를 분리하는 순서가 좋습니다. 비 예보가 있거나 축제 일정처럼 변수가 큰 여행은 대체 일정 템플릿을 함께 열어두면 현장에서 다시 검색하는 시간을 줄일 수 있습니다.</p>
+    </div>
     <div class="link-list">
       <a href="/templates/family-trip-plan-template/">가족여행 일정표 템플릿</a>
       <a href="/templates/rainy-day-itinerary-template/">비 오는 날 대체 일정 템플릿</a>

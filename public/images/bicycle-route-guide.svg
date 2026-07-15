@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">국내 자전거 여행길 비교 지도</title>
+  <desc id="desc">강변, 해안, 섬, 종주 자전거길을 여행 기준으로 비교하는 일러스트</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#dff5ff"/>
+      <stop offset="0.52" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#e7f7ee"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" x2="1">
+      <stop offset="0" stop-color="#28a6a0"/>
+      <stop offset="1" stop-color="#7b61ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#254b63" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#sky)"/>
+  <path d="M0 480 C155 420 270 470 420 430 C565 392 675 280 810 315 C955 352 1040 285 1200 232 L1200 675 L0 675 Z" fill="#bfe8d5"/>
+  <path d="M0 535 C140 500 260 525 410 492 C590 453 695 365 850 400 C990 432 1070 372 1200 340 L1200 675 L0 675 Z" fill="#8fd0bd"/>
+  <path d="M54 452 C175 376 252 423 358 358 C465 292 558 345 645 284 C748 212 847 238 955 174 C1032 128 1096 135 1152 96" fill="none" stroke="url(#route)" stroke-width="24" stroke-linecap="round" stroke-dasharray="3 44"/>
+  <path d="M54 452 C175 376 252 423 358 358 C465 292 558 345 645 284 C748 212 847 238 955 174 C1032 128 1096 135 1152 96" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <g filter="url(#shadow)">
+    <rect x="82" y="74" width="360" height="178" rx="28" fill="#ffffff" opacity="0.94"/>
+    <text x="116" y="126" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#18204a">자전거 여행길 선택 기준</text>
+    <text x="116" y="172" font-family="Arial, sans-serif" font-size="19" fill="#536079">거리보다 복귀 동선, 휴식 지점,</text>
+    <text x="116" y="204" font-family="Arial, sans-serif" font-size="19" fill="#536079">날씨 변수를 먼저 확인합니다.</text>
+  </g>
+  <g transform="translate(740 410)" filter="url(#shadow)">
+    <rect x="0" y="0" width="315" height="142" rx="24" fill="#ffffff" opacity="0.96"/>
+    <text x="30" y="48" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#18204a">강변 · 해안 · 섬 · 종주</text>
+    <text x="30" y="86" font-family="Arial, sans-serif" font-size="18" fill="#536079">초보자는 짧은 강변 코스부터</text>
+    <text x="30" y="116" font-family="Arial, sans-serif" font-size="18" fill="#536079">시작하면 실패가 적습니다.</text>
+  </g>
+  <g transform="translate(195 445)">
+    <circle cx="75" cy="75" r="54" fill="none" stroke="#17223d" stroke-width="13"/>
+    <circle cx="226" cy="75" r="54" fill="none" stroke="#17223d" stroke-width="13"/>
+    <path d="M75 75 L138 18 L180 75 L226 75 M138 18 L155 75 L111 75" fill="none" stroke="#17223d" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M132 18 L103 18 M174 18 L205 18" stroke="#17223d" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="154" cy="-16" r="18" fill="#17223d"/>
+    <path d="M148 6 L126 45 M158 8 L184 42" stroke="#17223d" stroke-width="13" stroke-linecap="round"/>
+  </g>
+  <g fill="#ffffff" stroke="#17223d" stroke-width="6">
+    <circle cx="55" cy="452" r="17"/>
+    <circle cx="358" cy="358" r="17"/>
+    <circle cx="645" cy="284" r="17"/>
+    <circle cx="955" cy="174" r="17"/>
+    <circle cx="1152" cy="96" r="17"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#17223d">
+    <text x="30" y="418">출발</text>
+    <text x="330" y="326">강변</text>
+    <text x="615" y="251">해안</text>
+    <text x="924" y="142">섬</text>
+    <text x="1098" y="68">종주</text>
+  </g>
+</svg>
