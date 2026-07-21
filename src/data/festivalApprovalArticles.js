@@ -1,4 +1,5 @@
 import { buyeoLotusChilgapsanArticle } from './buyeoLotusChilgapsanArticle.js';
+import { mujuJeoksangsanArticle } from './mujuJeoksangsanArticle.js';
 
 export const festivalApprovalArticles = [
   {
@@ -1159,6 +1160,10 @@ if (!festivalApprovalArticles.some((article) => article.slug === geojeHydrangeaW
 
 if (!festivalApprovalArticles.some((article) => article.slug === buyeoLotusChilgapsanArticle.slug)) {
   festivalApprovalArticles.unshift(buyeoLotusChilgapsanArticle);
+}
+
+if (!festivalApprovalArticles.some((article) => article.slug === mujuJeoksangsanArticle.slug)) {
+  festivalApprovalArticles.unshift(mujuJeoksangsanArticle);
 }
 
 export const allFestivalArticles = festivalApprovalArticles.map((article) => ({
