@@ -1,5 +1,6 @@
 ---
 import { pickTourApiImage } from '../data/tourApiImages.js';
+import { buildBreadcrumbJsonLd, buildFaqJsonLd } from '../utils/searchSnippets.js';
 
 const { article, related = [] } = Astro.props;
 const feedbackHref = `mailto:anagim7776@gmail.com?subject=${encodeURIComponent(`[Tourpick360 제보] ${article.title}`)}`;
@@ -46,8 +47,17 @@ const jsonLd = {
   mainEntityOfPage: pageUrl,
   inLanguage: 'ko-KR'
 };
+const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+  { name: 'Tourpick360', url: 'https://tourpick360.com/' },
+  { name: '여행 준비', url: 'https://tourpick360.com/travel-tips/' },
+  { name: '문제 해결', url: 'https://tourpick360.com/travel-tips/problems/' },
+  { name: article.title, url: pageUrl }
+]);
+const faqJsonLd = buildFaqJsonLd(article.faqs);
 ---
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+{faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
 <article class="article-page longform">
   <nav class="breadcrumb" aria-label="현재 위치">

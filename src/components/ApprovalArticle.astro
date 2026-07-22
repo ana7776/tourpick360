@@ -1,6 +1,7 @@
 ---
 import { jeju360Angles } from '../data/tourpick360Method.js';
 import { pickTourApiImage } from '../data/tourApiImages.js';
+import { buildBreadcrumbJsonLd, buildFaqJsonLd } from '../utils/searchSnippets.js';
 
 const { article, related = [] } = Astro.props;
 const fallbackMethod = {
@@ -64,8 +65,17 @@ const jsonLd = {
   mainEntityOfPage: pageUrl,
   inLanguage: 'ko-KR'
 };
+const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+  { name: 'Tourpick360', url: 'https://tourpick360.com/' },
+  { name: '국내여행', url: 'https://tourpick360.com/domestic/' },
+  { name: '제주 여행', url: 'https://tourpick360.com/domestic/jeju/' },
+  { name: article.title, url: pageUrl }
+]);
+const faqJsonLd = buildFaqJsonLd(article.faqs);
 ---
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+{faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
 <article class="article-page longform">
   <nav class="breadcrumb" aria-label="현재 위치">
