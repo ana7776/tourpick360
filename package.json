@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
-    "build": "astro build",
+    "build": "astro build && node scripts/build-search-index.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "check:seo": "astro build && node scripts/check-seo-build.mjs",
     "images:r2": "node scripts/r2-image-pipeline.mjs",

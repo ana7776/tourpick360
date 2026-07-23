@@ -12,7 +12,8 @@ export default defineConfig({
     sitemap({
       lastmod: publishDate,
       changefreq: 'daily',
-      priority: 0.8
+      priority: 0.8,
+      filter: (page) => !page.includes('/search/')
     })
   ]
 });
