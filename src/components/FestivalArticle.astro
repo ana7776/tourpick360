@@ -95,7 +95,7 @@ const sourceCheckedDate = article.sourceCheckedDate ?? '2026년 6월 9일';
     <strong>김안나</strong>
     <a href="mailto:anagim7776@gmail.com">anagim7776@gmail.com</a>
   </div>
-  <p class="lead">{article.intro}</p>
+  {article.intro.split('\n\n').map((para) => <p class="lead">{para}</p>)}
 
   {article.highlights && (
     <div class="travel-highlight-strip" aria-label="여행 핵심 정보">
@@ -215,7 +215,7 @@ const sourceCheckedDate = article.sourceCheckedDate ?? '2026년 6월 9일';
   {article.sections.map((section) => (
     <section>
       <h2>{section.heading}</h2>
-      <p>{section.body}</p>
+      {section.body.split('\n\n').map((para) => <p>{para}</p>)}
     </section>
   ))}
 
