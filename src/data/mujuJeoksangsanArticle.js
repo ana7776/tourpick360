@@ -429,7 +429,7 @@ export const mujuJeoksangsanArticle = {
   ],
   internalLinks: [
     { label: '여름 여행', title: '여름 가족 축제 여행에서 휴식과 숙소 권역 짜는 법', href: '/domestic/festivals/summer-family-festival-rest-plan/' },
-    { label: '예산 관리', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
+    { label: '예산 관리', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
     { label: '단체 후기', title: '칠갑산 천장호와 부여 궁남지 연꽃축제 당일 코스', href: '/domestic/festivals/buyeo-lotus-chilgapsan-group-trip-review/' },
     { label: '렌터카', title: '렌터카 인수와 반납 체크리스트', href: '/travel-tips/rental-car-checklist/' }
   ]

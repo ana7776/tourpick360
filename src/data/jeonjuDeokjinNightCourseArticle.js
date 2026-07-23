@@ -421,7 +421,7 @@ export const jeonjuDeokjinNightCourseArticle = {
   internalLinks: [
     { label: '전주 여행', title: '전주 한옥마을 주차 대체 동선', href: '/travel-tips/problems/jeonju-hanok-parking-alternative-route/' },
     { label: '단체 후기', title: '무주 머루와인동굴과 적상산 14명 단체 여행 후기', href: '/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/' },
-    { label: '예산 관리', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
+    { label: '예산 관리', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
     { label: '비 오는 날', title: '비 오는 날 대체 일정 짜는 법', href: '/travel-tips/rainy-day-backup-plan/' }
   ]
 };

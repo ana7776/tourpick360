@@ -17,3 +17,13 @@ http://tourpick360.com/* https://tourpick360.com/:splat 301
 /domestic/bicycle/ /domestic/ 301
 /domestic/bicycle-routes-guide/ /domestic/ 301
 /api/bicycle-routes.json /domestic/ 301
+/domestic/festivals/spring-flower-festival-hotel-area/ /domestic/festivals/seasonal-festival-travel-guide/ 301
+/domestic/festivals/summer-beach-festival-checklist/ /domestic/festivals/seasonal-festival-travel-guide/ 301
+/domestic/festivals/autumn-food-festival-route/ /domestic/festivals/seasonal-festival-travel-guide/ 301
+/domestic/festivals/winter-light-festival-hotel-area/ /domestic/festivals/seasonal-festival-travel-guide/ 301
+/domestic/festivals/parents-walking-festival-guide/ /domestic/festivals/festival-travel-by-companion/ 301
+/domestic/festivals/family-spring-festival-choice/ /domestic/festivals/festival-travel-by-companion/ 301
+/domestic/festivals/couple-night-festival-route/ /domestic/festivals/festival-travel-by-companion/ 301
+/domestic/festivals/festival-travel-budget-plan/ /domestic/festivals/festival-booking-budget-guide/ 301
+/domestic/festivals/festival-hotel-booking-checklist/ /domestic/festivals/festival-booking-budget-guide/ 301
+/domestic/festivals/rainy-day-indoor-festival-backup/ /domestic/festivals/festival-booking-budget-guide/ 301

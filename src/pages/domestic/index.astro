@@ -14,16 +14,16 @@ const regions = [
     href: '/domestic/jeju/',
     bestSeason: '봄, 가을',
     angle: '숙소 위치에 따라 여행 피로도가 크게 달라지는 지역',
-    keywords: ['렌터카', '숙소 위치', '날씨 변수'],
-    score: '동선 설계 중요'
+    keywords: ['렌터카', '숙소 권역', '날씨 대비'],
+    score: '숙소 위치가 일정을 좌우합니다'
   },
   {
     name: '부산',
     href: '/domestic/busan/family-hotel-area-guide/',
     bestSeason: '봄, 여름, 가을',
     angle: '해변, 도심, 시장 동선을 하루 안에 묶기 좋은 도시',
-    keywords: ['해운대', '광안리', '역세권 숙소'],
-    score: '대중교통 유리'
+    keywords: ['해운대', '광안리', '지하철 이동'],
+    score: '지하철로 대부분 이동합니다'
   },
   {
     name: '강릉',
@@ -31,7 +31,7 @@ const regions = [
     bestSeason: '봄, 여름, 겨울',
     angle: '경포, 안목, 오죽헌, 정동진, 주문진을 권역별로 나눠야 편한 여행지',
     keywords: ['경포', '안목', '오죽헌'],
-    score: '짧은 일정 적합'
+    score: '1박 2일로도 충분합니다'
   },
   {
     name: '거제',
@@ -39,7 +39,7 @@ const regions = [
     bestSeason: '봄, 여름, 가을',
     angle: '외도, 바람의언덕, 해금강, 매미성, 실내 체험을 권역별로 나눠야 편한 섬 여행지',
     keywords: ['외도', '바람의언덕', '매미성'],
-    score: '권역 분리 중요'
+    score: '하루에 묶기 어렵습니다'
   },
   {
     name: '여수',
@@ -47,15 +47,15 @@ const regions = [
     bestSeason: '봄, 가을',
     angle: '야경과 해상 케이블카, 섬 여행을 묶기 좋은 남해 여행지',
     keywords: ['야경', '해상 케이블카', '낭만포차'],
-    score: '저녁 일정 강점'
+    score: '저녁 풍경까지 봐야 좋습니다'
   },
   {
     name: '고흥',
     href: '/domestic/goheung/ssookseom-walking-course-guide/',
     bestSeason: '봄, 초여름, 가을',
     angle: '나로도항 배편과 섬 안 도보 난이도를 함께 봐야 하는 남도 섬 여행지',
-    keywords: ['쑥섬', '나로도항', '섬 도보 코스'],
-    score: '배편·도보 난이도 중요'
+    keywords: ['쑥섬', '나로도항', '섬 산책'],
+    score: '배 시간표부터 확인해야 합니다'
   },
   {
     name: '전주',
@@ -63,15 +63,15 @@ const regions = [
     bestSeason: '봄, 가을, 겨울',
     angle: '한옥마을, 경기전, 남부시장 먹거리 동선을 걷기 좋게 묶는 도시',
     keywords: ['한옥마을', '경기전', '남부시장'],
-    score: '도보·주차 동선 중요'
+    score: '주차만 해결하면 걷기 편합니다'
   },
   {
     name: '경주',
     href: '/domestic/gyeongju/walking-route-hotel-area-guide/',
     bestSeason: '봄, 가을',
     angle: '걷는 시간이 많아 계절과 숙소 위치가 만족도를 좌우하는 도시',
-    keywords: ['역사 여행', '황리단길', '도보 동선'],
-    score: '도보 동선 중요'
+    keywords: ['불국사', '황리단길', '걷기 여행'],
+    score: '생각보다 많이 걷게 됩니다'
   },
   {
     name: '서울',
@@ -79,7 +79,7 @@ const regions = [
     bestSeason: '사계절',
     angle: '목적에 따라 숙소 권역을 다르게 잡아야 하는 대도시 여행지',
     keywords: ['전시', '쇼핑', '대중교통'],
-    score: '목적별 권역 선택'
+    score: '목적에 따라 동네를 고릅니다'
   }
 ];
 
@@ -243,7 +243,7 @@ const checklist = [
         숙소 위치, 식사 접근성, 이동 피로를 함께 보며 실제 일정에 맞는 선택 기준을 정리합니다.
       </p>
       <div class="hero-chip-row">
-        <a href="#region-board">지역별 판단표</a>
+        <a href="#region-board">지역별 특징</a>
         <a href="#season-lane">계절별 흐름</a>
         <a href="#regional-guides">지역 가이드</a>
       </div>
@@ -257,8 +257,8 @@ const checklist = [
   <section id="region-board" class="domestic-board atlas-board">
     <div class="board-intro">
       <p class="eyebrow">Region Board</p>
-      <h2>지역별 여행 판단표</h2>
-      <p>지역을 고를 때는 유명 관광지보다 이동 방식, 숙소 권역, 식사 동선, 계절 변수를 함께 보는 것이 좋습니다.</p>
+      <h2>지역별로 무엇이 다른가</h2>
+      <p>같은 국내여행이라도 지역마다 신경 쓸 것이 다릅니다. 어디는 주차가, 어디는 배 시간표가, 어디는 걷는 거리가 일정을 좌우합니다.</p>
     </div>
     <div class="region-board">
       {regions.map((region, index) => (
@@ -274,7 +274,7 @@ const checklist = [
               <dd>{region.bestSeason}</dd>
             </div>
             <div>
-              <dt>여행 포인트</dt>
+              <dt>돌아보기</dt>
               <dd>{region.score}</dd>
             </div>
           </dl>

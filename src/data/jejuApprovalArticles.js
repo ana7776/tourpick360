@@ -322,11 +322,11 @@ const legacyJejuApprovalArticles = [
       ['택시비가 많이 들지 않나요?', '매번 택시를 타면 부담이 커지지만, 비 오는 날이나 밤 복귀처럼 필요한 구간에만 쓰면 일정 안정성이 높아집니다.']
     ],
     internalLinks: [
-      { label: '예산 정리', title: '제주 가성비 여행 예산과 숙소 선택법', href: '/domestic/jeju/budget-jeju-trip-hotel-plan/' },
-      { label: '동선 예시', title: '제주 2박 3일 렌터카 동선 기본안', href: '/domestic/jeju/2n3d-rental-car-itinerary/' },
-      { label: '비 오는 날', title: '제주 비 오는 날 실내 여행지와 숙소 위치', href: '/domestic/jeju/rainy-day-indoor-jeju-hotel-area/' },
-      { label: '준비 팁', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' }
-    ]
+    { label: '예산 정리', title: '제주 가성비 여행 예산과 숙소 선택법', href: '/domestic/jeju/budget-jeju-trip-hotel-plan/' },
+    { label: '동선 예시', title: '제주 2박 3일 렌터카 동선 기본안', href: '/domestic/jeju/2n3d-rental-car-itinerary/' },
+    { label: '비 오는 날', title: '제주 비 오는 날 실내 여행지와 숙소 위치', href: '/domestic/jeju/rainy-day-indoor-jeju-hotel-area/' },
+    { label: '준비 팁', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' }
+  ]
   },
   {
     slug: 'jeju-3n4d-split-hotel-plan',
@@ -367,11 +367,11 @@ const legacyJejuApprovalArticles = [
       ['성산과 중문을 모두 가려면 숙소를 나누는 게 좋나요?', '두 지역 모두 충분히 보려면 숙소를 나누는 편이 편합니다. 한 곳에서 왕복하면 이동 시간이 길어질 수 있습니다.']
     ],
     internalLinks: [
-      { label: '가족 숙소', title: '제주 가족여행 숙소 지역별 선택 기준', href: '/domestic/jeju/family-hotel-area-guide/' },
-      { label: '동부 숙소', title: '제주 성산 숙소 선택 전 알아야 할 동선', href: '/domestic/jeju/seongsan-hotel-route-guide/' },
-      { label: '중문 숙소', title: '제주 중문 숙소가 가족여행에 좋은 이유', href: '/domestic/jeju/jungmun-family-resort-guide/' },
-      { label: '일정 팁', title: '무리한 여행 일정 Before / After', href: '/travel-tips/itinerary-before-after/' }
-    ]
+    { label: '가족 숙소', title: '제주 가족여행 숙소 지역별 선택 기준', href: '/domestic/jeju/family-hotel-area-guide/' },
+    { label: '동부 숙소', title: '제주 성산 숙소 선택 전 알아야 할 동선', href: '/domestic/jeju/seongsan-hotel-route-guide/' },
+    { label: '중문 숙소', title: '제주 중문 숙소가 가족여행에 좋은 이유', href: '/domestic/jeju/jungmun-family-resort-guide/' },
+    { label: '일정 팁', title: '무리한 여행 일정 Before / After', href: '/travel-tips/itinerary-before-after/' }
+  ]
   }
 ];
 

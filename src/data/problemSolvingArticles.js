@@ -59,10 +59,10 @@ export const problemSolvingArticles = [
       ['일정이 이미 밀렸다면 무엇부터 줄이나요?', '먼 권역 이동과 사진 명소를 먼저 줄이고 식사와 숙소 복귀 시간을 남깁니다.']
     ],
     internalLinks: [
-      { label: '도구', title: '기본 vs 개선 일정 비교 도구', href: '/tools/itinerary-comparison/' },
-      { label: '템플릿', title: '가족여행 일정표 템플릿', href: '/templates/family-trip-plan-template/' },
-      { label: '사례', title: '부산 가족여행 숙소 동선 Before / After', href: '/case-studies/busan-family-route-before-after/' }
-    ],
+    { label: '도구', title: '기본 vs 개선 일정 비교 도구', href: '/tools/itinerary-comparison/' },
+    { label: '템플릿', title: '가족여행 일정표 템플릿', href: '/templates/family-trip-plan-template/' },
+    { label: '사례', title: '부산 가족여행 숙소 동선 Before / After', href: '/case-studies/busan-family-route-before-after/' }
+  ],
     date: '2026-06-06'
   }),
   makeArticle({
@@ -85,9 +85,9 @@ export const problemSolvingArticles = [
       ['비 예보 때문에 취소하면 환불되나요?', '일반적인 비 예보만으로는 환불이 어려운 경우가 많습니다. 공식 운영 중단이나 결항 여부를 확인해야 합니다.']
     ],
     internalLinks: [
-      { label: '템플릿', title: '숙소 비교표 템플릿', href: '/templates/hotel-comparison-template/' },
-      { label: '문제 해결', title: '축제 기간 숙소가 마감됐을 때 대안 찾는 법', href: '/travel-tips/problems/festival-hotel-sold-out-alternative/' }
-    ],
+    { label: '템플릿', title: '숙소 비교표 템플릿', href: '/templates/hotel-comparison-template/' },
+    { label: '문제 해결', title: '축제 기간 숙소가 마감됐을 때 대안 찾는 법', href: '/travel-tips/problems/festival-hotel-sold-out-alternative/' }
+  ],
     date: '2026-06-06'
   }),
   makeArticle({
@@ -110,9 +110,9 @@ export const problemSolvingArticles = [
       ['아이와 함께라면 무엇이 가장 중요한가요?', '젖은 옷 처리, 짧은 이동, 바로 쉴 수 있는 숙소 권역이 중요합니다.']
     ],
     internalLinks: [
-      { label: '템플릿', title: '비 오는 날 대체 일정 템플릿', href: '/templates/rainy-day-itinerary-template/' },
-      { label: '사례', title: '제주 비 오는 날 일정 Before / After', href: '/case-studies/jeju-rainy-day-before-after/' }
-    ],
+    { label: '템플릿', title: '비 오는 날 대체 일정 템플릿', href: '/templates/rainy-day-itinerary-template/' },
+    { label: '사례', title: '제주 비 오는 날 일정 Before / After', href: '/case-studies/jeju-rainy-day-before-after/' }
+  ],
     date: '2026-06-07'
   }),
   makeArticle({
@@ -135,9 +135,9 @@ export const problemSolvingArticles = [
       ['아이와 함께라면 어떻게 해야 하나요?', '첫날은 식사와 잠자리 안정에 집중하는 것이 가장 좋습니다.']
     ],
     internalLinks: [
-      { label: '가이드', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
-      { label: '도구', title: '기본 vs 개선 일정 비교 도구', href: '/tools/itinerary-comparison/' }
-    ],
+    { label: '가이드', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
+    { label: '도구', title: '기본 vs 개선 일정 비교 도구', href: '/tools/itinerary-comparison/' }
+  ],
     date: '2026-06-07'
   }),
   makeArticle({
@@ -160,9 +160,9 @@ export const problemSolvingArticles = [
       ['가족여행도 먼 숙소가 괜찮나요?', '아이와 부모님이 있다면 이동 시간이 짧고 승하차가 쉬운 권역을 우선해야 합니다.']
     ],
     internalLinks: [
-      { label: '허브', title: '국내 축제 여행 가이드', href: '/domestic/festivals/' },
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' }
-    ],
+    { label: '허브', title: '국내 축제 여행 가이드', href: '/domestic/festivals/' },
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' }
+  ],
     date: '2026-06-08'
   }),
   makeArticle({
@@ -185,9 +185,9 @@ export const problemSolvingArticles = [
       ['예비비는 꼭 필요한가요?', '날씨와 일정 변경에 대비해 전체 예산의 일부를 따로 두는 편이 좋습니다.']
     ],
     internalLinks: [
-      { label: '템플릿', title: '국내여행 예산표 템플릿', href: '/templates/travel-budget-template/' },
-      { label: '가이드', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' }
-    ],
+    { label: '템플릿', title: '국내여행 예산표 템플릿', href: '/templates/travel-budget-template/' },
+    { label: '가이드', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' }
+  ],
     date: '2026-06-08'
   }),
   makeArticle({
@@ -210,9 +210,9 @@ export const problemSolvingArticles = [
       ['체크인 전 시간이 길면 무엇을 하나요?', '식사, 카페, 실내 전시처럼 앉아 있을 수 있는 코스를 우선합니다.']
     ],
     internalLinks: [
-      { label: '가이드', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
-      { label: '도구', title: '기본 vs 개선 일정 비교 도구', href: '/tools/itinerary-comparison/' }
-    ],
+    { label: '가이드', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
+    { label: '도구', title: '기본 vs 개선 일정 비교 도구', href: '/tools/itinerary-comparison/' }
+  ],
     date: '2026-06-09'
   }),
   makeArticle({
@@ -235,9 +235,9 @@ export const problemSolvingArticles = [
       ['주차 실패 후 관광지를 빼야 하나요?', '바로 빼기보다 식사 순서를 바꾸고 혼잡이 빠진 뒤 다시 접근할 수 있습니다.']
     ],
     internalLinks: [
-      { label: '사례', title: '전주 한옥마을 주차 동선 Before / After', href: '/case-studies/jeonju-parking-route-before-after/' },
-      { label: '문제 해결', title: '전주 한옥마을 주차 실패했을 때 대체 동선', href: '/travel-tips/problems/jeonju-hanok-parking-alternative-route/' }
-    ],
+    { label: '사례', title: '전주 한옥마을 주차 동선 Before / After', href: '/case-studies/jeonju-parking-route-before-after/' },
+    { label: '문제 해결', title: '전주 한옥마을 주차 실패했을 때 대체 동선', href: '/travel-tips/problems/jeonju-hanok-parking-alternative-route/' }
+  ],
     date: '2026-06-09'
   }),
   makeArticle({
@@ -260,9 +260,9 @@ export const problemSolvingArticles = [
       ['비가 오면 어떻게 바꾸나요?', '공항권 실내 코스와 대기 적은 식사 장소로 전환합니다.']
     ],
     internalLinks: [
-      { label: '가이드', title: '렌터카 예약 전 확인해야 할 10가지', href: '/travel-tips/rental-car-checklist/' },
-      { label: '사례', title: '제주 렌터카 반납일 Before / After', href: '/case-studies/jeju-rental-return-before-after/' }
-    ],
+    { label: '가이드', title: '렌터카 예약 전 확인해야 할 10가지', href: '/travel-tips/rental-car-checklist/' },
+    { label: '사례', title: '제주 렌터카 반납일 Before / After', href: '/case-studies/jeju-rental-return-before-after/' }
+  ],
     date: '2026-06-10'
   }),
   makeArticle({
@@ -285,9 +285,9 @@ export const problemSolvingArticles = [
       ['비가 그치면 해변을 다시 넣어도 되나요?', '가능하지만 젖은 신발과 바람을 고려해 짧게 보는 편이 좋습니다.']
     ],
     internalLinks: [
-      { label: '부산 가이드', title: '부산 비 오는 날 가족여행 코스와 숙소 권역 고르는 법', href: '/domestic/busan/rainy-day-family-route/' },
-      { label: '사례', title: '부산 가족여행 숙소 동선 Before / After', href: '/case-studies/busan-family-route-before-after/' }
-    ],
+    { label: '부산 가이드', title: '부산 비 오는 날 가족여행 코스와 숙소 권역 고르는 법', href: '/domestic/busan/rainy-day-family-route/' },
+    { label: '사례', title: '부산 가족여행 숙소 동선 Before / After', href: '/case-studies/busan-family-route-before-after/' }
+  ],
     date: '2026-06-10'
   }),
   makeArticle({
@@ -310,9 +310,9 @@ export const problemSolvingArticles = [
       ['차 없이 강릉 여행할 때 가장 중요한 기준은 무엇인가요?', '숙소에서 식사, 카페, 역 복귀가 얼마나 단순한지가 중요합니다.']
     ],
     internalLinks: [
-      { label: '강릉 가이드', title: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' },
-      { label: '사례', title: '강릉 1박2일 일정 Before / After', href: '/case-studies/gangneung-weekend-before-after/' }
-    ],
+    { label: '강릉 가이드', title: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' },
+    { label: '사례', title: '강릉 1박2일 일정 Before / After', href: '/case-studies/gangneung-weekend-before-after/' }
+  ],
     date: '2026-06-10'
   }),
   makeArticle({
@@ -335,9 +335,9 @@ export const problemSolvingArticles = [
       ['부모님과 가면 어떤 코스를 줄이나요?', '계단과 언덕이 많은 골목을 선택 코스로 두고 평지 위주로 묶습니다.']
     ],
     internalLinks: [
-      { label: '전주 가이드', title: '전주 한옥마을 여행 코스와 주차 동선 가이드', href: '/domestic/jeonju/hanok-village-walking-guide/' },
-      { label: '사례', title: '전주 한옥마을 주차 동선 Before / After', href: '/case-studies/jeonju-parking-route-before-after/' }
-    ],
+    { label: '전주 가이드', title: '전주 한옥마을 여행 코스와 주차 동선 가이드', href: '/domestic/jeonju/hanok-village-walking-guide/' },
+    { label: '사례', title: '전주 한옥마을 주차 동선 Before / After', href: '/case-studies/jeonju-parking-route-before-after/' }
+  ],
     date: '2026-06-10'
   }),
   makeArticle({
@@ -360,9 +360,9 @@ export const problemSolvingArticles = [
       ['숙소는 관광지 근처가 무조건 좋나요?', '식사와 주차가 불편하면 피로가 커질 수 있어 주변 편의성을 함께 봐야 합니다.']
     ],
     internalLinks: [
-      { label: '경주 가이드', title: '경주 도보 여행 코스와 숙소 위치', href: '/domestic/gyeongju/walking-route-hotel-area-guide/' },
-      { label: '사례', title: '경주 도보 여행 동선 Before / After', href: '/case-studies/gyeongju-walking-route-before-after/' }
-    ],
+    { label: '경주 가이드', title: '경주 도보 여행 코스와 숙소 위치', href: '/domestic/gyeongju/walking-route-hotel-area-guide/' },
+    { label: '사례', title: '경주 도보 여행 동선 Before / After', href: '/case-studies/gyeongju-walking-route-before-after/' }
+  ],
     date: '2026-06-10'
   }),
   makeArticle({
@@ -385,9 +385,9 @@ export const problemSolvingArticles = [
       ['숙소를 옮기는 것이 좋나요?', '2박 이상이고 권역 차이가 크면 가능하지만 1박2일은 이동 자체가 피로가 될 수 있습니다.']
     ],
     internalLinks: [
-      { label: '강릉 무차 여행', title: '강릉 차 없이 1박2일 여행 코스와 숙소 위치', href: '/domestic/gangneung/no-car-weekend-course/' },
-      { label: '사례', title: '차 없는 국내여행 숙소 위치 Before / After', href: '/case-studies/no-car-hotel-area-before-after/' }
-    ],
+    { label: '강릉 무차 여행', title: '강릉 차 없이 1박2일 여행 코스와 숙소 위치', href: '/domestic/gangneung/no-car-weekend-course/' },
+    { label: '사례', title: '차 없는 국내여행 숙소 위치 Before / After', href: '/case-studies/no-car-hotel-area-before-after/' }
+  ],
     date: '2026-06-10'
   }),
   makeArticle({
@@ -410,10 +410,10 @@ export const problemSolvingArticles = [
       ['차 없이 가는 바다여행도 대체 권역이 괜찮을까요?', '가능하지만 역과 숙소, 해변 사이 이동이 단순해야 합니다.']
     ],
     internalLinks: [
-      { label: '강릉 숙소', title: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' },
-      { label: '부산 숙소', title: '부산 가족여행 숙소 권역 고르는 법', href: '/domestic/busan/family-hotel-area-guide/' },
-      { label: '예산 조정', title: '국내여행 예산이 초과될 때 줄이는 순서', href: '/travel-tips/problems/trip-budget-overrun-fix/' }
-    ],
+    { label: '강릉 숙소', title: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' },
+    { label: '부산 숙소', title: '부산 가족여행 숙소 권역 고르는 법', href: '/domestic/busan/family-hotel-area-guide/' },
+    { label: '예산 조정', title: '국내여행 예산이 초과될 때 줄이는 순서', href: '/travel-tips/problems/trip-budget-overrun-fix/' }
+  ],
     date: '2026-06-11'
   })
 ];

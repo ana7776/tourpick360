@@ -277,9 +277,9 @@ export const buyeoLotusChilgapsanArticle = {
     ['비가 오거나 길이 젖었을 때는 어떻게 조정하나요?', '천장호 숲길과 소원바위 구간을 줄이고, 궁남지에서는 대표 연꽃 구간만 본 뒤 국립부여박물관 체류 시간을 늘리는 방식이 안정적입니다.']
   ],
   internalLinks: [
-    { label: '부모님 동반', title: '부모님과 걷기 좋은 축제 여행 준비 기준', href: '/domestic/festivals/parents-walking-festival-guide/' },
+    { label: '부모님 동반', title: '동반자별 축제 여행 기준 정리', href: '/domestic/festivals/festival-travel-by-companion/' },
     { label: '여름 여행', title: '여름 가족 축제 여행에서 휴식과 숙소 권역 짜는 법', href: '/domestic/festivals/summer-family-festival-rest-plan/' },
-    { label: '예산 관리', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
+    { label: '예산 관리', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
     { label: '비 예보', title: '장마철 축제 여행 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
   ]
 };

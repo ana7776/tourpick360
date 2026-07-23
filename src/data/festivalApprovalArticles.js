@@ -1,248 +1,11 @@
+import { seasonalFestivalTravelGuide } from './seasonalFestivalTravelGuide.js';
+import { festivalTravelByCompanion } from './festivalTravelByCompanion.js';
+import { festivalBookingBudgetGuide } from './festivalBookingBudgetGuide.js';
 import { buyeoLotusChilgapsanArticle } from './buyeoLotusChilgapsanArticle.js';
 import { jeonjuDeokjinNightCourseArticle } from './jeonjuDeokjinNightCourseArticle.js';
 import { mujuJeoksangsanArticle } from './mujuJeoksangsanArticle.js';
 
 export const festivalApprovalArticles = [
-  {
-    slug: 'spring-flower-festival-hotel-area',
-    title: '봄꽃 축제 여행 숙소 위치 고르는 법',
-    description: '벚꽃, 유채꽃, 봄꽃 축제 여행에서 숙소 권역과 이동 동선을 정하는 기준을 정리합니다.',
-    category: '국내 축제 여행',
-    season: '3월 - 5월',
-    target: '봄꽃 개화 시기에 맞춰 1박 2일 또는 2박 3일 여행을 준비하는 여행자',
-    budget: '성수기 주말은 숙소 가격 변동이 커서 취소 가능 조건과 총액을 함께 확인',
-    area: '제주, 경주, 여수, 강릉 등 봄철 야외 관광지가 많은 지역',
-    caution: '개화 시기와 축제 기간이 매년 달라 숙소를 먼저 확정하기 전에 공식 공지를 확인해야 합니다.',
-    intro: '봄꽃 축제 여행은 사진으로 보기에는 가볍지만 실제 일정은 생각보다 변수에 민감합니다. 꽃이 피는 시기, 비 예보, 주차 대기, 숙소 마감 속도가 동시에 움직이기 때문입니다. 특히 주말에는 축제장 주변 숙소가 빨리 마감되고, 남은 숙소가 멀어지면 하루 이동 시간이 크게 늘어납니다. 숙소를 고를 때는 꽃 명소와의 거리만 보지 말고 체크인 시간, 저녁 식사 동선, 다음 날 이동 방향까지 함께 봐야 합니다.',
-    sections: [
-      { heading: '축제장 바로 앞 숙소가 항상 정답은 아닙니다', body: '축제장과 너무 가까운 숙소는 이동이 편하지만 가격이 높고 주차가 복잡할 수 있습니다. 반대로 조금 떨어진 권역은 가격이 안정적이고 식사 선택지가 넓을 수 있습니다. 첫날에 축제장을 볼지, 다음 날 아침 일찍 방문할지에 따라 좋은 위치가 달라집니다.' },
-      { heading: '개화 시기와 예약 시점을 분리해서 봅니다', body: '봄꽃은 공식 축제 기간보다 빨리 피거나 늦게 피는 경우가 있습니다. 예약 전에는 지자체 공지, 관광 안내, 최근 사진 후기를 함께 확인하는 것이 좋습니다. 환불 규정이 엄격한 숙소라면 개화 변동을 감안해 취소 가능 기한을 반드시 확인해야 합니다.' },
-      { heading: '주차와 도보 거리가 만족도를 좌우합니다', body: '축제장 주변은 차량 진입이 제한되거나 임시 주차장을 이용해야 할 수 있습니다. 숙소에서 축제장까지 걸어갈 수 있다고 해도 밤에는 길이 어둡거나 경사가 있을 수 있습니다. 아이나 부모님과 함께라면 셔틀, 택시, 도보 시간을 실제 거리 기준으로 확인합니다.' },
-      { heading: '봄 여행은 저녁 동선까지 계획해야 합니다', body: '낮에는 축제장을 보고 저녁에는 숙소 근처에서 식사하는 방식이 안정적입니다. 축제장 주변 식당은 대기 시간이 길 수 있으므로 숙소 권역의 식당, 카페, 편의시설을 같이 확인하면 일정이 흔들리지 않습니다.' }
-    ],
-    checklist: ['공식 축제 기간과 실제 개화 상태', '숙소 취소 가능 기한', '축제장까지 차량 이동 시간', '임시 주차장 또는 셔틀 여부', '저녁 식사 가능한 숙소 주변 권역'],
-    faqs: [
-      ['봄꽃 축제 숙소는 언제 예약하는 것이 좋나요?', '주말 여행이라면 공식 일정이 발표된 직후 후보를 잡고, 개화 상태를 보며 취소 가능 조건을 활용하는 편이 안정적입니다.'],
-      ['축제장 근처 숙소가 비싸면 어떻게 하나요?', '축제장과 같은 권역이 아니어도 대중교통, 택시, 주차 동선이 단순한 곳이면 충분히 대안이 될 수 있습니다.'],
-      ['비 예보가 있으면 예약을 취소해야 하나요?', '강한 비가 아니라면 실내 코스와 식사 동선을 섞어 조정할 수 있습니다. 다만 야외 체류 시간이 긴 일정은 줄이는 것이 좋습니다.']
-    ]
-  },
-  {
-    slug: 'summer-beach-festival-checklist',
-    title: '여름 바다 축제 여행 준비 체크리스트',
-    description: '여름 바다 축제 여행에서 숙소, 샤워, 주차, 야간 이동, 아이 동반 기준을 확인하는 방법입니다.',
-    category: '국내 축제 여행',
-    season: '6월 - 8월',
-    target: '해수욕장, 야간 공연, 불꽃 행사 중심의 여름 여행을 준비하는 가족과 커플',
-    budget: '성수기 숙소 총액, 주차비, 해변 장비 대여비, 식비를 별도로 계산',
-    area: '부산, 강릉, 제주, 속초, 여수 등 바다 축제 지역',
-    caution: '해변 근처 숙소는 편하지만 소음, 주차, 체크인 대기가 길어질 수 있습니다.',
-    intro: '여름 바다 축제 여행은 숙소 위치 하나로 피로도가 크게 달라집니다. 낮에는 해변, 저녁에는 공연이나 야시장, 밤에는 숙소 복귀가 이어지기 때문입니다. 해변과 가까운 숙소만 찾으면 가격이 올라가고, 너무 멀리 잡으면 샤워와 옷 갈아입기, 아이 컨디션 관리가 어려워집니다. 예약 전에는 해변 접근성, 주차 가능 여부, 체크인 시간, 야간 이동 동선을 함께 봐야 합니다.',
-    sections: [
-      { heading: '해변 접근성과 숙소 편의는 함께 봅니다', body: '바다 축제에서는 숙소에서 해변까지의 거리보다 샤워와 짐 보관이 더 중요할 때가 많습니다. 해변에서 바로 돌아와 씻을 수 있는지, 체크인 전 짐을 맡길 수 있는지 확인하면 하루 일정이 편해집니다.' },
-      { heading: '야간 행사 후 복귀 동선을 확인합니다', body: '불꽃 행사나 야간 공연이 끝난 뒤에는 택시 대기와 도로 정체가 길어질 수 있습니다. 숙소가 걸어서 이동 가능한 위치인지, 대중교통 막차가 맞는지, 가족이 함께 걷기에 안전한 길인지 확인해야 합니다.' },
-      { heading: '성수기 취소 규정은 더 엄격할 수 있습니다', body: '여름 성수기 숙소는 취소 가능 기한이 짧거나 환불 비율이 낮을 수 있습니다. 장마, 태풍, 행사 변경 가능성이 있으므로 결제 전 환불 조건을 따로 기록해 두는 것이 좋습니다.' },
-      { heading: '아이 동반 여행은 쉬는 시간을 먼저 넣습니다', body: '해변과 축제를 모두 넣으면 아이는 쉽게 지칠 수 있습니다. 오후 더운 시간에는 숙소 휴식이나 실내 코스를 넣고, 야간 행사는 한 가지로 줄이는 편이 안정적입니다.' }
-    ],
-    checklist: ['해변까지 도보 시간', '샤워와 짐 보관 가능 여부', '야간 행사 후 복귀 방법', '성수기 취소 규정', '비 또는 태풍 예보 시 대체 코스'],
-    faqs: [
-      ['해변 바로 앞 숙소가 가장 좋나요?', '편하지만 가격과 소음 부담이 있을 수 있습니다. 가족 여행은 한 블록 뒤 숙소가 더 안정적일 때도 있습니다.'],
-      ['여름 축제는 렌터카가 유리한가요?', '짐이 많으면 유리하지만 행사장 주변 주차가 어려울 수 있어 임시 주차장과 셔틀 여부를 먼저 봐야 합니다.'],
-      ['야간 행사는 몇 개까지 넣는 것이 좋나요?', '1박 2일 여행이라면 대표 행사 1개만 넣고 다음 날 오전 일정을 늦추는 편이 현실적입니다.']
-    ]
-  },
-  {
-    slug: 'autumn-food-festival-route',
-    title: '가을 미식 축제 여행 동선 짜는 법',
-    description: '가을 미식 축제 여행에서 식사 대기, 숙소 권역, 산책 코스, 예산을 조정하는 기준입니다.',
-    category: '국내 축제 여행',
-    season: '9월 - 11월',
-    target: '지역 음식 축제와 가을 산책을 함께 즐기려는 여행자',
-    budget: '축제 먹거리 비용, 저녁 식사, 숙소 비용을 분리해 하루 예산을 설정',
-    area: '전주, 여수, 경주, 부산, 강릉 등 가을 먹거리와 걷기 코스가 있는 지역',
-    caution: '축제장에서 모든 식사를 해결하려 하면 대기 시간이 길어지고 일정이 밀릴 수 있습니다.',
-    intro: '가을 미식 축제는 음식만 보고 일정을 짜면 쉽게 과해집니다. 낮에는 축제장 먹거리, 오후에는 카페나 산책, 저녁에는 지역 식당까지 넣게 되면서 이동과 대기 시간이 늘어납니다. 만족도를 높이려면 먹거리와 숙소 위치를 따로 보지 말고, 축제장을 몇 시간 체류할지 먼저 정해야 합니다.',
-    sections: [
-      { heading: '축제장 식사는 한 끼만 기준으로 잡습니다', body: '미식 축제에서는 다양한 음식을 조금씩 먹게 되지만 실제 식사로 보기 애매한 경우가 많습니다. 점심을 축제장에서 해결한다면 저녁은 숙소 근처에서 여유 있게 잡고, 반대로 저녁 축제라면 낮 일정은 가볍게 둡니다.' },
-      { heading: '숙소는 저녁 식사 이후 복귀 기준으로 고릅니다', body: '축제장과 숙소가 가까워도 저녁 식당이 멀면 복귀 동선이 복잡해집니다. 숙소 주변에 식당, 카페, 산책로가 있는지 확인하면 축제 이후 일정이 편해집니다.' },
-      { heading: '걷기 좋은 계절일수록 이동 거리를 계산합니다', body: '가을은 걷기 좋은 계절이라 코스를 많이 넣기 쉽습니다. 하지만 축제장 대기, 사진 촬영, 식사 시간이 합쳐지면 실제 체류 시간이 길어집니다. 하루에 큰 권역은 하나만 잡는 편이 좋습니다.' },
-      { heading: '예산은 축제 현장 결제를 따로 둡니다', body: '미식 축제는 소액 결제가 반복되어 총액이 커질 수 있습니다. 숙소와 교통비 외에 현장 먹거리 예산을 따로 정하면 여행 후 지출 부담을 줄일 수 있습니다.' }
-    ],
-    checklist: ['축제장에서 해결할 식사 횟수', '숙소 주변 저녁 식당', '대기 시간을 포함한 체류 시간', '산책 코스와 복귀 거리', '현장 결제 예산'],
-    faqs: [
-      ['미식 축제는 당일치기로 충분한가요?', '가까운 지역이면 가능하지만 저녁 행사나 지역 식당까지 즐기려면 1박이 더 여유롭습니다.'],
-      ['축제장 주변 숙소가 꼭 필요한가요?', '먹거리 중심 일정이라면 숙소보다 식사 후 복귀가 쉬운 권역이 더 중요할 수 있습니다.'],
-      ['가족 여행에서 주의할 점은 무엇인가요?', '대기 줄과 좌석 부족이 피로를 키우므로 아이 식사 시간과 휴식 장소를 먼저 확인해야 합니다.']
-    ]
-  },
-  {
-    slug: 'winter-light-festival-hotel-area',
-    title: '겨울 빛 축제 여행에서 숙소 위치가 중요한 이유',
-    description: '겨울 빛 축제 여행에서 야간 체류, 방한, 대중교통, 숙소 복귀 동선을 정리합니다.',
-    category: '국내 축제 여행',
-    season: '12월 - 2월',
-    target: '야간 조명, 겨울 바다, 실내 전시를 함께 계획하는 여행자',
-    budget: '숙소 난방, 야간 택시, 방한용품, 실내 코스 비용을 함께 고려',
-    area: '서울, 부산, 강릉, 제주 등 겨울 야간 관광지가 있는 지역',
-    caution: '겨울 축제는 실제 체류 시간이 짧아도 체감 피로가 커서 숙소 복귀 동선이 중요합니다.',
-    intro: '겨울 빛 축제는 낮보다 밤에 만족도가 높지만 그만큼 숙소 위치의 영향도 큽니다. 춥고 어두운 시간에 오래 걷거나 택시를 오래 기다리면 좋은 행사도 피곤한 기억으로 남을 수 있습니다. 특히 아이나 부모님과 함께라면 축제장까지 가는 길보다 돌아오는 길을 먼저 확인해야 합니다.',
-    sections: [
-      { heading: '야간 행사 후 이동 시간을 줄입니다', body: '겨울에는 해가 빨리 지고 체감 온도가 낮아집니다. 축제장 관람 자체는 한두 시간이지만 대기, 사진 촬영, 이동이 더해지면 피로가 커집니다. 숙소가 가까운 권역이거나 대중교통 연결이 단순한 곳이 유리합니다.' },
-      { heading: '숙소 난방과 욕실 상태를 확인합니다', body: '겨울 여행에서는 객실 난방, 온수, 욕실 미끄럼 방지, 침구 상태가 중요합니다. 오래된 숙소는 위치가 좋아도 난방 후기가 좋지 않으면 만족도가 떨어질 수 있습니다.' },
-      { heading: '실내 대체 코스를 준비합니다', body: '눈이나 강풍이 있으면 야외 빛 축제 체류 시간이 줄어듭니다. 숙소 주변 실내 전시, 카페, 식당을 함께 준비하면 일정 변경이 쉬워집니다.' },
-      { heading: '대중교통 막차와 택시 대기를 봅니다', body: '야간 행사가 끝나는 시간에는 대중교통 배차가 줄고 택시 수요가 몰릴 수 있습니다. 숙소까지 걸어갈 수 없다면 막차 시간과 택시 승차 위치를 미리 확인하는 것이 좋습니다.' }
-    ],
-    checklist: ['축제 종료 후 숙소 복귀 시간', '객실 난방과 온수 후기', '대중교통 막차', '방한용품 준비', '실내 대체 코스'],
-    faqs: [
-      ['겨울 빛 축제는 몇 시에 가는 것이 좋나요?', '해가 진 직후 방문하면 너무 늦지 않게 관람하고 숙소로 돌아오기 쉽습니다.'],
-      ['렌터카가 있으면 숙소 위치가 덜 중요한가요?', '주차장 혼잡과 야간 운전 부담이 있어 여전히 복귀 동선을 확인해야 합니다.'],
-      ['아이와 함께 가도 괜찮나요?', '가능하지만 체류 시간을 짧게 잡고 숙소를 가까운 권역에 두는 편이 좋습니다.']
-    ]
-  },
-  {
-    slug: 'family-spring-festival-choice',
-    title: '가족과 가기 좋은 국내 봄 축제 선택 기준',
-    description: '가족 봄 축제 여행에서 유모차, 주차, 화장실, 숙소 권역을 판단하는 기준입니다.',
-    category: '국내 축제 여행',
-    season: '3월 - 5월',
-    target: '아이와 부모님을 동반해 봄 축제를 준비하는 가족 여행자',
-    budget: '숙소비보다 이동 피로를 줄이는 권역 선택이 전체 만족도에 더 큰 영향을 줄 수 있음',
-    area: '벚꽃길, 유채꽃밭, 봄 정원, 지역 봄 축제 권역',
-    caution: '가족 여행에서는 예쁜 사진보다 화장실, 휴식 공간, 주차 접근성이 먼저입니다.',
-    intro: '가족 봄 축제 여행은 사진 명소를 많이 넣는 것보다 모두가 무리 없이 걸을 수 있는지가 중요합니다. 유모차나 부모님 동행이 있다면 축제장 바닥 상태, 화장실, 벤치, 주차장과 입구 사이 거리까지 확인해야 합니다. 숙소도 축제장 근처라는 이유만으로 고르기보다 쉬는 시간과 식사 동선을 기준으로 보는 편이 낫습니다.',
-    sections: [
-      { heading: '아이 동반은 이동 거리를 짧게 잡습니다', body: '봄 축제장은 사람이 많아 실제 이동 속도가 느립니다. 지도상 10분 거리도 유모차, 사진 대기, 화장실 이용이 더해지면 훨씬 길어질 수 있습니다.' },
-      { heading: '부모님 동행은 앉을 곳이 중요합니다', body: '오래 걷는 축제장은 중간 휴식 장소가 부족하면 피로가 빠르게 쌓입니다. 카페, 벤치, 실내 전시관, 숙소 복귀 가능 여부를 함께 확인합니다.' },
-      { heading: '숙소는 체크인 후 회복 기준으로 봅니다', body: '가족 여행은 축제장을 다녀온 뒤 숙소에서 쉴 시간이 필요합니다. 객실 크기, 욕실 구조, 조식, 주변 식당을 확인하면 다음 날 일정이 안정적입니다.' },
-      { heading: '주차장과 입구 사이 거리를 확인합니다', body: '가족 여행에서 주차 가능 여부만으로는 부족합니다. 임시 주차장 위치, 셔틀 운영, 입구까지 도보 거리를 같이 봐야 합니다.' }
-    ],
-    checklist: ['유모차 이동 가능 여부', '화장실과 휴식 공간', '임시 주차장 거리', '숙소 객실 크기', '가족 식사 가능한 주변 식당'],
-    faqs: [
-      ['가족 봄 축제는 당일치기가 좋나요?', '가까운 지역이면 가능하지만 아이가 어리거나 부모님이 함께라면 1박이 더 안정적입니다.'],
-      ['축제장 근처 숙소가 없으면 어떻게 하나요?', '축제장보다 식사와 휴식이 쉬운 권역을 잡고 방문 시간을 오전으로 당기는 방법이 있습니다.'],
-      ['사진 명소를 여러 곳 넣어도 되나요?', '가족 여행은 대표 명소 1곳을 깊게 보는 편이 피로가 적습니다.']
-    ]
-  },
-  {
-    slug: 'couple-night-festival-route',
-    title: '커플 여행에 좋은 야간 축제 동선 짜기',
-    description: '커플 야간 축제 여행에서 숙소 분위기, 저녁 식사, 사진 명소, 복귀 동선을 조정하는 방법입니다.',
-    category: '국내 축제 여행',
-    season: '연중',
-    target: '야간 조명, 불꽃, 음악 축제를 중심으로 커플 여행을 계획하는 여행자',
-    budget: '숙소 분위기와 식사 예산을 우선 정하고 행사 비용을 추가로 계산',
-    area: '부산, 서울, 여수, 강릉, 제주 등 야간 행사 권역',
-    caution: '야간 축제는 사진 욕심보다 숙소 복귀와 식사 시간이 만족도를 좌우합니다.',
-    intro: '커플 야간 축제 여행은 분위기가 중요하지만 동선이 꼬이면 피로가 먼저 남습니다. 저녁 식사, 축제 관람, 사진 촬영, 숙소 복귀가 모두 밤 시간에 몰리기 때문입니다. 숙소를 고를 때는 전망이나 인테리어뿐 아니라 행사장까지 가는 방법, 식당 예약 가능 여부, 행사 후 돌아오는 길을 함께 봐야 합니다.',
-    sections: [
-      { heading: '저녁 식사와 축제 시간을 분리합니다', body: '식사 직후 행사장으로 이동하면 대기와 이동 때문에 시간이 빠듯해질 수 있습니다. 축제 시작 전 가벼운 식사, 관람 후 숙소 근처 식사처럼 흐름을 단순하게 만드는 편이 좋습니다.' },
-      { heading: '사진 명소는 한 곳만 확실히 잡습니다', body: '야간 축제는 조명과 사람이 많아 사진 촬영 시간이 길어집니다. 여러 포인트를 돌기보다 대표 장소 하나를 정하고 여유 있게 보는 것이 만족도가 높습니다.' },
-      { heading: '숙소 분위기와 위치의 균형을 봅니다', body: '분위기 좋은 숙소가 행사장과 너무 멀면 늦은 밤 이동 부담이 커집니다. 커플 여행에서는 숙소에서 보내는 시간도 중요하므로 행사 후 바로 쉴 수 있는 권역을 고려합니다.' },
-      { heading: '복귀 동선은 미리 정해둡니다', body: '행사 종료 후 택시가 잘 잡히지 않을 수 있습니다. 걸어서 돌아갈 수 있는지, 대중교통 막차가 있는지, 숙소 주변 길이 안전한지 확인해야 합니다.' }
-    ],
-    checklist: ['저녁 식사 예약 가능 여부', '대표 사진 포인트', '숙소와 행사장 거리', '야간 대중교통', '행사 후 숙소 주변 식당'],
-    faqs: [
-      ['커플 축제 여행은 숙소에 예산을 많이 써도 되나요?', '숙소에서 보내는 시간이 많다면 괜찮지만 행사장 이동이 너무 불편하면 만족도가 떨어질 수 있습니다.'],
-      ['야간 축제는 렌터카보다 대중교통이 나은가요?', '도심 행사라면 대중교통이 편한 경우가 많고, 외곽 행사는 주차와 출차 시간을 따로 봐야 합니다.'],
-      ['불꽃 축제 숙소는 전망이 필수인가요?', '전망 객실은 좋지만 가격이 높습니다. 관람 장소와 복귀 동선이 좋은 숙소도 충분히 대안이 됩니다.']
-    ]
-  },
-  {
-    slug: 'parents-walking-festival-guide',
-    title: '부모님과 가기 좋은 걷기 편한 축제 여행지 기준',
-    description: '부모님 동반 축제 여행에서 걷는 거리, 숙소 위치, 식사 동선, 휴식 시간을 정하는 기준입니다.',
-    category: '국내 축제 여행',
-    season: '봄, 가을',
-    target: '부모님과 함께 국내 축제를 여유 있게 다녀오려는 여행자',
-    budget: '최저가보다 엘리베이터, 조식, 주차, 이동 거리 등 편의 기준을 우선',
-    area: '경주, 여수, 강릉, 제주 등 걷기와 풍경을 함께 즐기는 지역',
-    caution: '축제장 규모가 크면 실제 걷는 거리가 길어져 부모님 컨디션을 먼저 봐야 합니다.',
-    intro: '부모님과 가는 축제 여행은 유명한 행사보다 걷기 편한지가 더 중요합니다. 축제장 입구까지의 거리, 경사, 좌석, 화장실, 식사 장소가 모두 만족도에 영향을 줍니다. 숙소 역시 전망보다 엘리베이터, 조식, 주차, 객실 이동 동선이 우선입니다.',
-    sections: [
-      { heading: '걷는 거리를 숫자로 계산합니다', body: '축제장은 입구에 도착한 뒤에도 안쪽 이동이 계속됩니다. 총 도보 시간, 경사, 계단, 쉬는 장소를 확인하면 무리한 일정을 피할 수 있습니다.' },
-      { heading: '숙소는 식사와 휴식 기준으로 봅니다', body: '부모님 동반 여행에서는 조식과 근처 식당이 중요합니다. 저녁에 멀리 이동하지 않아도 되는 숙소 권역이면 하루가 훨씬 편해집니다.' },
-      { heading: '오전 방문이 더 안정적일 수 있습니다', body: '오후에는 사람이 몰리고 대기 시간이 길어지는 경우가 많습니다. 오전에 축제를 보고 오후에는 숙소나 카페에서 쉬는 흐름이 좋습니다.' },
-      { heading: '차량 이동과 주차를 단순화합니다', body: '임시 주차장과 셔틀 이동이 길면 부모님께 부담이 될 수 있습니다. 가능한 한 숙소와 축제장 사이 이동을 짧고 단순하게 잡습니다.' }
-    ],
-    checklist: ['축제장 내 총 도보 거리', '벤치와 화장실 위치', '숙소 엘리베이터', '조식 또는 근처 식당', '주차장과 입구 거리'],
-    faqs: [
-      ['부모님과 축제 여행은 몇 박이 적당한가요?', '멀리 이동한다면 1박 이상으로 잡고 하루에 큰 일정 하나만 넣는 편이 좋습니다.'],
-      ['숙소 전망이 중요하지 않나요?', '전망도 좋지만 이동 거리, 식사 편의, 객실 편의가 먼저입니다.'],
-      ['축제장 사람이 많으면 어떻게 하나요?', '오전 방문, 평일 일정, 숙소 주변 대체 코스를 준비하면 부담을 줄일 수 있습니다.']
-    ]
-  },
-  {
-    slug: 'rainy-day-indoor-festival-backup',
-    title: '비 오는 날 가기 좋은 실내형 축제와 대체 코스',
-    description: '비 예보가 있는 축제 여행에서 실내 행사, 숙소 권역, 이동 방식을 조정하는 방법입니다.',
-    category: '국내 축제 여행',
-    season: '장마, 겨울, 환절기',
-    target: '비 예보 때문에 축제 일정을 조정해야 하는 여행자',
-    budget: '실내 전시, 카페, 교통비, 취소 가능 숙소 조건을 함께 계산',
-    area: '서울, 부산, 제주, 강릉 등 실내 대체 코스가 있는 지역',
-    caution: '비 오는 날에는 이동 거리가 짧고 주차 후 입구가 가까운 코스가 유리합니다.',
-    intro: '비 예보가 있다고 축제 여행을 모두 취소할 필요는 없습니다. 다만 야외 행사 중심 일정이라면 숙소 주변 실내 코스와 식사 동선을 미리 준비해야 합니다. 비 오는 날에는 우산, 짐, 주차, 환승이 모두 피로를 키우므로 이동 범위를 줄이는 것이 핵심입니다.',
-    sections: [
-      { heading: '실내 행사와 야외 행사를 나눕니다', body: '비가 약하면 짧은 야외 관람은 가능하지만 장시간 체류는 피로가 큽니다. 실내 전시, 체험, 카페, 시장을 섞어 하루를 구성하면 일정이 안정적입니다.' },
-      { heading: '숙소 주변 대체 코스가 중요합니다', body: '숙소 근처에 실내 관광지나 식당이 있으면 날씨가 나빠도 이동 부담이 줄어듭니다. 비 예보가 있는 여행은 숙소 위치를 더 보수적으로 고르는 편이 좋습니다.' },
-      { heading: '렌터카와 대중교통 기준이 달라집니다', body: '렌터카는 짐 이동이 편하지만 주차장과 입구 사이 거리가 중요합니다. 대중교통은 환승과 도보 시간이 짧은 코스를 선택해야 합니다.' },
-      { heading: '취소보다 조정 가능한 일정을 만듭니다', body: '축제 일정이 변경될 수 있으므로 환불 조건과 공식 공지를 확인합니다. 완전 취소보다 오전 실내, 오후 짧은 야외처럼 조정 가능한 구조가 유리합니다.' }
-    ],
-    checklist: ['비 예보 시간대', '숙소 주변 실내 코스', '주차장과 입구 거리', '환불 가능 기한', '식사 대안 2곳 이상'],
-    faqs: [
-      ['비 오면 야외 축제는 모두 어렵나요?', '비의 강도와 안전 안내에 따라 다릅니다. 강풍이나 호우라면 실내 코스로 바꾸는 것이 좋습니다.'],
-      ['숙소 위치는 어떻게 고르나요?', '비 예보가 있으면 축제장보다 실내 코스와 식당이 가까운 권역이 더 안정적입니다.'],
-      ['아이와 함께라면 무엇을 준비해야 하나요?', '여벌 옷, 방수 신발, 짧은 이동 동선, 실내 휴식 장소가 중요합니다.']
-    ]
-  },
-  {
-    slug: 'festival-hotel-booking-checklist',
-    title: '축제 기간 숙소 예약 전 확인해야 할 10가지',
-    description: '축제 기간 숙소 예약 전 위치, 취소 조건, 주차, 소음, 체크인 시간을 점검하는 체크리스트입니다.',
-    category: '국내 축제 여행',
-    season: '연중',
-    target: '축제 일정에 맞춰 숙소를 예약하려는 모든 여행자',
-    budget: '객실 요금 외 주차비, 인원 추가, 조식, 취소 수수료까지 총액으로 비교',
-    area: '국내 주요 축제 개최 지역 전반',
-    caution: '축제 기간 숙소는 평소보다 조건이 엄격할 수 있어 결제 전 세부 약관을 읽어야 합니다.',
-    intro: '축제 기간 숙소 예약은 일반 여행보다 더 꼼꼼해야 합니다. 가격이 빨리 오르고, 취소 조건이 달라지고, 행사장 주변 도로와 주차가 복잡해지기 때문입니다. 단순히 행사장과 가깝다는 이유만으로 예약하면 소음, 체크인 대기, 식사 동선 때문에 불편할 수 있습니다.',
-    sections: [
-      { heading: '위치는 거리보다 이동 방식으로 봅니다', body: '지도상 가까워도 도로 통제나 인파 때문에 이동이 어려울 수 있습니다. 도보, 셔틀, 대중교통, 택시 중 어떤 방식이 현실적인지 확인합니다.' },
-      { heading: '취소 규정과 결제 조건을 따로 기록합니다', body: '축제 기간에는 환불 불가 상품이 많아질 수 있습니다. 행사 변경, 날씨 변수, 동행자 일정 변경을 고려해 취소 가능 기한을 확인합니다.' },
-      { heading: '주차 가능 여부만으로는 부족합니다', body: '숙소 주차장이 있어도 만차일 수 있고, 행사 기간에는 주변 도로가 통제될 수 있습니다. 선착순인지, 유료인지, 대체 주차장이 있는지 봐야 합니다.' },
-      { heading: '소음과 체크인 대기 후기를 봅니다', body: '행사장 근처 숙소는 밤늦게까지 소음이 이어질 수 있습니다. 체크인 대기와 엘리베이터 혼잡 후기도 확인하면 실제 이용감을 예상할 수 있습니다.' }
-    ],
-    checklist: ['행사장까지 실제 이동 방식', '취소 가능 기한', '주차장 운영 방식', '소음 후기', '체크인 마감 시간', '조식 운영 시간', '객실 기준 인원', '주변 식당', '짐 보관 가능 여부', '대중교통 막차'],
-    faqs: [
-      ['축제 기간 숙소는 얼마나 일찍 예약해야 하나요?', '인기 주말은 공식 일정 발표 직후부터 후보를 잡는 것이 좋습니다.'],
-      ['환불 불가 숙소가 저렴하면 예약해도 되나요?', '일정과 날씨 변수가 적다면 가능하지만 축제 여행은 변경 가능성이 커서 신중해야 합니다.'],
-      ['숙소가 행사장과 멀면 불리한가요?', '이동 방식이 단순하고 식사 동선이 좋다면 멀어도 충분히 좋은 선택이 될 수 있습니다.']
-    ]
-  },
-  {
-    slug: 'festival-travel-budget-plan',
-    title: '지역 축제 여행 예산표 작성 방법',
-    description: '지역 축제 여행 예산을 숙소, 교통, 식비, 현장 결제, 예비비로 나누어 계산하는 방법입니다.',
-    category: '국내 축제 여행',
-    season: '연중',
-    target: '축제 여행 비용을 미리 계산하고 싶은 가족, 커플, 친구 여행자',
-    budget: '숙소와 교통 고정비를 먼저 정하고 현장 지출 상한을 별도로 설정',
-    area: '국내 축제 여행 전반',
-    caution: '축제 여행은 현장 소액 결제가 반복되어 예상보다 지출이 커질 수 있습니다.',
-    intro: '지역 축제 여행은 숙소와 교통비만 계산하면 예산이 쉽게 틀어집니다. 축제장 먹거리, 체험, 주차, 카페, 기념품처럼 현장에서 쓰는 돈이 많기 때문입니다. 예산표를 만들 때는 예약 비용과 현장 비용을 분리하고, 날씨나 대기 시간 때문에 바뀔 수 있는 대체 코스 비용까지 생각해야 합니다.',
-    sections: [
-      { heading: '예약 비용과 현장 비용을 나눕니다', body: '숙소, 교통, 렌터카는 여행 전에 금액이 확정됩니다. 반면 식비, 체험비, 카페, 기념품은 현장에서 늘어나기 쉽습니다. 두 항목을 분리하면 예산 초과를 빨리 파악할 수 있습니다.' },
-      { heading: '축제장 먹거리 예산을 따로 둡니다', body: '미식 축제가 아니어도 간식과 음료 지출이 반복됩니다. 인원별 하루 한도를 정해두면 소액 결제가 누적되는 것을 줄일 수 있습니다.' },
-      { heading: '교통비에는 주차와 택시를 포함합니다', body: '행사장 주변 주차비, 임시 주차장 이동, 야간 택시비가 생길 수 있습니다. 대중교통 여행도 막차 이후 택시 비용을 예비비로 잡는 것이 좋습니다.' },
-      { heading: '예비비는 취소와 대체 코스에 씁니다', body: '비 예보나 행사 변경으로 실내 전시, 카페, 다른 관광지로 바꾸면 추가 비용이 생깁니다. 전체 예산의 일부를 예비비로 남겨두면 일정 변경이 덜 부담스럽습니다.' }
-    ],
-    checklist: ['숙소 총액', '왕복 교통비', '주차 또는 택시비', '축제장 먹거리', '체험비', '카페와 간식', '기념품', '실내 대체 코스', '예비비'],
-    faqs: [
-      ['축제 여행 예산에서 가장 자주 빠지는 항목은 무엇인가요?', '주차비, 택시비, 현장 먹거리, 카페 비용이 자주 빠집니다.'],
-      ['가족 여행은 예산을 어떻게 잡나요?', '아이 식사, 간식, 체험비가 늘 수 있어 인원별 현장 지출 한도를 따로 정하는 것이 좋습니다.'],
-      ['예비비는 얼마나 잡아야 하나요?', '일정 규모에 따라 다르지만 날씨 변수와 대체 코스를 고려해 별도 항목으로 두는 것이 안전합니다.']
-    ]
-  },
   {
     slug: 'public-transport-festival-daytrip-overnight',
     title: '대중교통 축제 여행 당일치기와 1박 선택 기준',
@@ -270,13 +33,13 @@ export const festivalApprovalArticles = [
       ['차 없이 가면 주차 정보는 볼 필요가 없나요?', '직접 주차는 하지 않아도 셔틀, 택시, 임시 승하차 위치가 주차 통제와 연결될 수 있어 이동 안내를 확인하는 것이 좋습니다.']
     ],
     internalLinks: [
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '예산 정리', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' },
-      { label: '날씨 변수', title: '비 오는 날 대체 일정 준비법', href: '/travel-tips/rainy-day-backup-plan/' },
-      { label: '대중교통 예시', title: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' }
-    ]
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '예산 정리', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' },
+    { label: '날씨 변수', title: '비 오는 날 대체 일정 준비법', href: '/travel-tips/rainy-day-backup-plan/' },
+    { label: '대중교통 예시', title: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' }
+  ]
   },
-  {
+{
     slug: 'early-summer-night-festival-heat-plan',
     title: '초여름 야간 축제 여행 낮 더위 피해서 짜는 법',
     description: '초여름 지역 축제에서 낮 더위, 야간 행사, 숙소 권역, 주차와 대중교통, 동행자 체력, 예산을 함께 보고 일정을 조정하는 방법입니다.',
@@ -307,13 +70,11 @@ export const festivalApprovalArticles = [
       ['비 예보가 있으면 취소해야 하나요?', '약한 비나 짧은 소나기라면 실내 대기와 핵심 야간 행사만 남기는 식으로 조정할 수 있습니다. 강풍, 호우, 낙뢰 가능성이 있으면 공식 안전 안내를 우선해야 합니다.']
     ],
     internalLinks: [
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '대중교통 판단', title: '대중교통 축제 여행 당일치기와 1박 선택 기준', href: '/domestic/festivals/public-transport-festival-daytrip-overnight/' },
-      { label: '날씨 대체', title: '비 오는 날 가기 좋은 실내형 축제와 대체 코스', href: '/domestic/festivals/rainy-day-indoor-festival-backup/' },
-      { label: '예산표', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' }
-    ]
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '대중교통 판단', title: '대중교통 축제 여행 당일치기와 1박 선택 기준', href: '/domestic/festivals/public-transport-festival-daytrip-overnight/' }
+  ]
   },
-  {
+{
     slug: 'rainy-season-festival-travel-plan',
     title: '비 예보가 있는 축제 여행 숙소와 일정 조정법',
     description: '비 예보가 있는 국내 축제 여행에서 숙소 위치, 실내 대체 코스, 주차, 취소 조건을 기준으로 일정을 조정하는 방법입니다.',
@@ -343,13 +104,12 @@ export const festivalApprovalArticles = [
       ['숙소 환불이 안 되면 무조건 가야 하나요?', '환불이 어렵더라도 호우나 강풍으로 이동이 위험하면 무리하지 않는 것이 좋습니다. 갈 경우에는 축제보다 숙소 권역 중심 여행으로 바꿔야 합니다.']
     ],
     internalLinks: [
-      { label: '우천 대체', title: '비 오는 날 대체 일정 준비법', href: '/travel-tips/rainy-day-backup-plan/' },
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '예산 관리', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
-      { label: '대중교통', title: '대중교통 축제 여행 당일치기와 1박 선택 기준', href: '/domestic/festivals/public-transport-festival-daytrip-overnight/' }
-    ]
+    { label: '우천 대체', title: '비 오는 날 대체 일정 준비법', href: '/travel-tips/rainy-day-backup-plan/' },
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '대중교통', title: '대중교통 축제 여행 당일치기와 1박 선택 기준', href: '/domestic/festivals/public-transport-festival-daytrip-overnight/' }
+  ]
   },
-  {
+{
     slug: 'long-drive-festival-overnight-area',
     title: '장거리 운전 축제 여행 1박 숙소 권역 고르는 법',
     description: '장거리 운전으로 지역 축제에 갈 때 운전자 피로, 체크인 시간, 주차와 출차, 숙소 권역, 비 예보, 예산을 함께 보고 1박 일정을 조정하는 방법입니다.',
@@ -380,13 +140,12 @@ export const festivalApprovalArticles = [
       ['비 예보가 있으면 어떻게 바꾸나요?', '야외 체류 시간을 줄이고 숙소 주변 식사와 실내 대체 코스를 먼저 묶습니다. 강풍이나 호우 가능성이 있으면 공식 안전 안내를 우선해야 합니다.']
     ],
     internalLinks: [
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '예산 정리', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
-      { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' },
-      { label: '늦은 체크인', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' }
-    ]
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' },
+    { label: '늦은 체크인', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' }
+  ]
   },
-  {
+{
     slug: 'train-arrival-luggage-festival-route',
     title: '기차로 가는 축제 여행 짐 보관과 체크인 전 동선 짜는 법',
     description: 'KTX와 일반열차로 지역 축제에 갈 때 역 도착 시간, 짐 보관, 체크인 전 이동, 택시와 숙소 권역을 기준으로 동선을 조정하는 방법입니다.',
@@ -417,13 +176,13 @@ export const festivalApprovalArticles = [
       ['비 예보가 있으면 기차 여행은 더 불편한가요?', '운전 부담은 없지만 젖은 짐과 도보 이동이 문제가 됩니다. 숙소 주변 실내 코스와 택시 승하차 위치를 먼저 확인하면 일정 조정이 쉬워집니다.']
     ],
     internalLinks: [
-      { label: '대중교통 판단', title: '대중교통 축제 여행 당일치기와 1박 선택 기준', href: '/domestic/festivals/public-transport-festival-daytrip-overnight/' },
-      { label: '늦은 체크인', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
-    ]
+    { label: '대중교통 판단', title: '대중교통 축제 여행 당일치기와 1박 선택 기준', href: '/domestic/festivals/public-transport-festival-daytrip-overnight/' },
+    { label: '늦은 체크인', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
+  ]
   },
-  {
+{
     slug: 'friday-night-arrival-festival-weekend-plan',
     title: '금요일 퇴근 후 출발하는 축제 여행 1박2일 짜는 법',
     description: '금요일 밤 늦게 지역 축제 권역에 도착하는 1박2일 여행에서 숙소 위치, 체크인, 야식과 주차, 토요일 핵심 일정, 날씨와 동행 유형을 기준으로 동선을 조정하는 방법입니다.',
@@ -454,13 +213,12 @@ export const festivalApprovalArticles = [
       ['아이와 함께라면 토요일 첫 일정은 어떻게 잡나요?', '숙소 조식, 화장실, 짐 정리, 짧은 이동까지 고려해 첫 축제 관람 시간을 늦게 잡는 편이 좋습니다. 오전부터 붐비는 축제라면 대신 오후 휴식 시간을 고정해야 합니다.']
     ],
     internalLinks: [
-      { label: '늦은 체크인', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '장거리 운전', title: '장거리 운전 축제 여행 1박 숙소 권역 고르는 법', href: '/domestic/festivals/long-drive-festival-overnight-area/' },
-      { label: '예산표', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' }
-    ]
+    { label: '늦은 체크인', title: '늦은 체크인 일정 해결법', href: '/travel-tips/late-checkin-plan/' },
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '장거리 운전', title: '장거리 운전 축제 여행 1박 숙소 권역 고르는 법', href: '/domestic/festivals/long-drive-festival-overnight-area/' }
+  ]
   },
-  {
+{
     slug: 'summer-family-festival-rest-plan',
     title: '여름 가족 축제 여행 낮 휴식과 숙소 권역 짜는 법',
     description: '여름 방학과 주말 가족 축제 여행에서 더위, 소나기, 주차, 아이 체력, 숙소 권역, 예산을 기준으로 낮 휴식과 저녁 축제 동선을 조정하는 방법입니다.',
@@ -491,13 +249,13 @@ export const festivalApprovalArticles = [
       ['여름 가족 축제 예산에서 빠뜨리기 쉬운 비용은 무엇인가요?', '카페 대기, 택시, 주차, 물과 간식, 물놀이 장비, 젖은 옷 처리, 우천 시 실내 코스 비용이 자주 빠집니다.']
     ],
     internalLinks: [
-      { label: '아이 동반', title: '아이 동반 여행 피로 줄이는 법', href: '/travel-tips/child-travel-fatigue-solution/' },
-      { label: '여름 축제', title: '초여름 야간 축제 여행 낮 더위 피해서 짜는 법', href: '/domestic/festivals/early-summer-night-festival-heat-plan/' },
-      { label: '비 예보', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' },
-      { label: '예산표', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' }
-    ]
+    { label: '아이 동반', title: '아이 동반 여행 피로 줄이는 법', href: '/travel-tips/child-travel-fatigue-solution/' },
+    { label: '여름 축제', title: '초여름 야간 축제 여행 낮 더위 피해서 짜는 법', href: '/domestic/festivals/early-summer-night-festival-heat-plan/' },
+    { label: '비 예보', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' },
+    { label: '예산표', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' }
+  ]
   },
-  {
+{
     slug: 'friends-festival-room-budget-plan',
     title: '친구끼리 지역 축제 여행 숙소와 비용 나누는 법',
     description: '친구 여러 명이 지역 축제 여행을 갈 때 숙소 방 구조, 비용 분담, 주차, 야간 복귀, 날씨 변수와 동선 조정 기준을 정리합니다.',
@@ -528,13 +286,12 @@ export const festivalApprovalArticles = [
       ['비 예보가 있으면 친구 여행 일정은 어떻게 줄이나요?', '야외 사진 명소를 대표 1곳으로 줄이고 숙소 주변 실내 식사, 카페, 시장을 중심으로 묶는 것이 좋습니다. 강풍이나 호우가 있으면 공식 안내를 우선 확인해야 합니다.']
     ],
     internalLinks: [
-      { label: '예산표', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '야간 축제', title: '커플 여행에 좋은 야간 축제 동선 짜기', href: '/domestic/festivals/couple-night-festival-route/' },
-      { label: '비 예보', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
-    ]
+    { label: '예산표', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '야간 축제', title: '동반자별 축제 여행 기준 정리', href: '/domestic/festivals/festival-travel-by-companion/' },
+    { label: '비 예보', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
+  ]
   },
-  {
+{
     slug: 'autumn-parents-festival-overnight-choice',
     title: '부모님과 가을 축제 여행 당일치기와 1박 선택 기준',
     description: '부모님과 가을 지역 축제에 갈 때 당일치기와 1박을 나누는 기준, 숙소 권역, 주차와 도보 거리, 날씨와 예산 변수를 정리합니다.',
@@ -565,13 +322,12 @@ export const festivalApprovalArticles = [
       ['비 예보가 있으면 어떤 기준으로 줄이나요?', '야외 포토존을 대표 1곳만 남기고 실내 전시, 시장, 카페, 편한 식사를 중심으로 바꿉니다. 강풍이나 호우 가능성이 있으면 공식 운영 안내를 먼저 확인해야 합니다.']
     ],
     internalLinks: [
-      { label: '부모님 동반', title: '부모님과 가기 좋은 걷기 편한 축제 여행지 기준', href: '/domestic/festivals/parents-walking-festival-guide/' },
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' },
-      { label: '예산표', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' }
-    ]
+    { label: '부모님 동반', title: '동반자별 축제 여행 기준 정리', href: '/domestic/festivals/festival-travel-by-companion/' },
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
+  ]
   },
-  {
+{
     slug: 'gochang-bluefarm-lavender-yeonggwang-drive',
     title: '고창 청농원 라벤더와 영광 백수해안도로 당일 여행 준비법',
     description: '고창 청농원 라벤더 개화 시기와 영광 백수해안도로 드라이브를 하루에 묶을 때 이동 동선, 주차, 사진 시간, 식사와 노을 시간을 정리합니다.',
@@ -601,13 +357,13 @@ export const festivalApprovalArticles = [
       ['사진은 직접 찍은 것을 쓰는 편이 좋나요?', '가능하다면 직접 찍은 사진이 좋습니다. 단, 얼굴이나 차량 번호가 보이면 가리고, 사진마다 촬영일과 장소를 정리해두면 신뢰도가 올라갑니다.']
     ],
     internalLinks: [
-      { label: '봄꽃 여행', title: '봄꽃 축제 여행 숙소 위치 고르는 법', href: '/domestic/festivals/spring-flower-festival-hotel-area/' },
-      { label: '가족 봄 축제', title: '가족과 가기 좋은 국내 봄 축제 선택 기준', href: '/domestic/festivals/family-spring-festival-choice/' },
-      { label: '예산표', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
-      { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
-    ]
+    { label: '봄꽃 여행', title: '계절별 축제 여행 가이드', href: '/domestic/festivals/seasonal-festival-travel-guide/' },
+    { label: '가족 봄 축제', title: '동반자별 축제 여행 기준 정리', href: '/domestic/festivals/festival-travel-by-companion/' },
+    { label: '예산표', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' }
+  ]
   },
-  {
+{
     slug: 'pet-friendly-festival-travel-checklist',
     title: '반려견과 가는 국내 축제 여행 숙소와 동선 체크리스트',
     description: '반려견 동반 국내 축제 여행에서 숙소 규정, 축제장 입장 가능 범위, 주차와 산책 동선, 날씨, 예산, 동행 유형별 조정 기준을 예약 전 확인하는 방법입니다.',
@@ -639,12 +395,11 @@ export const festivalApprovalArticles = [
       ['반려견과 먹거리 축제에 가도 괜찮나요?', '가능은 하지만 바닥 음식물, 냄새, 인파 때문에 반려견이 쉽게 흥분할 수 있습니다. 먹거리 부스 체류를 짧게 하고 조용한 식사 대안을 준비하는 것이 안정적입니다.']
     ],
     internalLinks: [
-      { label: '숙소 기준', title: '축제 기간 숙소 예약 전 확인해야 할 10가지', href: '/domestic/festivals/festival-hotel-booking-checklist/' },
-      { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' },
-      { label: '여름 가족', title: '여름 가족 축제 여행 낮 휴식과 숙소 권역 짜는 법', href: '/domestic/festivals/summer-family-festival-rest-plan/' },
-      { label: '예산표', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' }
-    ]
-  }
+    { label: '숙소 기준', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '우천 조정', title: '비 예보가 있는 축제 여행 숙소와 일정 조정법', href: '/domestic/festivals/rainy-season-festival-travel-plan/' },
+    { label: '여름 가족', title: '여름 가족 축제 여행 낮 휴식과 숙소 권역 짜는 법', href: '/domestic/festivals/summer-family-festival-rest-plan/' }
+  ]
+  },
 ];
 
 const gochangYeonggwangVisitArticle = {
@@ -904,10 +659,10 @@ const gochangYeonggwangVisitArticle = {
     ['영광 백수해안도로는 어르신과 가도 괜찮나요?', '풍경은 좋지만 계단이 많아 무릎이 안 좋으신 어르신에게는 부담이 될 수 있습니다. 노을길 전체를 걷기보다 전망대, 카페, 주차가 쉬운 지점만 골라 보는 편이 안전합니다.']
   ],
   internalLinks: [
-    { label: '단체 예산', title: '지역 축제 여행 예산표 작성 방법', href: '/domestic/festivals/festival-travel-budget-plan/' },
-    { label: '부모님 동반', title: '부모님과 가기 좋은 걷기 편한 축제 여행지 기준', href: '/domestic/festivals/parents-walking-festival-guide/' },
+    { label: '단체 예산', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
+    { label: '부모님 동반', title: '동반자별 축제 여행 기준 정리', href: '/domestic/festivals/festival-travel-by-companion/' },
     { label: '여름 가족', title: '여름 가족 축제 여행 낮 휴식과 숙소 권역 짜는 법', href: '/domestic/festivals/summer-family-festival-rest-plan/' },
-    { label: '봄꽃 숙소', title: '봄꽃 축제 여행 숙소 위치 고르는 법', href: '/domestic/festivals/spring-flower-festival-hotel-area/' }
+    { label: '봄꽃 숙소', title: '계절별 축제 여행 가이드', href: '/domestic/festivals/seasonal-festival-travel-guide/' }
   ]
 };
 
@@ -1150,8 +905,8 @@ const geojeHydrangeaWindhillArticle = {
   ],
   internalLinks: [
     { label: '실제 방문 후기', title: '고창 청농원 라벤더와 영광 백수해안도로 당일 여행 코스', href: '/domestic/festivals/gochang-bluefarm-lavender-yeonggwang-drive/' },
-    { label: '여행 준비', title: '축제 여행 숙소 위치 고르는 법', href: '/domestic/festivals/spring-flower-festival-hotel-area/' },
-    { label: '부모님 동반', title: '부모님과 걷기 좋은 축제 여행 준비 기준', href: '/domestic/festivals/parents-walking-festival-guide/' }
+    { label: '여행 준비', title: '계절별 축제 여행 가이드', href: '/domestic/festivals/seasonal-festival-travel-guide/' },
+    { label: '부모님 동반', title: '동반자별 축제 여행 기준 정리', href: '/domestic/festivals/festival-travel-by-companion/' }
   ]
 };
 
@@ -1169,6 +924,18 @@ if (!festivalApprovalArticles.some((article) => article.slug === mujuJeoksangsan
 
 if (!festivalApprovalArticles.some((article) => article.slug === jeonjuDeokjinNightCourseArticle.slug)) {
   festivalApprovalArticles.unshift(jeonjuDeokjinNightCourseArticle);
+}
+
+if (!festivalApprovalArticles.some((article) => article.slug === seasonalFestivalTravelGuide.slug)) {
+  festivalApprovalArticles.unshift(seasonalFestivalTravelGuide);
+}
+
+if (!festivalApprovalArticles.some((article) => article.slug === festivalTravelByCompanion.slug)) {
+  festivalApprovalArticles.unshift(festivalTravelByCompanion);
+}
+
+if (!festivalApprovalArticles.some((article) => article.slug === festivalBookingBudgetGuide.slug)) {
+  festivalApprovalArticles.unshift(festivalBookingBudgetGuide);
 }
 
 export const allFestivalArticles = festivalApprovalArticles.map((article) => ({
