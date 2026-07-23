@@ -1,4 +1,8 @@
-export const jejuApprovalArticles = [
+import { jejuHotelAreaGuide } from './jejuHotelAreaGuide.js';
+
+export const jejuApprovalArticles = [jejuHotelAreaGuide];
+
+const legacyJejuApprovalArticles = [
   {
     slug: 'airport-area-hotel-checklist',
     title: '제주 공항 근처 숙소를 고를 때 확인할 점',
