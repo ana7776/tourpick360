@@ -14,3 +14,6 @@ http://tourpick360.com/* https://tourpick360.com/:splat 301
 /domestic/jeju/parents-jeju-hotel-area-guide/ /domestic/jeju/jeju-hotel-area-guide/ 301
 /domestic/jeju/couple-jeju-hotel-choice/ /domestic/jeju/jeju-hotel-area-guide/ 301
 /domestic/jeju/budget-jeju-trip-hotel-plan/ /domestic/jeju/jeju-hotel-area-guide/ 301
+/domestic/bicycle/ /domestic/ 301
+/domestic/bicycle-routes-guide/ /domestic/ 301
+/api/bicycle-routes.json /domestic/ 301
