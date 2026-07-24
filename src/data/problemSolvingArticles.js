@@ -60,8 +60,8 @@ export const problemSolvingArticles = [
     ],
     internalLinks: [
     { label: '도구', title: '기본 vs 개선 일정 비교 도구', href: '/tools/itinerary-comparison/' },
-    { label: '템플릿', title: '가족여행 일정표 템플릿', href: '/templates/family-trip-plan-template/' },
-    { label: '사례', title: '부산 가족여행 숙소 동선 Before / After', href: '/case-studies/busan-family-route-before-after/' }
+    { label: '템플릿', title: '여행 준비 템플릿 모음', href: '/templates/' },
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-06'
   }),
@@ -85,7 +85,7 @@ export const problemSolvingArticles = [
       ['비 예보 때문에 취소하면 환불되나요?', '일반적인 비 예보만으로는 환불이 어려운 경우가 많습니다. 공식 운영 중단이나 결항 여부를 확인해야 합니다.']
     ],
     internalLinks: [
-    { label: '템플릿', title: '숙소 비교표 템플릿', href: '/templates/hotel-comparison-template/' },
+    { label: '템플릿', title: '여행 준비 템플릿 모음', href: '/templates/' },
     { label: '문제 해결', title: '축제 기간 숙소가 마감됐을 때 대안 찾는 법', href: '/travel-tips/problems/festival-hotel-sold-out-alternative/' }
   ],
     date: '2026-06-06'
@@ -110,8 +110,8 @@ export const problemSolvingArticles = [
       ['아이와 함께라면 무엇이 가장 중요한가요?', '젖은 옷 처리, 짧은 이동, 바로 쉴 수 있는 숙소 권역이 중요합니다.']
     ],
     internalLinks: [
-    { label: '템플릿', title: '비 오는 날 대체 일정 템플릿', href: '/templates/rainy-day-itinerary-template/' },
-    { label: '사례', title: '제주 비 오는 날 일정 Before / After', href: '/case-studies/jeju-rainy-day-before-after/' }
+    { label: '템플릿', title: '여행 준비 템플릿 모음', href: '/templates/' },
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-07'
   }),
@@ -185,7 +185,7 @@ export const problemSolvingArticles = [
       ['예비비는 꼭 필요한가요?', '날씨와 일정 변경에 대비해 전체 예산의 일부를 따로 두는 편이 좋습니다.']
     ],
     internalLinks: [
-    { label: '템플릿', title: '국내여행 예산표 템플릿', href: '/templates/travel-budget-template/' },
+    { label: '템플릿', title: '여행 준비 템플릿 모음', href: '/templates/' },
     { label: '가이드', title: '국내여행 예산표 짜는 법', href: '/travel-tips/travel-budget-plan/' }
   ],
     date: '2026-06-08'
@@ -235,7 +235,7 @@ export const problemSolvingArticles = [
       ['주차 실패 후 관광지를 빼야 하나요?', '바로 빼기보다 식사 순서를 바꾸고 혼잡이 빠진 뒤 다시 접근할 수 있습니다.']
     ],
     internalLinks: [
-    { label: '사례', title: '전주 한옥마을 주차 동선 Before / After', href: '/case-studies/jeonju-parking-route-before-after/' },
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' },
     { label: '문제 해결', title: '전주 한옥마을 주차 실패했을 때 대체 동선', href: '/travel-tips/problems/jeonju-hanok-parking-alternative-route/' }
   ],
     date: '2026-06-09'
@@ -261,7 +261,7 @@ export const problemSolvingArticles = [
     ],
     internalLinks: [
     { label: '가이드', title: '렌터카 예약 전 확인해야 할 10가지', href: '/travel-tips/rental-car-checklist/' },
-    { label: '사례', title: '제주 렌터카 반납일 Before / After', href: '/case-studies/jeju-rental-return-before-after/' }
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-10'
   }),
@@ -286,7 +286,7 @@ export const problemSolvingArticles = [
     ],
     internalLinks: [
     { label: '부산 가이드', title: '부산 비 오는 날 가족여행 코스와 숙소 권역 고르는 법', href: '/domestic/busan/rainy-day-family-route/' },
-    { label: '사례', title: '부산 가족여행 숙소 동선 Before / After', href: '/case-studies/busan-family-route-before-after/' }
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-10'
   }),
@@ -311,7 +311,7 @@ export const problemSolvingArticles = [
     ],
     internalLinks: [
     { label: '강릉 가이드', title: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' },
-    { label: '사례', title: '강릉 1박2일 일정 Before / After', href: '/case-studies/gangneung-weekend-before-after/' }
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-10'
   }),
@@ -336,7 +336,7 @@ export const problemSolvingArticles = [
     ],
     internalLinks: [
     { label: '전주 가이드', title: '전주 한옥마을 여행 코스와 주차 동선 가이드', href: '/domestic/jeonju/hanok-village-walking-guide/' },
-    { label: '사례', title: '전주 한옥마을 주차 동선 Before / After', href: '/case-studies/jeonju-parking-route-before-after/' }
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-10'
   }),
@@ -361,7 +361,7 @@ export const problemSolvingArticles = [
     ],
     internalLinks: [
     { label: '경주 가이드', title: '경주 도보 여행 코스와 숙소 위치', href: '/domestic/gyeongju/walking-route-hotel-area-guide/' },
-    { label: '사례', title: '경주 도보 여행 동선 Before / After', href: '/case-studies/gyeongju-walking-route-before-after/' }
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-10'
   }),
@@ -386,7 +386,7 @@ export const problemSolvingArticles = [
     ],
     internalLinks: [
     { label: '강릉 무차 여행', title: '강릉 차 없이 1박2일 여행 코스와 숙소 위치', href: '/domestic/gangneung/no-car-weekend-course/' },
-    { label: '사례', title: '차 없는 국내여행 숙소 위치 Before / After', href: '/case-studies/no-car-hotel-area-before-after/' }
+    { label: '사례', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ],
     date: '2026-06-10'
   }),

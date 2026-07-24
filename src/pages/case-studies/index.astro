@@ -1,107 +1,256 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const cases = [
-  {
-    category: '가족여행',
-    title: '부산 가족여행 숙소 동선 Before / After',
-    summary: '해운대, 광안리, 부산역을 하루에 모두 넣은 일정을 숙소 권역 중심으로 줄입니다.',
-    href: '/case-studies/busan-family-route-before-after/'
-  },
-  {
-    category: '날씨 대응',
-    title: '제주 비 오는 날 일정 Before / After',
-    summary: '야외 코스가 많은 제주 일정을 실내 대체 코스와 숙소 주변 동선으로 바꿉니다.',
-    href: '/case-studies/jeju-rainy-day-before-after/'
-  },
-  {
-    category: '주말여행',
-    title: '강릉 1박 2일 일정 Before / After',
-    summary: 'KTX 도착 후 이동이 많은 강릉 일정을 경포와 강릉역 중심으로 정리합니다.',
-    href: '/case-studies/gangneung-weekend-before-after/'
-  },
-  {
-    category: '주차 대응',
-    title: '전주 한옥마을 주차 동선 Before / After',
-    summary: '공영주차장 만차 상황에서 식사, 대체 주차장, 도보 루트를 다시 정리합니다.',
-    href: '/case-studies/jeonju-parking-route-before-after/'
-  },
-  {
-    category: '부모님 여행',
-    title: '경주 도보 여행 동선 Before / After',
-    summary: '대릉원, 첨성대, 황리단길을 부모님 동반 기준으로 줄여 걷는 피로를 낮춥니다.',
-    href: '/case-studies/gyeongju-walking-route-before-after/'
-  },
-  {
-    category: '제주 렌터카',
-    title: '제주 렌터카 반납일 Before / After',
-    summary: '마지막 날 관광 욕심을 공항 반경 동선으로 줄여 반납과 탑승 시간을 안정시킵니다.',
-    href: '/case-studies/jeju-rental-return-before-after/'
-  },
-  {
-    category: '차 없는 여행',
-    title: '차 없는 국내여행 숙소 위치 Before / After',
-    summary: '관광지 거리보다 역, 식사, 짐 보관 기준으로 숙소를 다시 고르는 사례입니다.',
-    href: '/case-studies/no-car-hotel-area-before-after/'
-  },
-  {
-    category: '일정 설계',
-    title: '무리한 여행 일정 Before / After 사례',
-    summary: '하루에 세 권역을 도는 일정을 핵심 코스와 숙소 권역 중심으로 줄입니다.',
-    href: '/travel-tips/itinerary-before-after/'
-  }
-];
 ---
-<BaseLayout title="여행 Before / After 사례 - Tourpick360" description="국내여행 일정, 숙소 위치, 날씨 대응을 Before / After 방식으로 개선하는 사례 모음입니다.">
+<BaseLayout title="여행 일정 개선 사례 모음 - 무리한 동선을 줄인 Before / After 7가지 - Tourpick360" description="부산, 강릉, 경주, 제주, 전주 여행에서 무리했던 일정을 어떻게 줄였는지 Before와 After로 비교했습니다. 숙소 권역, 주차, 도보 거리, 렌터카 반납, 우천 대비까지 상황별 개선 사례를 한 곳에 모았습니다.">
   <section class="page">
-    <p class="eyebrow">Case Studies</p>
-    <h1>여행 Before / After 사례</h1>
-    <p class="lead">무리한 일정이 어떻게 바뀌면 더 편해지는지 실제 여행 상황별로 비교합니다. 각 사례는 문제, 개선 방식, 결과를 나누어 정리해 숙소 위치와 이동 순서를 다시 판단할 수 있게 돕습니다.</p>
+    <p class="eyebrow">Before / After</p>
+    <h1>여행 일정 개선 사례 모음</h1>
+    <p class="lead">여행 일정이 힘들어지는 이유는 대부분 비슷합니다. 지도에서는 가까워 보였는데 실제로는 왕복 이동이 늘어나고, 식사 대기와 주차 대기가 겹치면서 하루가 밀립니다. 이 페이지에는 그렇게 무리했던 일정을 어떻게 줄였는지 일곱 가지 사례로 정리했습니다. 방문지를 줄이는 것이 손해처럼 보이지만, 실제로는 실패 가능성을 줄이는 쪽이 만족도가 높습니다.</p>
     <figure class="article-hero-image">
-      <img src="/images/tourapi/family_trip.jpg" alt="Travel route before and after comparison reference" width="1200" height="675" loading="eager" />
-      <figcaption>Before and after case studies compare route pressure, hotel area, meal timing, and backup options.</figcaption>
+      <img src="/images/domestic-places/gangneung-anmok-beach-hero.jpg" alt="여행 동선 개선 전후 비교 참고 이미지" width="1200" height="675" loading="eager" />
+      <figcaption>실제 사례를 통해 동선 부담과 숙소 권역, 식사 시간, 대체 계획을 비교해 봅니다.</figcaption>
     </figure>
   </section>
 
   <section class="section">
     <div class="section-heading">
-      <p class="eyebrow">How to Read</p>
-      <h2>사례를 읽는 기준</h2>
-      <p class="muted">Before / After 글은 단순한 여행 후기보다 일정 실패 원인을 먼저 봅니다. 같은 지역이라도 동행자, 날씨, 도착 시간, 주차 상황에 따라 좋은 숙소 권역과 이동 순서가 달라지기 때문입니다.</p>
+      <p class="eyebrow">Common Pattern</p>
+      <h2>일정이 무너지는 공통 패턴</h2>
+      <p class="muted">아래 사례들은 지역과 상황이 다르지만 원인은 세 가지로 겹칩니다.</p>
     </div>
     <div class="article-grid">
       <article class="article-card">
-        <p>동선</p>
-        <h3>하루 권역을 줄였는지 확인</h3>
-        <span>하루에 여러 권역을 넣으면 이동과 대기 시간이 늘어납니다. 개선 사례는 핵심 코스를 남기고 숙소 주변으로 식사와 휴식을 묶는 방식에 초점을 둡니다.</span>
+        <p>패턴 1</p>
+        <h3>권역을 넘나드는 왕복 이동</h3>
+        <span>대표 코스를 모두 넣으면 이동 방향이 계속 바뀝니다. 지도상 거리보다 짐과 대기, 체크인 시간이 겹치면서 실제 체류 시간이 짧아집니다.</span>
       </article>
       <article class="article-card">
-        <p>숙소</p>
-        <h3>가격보다 위치 기준을 먼저 비교</h3>
-        <span>최저가 숙소가 항상 좋은 선택은 아닙니다. 체크인 시간, 주차, 짐 보관, 다음 날 이동까지 함께 보면 실제로 덜 피곤한 권역이 보입니다.</span>
+        <p>패턴 2</p>
+        <h3>대기 시간이 겹치는 배치</h3>
+        <span>주차 대기와 식사 대기가 같은 시간대에 몰리면 하루가 통째로 밀립니다. 특히 아이나 부모님과 함께라면 피로가 빠르게 쌓입니다.</span>
       </article>
       <article class="article-card">
-        <p>변수</p>
-        <h3>비, 만차, 지연 도착 대응 여부</h3>
-        <span>좋은 일정은 날씨나 주차 문제가 생겼을 때 바로 바꿀 수 있어야 합니다. 각 사례는 대체 식당, 실내 코스, 복귀 동선처럼 현장에서 쓰는 기준을 포함합니다.</span>
+        <p>패턴 3</p>
+        <h3>대체 계획이 없는 일정</h3>
+        <span>비가 오거나 컨디션이 나빠졌을 때 바꿀 코스가 없으면 일정을 통째로 포기하게 됩니다. 대체지가 있으면 조정으로 끝납니다.</span>
       </article>
     </div>
   </section>
 
   <section class="section">
     <div class="section-heading">
-      <p class="eyebrow">Examples</p>
-      <h2>상황별 Before / After 보기</h2>
-      <p class="muted">아래 사례를 고를 때는 여행 지역보다 현재 고민과 가까운 상황을 먼저 선택하세요. 가족여행, 부모님 동행, 렌터카 반납일, 비 오는 날처럼 조건이 맞는 사례가 실제 일정 수정에 더 빠르게 연결됩니다.</p>
+      <p class="eyebrow">Case 01</p>
+      <h2>부산 가족여행 — 숙소 권역 하나로 줄이기</h2>
+      <p class="muted">부산은 볼거리가 많아 처음 계획할 때 해운대, 광안리, 남포동, 부산역을 모두 넣기 쉽습니다.</p>
     </div>
-    <div class="article-grid">
-      {cases.map((item) => (
-        <article class="article-card">
-          <p>{item.category}</p>
-          <h3><a href={item.href}>{item.title}</a></h3>
-          <span>{item.summary}</span>
-        </article>
-      ))}
+    <h3>Before: 하루에 주요 권역을 모두 이동</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>부산역 도착 후 해운대 이동</td></tr>
+        <tr><th>점심</th><td>해운대 식사 후 광안리 이동</td></tr>
+        <tr><th>오후</th><td>광안리 산책 후 남포동 이동</td></tr>
+        <tr><th>저녁</th><td>남포동 식사 후 다시 해운대 숙소 복귀</td></tr>
+      </tbody>
+    </table>
+    <p>지도상으로는 가능하지만 실제로는 짐과 아이 컨디션, 식사 대기, 택시 대기가 겹치면서 피로가 커집니다. 숙소 복귀가 늦어지면 다음 날 오전 일정도 흔들립니다.</p>
+    <h3>After: 해운대 숙소 중심으로 줄인 일정</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>부산역 도착 후 숙소 짐 보관</td></tr>
+        <tr><th>점심</th><td>해운대 주변 식사 후보 중 선택</td></tr>
+        <tr><th>오후</th><td>해변 산책 또는 실내 쇼핑 중 하나만 선택</td></tr>
+        <tr><th>저녁</th><td>숙소 주변 식사와 짧은 야간 산책</td></tr>
+      </tbody>
+    </table>
+    <p>방문 권역은 줄지만 실패 가능성도 줄어듭니다. 아이가 지치면 숙소로 돌아가기 쉽고, 비가 오면 주변 실내 일정으로 전환할 수 있습니다. 해운대 숙소라면 첫날은 해운대와 센텀시티, 광안리 숙소라면 광안리와 수영강 주변처럼 가까운 반경으로 묶는 편이 안전합니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Case 02</p>
+      <h2>강릉 1박 2일 — 첫날과 둘째 날 역할 나누기</h2>
+      <p class="muted">강릉은 KTX로 가기 쉬워 짧은 일정에 잘 맞지만, 도착 후 동선을 많이 넣으면 바다를 보기도 전에 피로가 쌓입니다.</p>
+    </div>
+    <h3>Before: 도착일에 바다, 시장, 카페를 모두 이동</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>KTX 도착 후 경포 이동</td></tr>
+        <tr><th>점심</th><td>중앙시장 이동 후 식사</td></tr>
+        <tr><th>오후</th><td>안목 카페거리 이동</td></tr>
+        <tr><th>저녁</th><td>다시 경포 숙소로 복귀</td></tr>
+      </tbody>
+    </table>
+    <p>대표 코스를 모두 넣지만 이동 방향이 계속 바뀝니다. 짐 보관과 택시 대기, 체크인 시간이 겹치면 실제 체류 시간이 짧아집니다.</p>
+    <h3>After: 경포 또는 강릉역 중심으로 하루를 나누기</h3>
+    <table>
+      <tbody>
+        <tr><th>첫날</th><td>경포 숙소 체크인 후 해변과 주변 식사</td></tr>
+        <tr><th>둘째 날 오전</th><td>안목 또는 중앙시장 중 하나만 선택</td></tr>
+        <tr><th>둘째 날 오후</th><td>강릉역 이동 전 짧은 카페 또는 식사</td></tr>
+      </tbody>
+    </table>
+    <p>첫날 바다 체류 시간이 늘고, 둘째 날은 KTX 출발 시간을 기준으로 가까운 코스만 고르게 됩니다. 주말에는 택시 대기와 카페 대기가 길어질 수 있으므로 지도 앱의 최단 시간만 믿지 않는 편이 좋습니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Case 03</p>
+      <h2>경주 도보 여행 — 오전과 오후 도보 나누기</h2>
+      <p class="muted">경주는 걷기 좋은 도시지만 부모님과 함께라면 도보 거리가 만족도를 좌우합니다.</p>
+    </div>
+    <h3>Before: 유명 코스를 이어 붙인 일정</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>대릉원 입장 후 첨성대까지 긴 도보 이동</td></tr>
+        <tr><th>점심</th><td>황리단길 인기 식당 대기</td></tr>
+        <tr><th>오후</th><td>카페, 교촌마을, 월정교까지 추가 이동</td></tr>
+        <tr><th>저녁</th><td>숙소 복귀 전 야경까지 무리하게 포함</td></tr>
+      </tbody>
+    </table>
+    <p>지도상으로는 한 권역처럼 보이지만 실제로는 걷는 시간이 길고, 식사 대기와 햇빛 노출이 겹치면 피로가 빠르게 쌓입니다.</p>
+    <h3>After: 핵심 한 곳과 휴식 시간 확보</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>대릉원 또는 첨성대 중 하나를 핵심 코스로 선택</td></tr>
+        <tr><th>점심</th><td>예약 가능하거나 대기 짧은 식당으로 고정</td></tr>
+        <tr><th>오후</th><td>카페 휴식 후 황리단길 짧은 산책</td></tr>
+        <tr><th>저녁</th><td>야경은 컨디션에 따라 선택 코스로 전환</td></tr>
+      </tbody>
+    </table>
+    <p>방문지는 줄지만 쉬는 시간이 생깁니다. 부모님 컨디션이 좋으면 선택 코스를 추가하고, 피로하면 숙소로 돌아오기 쉽습니다. 가까워 보이는 지점도 사진 촬영과 횡단보도, 대기 때문에 체감 거리가 늘어난다는 점을 감안해야 합니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Case 04</p>
+      <h2>제주 비 오는 날 — 숙소 반경으로 좁히기</h2>
+      <p class="muted">제주는 야외 코스 비중이 높아 비가 오면 만족도가 크게 달라집니다. 핵심은 모든 코스를 취소하는 것이 아니라 숙소 권역과 실내 대체지를 연결하는 것입니다.</p>
+    </div>
+    <h3>Before: 야외 코스를 그대로 유지</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>오름 또는 해변 산책</td></tr>
+        <tr><th>점심</th><td>먼 권역 맛집 이동</td></tr>
+        <tr><th>오후</th><td>해안도로 카페와 사진 명소 방문</td></tr>
+        <tr><th>저녁</th><td>숙소와 먼 식당 예약</td></tr>
+      </tbody>
+    </table>
+    <p>비가 오면 야외 체류 시간이 줄고 주차장과 입구 사이 이동도 불편해집니다. 아이나 부모님 동행이라면 차량 승하차와 젖은 짐 관리만으로도 피로가 큽니다.</p>
+    <h3>After: 숙소 주변 실내 코스 중심으로 전환</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>숙소 주변 실내 전시 또는 카페</td></tr>
+        <tr><th>점심</th><td>주차 쉬운 식당 후보 중 선택</td></tr>
+        <tr><th>오후</th><td>체험형 실내 코스 또는 숙소 휴식</td></tr>
+        <tr><th>저녁</th><td>숙소 반경 20분 이내 식사</td></tr>
+      </tbody>
+    </table>
+    <p>관광지 수는 줄지만 날씨 영향을 덜 받습니다. 숙소로 돌아오기 쉬워 일정 변경 스트레스가 줄고, 비가 약해지는 시간에 짧은 산책을 추가할 수 있습니다. 비가 약해도 바람이 강하면 해안 산책은 어려우므로 강수량과 바람을 함께 확인하세요.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Case 05</p>
+      <h2>제주 렌터카 반납일 — 공항권으로 좁히기</h2>
+      <p class="muted">제주 마지막 날은 오후 비행기여도 생각보다 여유가 적습니다. 마지막 관광지와 식사, 주유, 반납 셔틀이 겹치면 공항 도착 시간이 불안해집니다.</p>
+    </div>
+    <h3>Before: 마지막 날까지 먼 코스를 넣은 일정</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>중문 또는 동쪽 해안 코스 추가</td></tr>
+        <tr><th>점심</th><td>인기 식당 대기 후 공항 방향 이동</td></tr>
+        <tr><th>오후</th><td>반납 직전 주유소 검색</td></tr>
+        <tr><th>출발 전</th><td>반납 셔틀과 항공 수속 시간이 빠듯해짐</td></tr>
+      </tbody>
+    </table>
+    <p>먼 관광지를 넣으면 도로 상황과 식사 대기, 주유 위치가 모두 변수가 됩니다. 비가 오거나 성수기라면 셔틀 대기까지 겹칠 수 있습니다.</p>
+    <h3>After: 공항권 중심으로 줄인 일정</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>주유와 짐 정리 먼저 처리</td></tr>
+        <tr><th>점심</th><td>공항 반경 식사 또는 포장 가능한 곳 선택</td></tr>
+        <tr><th>오후</th><td>용두암, 시장, 카페처럼 짧은 코스만 선택</td></tr>
+        <tr><th>출발 전</th><td>항공 출발 2시간 30분 전 반납 기준 적용</td></tr>
+      </tbody>
+    </table>
+    <p>관광지 수는 줄지만 반납 리스크가 줄어듭니다. 공항 반경 코스는 비가 와도 식사와 실내 대체가 쉬워 마지막 날에 적합합니다. 마지막 날 일정은 출발 항공편 시간에서 거꾸로 계산하는 편이 안전합니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Case 06</p>
+      <h2>전주 한옥마을 — 주차 대기 대신 순서 바꾸기</h2>
+      <p class="muted">전주 한옥마을은 점심 시간대와 주말에 가까운 주차장부터 막힙니다. 대기를 오래 버티기보다 식사 순서와 걷는 방향을 바꾸면 일정 손실이 줄어듭니다.</p>
+    </div>
+    <h3>Before: 가까운 주차장만 기다리는 일정</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>한옥마을 공영주차장 진입 대기</td></tr>
+        <tr><th>점심</th><td>대기가 길어져 인기 식당 웨이팅까지 겹침</td></tr>
+        <tr><th>오후</th><td>경기전, 전동성당, 오목대를 왕복 동선으로 이동</td></tr>
+        <tr><th>저녁</th><td>피로가 커져 남부시장 또는 카페 일정을 포기</td></tr>
+      </tbody>
+    </table>
+    <p>가까운 주차장을 계속 기다리면 식사와 관람 시간이 함께 밀립니다. 부모님이나 아이와 함께라면 배고픔과 주차 스트레스, 도보 피로가 동시에 커집니다.</p>
+    <h3>After: 식사 우선 전환과 한 방향 도보</h3>
+    <table>
+      <tbody>
+        <tr><th>오전</th><td>주차 대기 10분 후 대체 주차장으로 전환</td></tr>
+        <tr><th>점심</th><td>남부시장 또는 외곽 식사 후보 중 빠른 곳 선택</td></tr>
+        <tr><th>오후</th><td>경기전, 전동성당, 골목을 한 방향으로 걷기</td></tr>
+        <tr><th>저녁</th><td>귀가 방향에 맞춰 카페 또는 시장 코스 선택</td></tr>
+      </tbody>
+    </table>
+    <p>가까운 주차장에 대한 집착을 줄이고 식사와 관광 순서를 바꿉니다. 한옥마을을 한 방향으로 걸으면 같은 길을 되돌아가는 시간이 줄어들고, 부모님 동반 여행에서도 계단과 왕복 도보를 줄이기 쉽습니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Case 07</p>
+      <h2>차 없는 여행 — 숙소를 이동 거점으로</h2>
+      <p class="muted">대중교통 여행은 숙소 위치 하나로 이동 난이도가 크게 달라집니다. 관광지와 가까운 숙소라도 역과 식사, 짐 보관이 불편하면 택시비와 대기 시간이 늘어납니다.</p>
+    </div>
+    <h3>Before: 관광지 거리만 보고 고른 숙소</h3>
+    <table>
+      <tbody>
+        <tr><th>도착</th><td>역에서 숙소까지 환승과 도보 이동이 길어짐</td></tr>
+        <tr><th>저녁</th><td>숙소 주변 식당이 적어 택시 이동</td></tr>
+        <tr><th>다음 날</th><td>체크아웃 후 짐을 들고 관광지 이동</td></tr>
+        <tr><th>복귀</th><td>역으로 돌아가는 시간이 예상보다 길어짐</td></tr>
+      </tbody>
+    </table>
+    <p>관광지와 가까운 숙소가 항상 좋은 것은 아닙니다. 짐이 있거나 비가 오면 역과 숙소 사이의 첫 이동이 더 큰 피로가 됩니다.</p>
+    <h3>After: 역과 식사, 짐 보관 기준으로 고른 숙소</h3>
+    <table>
+      <tbody>
+        <tr><th>도착</th><td>역 또는 터미널에서 한 번에 이동 가능한 숙소 선택</td></tr>
+        <tr><th>저녁</th><td>숙소 도보권 식사와 카페 후보 확보</td></tr>
+        <tr><th>다음 날</th><td>숙소 또는 역 보관함에 짐을 맡긴 뒤 관광</td></tr>
+        <tr><th>복귀</th><td>역 복귀 시간을 기준으로 마지막 코스 조정</td></tr>
+      </tbody>
+    </table>
+    <p>숙소가 이동 거점이 됩니다. 여행지가 조금 멀어도 도착과 복귀가 단순해지고 현장 택시비를 예측하기 쉬워집니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Summary</p>
+      <h2>일곱 가지 사례에서 반복되는 원칙</h2>
+      <p class="muted">지역과 상황은 달라도 개선 방향은 비슷했습니다.</p>
+    </div>
+    <ul>
+      <li>하루에 도는 권역을 하나로 줄이면 대기와 이동 손실이 함께 줄어듭니다.</li>
+      <li>핵심 코스는 오전 한 곳, 오후 한 곳으로 제한하고 나머지는 선택 코스로 둡니다.</li>
+      <li>식사 후보는 대기가 긴 곳 하나와 바로 갈 수 있는 곳 두 곳을 함께 적어둡니다.</li>
+      <li>마지막 날은 출발 시간에서 거꾸로 계산해 먼 코스를 넣지 않습니다.</li>
+      <li>비 예보가 있으면 숙소 반경 안에서 실내 대체지를 미리 정합니다.</li>
+      <li>차가 없다면 관광지와의 거리보다 역과 식사, 짐 보관 편의를 먼저 봅니다.</li>
+    </ul>
+    <div class="link-list">
+      <a href="/templates/">여행 준비 템플릿 모음</a>
+      <a href="/travel-tips/">여행 준비 가이드</a>
+      <a href="/travel-tips/rainy-day-backup-plan/">비 오는 날 대체 일정 짜는 법</a>
+      <a href="/domestic/">국내여행 허브</a>
     </div>
   </section>
 </BaseLayout>

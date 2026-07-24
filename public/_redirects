@@ -27,3 +27,15 @@ http://tourpick360.com/* https://tourpick360.com/:splat 301
 /domestic/festivals/festival-travel-budget-plan/ /domestic/festivals/festival-booking-budget-guide/ 301
 /domestic/festivals/festival-hotel-booking-checklist/ /domestic/festivals/festival-booking-budget-guide/ 301
 /domestic/festivals/rainy-day-indoor-festival-backup/ /domestic/festivals/festival-booking-budget-guide/ 301
+/case-studies/busan-family-route-before-after/ /case-studies/ 301
+/case-studies/gangneung-weekend-before-after/ /case-studies/ 301
+/case-studies/gyeongju-walking-route-before-after/ /case-studies/ 301
+/case-studies/jeju-rainy-day-before-after/ /case-studies/ 301
+/case-studies/jeju-rental-return-before-after/ /case-studies/ 301
+/case-studies/jeonju-parking-route-before-after/ /case-studies/ 301
+/case-studies/no-car-hotel-area-before-after/ /case-studies/ 301
+/templates/family-trip-plan-template/ /templates/ 301
+/templates/hotel-comparison-template/ /templates/ 301
+/templates/rainy-day-itinerary-template/ /templates/ 301
+/templates/travel-budget-template/ /templates/ 301
+/travel-tips/itinerary-before-after/ /case-studies/ 301

@@ -42,7 +42,7 @@ const staticItems = [
   },
   {
     title: '무리한 여행 일정 Before / After 사례',
-    href: '/travel-tips/itinerary-before-after/',
+    href: '/case-studies/',
     description: '국내여행에서 이동이 많은 일정을 숙소 권역과 핵심 코스 중심으로 개선하는 Before / After 사례입니다.'
   },
   {
@@ -52,12 +52,12 @@ const staticItems = [
   },
   {
     title: '가족여행 일정표 템플릿',
-    href: '/templates/family-trip-plan-template/',
+    href: '/templates/',
     description: '가족 국내여행을 준비할 때 숙소, 이동, 식사, 휴식 시간을 정리하는 일정표 템플릿입니다.'
   },
   {
     title: '비 오는 날 대체 일정 템플릿',
-    href: '/templates/rainy-day-itinerary-template/',
+    href: '/templates/',
     description: '비 예보가 있는 국내여행에서 야외 코스를 실내 코스로 바꾸는 대체 일정 템플릿입니다.'
   },
   {
@@ -72,47 +72,47 @@ const staticItems = [
   },
   {
     title: '부산 가족여행 숙소 동선 Before / After',
-    href: '/case-studies/busan-family-route-before-after/',
+    href: '/case-studies/',
     description: '부산 가족여행에서 여러 권역을 모두 넣은 일정을 숙소 권역 중심으로 개선하는 사례입니다.'
   },
   {
     title: '제주 비 오는 날 일정 Before / After',
-    href: '/case-studies/jeju-rainy-day-before-after/',
+    href: '/case-studies/',
     description: '제주 여행에서 비가 올 때 야외 중심 일정을 실내 대체 코스와 숙소 주변 동선으로 바꾸는 사례입니다.'
   },
   {
     title: '강릉 1박 2일 일정 Before / After',
-    href: '/case-studies/gangneung-weekend-before-after/',
+    href: '/case-studies/',
     description: '강릉 KTX 주말여행에서 이동이 많은 일정을 강릉역, 경포, 안목 중심으로 줄이는 Before / After 사례입니다.'
   },
   {
     title: '전주 한옥마을 주차 동선 Before / After',
-    href: '/case-studies/jeonju-parking-route-before-after/',
+    href: '/case-studies/',
     description: '전주 한옥마을 공영주차장이 만차일 때 식사, 대체 주차장, 도보 루트를 바꾸는 Before / After 사례입니다.'
   },
   {
     title: '경주 도보 여행 동선 Before / After',
-    href: '/case-studies/gyeongju-walking-route-before-after/',
+    href: '/case-studies/',
     description: '경주 대릉원, 첨성대, 황리단길을 부모님 동반 여행 기준으로 줄이는 Before / After 사례입니다.'
   },
   {
     title: '제주 렌터카 반납일 Before / After',
-    href: '/case-studies/jeju-rental-return-before-after/',
+    href: '/case-studies/',
     description: '제주 여행 마지막 날 렌터카 반납, 주유, 공항권 식사, 마지막 관광지를 조정하는 Before / After 사례입니다.'
   },
   {
     title: '차 없는 국내여행 숙소 위치 Before / After',
-    href: '/case-studies/no-car-hotel-area-before-after/',
+    href: '/case-studies/',
     description: '대중교통 국내여행에서 관광지 가까운 숙소보다 역, 식사, 짐 보관 기준으로 숙소를 고르는 Before / After 사례입니다.'
   },
   {
     title: '국내여행 예산표 템플릿',
-    href: '/templates/travel-budget-template/',
+    href: '/templates/',
     description: '숙소, 교통, 식비, 관광비, 예비비를 나누어 국내여행 예산을 계산하는 템플릿입니다.'
   },
   {
     title: '숙소 비교표 템플릿',
-    href: '/templates/hotel-comparison-template/',
+    href: '/templates/',
     description: '국내여행 숙소를 위치, 이동 시간, 취소 조건, 주차, 조식 기준으로 비교하는 템플릿입니다.'
   },
   {

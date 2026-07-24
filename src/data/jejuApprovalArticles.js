@@ -370,7 +370,7 @@ const legacyJejuApprovalArticles = [
     { label: '가족 숙소', title: '제주 가족여행 숙소 지역별 선택 기준', href: '/domestic/jeju/family-hotel-area-guide/' },
     { label: '동부 숙소', title: '제주 성산 숙소 선택 전 알아야 할 동선', href: '/domestic/jeju/seongsan-hotel-route-guide/' },
     { label: '중문 숙소', title: '제주 중문 숙소가 가족여행에 좋은 이유', href: '/domestic/jeju/jungmun-family-resort-guide/' },
-    { label: '일정 팁', title: '무리한 여행 일정 Before / After', href: '/travel-tips/itinerary-before-after/' }
+    { label: '일정 팁', title: '여행 일정 개선 사례 모음', href: '/case-studies/' }
   ]
   }
 ];
