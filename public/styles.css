@@ -4524,6 +4524,17 @@ body {
   margin-right: auto;
 }
 
+.festival-index-page .domestic-hero {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (max-width: 900px) {
+  .festival-index-page .domestic-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
 .festival-index-page .season-lane {
   overflow-x: auto;
   padding-left: 24px;
