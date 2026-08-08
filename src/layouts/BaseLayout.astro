@@ -10,44 +10,44 @@ const {
 const canonicalUrl = new URL(Astro.url.pathname, 'https://tourpick360.com').toString();
 const ogImageUrl = new URL(image, 'https://tourpick360.com').toString();
 
-const navLabelsKo = ['국내여행', '축제', '제주', '여행준비', '맛집', '가이드', '소개'];
+const navLabels = ['국내여행', '축제', '제주', '여행준비', '사례', '템플릿', '소개'];
 
-const footerGroupsKo = {
+const footerGroups = {
   service: '서비스',
   destinations: '인기 여행지',
-  policy: '운영 정보',
-  links: ['국내여행 허브', '축제 여행', '제주 가이드', '여행 준비', '비교 도구', '서울', '부산', '강릉', '경주', '여수', '소개', '편집 기준', '문의', '개인정보처리방침', '이용약관', '정보 제공 원칙']
+  policy: '운영 정보'
 };
 
-const footerHrefs = [
-  '/domestic/',
-  '/domestic/festivals/',
-  '/domestic/jeju/',
-  '/travel-tips/',
-  '/tools/itinerary-comparison/',
-  '/domestic/seoul/purpose-area-hotel-guide/',
-  '/domestic/busan/family-hotel-area-guide/',
-  '/domestic/gangneung/ktx-weekend-trip-guide/',
-  '/domestic/gyeongju/walking-route-hotel-area-guide/',
-  '/domestic/yeosu/night-view-hotel-route-guide/',
-  '/about/',
-  '/editorial-policy/',
-  '/contact/',
-  '/privacy/',
-  '/terms/',
-  '/disclosure/'
+const serviceLinks = [
+  { label: '국내여행 허브', href: '/domestic/' },
+  { label: '축제 여행', href: '/domestic/festivals/' },
+  { label: '제주 가이드', href: '/domestic/jeju/' },
+  { label: '여행 준비', href: '/travel-tips/' },
+  { label: '일정 개선 사례', href: '/case-studies/' },
+  { label: '여행 준비 템플릿', href: '/templates/' },
+  { label: '비교 도구', href: '/tools/itinerary-comparison/' }
 ];
 
-const footerTextKo = '국내 계절 여행과 축제 여행을 중심으로 숙소 위치, 이동 동선, 준비 정보를 정리하는 여행 정보 사이트입니다.';
+const destinationLinks = [
+  { label: '서울', href: '/domestic/seoul/purpose-area-hotel-guide/' },
+  { label: '부산', href: '/domestic/busan/family-hotel-area-guide/' },
+  { label: '강릉', href: '/domestic/gangneung/ktx-weekend-trip-guide/' },
+  { label: '경주', href: '/domestic/gyeongju/walking-route-hotel-area-guide/' },
+  { label: '여수', href: '/domestic/yeosu/night-view-hotel-route-guide/' }
+];
 
-const navLabels = navLabelsKo;
-const footerGroups = footerGroupsKo;
-const footerText = footerTextKo;
+const policyLinks = [
+  { label: '소개', href: '/about/' },
+  { label: '편집 기준', href: '/editorial-policy/' },
+  { label: '문의', href: '/contact/' },
+  { label: '개인정보처리방침', href: '/privacy/' },
+  { label: '이용약관', href: '/terms/' },
+  { label: '정보 제공 원칙', href: '/disclosure/' }
+];
+
+const footerText = '국내 계절 여행과 축제 여행을 중심으로 숙소 위치, 이동 동선, 준비 정보를 정리하는 여행 정보 사이트입니다.';
 const footerMenuLabel = lang === 'ko' ? '푸터 메뉴' : 'Footer menu';
 const mainMenuLabel = lang === 'ko' ? '주요 메뉴' : 'Main menu';
-const serviceLinks = footerGroups.links.slice(0, 5).map((label, index) => ({ label, href: footerHrefs[index] }));
-const destinationLinks = footerGroups.links.slice(5, 10).map((label, index) => ({ label, href: footerHrefs[index + 5] }));
-const policyLinks = footerGroups.links.slice(10).map((label, index) => ({ label, href: footerHrefs[index + 10] }));
 ---
 <!doctype html>
 <html lang={lang}>
@@ -87,8 +87,8 @@ const policyLinks = footerGroups.links.slice(10).map((label, index) => ({ label,
         <a href="/domestic/festivals/">{navLabels[1]}</a>
         <a href="/domestic/jeju/">{navLabels[2]}</a>
         <a href="/travel-tips/">{navLabels[3]}</a>
-        <a href="/domestic/festivals/seasonal-festival-travel-guide/">{navLabels[4]}</a>
-        <a href="/domestic/">{navLabels[5]}</a>
+        <a href="/case-studies/">{navLabels[4]}</a>
+        <a href="/templates/">{navLabels[5]}</a>
         <a href="/about/">{navLabels[6]}</a>
       </nav>
     </header>
