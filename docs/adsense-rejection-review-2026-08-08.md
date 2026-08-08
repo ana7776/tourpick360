@@ -77,3 +77,28 @@ This isn't something to code-fix reflexively — rewriting 33 articles risks doi
 3. Apply the template-diversification pass above to 8-10 flagship articles.
 4. Wait for organic traffic/indexing signal to stabilize (the existing roadmap's "2~3일에 글 1개, 구조 변경 최소화" cadence) before submitting for re-review — don't reapply the same day as a content batch push.
 5. Re-run `npm run check:seo` before every reapplication as a final gate; it's a good pre-flight signal but not a substitute for a human skim of the top 5 landing pages a reviewer is most likely to hit (`/`, `/domestic/`, `/domestic/jeju/`, `/domestic/festivals/`, `/travel-tips/`).
+
+## Structural Audit (2026-08-08, second pass)
+
+Follow-up review focused specifically on site-wide *structure* — navigation, internal linking, page hierarchy — since that's the layer a reviewer forms an impression from before reading any single article closely.
+
+### 5. Site-wide header nav had the same label/destination mismatch as the homepage cards — but global
+
+`BaseLayout.astro`'s `<nav class="main-nav">` renders on all 76 pages. It had two defects:
+- "맛집" (restaurant map) linked to `/domestic/festivals/seasonal-festival-travel-guide/` — same mismatch pattern as the homepage cards fixed earlier, except this one is on every single page, not just the homepage.
+- "가이드" linked to `/domestic/` — identical URL to the adjacent "국내여행" item. Two menu items, one destination; looks like a placeholder that was never finished.
+
+Both `/case-studies/` and `/templates/` — two fully-built hub pages (1,000+ words each, real checklists and comparison tables) — had **zero presence in either the header or footer nav**. They were only reachable through inline links buried in article bodies. For a reviewer (or Google) forming a picture of site structure from the nav alone, these sections effectively didn't exist.
+
+**Fixed**: replaced the two broken nav slots with `/case-studies/` and `/templates/`, added both to the footer's service-links group, and refactored the footer's link generation away from a fragile parallel-array + index-slice pattern (label array, separate href array, matched by numeric position) into direct `{label, href}` pairs — that pattern is exactly the shape of bug that caused the header mismatch in the first place, just correct by coincidence in the footer. Rebuilt and re-scanned: 0 broken internal links across all 76 pages.
+
+### Other structural checks (all clean, no fix needed)
+
+- **Orphan pages**: built a full internal-link graph from the `dist/` output. Every page is reachable from at least one other internal link except `/search/`, which is intentionally form-only and `noindex`. No accidental orphans.
+- **Duplicate titles/descriptions**: checked all 76 pages for exact-match `<title>` or meta description collisions. Zero duplicates — every page has a unique title and description.
+- **Sitemap accuracy**: `sitemap-0.xml` lists 74 URLs; all 74 correspond to real built pages, none point at removed content (confirmed no leftover references to the deleted "bicycle" routes content that `docs/indexing-priority-urls.md` still mentions — that doc is stale, the sitemap itself is clean).
+- **URL structure**: consistent `/domestic/{region}/{article}/` and `/travel-tips/{article}/` patterns, no numeric IDs, trailing slashes consistent, single canonical host.
+
+### Lower-priority structural gap (not fixed this pass)
+
+About half of individual article pages have a visual breadcrumb (`<nav class="breadcrumb">`) but no matching `BreadcrumbList` JSON-LD, and hub pages (`/domestic/`, `/domestic/jeju/`, `/travel-tips/`, `/templates/`, `/case-studies/`, homepage) have no breadcrumb at all, visual or structured. This affects how cleanly Google can render breadcrumb trails in search results and understand page hierarchy programmatically — real, but secondary to the nav-destination bugs above, and touches enough files that it's a separate, deliberate pass rather than a quick fix. Worth doing before the next reapplication, not blocking it.
