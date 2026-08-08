@@ -1,6 +1,43 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { allJejuArticles } from '../../../data/jejuApprovalArticles.js';
+
+const areaBoard = [
+  {
+    name: '공항권 (제주시·용담·연동·노형)',
+    summary: '늦은 도착, 이른 출발, 1박 짧은 일정에 유리합니다. 대신 동부·서부 관광지는 매일 왕복 이동이 길어질 수 있습니다.',
+    href: '/domestic/jeju/jeju-hotel-area-guide/'
+  },
+  {
+    name: '애월 (곽지·한담·하귀)',
+    summary: '해안도로와 카페 감성이 강한 지역입니다. 주말 오후에는 도로 정체가 잦아 이동 시간을 넉넉히 잡아야 합니다.',
+    href: '/domestic/jeju/jeju-hotel-area-guide/'
+  },
+  {
+    name: '중문 (색달·대포·서귀포 서부)',
+    summary: '리조트 부대시설이 모여 있어 숙소 안에서 보내는 시간이 긴 가족 여행에 유리합니다. 성수기 가격 변동이 큰 편입니다.',
+    href: '/domestic/jeju/family-hotel-area-guide/'
+  },
+  {
+    name: '성산 (섭지코지·표선·구좌 일부)',
+    summary: '일출, 우도 방문 일정과 잘 맞습니다. 서부 숙소에서 매일 왕복하면 이동만으로 반나절이 소요될 수 있습니다.',
+    href: '/domestic/jeju/jeju-hotel-area-guide/'
+  }
+];
+
+const travelerGuides = [
+  ['가족 여행', '객실 크기, 엑스트라 베드, 세탁 시설, 조식 운영 시간을 먼저 확인하고 관광지는 숙소 권역 중심으로 압축합니다.'],
+  ['부모님 동반', '도보 거리와 계단, 주차장에서 숙소 입구까지 이동 거리를 우선 확인합니다.'],
+  ['커플·기념일 여행', '사진 명소보다 저녁 복귀 동선과 숙소 주변 식사 후보를 함께 봅니다.'],
+  ['렌터카 없는 여행', '제주시와 서귀포 시내는 대중교통으로 다닐 만하지만, 동부·서부 이동은 투어나 택시 비용을 함께 계산해야 합니다.']
+];
+
+const bookingSteps = [
+  ['1단계', '가장 멀리 가고 싶은 관광지 한두 곳을 먼저 정합니다.'],
+  ['2단계', '그 관광지까지 이동 시간을 기준으로 숙소 권역 후보를 2곳으로 좁힙니다.'],
+  ['3단계', '렌터카 인수·반납 장소와 무료 주차 가능 여부를 확인합니다.'],
+  ['4단계', '3박 이상이면 숙소를 1~2곳으로 나눌지 정하고 이동일에는 일정을 가볍게 둡니다.']
+];
 ---
 <BaseLayout title="제주 여행 가이드 - Tourpick360" description="제주 숙소 권역, 렌터카 동선, 가족 여행 코스, 비 오는 날 대체 일정과 계절별 여행 준비 기준을 비교해 정리합니다.">
   <section class="page category-page">
@@ -13,17 +50,62 @@ import { allJejuArticles } from '../../../data/jejuApprovalArticles.js';
     </figure>
     <div class="category-summary">
       <div>
-        <strong>10</strong>
+        <strong>{allJejuArticles.length}</strong>
         <span>제주 핵심 가이드</span>
       </div>
       <div>
-        <strong>6</strong>
-        <span>360도 판단 항목</span>
+        <strong>4</strong>
+        <span>숙소 권역 비교</span>
       </div>
       <div>
-        <strong>2026.06.05</strong>
+        <strong>2026.08.08</strong>
         <span>최종 구조 점검일</span>
       </div>
+    </div>
+  </section>
+
+  <section class="domestic-board">
+    <div class="board-intro">
+      <p class="eyebrow">Area Comparison</p>
+      <h2>제주 숙소 권역 4곳 비교</h2>
+      <p>같은 제주라도 권역마다 어울리는 일정이 다릅니다. 관광지 유명세보다 숙소에서 관광지까지 이동 시간과 날씨 변수 대응을 먼저 비교하세요.</p>
+    </div>
+    <div class="region-board">
+      {areaBoard.map((row, index) => (
+        <a class="region-row" href={row.href}>
+          <span class="region-number">{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{row.name}</h3>
+            <p>{row.summary}</p>
+          </div>
+          <dl>
+            <div>
+              <dt>핵심</dt>
+              <dd>이동 시간</dd>
+            </div>
+            <div>
+              <dt>목적</dt>
+              <dd>동선 압축</dd>
+            </div>
+          </dl>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="domestic-routes">
+    <div>
+      <p class="eyebrow">Traveler Type</p>
+      <h2>동행 유형별로 달라지는 제주 숙소 선택 기준</h2>
+      <p>같은 권역이라도 누구와 가는지에 따라 확인할 우선순위가 달라집니다.</p>
+    </div>
+    <div class="route-notes">
+      {travelerGuides.map(([title, body]) => (
+        <section>
+          <h3>{title}</h3>
+          <p>{body}</p>
+        </section>
+      ))}
     </div>
   </section>
 
@@ -41,5 +123,15 @@ import { allJejuArticles } from '../../../data/jejuApprovalArticles.js';
         </article>
       ))}
     </div>
+  </section>
+
+  <section class="checklist-roadmap">
+    <p class="eyebrow">Booking Flow</p>
+    <h2>제주 숙소 예약 전 확인 순서</h2>
+    <ol>
+      {bookingSteps.map(([step, body]) => (
+        <li><strong>{step}</strong><span>{body}</span></li>
+      ))}
+    </ol>
   </section>
 </BaseLayout>

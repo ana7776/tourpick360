@@ -73,6 +73,7 @@ if (!existsSync(distDir)) {
     const text = strippedText(html);
     const wordCount = text ? text.split(/\s+/).length : 0;
     const images = imageTags(html);
+    const isNoindex = /<meta\s+name="robots"\s+content="noindex/i.test(html);
 
     if (h1Count !== 1) failures.push(`${relative}: expected exactly one H1, found ${h1Count}`);
     for (let index = 1; index < headings.length; index += 1) {
@@ -82,7 +83,8 @@ if (!existsSync(distDir)) {
       }
     }
     if (!title || title.length < 10) failures.push(`${relative}: missing or too-short title`);
-    if (!description || description.length < 50) failures.push(`${relative}: missing or too-short meta description`);
+    if (!description) failures.push(`${relative}: missing meta description`);
+    else if (!isNoindex && description.length < 50) failures.push(`${relative}: missing or too-short meta description`);
     if (!canonical?.startsWith('https://tourpick360.com/')) failures.push(`${relative}: missing canonical URL`);
     for (const [index, tag] of images.entries()) {
       if (!attributeValue(tag, 'alt')) {
@@ -100,6 +102,7 @@ if (!existsSync(distDir)) {
     }
     if (
       wordCount < 250 &&
+      !isNoindex &&
       !/^(404\.html|about|contact|disclosure|editorial-policy|privacy|terms|en|es|ja|zh-CN)(\/|$)/.test(relative)
     ) {
       warnings.push(`${relative}: short visible body (${wordCount} words). Consider expanding or noindexing before AdSense review.`);
