@@ -28,7 +28,13 @@ None of this explains a "low value content" rejection by itself — the skeleton
 
 This is the site's flagship category — it's the one niche the approval docs specifically narrowed to ("국내 계절 축제 여행 가이드" / Jeju as the first proof cluster) — yet its hub page was little more than a headline and a card grid. Sibling hubs are much deeper: `/domestic/festivals/` (1,286 words), `/templates/` (1,141 words), `/domestic/` (878 words). A reviewer landing on the site's most-linked category page and seeing the thinnest page on the whole site is a bad first impression, and it's inconsistent in a way that reads as unfinished.
 
-**Fixed**: added an area-comparison board (4 Jeju regions with real trade-offs pulled from the existing article data), a traveler-type section (family / parents / couple / no rental car), and a booking-order checklist — the same structural pattern already proven on the festivals hub. Now 409 words of genuine comparison content, not filler.
+**Fixed**: added an area-comparison board (4 Jeju regions with real trade-offs), a traveler-type section (family / parents / couple / no rental car), and a booking-order checklist — the same structural pattern already proven on the festivals hub. Now 409 words of genuine comparison content, not filler.
+
+**Correction made in a follow-up commit**: the first pass of this fix linked the 4 area-board rows to `airport-area-hotel-checklist`, `aewol-hotel-pros-cons`, `jungmun-family-resort-guide`, and `seongsan-hotel-route-guide` — slugs that read as real from `jejuApprovalArticles.js` but don't actually exist as pages. That file still contained a 373-line unused array of the original 10 per-area Jeju articles, left over from when they were intentionally merged into one comprehensive article (`jejuHotelAreaGuide.js`, commit `b3a8974` "Consolidate Jeju hotel articles"). The array was never exported or rendered by any page — `jejuApprovalArticles` (the actual export) is just `[jejuHotelAreaGuide]`, one article. Real live Jeju content is **3 articles**, not 10: `jeju-hotel-area-guide`, `family-hotel-area-guide`, `2n3d-rental-car-itinerary`.
+
+Fixed by pointing the area board at the two real articles that do cover all 4 regions, deleting the unused array (it's already preserved in git history from before the consolidation), and switching the hub's displayed article count from a hardcoded `10` to `{allJejuArticles.length}` so it can't silently go stale again. Re-verified with a full internal-link scan against the `dist/` build after the fix: 0 broken targets.
+
+This is also a useful data point on its own: the consolidation from 10 thin per-area pages down to 1 comprehensive comparison article was exactly the right instinct for avoiding the "low value / scaled content" pattern — it just left dead code behind that made the site's real content count look bigger than it is on a casual read of the source.
 
 ### 2. `/travel-tips/` hub had a dead section
 
@@ -53,13 +59,16 @@ This is exactly the kind of mismatch a manual reviewer flags as low-effort or ba
 
 ## Real Risk That Was Not Code-Fixable This Pass: Template Sameness
 
-The approval-article clusters (`jejuApprovalArticles.js` — 10 articles, `festivalApprovalArticles.js` — 13, `problemSolvingArticles.js` — 15; ~38 pages total) are individually well-written — specific, non-generic reasoning, real trade-offs, not spun text. But they all follow one identical skeleton: intro → 4 fixed-heading sections (거의 always "예약 전 확인할 점," "장단점," "동선," "추천 배치/예시") → checklist → 3 FAQs. Google's low-value/scaled-content review does not only look at whether one page is thin; it looks at whether a large cluster of pages reads as the same template with nouns swapped. With 38 near-identical structures published in a short window, that pattern is a plausible contributor to the original rejection even though no single article is bad.
+Corrected count after checking what's actually exported and rendered (not just grepped from source, which over-counts thanks to the dead Jeju array above): the live approval-article clusters are `festivalApprovalArticles.js` — 18 articles and `problemSolvingArticles.js` — 15 articles, **33 pages total**. Jeju is no longer part of this risk — it was already consolidated into 1 article, which is the right shape.
 
-This isn't something to code-fix reflexively — rewriting 38 articles risks doing more harm than good without editorial judgment. Recommended approach before reapplying:
+These 33 are individually well-written — specific, non-generic reasoning, real trade-offs, not spun text. But they follow one recurring skeleton: intro → ~4 fixed-purpose sections (pros/cons, criteria, route, recommendation, in varying words) → checklist → 3 FAQs. Google's low-value/scaled-content review does not only look at whether one page is thin; it looks at whether a large cluster of pages reads as the same template with nouns swapped. With 33 similarly-shaped pages, that pattern is a plausible contributor to the original rejection even though no single article is bad — and the Jeju consolidation shows the team already knows how to defuse this (merge many thin variants into fewer comprehensive ones) rather than just varying the prose.
 
-1. Pick 8-10 of the highest-value articles (the ones covering the site's core Jeju/festival niche) and vary their structure: different heading counts, a first-person observation, a real number or date, a photo where one doesn't exist yet — anything that breaks the template fingerprint.
-2. Don't publish new articles from the same template in bulk right before reapplying; new content should look like it was written when needed, not generated in a batch.
-3. Leave the rest as-is for now — consolidating/rewriting all 38 at once is a bigger structural change than is safe to do right before a review cycle.
+This isn't something to code-fix reflexively — rewriting 33 articles risks doing more harm than good without editorial judgment. Recommended approach before reapplying:
+
+1. Consider whether the festival (18) and problem-solving (15) clusters have the same over-segmentation the Jeju cluster had — i.e., whether some of these should be merged into fewer, deeper comparison articles rather than kept as many similar single-scenario pages. That's a stronger fix than prose-level variation.
+2. For clusters that stay separate, pick 8-10 of the highest-value articles and vary their structure: different heading counts, a first-person observation, a real number or date, a photo where one doesn't exist yet — anything that breaks the template fingerprint.
+3. Don't publish new articles from the same template in bulk right before reapplying; new content should look like it was written when needed, not generated in a batch.
+4. Whatever gets touched, re-run the internal-link scan afterward (see the correction above) — consolidating or renaming articles is exactly the kind of change that silently orphans links if a data file isn't fully cleaned up.
 
 ## Recommended Order of Operations
 
