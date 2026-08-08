@@ -46,7 +46,9 @@ const coreGuides = [
       <h2>기본 여행 준비 글</h2>
     </div>
     <div class="link-list">
-      
+      {coreGuides.map(([title, href]) => (
+        <a href={href}>{title}</a>
+      ))}
     </div>
   </section>
 </BaseLayout>
