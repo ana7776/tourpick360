@@ -17,6 +17,14 @@ http://tourpick360.com/* https://tourpick360.com/:splat 301
 /domestic/bicycle/ /domestic/ 301
 /domestic/bicycle-routes-guide/ /domestic/ 301
 /api/bicycle-routes.json /domestic/ 301
+/en/bicycle-routes/ /domestic/ 301
+/ja/bicycle-routes/ /domestic/ 301
+/es/bicycle-routes/ /domestic/ 301
+/zh-CN/bicycle-routes/ /domestic/ 301
+/en/ / 301
+/ja/ / 301
+/es/ / 301
+/zh-CN/ / 301
 /domestic/festivals/spring-flower-festival-hotel-area/ /domestic/festivals/seasonal-festival-travel-guide/ 301
 /domestic/festivals/summer-beach-festival-checklist/ /domestic/festivals/seasonal-festival-travel-guide/ 301
 /domestic/festivals/autumn-food-festival-route/ /domestic/festivals/seasonal-festival-travel-guide/ 301
