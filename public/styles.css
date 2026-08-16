@@ -6917,6 +6917,105 @@ body {
   gap: 18px;
 }
 
+.sky-section-note {
+  margin: -4px 0 16px;
+  color: #40567d;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.sky-review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.sky-review-grid a {
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  border: 1px solid #cfe2fb;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.07);
+}
+
+.sky-review-grid img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #edf7ff;
+}
+
+.sky-review-grid div {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+}
+
+.sky-review-grid span {
+  justify-self: start;
+  border-radius: 999px;
+  background: #e7f0ff;
+  padding: 3px 10px;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.sky-review-grid strong {
+  color: #102247;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.sky-review-grid p {
+  margin: 0;
+  color: #40567d;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sky-review-grid dl {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0 0;
+  border-top: 1px solid #e6eefb;
+  padding-top: 10px;
+}
+
+.sky-review-grid dl div {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 8px;
+  padding: 0;
+}
+
+.sky-review-grid dt {
+  color: #6b7fa3;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sky-review-grid dd {
+  margin: 0;
+  color: #23375e;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .sky-review-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .sky-review-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .sky-guide-grid a,
 .sky-destination-panel,
 .sky-prep-panel,

@@ -40,7 +40,78 @@ const categoryCards = [
   }
 ];
 
+const fieldReviews = [
+  {
+    title: '전주 베테랑칼국수와 추탄1438, 덕진공원 연꽃 야경 코스',
+    summary: '7명이 낮에는 실내, 어두워진 뒤 야외로 움직인 전주 하루 코스입니다. 웨이팅, 단체석, 주차 상황을 현장에서 확인했습니다.',
+    visited: '2026년 7월 22일 · 7월 17일',
+    party: '7명',
+    cost: '각자 계산 (현장 메뉴판 가격 기록)',
+    image: '/images/jeonju-deokjin-course/deokjin-yeonhwajeong-library-night.webp',
+    alt: '전주 덕진공원 연화정도서관 야경',
+    href: '/domestic/festivals/jeonju-veteran-kalguksu-chutan1438-deokjin-park-night-course/'
+  },
+  {
+    title: '무주 머루와인동굴과 적상산, 계곡 물놀이까지 14명 단체 여행',
+    summary: '전주 출발 당일 코스. 오전은 서늘한 동굴과 고지대, 가장 더운 오후는 계곡에 배치했습니다.',
+    visited: '2026년 7월 12일',
+    party: '14명 · 전주 출발',
+    cost: '입금 750,000원 / 지출 749,700원',
+    image: '/images/muju-jeoksangsan/jeoksangsan-observatory-view.webp',
+    alt: '무주 적상산 전망대에서 내려다본 산과 저수지 풍경',
+    href: '/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/'
+  },
+  {
+    title: '칠갑산 천장호 출렁다리와 부여 궁남지 연꽃축제 당일 코스',
+    summary: '10명 모임으로 청양과 부여를 하루에 묶었습니다. 점심 웨이팅과 축제 마지막 날 현장 분위기를 담았습니다.',
+    visited: '2026년 7월 5일',
+    party: '10명 · 전주 출발',
+    cost: '입금 360,000원 / 지출 359,510원',
+    image: '/images/buyeo-lotus-chilgapsan/gungnamji-lotus-pond-wide.webp',
+    alt: '부여 궁남지 연꽃축제 연꽃 풍경',
+    href: '/domestic/festivals/buyeo-lotus-chilgapsan-group-trip-review/'
+  },
+  {
+    title: '거제남부수국공원과 바람의언덕, 신선대 당일 코스',
+    summary: '전주 출발 15명 당일치기. 수국 시즌 남부권 동선과 오후 체력 안배 기준을 정리했습니다.',
+    visited: '2026년 6월 28일',
+    party: '15명 · 전주 출발',
+    cost: '1인 75,000원 / 총지출 1,122,930원',
+    image: '/images/geoje-hydrangea-course/geoje-nambu-hydrangea-park-walk.jpg',
+    alt: '거제남부수국공원 수국길을 걷는 방문객들',
+    href: '/domestic/festivals/geoje-hydrangea-windhill-sinseondae-course/'
+  },
+  {
+    title: '고창 청농원 라벤더와 영광 백수해안도로 단체 여행 코스',
+    summary: '15명 기준 꽃 여행과 해안 드라이브를 하루에 묶었습니다. 계단·경사 구간과 부모님 동반 주의점을 확인했습니다.',
+    visited: '2026년 6월',
+    party: '15명',
+    cost: '총지출 826,960원 / 1인 약 55,000원',
+    image: '/images/gochang-yeonggwang/gochang-bluefarm-lavender-swing.jpg',
+    alt: '고창 청농원 라벤더 정원과 그네',
+    href: '/domestic/festivals/gochang-bluefarm-lavender-yeonggwang-drive/'
+  }
+];
+
 const latestGuides = [
+  {
+    category: '모임 후기',
+    title: '전주 베테랑칼국수와 추탄1438, 덕진공원 연꽃 야경 하루 코스',
+    summary: '7명 모임으로 다녀온 전주 시내 코스. 웨이팅, 단체석, 주차, 야경 시간대를 현장 기준으로 정리했습니다.',
+    date: '2026.07.23',
+    image: '/images/jeonju-deokjin-course/deokjin-yeonhwajeong-library-night.webp',
+    alt: '전주 덕진공원 연화정도서관 야경',
+    href: '/domestic/festivals/jeonju-veteran-kalguksu-chutan1438-deokjin-park-night-course/'
+  },
+  {
+    category: '모임 후기',
+    title: '무주 머루와인동굴과 적상산, 계곡 물놀이 14명 단체 여행 후기',
+    summary: '전주 출발 당일 코스의 실제 시간표와 750,000원 예산 정산 내역을 담았습니다.',
+    date: '2026.07.13',
+    image: '/images/muju-jeoksangsan/jeoksangsan-observatory-view.webp',
+    alt: '무주 적상산 전망대에서 내려다본 산과 저수지 풍경',
+    href: '/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/'
+  },
   {
     category: '거제 여행지',
     title: '거제 여행지 권역별 추천 코스와 동선 가이드',
@@ -49,15 +120,6 @@ const latestGuides = [
     image: '/images/tourapi/geoje-wind-hill.jpg',
     alt: '거제 바람의언덕 바다 전망',
     href: '/domestic/geoje/attraction-area-guide/'
-  },
-  {
-    category: '모임 후기',
-    title: '칠갑산 천장호와 부여 궁남지 연꽃축제 당일 코스',
-    summary: '10명 모임의 실제 정산, 점심 웨이팅, 궁남지와 국립부여박물관 후기를 담았습니다.',
-    date: '2026.07.06',
-    image: '/images/buyeo-lotus-chilgapsan/gungnamji-lotus-pond-wide.webp',
-    alt: '부여 궁남지 연꽃축제 연꽃 풍경',
-    href: '/domestic/festivals/buyeo-lotus-chilgapsan-group-trip-review/'
   },
   {
     category: '강릉 여행지',
@@ -156,6 +218,33 @@ const websiteJsonLd = {
         <small>{card.summary}</small>
       </a>
     ))}
+  </section>
+
+  <section class="sky-content-section">
+    <div class="sky-title-row">
+      <h2>직접 다녀온 여행 후기</h2>
+      <a href="/domestic/festivals/">더보기</a>
+    </div>
+    <p class="sky-section-note">
+      아래 글은 모두 운영자가 모임과 함께 실제로 다녀온 뒤 작성한 후기입니다. 방문일, 인원, 실제 지출 내역, 현장에서 확인한 대기·주차 상황을 그대로 적었습니다.
+    </p>
+    <div class="sky-review-grid">
+      {fieldReviews.map((review) => (
+        <a href={review.href}>
+          <img src={review.image} alt={review.alt} width="420" height="240" loading="lazy" />
+          <div>
+            <span>직접 방문</span>
+            <strong>{review.title}</strong>
+            <p>{review.summary}</p>
+            <dl>
+              <div><dt>방문일</dt><dd>{review.visited}</dd></div>
+              <div><dt>인원</dt><dd>{review.party}</dd></div>
+              <div><dt>비용</dt><dd>{review.cost}</dd></div>
+            </dl>
+          </div>
+        </a>
+      ))}
+    </div>
   </section>
 
   <section class="sky-content-section">
