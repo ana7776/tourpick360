@@ -1267,11 +1267,30 @@ h2 {
   font-size: 46px;
 }
 
+/* 비교 도구는 10개 유형을 모두 서버에서 출력한다. 자바스크립트가 실행되면
+   .tool-compare-section에 data-tabs="on"이 붙어 탭 UI로 접히고, 그전까지는
+   전체 내용이 펼쳐진 문서로 읽힌다. */
 .tool-controls {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 10px;
   margin: 28px 0;
+}
+
+.tool-compare-section[data-tabs='on'] .tool-controls {
+  display: flex;
+}
+
+.tool-compare-section[data-tabs='on'] .tool-panel[data-inactive] {
+  display: none;
+}
+
+.tool-panel {
+  margin-top: 28px;
+}
+
+.tool-compare-section[data-tabs='on'] .tool-panel {
+  margin-top: 0;
 }
 
 .tool-tab {
