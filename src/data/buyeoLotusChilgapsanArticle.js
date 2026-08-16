@@ -1,4 +1,6 @@
 export const buyeoLotusChilgapsanArticle = {
+  visitType: 'visited',
+  visitedOn: '2026년 7월 5일',
   slug: 'buyeo-lotus-chilgapsan-group-trip-review',
   title: '칠갑산 천장호 출렁다리와 부여 궁남지 연꽃축제 단체 여행 후기',
   description: '2026년 7월 5일 10명 모임으로 다녀온 칠갑산 천장호 출렁다리, 쌀밥애 찌개담다 점심, 부여 궁남지 연꽃축제, 국립부여박물관 당일 여행 후기입니다.',

@@ -1267,6 +1267,45 @@ h2 {
   font-size: 46px;
 }
 
+/* 실제 방문 후기 / 공식자료 기반 가이드 구분 배지 */
+.source-badge {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0 18px;
+  border: 1px solid #dbe7f8;
+  border-left: 4px solid #94a9c6;
+  border-radius: 10px;
+  background: #f7fafe;
+  padding: 12px 14px;
+}
+
+.source-badge.is-visited {
+  border-color: #bfdcc4;
+  border-left-color: #2f8f4e;
+  background: #f4fbf6;
+}
+
+.source-badge-tag {
+  justify-self: start;
+  border-radius: 999px;
+  background: #e5ecf7;
+  padding: 3px 10px;
+  color: #3d5a8a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.source-badge.is-visited .source-badge-tag {
+  background: #dff0e4;
+  color: #1f6b39;
+}
+
+.source-badge-text {
+  color: #44567a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 /* 비교 도구는 10개 유형을 모두 서버에서 출력한다. 자바스크립트가 실행되면
    .tool-compare-section에 data-tabs="on"이 붙어 탭 UI로 접히고, 그전까지는
    전체 내용이 펼쳐진 문서로 읽힌다. */

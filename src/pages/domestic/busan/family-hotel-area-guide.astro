@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -15,6 +16,7 @@ const heroImage = getTourApiImage('busan', {
     </nav>
     <p class="eyebrow">부산 숙소</p>
     <h1>부산 가족여행 숙소 권역 고르는 법</h1>
+    <SourceBadge />
     <p class="lead">부산은 해변, 시장, 도심, 기차역이 모두 강점이지만 한 번에 모두 묶으면 이동 피로가 커집니다. 가족여행은 숙소 권역을 먼저 정한 뒤 하루 동선을 줄이는 방식이 유리합니다.</p>
 
     <figure class="article-hero-image">

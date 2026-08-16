@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -15,6 +16,7 @@ const heroImage = getTourApiImage('gangneung', {
     </nav>
     <p class="eyebrow">강릉 주말여행</p>
     <h1>강릉 KTX 주말여행 동선과 숙소 위치</h1>
+    <SourceBadge />
     <p class="lead">강릉은 KTX 접근성이 좋아 짧은 주말여행에 적합하지만, 숙소 위치를 잘못 잡으면 바다와 카페, 식사 동선이 계속 끊깁니다. 1박 2일은 이동 횟수를 줄이는 쪽이 만족도가 높습니다.</p>
 
     <figure class="article-hero-image">

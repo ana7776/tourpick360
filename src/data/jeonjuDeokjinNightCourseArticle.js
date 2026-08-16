@@ -1,4 +1,6 @@
 export const jeonjuDeokjinNightCourseArticle = {
+  visitType: 'visited',
+  visitedOn: '2026년 7월 22일과 7월 17일',
   slug: 'jeonju-veteran-kalguksu-chutan1438-deokjin-park-night-course',
   title: '전주 베테랑칼국수와 추탄1438, 덕진공원 연꽃 야경까지 7명 모임 하루 코스',
   description: '베테랑칼국수 서부신시가지점과 카페 추탄1438은 2026년 7월 22일, 덕진공원 연꽃 야경은 7월 17일에 다녀왔습니다. 각각 다른 날 방문한 세 곳을 전주 하루 코스로 묶어 웨이팅과 주차, 단체석, 야경 시간대 기준으로 정리했습니다.',

@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -43,6 +44,7 @@ const travelerRows = [
 
     <p class="eyebrow">서울 우천 여행</p>
     <h1>{article.title}</h1>
+    <SourceBadge />
     <p class="lead">
       서울은 비가 와도 실내 선택지가 많지만, 그래서 오히려 일정이 과해지기 쉽습니다. 전시, 쇼핑, 카페, 맛집을
       여러 권역에 흩어 넣으면 비보다 환승과 짐 이동이 더 피곤해집니다. 예약 전에는 가고 싶은 장소 목록보다

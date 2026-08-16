@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -15,6 +16,7 @@ const heroImage = getTourApiImage('gyeongju', {
     </nav>
     <p class="eyebrow">경주 도보여행</p>
     <h1>경주 도보 여행 코스와 숙소 위치 고르는 법</h1>
+    <SourceBadge />
     <p class="lead">경주는 걷는 시간이 많은 도시입니다. 지도상 거리가 가까워 보여도 사진 촬영, 카페 대기, 야간 산책까지 더해지면 하루 피로가 커질 수 있어 숙소 위치와 도보 코스를 함께 봐야 합니다.</p>
 
     <figure class="article-hero-image">

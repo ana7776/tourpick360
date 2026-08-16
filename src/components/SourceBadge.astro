@@ -1,0 +1,16 @@
+---
+// 글의 근거를 명확히 구분한다.
+//   visited : 운영자가 직접 다녀온 뒤 작성한 방문 후기
+//   desk    : 공식 안내와 공개 자료를 정리한 준비용 가이드
+// 방문하지 않은 글을 방문 후기처럼 보이게 하지 않는 것이 이 컴포넌트의 목적이다.
+const { type = 'desk', visitedOn = null } = Astro.props;
+const visited = type === 'visited';
+---
+<p class:list={['source-badge', visited ? 'is-visited' : 'is-desk']}>
+  <span class="source-badge-tag">{visited ? '실제 방문 후기' : '공식자료 기반 가이드'}</span>
+  <span class="source-badge-text">
+    {visited
+      ? `운영자가 ${visitedOn ? `${visitedOn}에 ` : ''}직접 다녀온 뒤 작성했습니다. 방문일, 인원, 실제 지출과 현장에서 확인한 내용을 그대로 적었습니다.`
+      : '직접 방문하지 않고 공식 안내와 공개된 자료를 정리한 준비용 가이드입니다. 운영 시간과 요금은 방문 전 공식 채널에서 다시 확인하세요.'}
+  </span>
+</p>

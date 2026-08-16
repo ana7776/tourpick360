@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -36,6 +37,7 @@ const weekendPlan = [
 
     <p class="eyebrow">강릉 뚜벅이 여행</p>
     <h1>{article.title}</h1>
+    <SourceBadge />
     <p class="lead">
       강릉은 KTX로 접근하기 좋아 차 없이도 1박 2일 여행이 가능한 도시입니다. 다만 바다, 카페거리,
       중앙시장, 숙소를 모두 욕심내면 택시 이동과 짐 보관이 반복되어 생각보다 피곤해집니다.

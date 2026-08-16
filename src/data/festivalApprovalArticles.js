@@ -367,6 +367,8 @@ export const festivalApprovalArticles = [
 ];
 
 const gochangYeonggwangVisitArticle = {
+  visitType: 'visited',
+  visitedOn: '2026년 6월 21일',
   slug: 'gochang-bluefarm-lavender-yeonggwang-drive',
   title: '고창 청농원 라벤더와 영광 백수해안도로 단체 여행 코스',
   description: '15명 단체모임 기준으로 다녀온 고창 청농원 라벤더와 영광 백수해안도로 당일 코스입니다. 청농원 입장료, 라벤더 아이스크림, 포토존, 백수해안도로 계단과 어르신 동반 주의점을 정리합니다.',
@@ -635,6 +637,8 @@ if (!festivalApprovalArticles.some((article) => article.slug === gochangYeonggwa
 }
 
 const geojeHydrangeaWindhillArticle = {
+  visitType: 'visited',
+  visitedOn: '2026년 6월 28일',
   slug: 'geoje-hydrangea-windhill-sinseondae-course',
   title: '거제남부수국공원 바람의언덕 신선대 당일 코스와 거제도 가볼만한곳',
   description: '2026년 6월 28일 전주 출발 15명 단체 당일치기로 다녀온 거제남부수국공원, 명사해수욕장, 근포마을땅굴, 여차~홍포해안도로, 바람의언덕 실제 후기와 정산 비용을 정리합니다.',

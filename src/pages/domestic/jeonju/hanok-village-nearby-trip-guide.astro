@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { naverMapSearchUrl } from '../../../utils/naverMapLinks.js';
 
@@ -186,6 +187,7 @@ const faqJsonLd = {
 
     <p class="eyebrow">전주 한옥마을 확장 코스</p>
     <h1>{article.title}</h1>
+    <SourceBadge />
     <p class="lead">
       오늘 사진을 기준으로 보면 전주 한옥마을은 경기전과 전동성당 같은 대표 지점만 찍고 끝내기보다,
       조용한 한옥 골목, 관광안내소, 하얀양옥집, 오목대·전주향교 방향, 남부시장과 전라감영까지

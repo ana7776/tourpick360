@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -15,6 +16,7 @@ const heroImage = getTourApiImage('seoul', {
     </nav>
     <p class="eyebrow">서울 목적별 여행</p>
     <h1>서울 여행 목적별 숙소 권역 선택 가이드</h1>
+    <SourceBadge />
     <p class="lead">서울은 어디든 갈 수 있는 도시처럼 보이지만 목적에 따라 좋은 숙소 권역이 크게 달라집니다. 전시, 공연, 쇼핑, 가족 일정 중 무엇이 중심인지 먼저 정하면 이동 시간이 줄어듭니다.</p>
 
     <figure class="article-hero-image">

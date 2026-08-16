@@ -1,4 +1,6 @@
 export const mujuJeoksangsanArticle = {
+  visitType: 'visited',
+  visitedOn: '2026년 7월 12일',
   slug: 'muju-wine-cave-jeoksangsan-valley-group-trip-review',
   title: '무주 머루와인동굴과 적상산, 계곡 물놀이까지 14명 단체 여행 후기',
   description: '2026년 7월 12일 전주 출발 14명 모임으로 다녀온 무주 머루와인동굴 족욕, 적상산 전망대와 사고지, 안국사, 덕유정 점심, 카페 날망 계곡 물놀이 당일 코스와 실제 정산 내역을 정리했습니다.',

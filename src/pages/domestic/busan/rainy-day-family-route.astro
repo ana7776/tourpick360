@@ -1,4 +1,5 @@
 ---
+import SourceBadge from '../../../components/SourceBadge.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -35,6 +36,7 @@ const oneDayPlan = [
 
     <p class="eyebrow">부산 가족여행</p>
     <h1>{article.title}</h1>
+    <SourceBadge />
     <p class="lead">
       부산은 바다 여행지라는 이미지가 강하지만, 비가 와도 일정을 완전히 포기할 필요는 없습니다.
       가족여행에서는 비 오는 날의 핵심이 관광지 개수보다 짧은 이동, 식사 접근성, 바로 쉴 수 있는 숙소 위치입니다.
