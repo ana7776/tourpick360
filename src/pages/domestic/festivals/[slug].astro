@@ -13,7 +13,7 @@ export function getStaticPaths() {
 
 const { article } = Astro.props;
 const related = allFestivalArticles.filter((item) => item.title !== article.title).slice(0, 4);
-const seoTitle = buildSearchTitle(article, '코스·숙소·비용');
+const seoTitle = buildSearchTitle(article);
 const seoDescription = buildSearchDescription(article);
 const seoImage = article.ogImage ?? article.heroImage?.src;
 ---

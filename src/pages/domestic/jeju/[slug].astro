@@ -13,7 +13,7 @@ export function getStaticPaths() {
 
 const { article } = Astro.props;
 const related = allJejuArticles.filter((item) => item.title !== article.title).slice(0, 4);
-const seoTitle = buildSearchTitle(article, '숙소·동선 선택');
+const seoTitle = buildSearchTitle(article);
 const seoDescription = buildSearchDescription(article);
 ---
 <BaseLayout title={seoTitle} description={seoDescription}>
