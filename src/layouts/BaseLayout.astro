@@ -1,4 +1,6 @@
 ---
+import { stylesVersion } from '../utils/assetVersion.js';
+
 const {
   title = 'Tourpick360 - 국내 계절 축제 여행 가이드',
   description = 'Tourpick360은 국내 계절 여행과 축제 여행을 중심으로 숙소 위치, 이동 동선, 주차, 이용 시간, 여행 준비 정보를 정리하는 전문 여행 정보 사이트입니다.',
@@ -73,7 +75,7 @@ const mainMenuLabel = lang === 'ko' ? '주요 메뉴' : 'Main menu';
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <link rel="icon" href="/favicon.svg" />
-    <link rel="stylesheet" href="/styles.css?v=20260707-geoje-hero" />
+    <link rel="stylesheet" href={`/styles.css?v=${stylesVersion}`} />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5804969457082424" crossorigin="anonymous"></script>
   </head>
   <body>

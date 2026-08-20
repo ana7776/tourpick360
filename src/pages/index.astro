@@ -191,6 +191,8 @@ const flagshipArticles = [
     role: '입문',
     roleNote: '전체 흐름을 먼저 이해하는 글',
     title: '계절별 축제 여행 가이드',
+    image: '/images/gokseong-rose-festival/rose-tunnel.jpg',
+    alt: '곡성 섬진강기차마을 장미공원의 장미터널을 걷는 길',
     summary: '봄꽃, 여름 바다, 가을 미식, 겨울 빛 축제를 계절별로 나누고 숙소 권역과 준비 순서를 정리했습니다.',
     result: '어느 계절에 어떤 기준으로 축제를 고를지 판단할 수 있습니다.',
     href: '/domestic/festivals/seasonal-festival-travel-guide/'
@@ -199,6 +201,8 @@ const flagshipArticles = [
     role: '실전',
     roleNote: '직접 다녀온 기록으로 확인하는 글',
     title: '무주 머루와인동굴과 적상산 14명 단체 여행 후기',
+    image: '/images/muju-jeoksangsan/meoru-wine-cave-inside.webp',
+    alt: '무주 머루와인동굴 내부의 푸른 조명이 이어지는 통로',
     summary: '2026년 7월 12일에 14명이 함께 다녀온 하루 일정입니다. 이동 시간, 실제 지출, 현장 대기 상황을 그대로 적었습니다.',
     result: '단체 여행의 시간과 비용이 실제로 어떻게 흘러가는지 볼 수 있습니다.',
     href: '/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/'
@@ -207,6 +211,8 @@ const flagshipArticles = [
     role: '문제 해결',
     roleNote: '일정이 틀어졌을 때 쓰는 글',
     title: '국내여행 악천후 발생 시 즉시 복구 가이드',
+    image: '/images/jeonju-deokjin-course/chutan-hall.webp',
+    alt: '큰 창과 식물이 있는 밝은 실내 카페 홀',
     summary: '비나 태풍으로 일정이 무너졌을 때 무엇을 버리고 무엇으로 대체할지 60분 안에 정하는 순서입니다.',
     result: '현장에서 일정을 다시 짤 판단 기준과 입력표를 얻습니다.',
     href: '/travel-tips/rainy-day-backup-plan/'
@@ -261,6 +267,7 @@ const flagshipArticles = [
     <div class="sky-flagship-grid">
       {flagshipArticles.map((article) => (
         <a href={article.href} class="sky-flagship-card">
+          <img src={article.image} alt={article.alt} width="380" height="200" loading="lazy" />
           <span class="sky-flagship-role">{article.role}</span>
           <span class="sky-flagship-note">{article.roleNote}</span>
           <strong>{article.title}</strong>
