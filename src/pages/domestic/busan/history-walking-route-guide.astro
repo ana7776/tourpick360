@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -37,15 +38,17 @@ const oneDayPlans = [
     ]
   }
 ];
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '부산 바다 여행에 역사 산책을 섞는 1일 동선', href: '/domestic/busan/history-walking-route-guide/' }
+];
 ---
 <BaseLayout
   title="부산 바다 여행에 역사 산책을 섞는 1일 동선 - Tourpick360"
   description="부산 여행에서 해운대와 광안리 바다 일정에 임시수도기념관, 동래읍성, 충렬사 같은 역사 산책 코스를 무리 없이 섞는 숙소 권역과 이동 기준입니다."
 >
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>부산</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">부산 역사 산책</p>
     <h1>부산 바다 여행에 역사 산책을 섞는 1일 동선</h1>

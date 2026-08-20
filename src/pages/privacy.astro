@@ -1,8 +1,13 @@
 ---
+import Breadcrumb from '../components/Breadcrumb.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '개인정보처리방침', href: '/privacy/' }
+];
 ---
-<BaseLayout title="개인정보처리방침 - Tourpick360" description="Tourpick360의 문의 응대, 접속 환경 개선, 개인정보 수집 범위, 이용 목적, 보관과 삭제 기준을 안내합니다.">
+<BaseLayout title="개인정보처리방침 - Tourpick360" description="Tourpick360의 개인정보 수집 범위와 이용 목적, 쿠키와 Google AdSense 등 제3자 광고 쿠키 처리, 보관과 삭제 기준을 안내합니다.">
   <section class="page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">Privacy</p>
     <h1>개인정보처리방침</h1>
     <p>Tourpick360은 사이트 운영과 문의 응대를 위해 필요한 범위에서만 개인정보를 처리합니다.</p>
@@ -13,6 +18,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2>쿠키와 접속 환경</h2>
     <p>Tourpick360은 페이지가 안정적으로 표시되는지 확인하고 이용 환경을 개선하기 위해 쿠키 또는 유사 기술을 사용할 수 있습니다.</p>
     <p>사용자는 브라우저 설정에서 쿠키 저장을 제한하거나 삭제할 수 있습니다. 쿠키를 제한하면 일부 기능이나 표시 방식이 달라질 수 있습니다.</p>
+    <h2>광고와 제3자 쿠키</h2>
+    <p>Tourpick360의 모든 페이지에는 Google AdSense 광고 스크립트가 포함되어 있습니다. 이에 따라 Google을 포함한 제3자 공급업체가 쿠키를 사용해 이 사이트 또는 다른 사이트 방문 기록을 바탕으로 광고를 게재할 수 있습니다.</p>
+    <ul>
+      <li>Google은 광고 쿠키를 사용해 사용자가 이 사이트와 다른 사이트를 방문한 기록에 기반한 광고를 게재할 수 있습니다.</li>
+      <li>사용자는 <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google 광고 설정</a>에서 개인 맞춤 광고를 사용 중지할 수 있습니다.</li>
+      <li>제3자 공급업체의 쿠키 사용은 <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info</a>에서 함께 관리할 수 있습니다.</li>
+      <li>Google이 광고 파트너로서 데이터를 처리하는 방식은 <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener" target="_blank">Google의 파트너 사이트 정책</a>에서 확인할 수 있습니다.</li>
+    </ul>
+    <p>Tourpick360은 광고 게재를 위해 사용자의 이름, 연락처, 결제 정보 같은 개인 식별 정보를 직접 수집하거나 광고 사업자에게 제공하지 않습니다.</p>
+    <h2>접속 분석</h2>
+    <p>Tourpick360은 검색 노출 상태를 확인하기 위해 Google Search Console과 네이버 서치어드바이저에 사이트를 등록해 두고 있습니다. 이 도구는 검색 유입 통계를 집계된 형태로만 제공하며 개별 사용자를 식별하지 않습니다.</p>
     <h2>보관과 삭제</h2>
     <p>문의 내용은 처리 목적이 달성된 뒤 불필요하게 장기간 보관하지 않습니다. 삭제 요청이 있는 경우 법령상 보관이 필요한 경우를 제외하고 확인 후 삭제합니다.</p>
     <h2>개인정보 보호책임자 및 문의</h2>
@@ -20,5 +36,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p><strong>관리자: 김안나</strong></p>
     <p><strong><a href="mailto:anagim7776@gmail.com">anagim7776@gmail.com</a></strong></p>
     <p>시행일: 2026년 6월 5일</p>
+    <p>최종 개정일: 2026년 8월 20일</p>
   </section>
 </BaseLayout>

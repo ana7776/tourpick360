@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -8,12 +9,14 @@ const heroImage = getTourApiImage('gangneung', {
   alt: '강릉 안목해변과 바다 풍경',
   caption: '강릉 주말여행은 강릉역, 경포, 안목 중 한 권역을 중심으로 잡으면 이동 피로가 줄어듭니다. 사진: Mobius6, Wikimedia Commons, CC BY-SA 4.0'
 });
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '강릉 KTX 주말여행 동선과 숙소 위치', href: '/domestic/gangneung/ktx-weekend-trip-guide/' }
+];
 ---
 <BaseLayout title="강릉 KTX 주말여행 동선과 숙소 위치 - Tourpick360" description="강릉 KTX 주말여행에서 강릉역, 경포, 안목 권역을 1박 2일 이동 피로도와 숙소 위치 기준으로 정리합니다.">
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>강릉</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">강릉 주말여행</p>
     <h1>강릉 KTX 주말여행 동선과 숙소 위치</h1>
     <SourceBadge />

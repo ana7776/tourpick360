@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const title = '곡성 세계장미축제 방문 가이드 - 기간, 장소, 동선, 사진 포인트';
@@ -26,31 +27,36 @@ const jsonLd = {
   mainEntityOfPage: pageUrl,
   inLanguage: 'ko-KR'
 };
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '축제 여행', href: '/domestic/festivals/' },
+  { name: '곡성 세계장미축제 방문 가이드', href: '/domestic/festivals/gokseong-rose-festival-guide/' }
+];
 ---
 <BaseLayout title={title} description={description} image={heroImage}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a>
-      <span>/</span>
-      <a href="/domestic/">국내여행</a>
-      <span>/</span>
-      <a href="/domestic/festivals/">축제 여행</a>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">Gokseong Rose Festival</p>
     <h1>곡성 세계장미축제 방문 가이드</h1>
-    <SourceBadge />
+    <SourceBadge type="visited" visitedOn="2026년 5월 17일" />
     <p class="lead">
       곡성 세계장미축제는 섬진강기차마을 안 장미공원을 중심으로 즐기는 초여름 꽃 축제입니다.
       장미터널, 포토존, 분수와 그늘 쉼터가 한 공간에 모여 있어 사진을 찍기 좋지만,
       낮에는 햇볕과 대기 시간이 길어질 수 있어 동선과 휴식 지점을 미리 정해두는 편이 좋습니다.
     </p>
+    <p class="lead">
+      <strong>이 글의 사진은 축제가 열리기 전인 2026년 5월 17일에 장미공원을 직접 다녀오며 찍은 것입니다.</strong>
+      장미공원은 축제 기간이 아니어도 개방되므로, 사람이 덜 몰릴 때 장미터널과 관람로의 구조를 미리 확인해 두면
+      축제 기간 방문 동선을 짜기가 훨씬 수월합니다. 다만 아래 사진에는 축제 기간에만 설치되는 무대와 부스,
+      행사 인파가 담겨 있지 않으니, 현장 규모와 혼잡도는 축제 기간 기준으로 다시 감안해서 보셔야 합니다.
+    </p>
 
     <figure class="article-hero-image">
       <img src={heroImage} alt="곡성 세계장미축제 장미터널을 걷는 관람객들" width="1920" height="1081" loading="eager" />
-      <figcaption>곡성 섬진강기차마을 장미공원의 장미터널. 방문자가 몰리는 시간에는 사진 포인트 앞 대기 시간이 생길 수 있습니다.</figcaption>
+      <figcaption>곡성 섬진강기차마을 장미공원의 장미터널. 축제 개막 전인 5월 17일에 직접 촬영했습니다. 축제 기간에는 이 구간에도 사진 포인트 대기가 생길 수 있습니다.</figcaption>
     </figure>
 
     <section class="method-box">
@@ -124,7 +130,7 @@ const jsonLd = {
     <div class="article-photo-grid">
       <figure>
         <img src="/images/gokseong-rose-festival/rose-photo-zone.jpg" alt="곡성 세계장미축제 장미 장식 포토존" width="1600" height="901" loading="lazy" />
-        <figcaption>대형 조형물 포토존은 축제 인증 사진을 남기기 좋은 구간입니다.</figcaption>
+        <figcaption>대형 조형물 포토존은 축제 인증 사진을 남기기 좋은 구간입니다. 사진은 개막 전이라 조형물 주변이 비어 있습니다.</figcaption>
       </figure>
       <figure>
         <img src="/images/gokseong-rose-festival/garden-fountain.jpg" alt="곡성 섬진강기차마을 장미공원 분수와 연못" width="1600" height="901" loading="lazy" />

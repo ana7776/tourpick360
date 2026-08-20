@@ -1,8 +1,13 @@
 ---
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '여행 준비 템플릿', href: '/templates/' }
+];
 ---
 <BaseLayout title="여행 준비 템플릿 모음 - 일정표, 숙소 비교표, 예산표, 우천 대체 일정 - Tourpick360" description="국내여행 준비에 바로 쓸 수 있는 네 가지 템플릿을 한 곳에 모았습니다. 가족여행 일정표, 숙소 비교표, 예산표, 비 오는 날 대체 일정표를 상황 설명과 작성 순서까지 함께 정리했습니다.">
   <section class="page">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">Template Library</p>
     <h1>여행 준비 템플릿 모음</h1>
     <p class="lead">여행 준비가 막막한 이유는 무엇부터 정해야 할지 순서가 없기 때문입니다. 이 페이지에는 국내여행에서 자주 쓰이는 네 가지 양식을 모았습니다. 가족여행 일정표, 숙소 비교표, 예산표, 그리고 비 오는 날 대체 일정표입니다. 빈칸만 있는 양식이 아니라 어떤 상황에서 쓰는지와 어떤 항목을 먼저 정해야 하는지를 함께 담았습니다.</p>

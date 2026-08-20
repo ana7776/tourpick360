@@ -1,16 +1,27 @@
 ---
 // 글의 근거를 명확히 구분한다.
-//   visited : 운영자가 직접 다녀온 뒤 작성한 방문 후기
-//   desk    : 공식 안내와 공개 자료를 정리한 준비용 가이드
-// 방문하지 않은 글을 방문 후기처럼 보이게 하지 않는 것이 이 컴포넌트의 목적이다.
-const { type = 'desk', visitedOn = null } = Astro.props;
+//   visited : 운영자가 직접 다녀온 뒤 작성한 글. 현장 사진도 직접 촬영했다.
+//   desk    : 직접 방문하지 않고 공식 안내와 공개 자료만 정리한 준비용 가이드
+//
+// 방문하지 않은 글을 방문 후기처럼 보이게 하지 않는 것, 그리고 직접 다녀온 글을
+// 남의 자료를 옮긴 것처럼 묻어두지 않는 것이 이 컴포넌트의 목적이다.
+//
+// settlement는 본문에 모임 정산표(총 입금액, 항목별 지출, 1인 부담액)가 실린
+// 글에만 지정한다. 정산을 하지 않은 방문 글까지 "실제 지출을 적었다"고 안내하면
+// 본문에 없는 내용을 배지가 약속하게 되므로 문장을 나눈다.
+const { type = 'desk', visitedOn = null, settlement = false } = Astro.props;
 const visited = type === 'visited';
+const when = visitedOn ? `${visitedOn}에 ` : '';
+
+const visitedText = settlement
+  ? `운영자가 ${when}모임과 함께 직접 다녀온 뒤 작성했습니다. 방문일, 인원, 실제 지출 정산 내역과 현장에서 확인한 내용을 그대로 적었습니다.`
+  : `운영자가 ${when}직접 다녀온 뒤 작성했습니다. 본문의 사진은 현장에서 직접 촬영한 것이며, 운영 시간과 요금 같은 정보는 공식 안내를 함께 확인해 정리했습니다.`;
 ---
 <p class:list={['source-badge', visited ? 'is-visited' : 'is-desk']}>
   <span class="source-badge-tag">{visited ? '실제 방문 후기' : '공식자료 기반 가이드'}</span>
   <span class="source-badge-text">
     {visited
-      ? `운영자가 ${visitedOn ? `${visitedOn}에 ` : ''}직접 다녀온 뒤 작성했습니다. 방문일, 인원, 실제 지출과 현장에서 확인한 내용을 그대로 적었습니다.`
+      ? visitedText
       : '직접 방문하지 않고 공식 안내와 공개된 자료를 정리한 준비용 가이드입니다. 운영 시간과 요금은 방문 전 공식 채널에서 다시 확인하세요.'}
   </span>
 </p>

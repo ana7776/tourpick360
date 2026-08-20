@@ -1,14 +1,19 @@
 ---
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '일정 개선 사례', href: '/case-studies/' }
+];
 ---
 <BaseLayout title="여행 일정 개선 사례 모음 - 무리한 동선을 줄인 Before / After 7가지 - Tourpick360" description="부산, 강릉, 경주, 제주, 전주 여행에서 무리했던 일정을 어떻게 줄였는지 Before와 After로 비교했습니다. 숙소 권역, 주차, 도보 거리, 렌터카 반납, 우천 대비까지 상황별 개선 사례를 한 곳에 모았습니다.">
   <section class="page">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">Before / After</p>
     <h1>여행 일정 개선 사례 모음</h1>
     <p class="lead">여행 일정이 힘들어지는 이유는 대부분 비슷합니다. 지도에서는 가까워 보였는데 실제로는 왕복 이동이 늘어나고, 식사 대기와 주차 대기가 겹치면서 하루가 밀립니다. 이 페이지에는 그렇게 무리했던 일정을 어떻게 줄였는지 일곱 가지 사례로 정리했습니다. 방문지를 줄이는 것이 손해처럼 보이지만, 실제로는 실패 가능성을 줄이는 쪽이 만족도가 높습니다.</p>
     <figure class="article-hero-image">
       <img src="/images/domestic-places/gangneung-anmok-beach-hero.jpg" alt="여행 동선 개선 전후 비교 참고 이미지" width="1200" height="675" loading="eager" />
-      <figcaption>실제 사례를 통해 동선 부담과 숙소 권역, 식사 시간, 대체 계획을 비교해 봅니다.</figcaption>
+      <figcaption>실제 사례를 통해 동선 부담과 숙소 권역, 식사 시간, 대체 계획을 비교해 봅니다. 사진: Mobius6, Wikimedia Commons, CC BY-SA 4.0</figcaption>
     </figure>
   </section>
 

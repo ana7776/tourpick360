@@ -1,7 +1,8 @@
 ---
+import Breadcrumb from './Breadcrumb.astro';
 import SourceBadge from './SourceBadge.astro';
 import { pickTourApiImage } from '../data/tourApiImages.js';
-import { buildBreadcrumbJsonLd, buildFaqJsonLd } from '../utils/searchSnippets.js';
+import { buildFaqJsonLd } from '../utils/searchSnippets.js';
 
 const { article, related = [] } = Astro.props;
 const feedbackHref = `mailto:anagim7776@gmail.com?subject=${encodeURIComponent(`[Tourpick360 제보] ${article.title}`)}`;
@@ -66,32 +67,25 @@ const jsonLd = {
   inLanguage: 'ko-KR'
 };
 jsonLd.image = new URL(heroImage.src, 'https://tourpick360.com').toString();
-const breadcrumbJsonLd = buildBreadcrumbJsonLd([
-  { name: 'Tourpick360', url: 'https://tourpick360.com/' },
-  { name: '국내여행', url: 'https://tourpick360.com/domestic/' },
-  { name: '국내 축제 여행', url: 'https://tourpick360.com/domestic/festivals/' },
-  { name: article.title, url: pageUrl }
-]);
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '축제 여행', href: '/domestic/festivals/' },
+  { name: article.title, href: pageUrl }
+];
 const faqJsonLd = buildFaqJsonLd(article.faqs);
 
 const sourceCheckedDate = article.sourceCheckedDate ?? '2026년 6월 9일';
 ---
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
 {faqJsonLd && <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
 <article class="article-page longform travel-guide-article">
-  <nav class="breadcrumb" aria-label="현재 위치">
-    <a href="/">홈</a>
-    <span>/</span>
-    <a href="/domestic/">국내여행</a>
-    <span>/</span>
-    <a href="/domestic/festivals/">축제 여행</a>
-  </nav>
+  <Breadcrumb items={breadcrumbItems} />
+
 
   <p class="eyebrow">{article.category}</p>
   <h1>{article.title}</h1>
-  <SourceBadge type={article.visitType} visitedOn={article.visitedOn} />
+  <SourceBadge type={article.visitType} visitedOn={article.visitedOn} settlement={article.hasSettlement} />
   <div class="author-info-box" aria-label="작성자 정보">
     <span>작성자</span>
     <strong>김안나</strong>

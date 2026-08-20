@@ -1,8 +1,13 @@
 ---
+import Breadcrumb from '../components/Breadcrumb.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '소개', href: '/about/' }
+];
 ---
 <BaseLayout title="소개 - Tourpick360" description="Tourpick360의 운영 목적, 여행 정보 작성 기준, 국내 여행과 축제 콘텐츠를 검증하고 업데이트하는 방식을 안내합니다.">
   <section class="page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">About</p>
     <h1>Tourpick360 소개</h1>
     <p>Tourpick360은 여행지, 숙소, 이동 동선을 비교해 여행 결정을 돕는 정보 사이트입니다.</p>

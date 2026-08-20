@@ -1,4 +1,5 @@
 ---
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { allFestivalArticles, festivalApprovalArticles } from '../../../data/festivalApprovalArticles.js';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
@@ -78,11 +79,16 @@ const bookingSteps = [
 ];
 
 const featuredArticles = festivalApprovalArticles.slice(0, 4);
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '축제 여행', href: '/domestic/festivals/' }
+];
 ---
 <BaseLayout title="국내 축제 여행 가이드 - Tourpick360" description="국내 계절 축제 여행에서 숙소 위치, 주차, 이동 동선, 예산, 가족 동반 기준을 정리한 Tourpick360 축제 여행 허브입니다.">
   <div class="festival-index-page">
   <section class="domestic-hero">
     <div>
+      <Breadcrumb items={breadcrumbItems} />
       <p class="eyebrow">Festival Travel 360</p>
       <h1>국내 축제 여행을 계절과 동선 기준으로 고르기</h1>
       <p>

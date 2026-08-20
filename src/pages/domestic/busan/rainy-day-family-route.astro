@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -27,12 +28,14 @@ const oneDayPlan = [
   ['오후', '센텀, 남포동, 부산역 주변 실내 코스 중 하나만 선택합니다.'],
   ['저녁', '비가 약해지면 숙소 주변 산책이나 짧은 야경 코스만 남깁니다.']
 ];
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: article.title, href: '/domestic/busan/rainy-day-family-route/' }
+];
 ---
 <BaseLayout title={`${article.title} - Tourpick360`} description={article.description}>
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>부산</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">부산 가족여행</p>
     <h1>{article.title}</h1>
@@ -169,7 +172,7 @@ const oneDayPlan = [
       <h2>함께 보면 좋은 내부 가이드</h2>
       <div class="related-grid">
         <a href="/domestic/busan/family-hotel-area-guide/"><span>부산 숙소</span><strong>부산 가족여행 숙소 권역 고르는 법</strong></a>
-        <a href="/travel-tips/problems/rainy-trip-route-change/"><span>우천 대응</span><strong>비 오는 날 국내여행 동선 바꾸는 법</strong></a>
+        <a href="/travel-tips/rainy-day-backup-plan/"><span>우천 대응</span><strong>국내여행 악천후 발생 시 즉시 복구 가이드</strong></a>
         <a href="/travel-tips/problems/luggage-before-checkin-plan/"><span>짐 보관</span><strong>체크인 전 짐 보관이 안 될 때 일정 바꾸는 법</strong></a>
         <a href="/domestic/festivals/rainy-season-festival-travel-plan/"><span>축제 여행</span><strong>비 예보가 있는 축제 여행 숙소와 일정 조정법</strong></a>
       </div>

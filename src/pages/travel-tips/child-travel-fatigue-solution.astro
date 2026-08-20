@@ -1,12 +1,18 @@
 ---
 import SourceBadge from '../../components/SourceBadge.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '여행 준비', href: '/travel-tips/' },
+  { name: '아이와 함께 떠나는 국내여행 피로도 폭증 대응 체크리스트', href: '/travel-tips/child-travel-fatigue-solution/' }
+];
 ---
 <BaseLayout
   title="아이와 함께 떠나는 국내여행 피로도 폭증 대응 체크리스트 - Tourpick360"
   description="아이 동반 국내여행에서 피로도로 일정이 흔들릴 때 즉시 복구할 수 있는 문제 해결형 실전 체크리스트"
 >
   <article class="article-page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">국내여행 피로 관리</p>
     <h1>아이와 함께 떠나는 국내여행 피로도 폭증 대응 체크리스트</h1>
     <SourceBadge />

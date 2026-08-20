@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const title = '5월의 장미가 밤까지 피어 있던 곳, 임실N장미축제 5월 29일 방문기';
@@ -15,8 +16,9 @@ const jsonLd = {
   description,
   image: new URL(heroImage, 'https://tourpick360.com').toString(),
   author: {
-    '@type': 'Organization',
-    name: 'Tourpick360',
+    '@type': 'Person',
+    name: '김안나',
+    email: 'anagim7776@gmail.com',
   },
   publisher: {
     '@type': 'Organization',
@@ -45,23 +47,22 @@ const jsonLd = {
     },
   },
 };
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '축제 여행', href: '/domestic/festivals/' },
+  { name: title, href: '/domestic/festivals/imsil-n-rose-festival-guide/' }
+];
 ---
 
 <BaseLayout title={title} description={description} image={heroImage}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
   <main class="article-page longform">
-    <nav class="breadcrumb" aria-label="breadcrumb">
-      <a href="/">홈</a>
-      <span>›</span>
-      <a href="/domestic/">국내여행</a>
-      <span>›</span>
-      <a href="/domestic/festivals/">축제</a>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">Imsil N Rose Festival</p>
     <h1>{title}</h1>
-    <SourceBadge />
+    <SourceBadge type="visited" visitedOn="2026년 5월 29일" />
     <p class="lead">
       임실N장미축제는 낮에만 보고 돌아오기에는 아쉬운 축제였습니다. 2026년 5월 29일 오후 늦게
       임실치즈테마파크에 도착해 장미정원을 먼저 걷고, 해가 기운 뒤에는 공연장과 야간 조명까지

@@ -102,3 +102,183 @@ Both `/case-studies/` and `/templates/` — two fully-built hub pages (1,000+ wo
 ### Lower-priority structural gap (not fixed this pass)
 
 About half of individual article pages have a visual breadcrumb (`<nav class="breadcrumb">`) but no matching `BreadcrumbList` JSON-LD, and hub pages (`/domestic/`, `/domestic/jeju/`, `/travel-tips/`, `/templates/`, `/case-studies/`, homepage) have no breadcrumb at all, visual or structured. This affects how cleanly Google can render breadcrumb trails in search results and understand page hierarchy programmatically — real, but secondary to the nav-destination bugs above, and touches enough files that it's a separate, deliberate pass rather than a quick fix. Worth doing before the next reapplication, not blocking it.
+
+## Breadcrumb Pass (2026-08-20)
+
+This closes the "lower-priority structural gap" flagged at the end of the 2026-08-08 second pass — breadcrumbs were half-implemented and hub pages had none at all.
+
+### What was wrong
+
+- **Visual breadcrumbs and structured data were separate code.** The three shared article components (`ApprovalArticle`, `FestivalArticle`, `ProblemSolvingArticle`) each hand-wrote a `<nav class="breadcrumb">` *and*, independently, a `buildBreadcrumbJsonLd([...])` call listing the same trail. Nothing kept the two in sync — the same shape of duplication that caused the header-nav mismatch fixed on 2026-08-08.
+- **That duplication had already drifted into a real defect.** `ProblemSolvingArticle`'s JSON-LD listed `https://tourpick360.com/travel-tips/problems/` as an intermediate crumb. There is no such page — `src/pages/travel-tips/problems/` only contains `[slug].astro`, so that URL 404s. All 15 problem-solving pages were shipping a `BreadcrumbList` pointing at a non-existent page, which is worse than having no breadcrumb markup at all.
+- **18 standalone region/festival article pages** had a visual breadcrumb and no `BreadcrumbList` whatsoever.
+- **21 pages had neither**, including every hub (`/domestic/`, `/domestic/festivals/`, `/domestic/jeju/`, `/travel-tips/`, `/case-studies/`, `/templates/`, `/tools/itinerary-comparison/`), all six legal/info pages, and six `/travel-tips/` articles.
+- The trailing crumb was also semantically wrong on the region pages: it read `홈 / 국내여행 / 부산`, where `부산` is not a page — there are no region hubs — and the article itself never appeared in its own trail.
+
+### What changed
+
+A single `src/components/Breadcrumb.astro` now renders the visible `<nav>` and the `BreadcrumbList` JSON-LD from one `items` array, so the two cannot diverge again. `홈` is prepended automatically; the final item renders as `aria-current="page"` text but still carries its URL in the structured data, which is what Google reads.
+
+Applied to 73 of 75 pages. The two exclusions are deliberate: `/` is the breadcrumb root and has nothing to show, and `/search/` is `noindex`. Region article trails are now `홈 / 국내여행 / {글 제목}` — every crumb resolves to a real page, and the region stays legible because the region name is already in each title.
+
+### Verified
+
+- 76 pages build; `npm run check:seo` passes.
+- 73 `BreadcrumbList` blocks, one per page, no page emitting two.
+- Every `item` URL in every crumb resolves to a page that exists in `dist/` — **0 broken crumb targets** (this is the check that would have caught the `/travel-tips/problems/` bug, and it is worth re-running whenever a page is renamed or merged).
+- `position` values are contiguous from 1 on every list.
+- Full internal-link and image scan across the build: 0 broken links, 0 missing images.
+
+### Also fixed in this pass
+
+`/domestic/festivals/imsil-n-rose-festival-guide/` was displaying the `공식자료 기반 가이드` badge while its own headline read "5월 29일 방문기", its lead described arriving at 임실치즈테마파크 that afternoon in the first person, and its figcaptions dated the author's own photos. The 2026-08-16 badge pass classified it from `visitType` in the data files and missed it because this article is a standalone `.astro` page with no data-file entry. A badge that contradicts the headline directly above it is a credibility problem on the exact article type the site is strongest at, so it now carries `type="visited"` with the 2026년 5월 29일 visit date, and its `Article` author changed from `Organization` to the named `Person` used elsewhere on the site. Live visit reviews: 6, not 5.
+
+`/domestic/festivals/gokseong-rose-festival-guide/` was checked the same way and correctly stays a desk guide — no first-person visit narrative, no dated photos.
+
+### Indexing URL list rebuilt
+
+`docs/indexing-priority-urls.md` was stale enough to be actively harmful: it claimed the sitemap held 102 URLs (it holds 74) and listed **9 URLs that no longer exist** as manual indexing targets, including the removed bicycle content and four `/templates/` sub-pages. All 9 do have 301s in `public/_redirects`, so nothing 404s — but submitting redirect-only URLs for indexing wastes a limited daily quota and muddies the Search Console coverage report.
+
+The document is now generated against `dist/sitemap-0.xml`: 74 URLs in five priority tiers, cross-checked so the tiers contain every sitemap URL exactly once and nothing else. Retired URLs moved to a "do not request indexing" section with their redirect targets, and the file ends with the command to re-derive the list after any page change.
+
+## Duplicate Consolidation and Guideline Audit (2026-08-20)
+
+Run against the operations manual `애드센스 승인 실전 지침서` (rev. 2026-08-15) supplied by the site owner. Relevant clauses: 2.3 ("제목만 바꾼 중복 글은 통합합니다"), 2.4 (대표 글 3개의 역할 분리), 3.2 (개인정보처리방침은 실제 수집·처리를 반영), 8.3 ("다른 글과 결론과 역할이 겹치지 않는다"), 5.2 (보장 암시 표현 금지).
+
+### Measuring the duplication before acting on it
+
+The 2026-08-08 review flagged 33 template-shaped articles as a plausible rejection contributor but could not quantify it. Two measurements were run this pass, and the second corrected the first:
+
+1. **Rendered-page comparison** put every pair of the 15 problem-solving pages at **47–51% identical**. Taken at face value this looks like mass-produced content.
+2. **Source-prose comparison, excluding shared chrome and the checklist**, put the same pairs at **0–8.7%**. The prose is genuinely distinct.
+
+The gap between the two numbers was itself the finding: **all 15 problem-solving articles shipped a byte-identical 5-item checklist** (`baseChecklist` in `problemSolvingArticles.js`, applied by the `makeArticle` factory). That single shared block, not copied prose, produced most of the apparent duplication — and it is exactly what guideline 8.3 describes as "의미 없는 정의·FAQ·반복으로 분량만 늘리지 않았다". Acting on measurement (1) alone would have meant deleting well-written articles to fix a factory default.
+
+The festival cluster was measured the same way and came in at **max 3.6%** overlap with unique checklists and FAQs throughout — no consolidation was warranted there, and none was done.
+
+### What was merged (6 pages, on role duplication)
+
+Guideline 8.3's test is overlapping *conclusion and role*, not copied text. Six problem-solving articles restated a conclusion another page already owned:
+
+| 통합된 글 | 흡수한 글 | 근거 |
+|---|---|---|
+| `problems/rainy-trip-route-change` | `/travel-tips/rainy-day-backup-plan/` | 같은 결론, 후자가 60분 복구 플랜·템플릿까지 포함 |
+| `problems/busan-rainy-day-indoor-family-course` | `/domestic/busan/rainy-day-family-route/` | 부산 우천 코스를 이미 3,151자로 전담 (해운대·센텀·부산역 권역 비교) |
+| `problems/late-arrival-first-day-plan` | `/travel-tips/late-checkin-plan/` | 같은 결론("첫날은 회복일"), 후자가 30분 복구 플랜·원인별 분류표 포함 |
+| `problems/gangneung-late-ktx-hotel-area` | `/domestic/gangneung/ktx-weekend-trip-guide/` | 이미 "도착 시간별 1박 2일 예시"와 강릉역·경포·안목 선택 기준 보유 |
+| `problems/trip-budget-overrun-fix` | `/travel-tips/travel-budget-plan/` | 같은 주제, 후자가 항목 6분할·2인 2박 3일 실계산 포함 |
+| `problems/jeonju-hanok-parking-alternative-route` | `problems/parking-full-travel-route-fix` | 본문 8.7% 중복에 결론 동일. 전주는 지역 변형판 |
+
+`summer-beach-hotel-area-alternative` was **kept**, though its conclusion resembles `festival-hotel-sold-out-alternative`. Its decision inputs differ (오션뷰 프리미엄 계산 vs 마감·셔틀), text overlap is negligible, and merging it would have been trimming rather than deduplicating.
+
+Consolidation is not deletion (guideline 10.2 asks what new value appeared). The two region articles already contained everything their problem-solving twins had, so those were clean supersessions. The three `/travel-tips/` longforms did not carry the 숙소 권역 angle at all (`권역` appeared 0 times in each), so each absorbed a new section: 우천 대체 코스의 폭을 정하는 숙소 권역 3기준, 늦은 도착 시 권역이 첫날을 결정하는 이유와 강릉 예시, 예산은 항목을 깎기 전에 이동 권역을 좁히는 순서. `parking-full-travel-route-fix` absorbed the 전주 article's 도보 루트 순환 구성, 경사·계단 확인, 식사 우선 전환 as new steps and an FAQ.
+
+Every one of the 15 remaining problem-solving checklists was rewritten to be specific to its own problem. Result: **9 articles, 9 unique checklists, max pairwise overlap 2.1%** (was 21.2% with an identical checklist on all 15).
+
+### Guideline gaps found and fixed
+
+**개인정보처리방침에 광고·쿠키 고지 없음 (지침서 3.2, 10.1-9).** Every page on the site loads the Google AdSense script and the site ships `ads.txt` with a valid seller line, yet `/privacy/` mentioned 쿠키 four times and never mentioned 광고, AdSense, Google, or 개인 맞춤 광고. For an AdSense application this is the most consequential gap of the pass — disclosing third-party ad cookies is a publisher requirement, not a nicety. Added a 광고와 제3자 쿠키 section (Google 및 파트너의 쿠키 사용, 광고 설정·aboutads.info 옵트아웃 경로, 파트너 사이트 정책 링크, 개인 식별 정보 미제공 명시) and an 접속 분석 section covering Search Console / 서치어드바이저 등록. Written for this site rather than copied, per guideline 3.2's warning against pasting another site's legal text.
+
+**대표 글 3개가 사이트에 드러나지 않음 (지침서 2.4, 10.1-3, 10.1-6).** The homepage had no representative-article section with defined roles. Added 먼저 읽으면 좋은 글 3편 — 입문 (계절별 축제 여행 가이드), 실전 (무주 14명 단체 여행 후기), 문제 해결 (악천후 즉시 복구 가이드) — each card stating its role and what the reader ends up with.
+
+### Checked and found already compliant
+
+- **보장 암시 표현 (5.2).** `무조건` appears on 9 pages, but every occurrence is a question or negation that *rejects* the absolute claim ("행사장과 가까운 숙소가 무조건 좋은가요?" → "아닙니다", "특정 숙소나 상품을 무조건 추천하지 않고"). That is the nuance the guideline asks for, not a violation. No change made — checking the context rather than pattern-replacing was the difference between a fix and a regression.
+- **이용약관 샘플 문구 (10.1-10)**, **문의 실제 작동 (10.1-8)**, **정보 제공 원칙** — all site-specific, no boilerplate.
+- **빈 카테고리·404 (3.3, 10.1-17)** — 0 broken links across 2,674 internal links, 0 missing images.
+
+### Verified
+
+- 70 pages build; `npm run check:seo` passes.
+- 68 sitemap URLs, all resolving to real pages; 67 `BreadcrumbList` blocks with 0 broken crumb targets.
+- All 6 merged URLs return 301 to their absorbing page (added to `public/_redirects`); none remain in the sitemap; every internal link that pointed at them was repointed, including the comparison tool's 문제 해결 links and the 전주 야경 글.
+- Indexing document rebuilt against the new sitemap: five tiers totalling exactly 68, cross-checked for duplicates and omissions.
+
+## Visit Reclassification and Image Licensing (2026-08-20, third pass)
+
+Prompted by a direct question about whether image sourcing matters for approval. Short answer recorded here so it is not re-litigated: image *attribution* is a license obligation and a policy-surface risk, but it is not what "낮은 가치의 콘텐츠" refers to. What image provenance genuinely affects for this site is the **originality signal** — and auditing it surfaced a much larger problem than the licensing gap.
+
+### Copyright: 3 uses fixed
+
+`public/images/domestic-places/ATTRIBUTION.json` records six Wikimedia photos with author and license. Three of those uses rendered with no visible credit:
+
+| 페이지 | 이미지 | 라이선스 |
+|---|---|---|
+| `/` | `busan-haeundae-beach.jpg` | CC BY 2.0 (StephNurnberg) |
+| `/` | `gangneung-anmok-beach.jpg` | CC BY-SA 4.0 (Mobius6) |
+| `/case-studies/` | `gangneung-anmok-beach-hero.jpg` | CC BY-SA 4.0 (Mobius6) |
+
+CC BY and CC BY-SA both require attribution, so these were license violations regardless of AdSense. The homepage 인기 여행지 grid has no per-card caption slot, so a `sky-photo-credit` line was added under the grid crediting all six destination photos by source; the case-studies hero credit went into its existing `figcaption`. The CC0 photos (경주, 전주 한옥) need no credit and were left alone. Verified: 0 uses of a credit-requiring image without its author named on the same page.
+
+The trap here is structural and worth remembering: several pages pass a Wikimedia image as the *fallback* to `getTourApiImage(...)`, with the credit written into the fallback caption. When the TourAPI image exists the fallback never renders — so the credit only appears when the fallback does. Checking source code alone would have missed which uses actually needed a credit; the check has to run against `dist/`.
+
+### The real finding: 6 more articles were understating themselves
+
+While tracing image provenance, six articles turned out to carry 58 photos with filenames that read unmistakably as on-site photography (`bridge-info-sign`, `hanok-village-map-sign`, `lantern-courtyard`, `ssookseom-harbor-view`, `rose-photo-zone`) while displaying the `공식자료 기반 가이드` badge — the badge that says "직접 방문하지 않고". The site owner confirmed all six were real visits made with their group, photographed themselves: 거창 Y자형 출렁다리, 여수 장도·웅천·낭도, 전주 한옥마을, 합천 해인사, 곡성 세계장미축제, 고흥 쑥섬.
+
+This is the same class of defect as the 임실 badge fixed earlier in the day, at six times the scale, and it runs in the most damaging possible direction for a site rejected for low-value content: **the strongest originality evidence the site has was labelled as desk research.** Live visit reviews were not 6 but **12**; own photography in use is 169 images, not 111.
+
+### Badge honesty in both directions
+
+Flipping the six to `visited` with the existing copy would have introduced the opposite error — that copy promised "방문일, 인원, 실제 지출" and these articles have none of it. Per the owner's instruction (지출목록이 없는 것은 없는 대로), `SourceBadge` now takes an explicit `settlement` flag rather than inferring from `visitedOn`:
+
+- **방문 + 정산표 (4편)** — 부여, 무주, 고창, 거제. 총 입금액, 항목별 지출, 1인 부담액이 본문에 있음.
+- **방문, 정산 없음 (8편)** — 전주 야경(각자 계산), 임실, 곡성, 거창, 전주 한옥, 합천, 고흥, 여수. 방문 사실과 직접 촬영 사진까지만 약속.
+- **공식자료 기반 (42편)** — 변동 없음.
+
+`visitedOn` and `settlement` are now independent, because 전주 야경 has a visit date but no settlement — inferring one from the other would have made the badge overclaim on exactly that article.
+
+### Settlement fact corrected
+
+The 부여 and 무주 settlement tables stated 총무는 회비 면제. The owner corrected this: it was the **리더** whose fee was waived. Ten occurrences across the two data files were changed. The generic 총무 advice in `festivalBookingBudgetGuide.js` is reader-facing guidance, not a claim about this site's trips, and was left as is. Worth noting that these articles already disclose the waiver in their own settlement tables rather than hiding it — that transparency is a trust signal, and the correction preserves it while making it accurate.
+
+### Also updated
+
+- `/editorial-policy/` gained a 사진 출처와 저작권 section (직접 촬영 / TourAPI / Wikimedia, with the licenses named and a statement that unverifiable-license, other-blog, booking-platform and press photos are not used), and its visit/desk section now explains the settlement distinction — "본문에 없는 내용을 배지가 앞질러 말하지 않는 것이 기준입니다."
+- The homepage visit-review section now states that direct-visit articles total 12 and that all photos are the operator's own.
+- `docs/indexing-priority-urls.md` moved the six reclassified articles into 2순위 (방문 후기 12개, 정산표 있는 4편 우선), leaving 3순위 13 and 4순위 14. Tier total re-verified at exactly 68.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; 67 `BreadcrumbList` with 0 broken crumb targets; 2,674 internal links with 0 broken; 0 missing images; 0 credit-requiring images without attribution; badge distribution 4 / 8 / 42 with none unclassified.
+
+## Visit Dates Added (2026-08-20, fourth pass)
+
+All 12 visit reviews now carry a visit date in their badge. Two things are worth recording about how the dates were obtained, because both were near-misses.
+
+### EXIF was recoverable on exactly one article
+
+A deep scan (EXIF APP1, XMP, and raw date-string search across every byte) found capture dates in **only** `imsil-n-rose-festival` — 12 photos, all `2026-05-29`, matching the date already set from the article's own text. The other six directories returned 0 EXIF, 0 XMP, 0 embedded date strings: the image pipeline (`sharp`) strips metadata on resize, so the published files cannot yield capture dates. The originals on the owner's own devices still hold them.
+
+This matters procedurally: the owner initially said "the photo dates you gave me are correct, put those in." But no photo dates had been derived for those six — what had been presented was a table of *clues* (본문 작성일 / 최종 확인일 / 축제 기간) plus a **fill-in-the-blank example block containing invented placeholder dates** (거창 6/20, 합천 6/14, 곡성 5/30). Treating that example as data would have published fabricated visit dates on articles claiming first-hand visits — the exact failure mode this whole workstream exists to prevent, and one that would have been invisible afterwards. The dates below came from the owner checking their own records instead.
+
+### One date contradicted the article and had to be resolved, not just entered
+
+The owner's date for 곡성 was **5월 17일**, but that article states the festival ran **5월 22일 ~ 6월 7일**. Entering the date as-is would have put "2026년 5월 17일에 직접 다녀왔다" on a page titled 곡성 세계장미축제 방문 가이드 that simultaneously says the festival opened five days later — a contradiction visible to any reviewer reading the page top to bottom, and worse than having no date at all.
+
+Confirmed with the owner: the visit was to 섬진강기차마을 장미공원 **before the festival opened**. The article now says so explicitly in the lead — that the photos predate the festival, that the garden is open outside the festival period so the visit is useful for planning the route in advance, and that the photos therefore do **not** show the festival-only stages, booths, or crowds, so readers should re-scale their expectation of congestion. Two figcaptions were amended for the same reason. The date and the festival period now reinforce each other instead of colliding.
+
+### Dates as entered
+
+| 글 | 방문일 | 요일 | 근거 |
+|---|---|---|---|
+| 부여 궁남지·칠갑산 | 2026-07-05 | 일 | 본문 정산표 |
+| 무주 머루와인동굴·적상산 | 2026-07-12 | 일 | 본문 정산표 |
+| 거제 수국공원·바람의언덕 | 2026-06-28 | 일 | 본문 정산표 |
+| 고창 청농원·영광 | 2026-06-21 | 일 | 본문 정산표 |
+| 전주 베테랑칼국수·덕진공원 | 2026-07-22 / 07-17 | 수/금 | 본문 서술 |
+| 임실N장미축제 | 2026-05-29 | 금 | **사진 EXIF** |
+| 거창 Y자형 출렁다리 | 2026-04-26 | 일 | 운영자 확인 |
+| 합천 해인사 | 2026-04-26 | 일 | 운영자 확인 (거창과 같은 날) |
+| 여수 장도·웅천·낭도 | 2026-05-31 | 일 | 운영자 확인 |
+| 고흥 쑥섬 | 2026-06-07 | 일 | 운영자 확인 |
+| 전주 한옥마을 | 2026-06-16 | 화 | 운영자 확인 (지인 동행) |
+| 곡성 세계장미축제 | 2026-05-17 | 일 | 운영자 확인 (축제 개막 전 장미정원) |
+
+Nine of the twelve fall on a Sunday, consistent with the group's travel pattern; the three that do not (전주 야경 수/금, 전주 한옥 화) are both local Jeonju outings where a weekday is expected. All twelve predate the date each photo directory was first committed. No date failed a consistency check after the 곡성 resolution.
+
+Note on 전주 한옥마을: visited with an acquaintance rather than the group. The badge for non-settlement visits reads "운영자가 …에 직접 다녀온 뒤 작성했습니다" and never claims 모임, so it is already correct — the 모임과 함께 wording appears only on the four settlement articles, which are all genuine group trips.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; 12 visit badges (4 settlement / 8 photo-only), all dated; 67 `BreadcrumbList` with 0 broken crumb targets; 0 broken internal links; 0 missing images.

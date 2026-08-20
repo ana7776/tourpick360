@@ -47,3 +47,9 @@ http://tourpick360.com/* https://tourpick360.com/:splat 301
 /templates/rainy-day-itinerary-template/ /templates/ 301
 /templates/travel-budget-template/ /templates/ 301
 /travel-tips/itinerary-before-after/ /case-studies/ 301
+/travel-tips/problems/rainy-trip-route-change/ /travel-tips/rainy-day-backup-plan/ 301
+/travel-tips/problems/busan-rainy-day-indoor-family-course/ /domestic/busan/rainy-day-family-route/ 301
+/travel-tips/problems/late-arrival-first-day-plan/ /travel-tips/late-checkin-plan/ 301
+/travel-tips/problems/gangneung-late-ktx-hotel-area/ /domestic/gangneung/ktx-weekend-trip-guide/ 301
+/travel-tips/problems/trip-budget-overrun-fix/ /travel-tips/travel-budget-plan/ 301
+/travel-tips/problems/jeonju-hanok-parking-alternative-route/ /travel-tips/problems/parking-full-travel-route-fix/ 301

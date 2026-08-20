@@ -1,12 +1,18 @@
 ﻿---
 import SourceBadge from '../../components/SourceBadge.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '여행 준비', href: '/travel-tips/' },
+  { name: '국내여행 악천후 발생 시 즉시 복구 가이드', href: '/travel-tips/rainy-day-backup-plan/' }
+];
 ---
 <BaseLayout
   title="국내여행 악천후 당일 계획 복구 가이드 - Tourpick360"
   description="집중 호우·태풍·폭염 등 돌발 기상 변화 발생 시 국내여행 일정이 무너지는 문제를 해결하기 위한 실전 체크리스트와 대체 동선 프레임"
 >
   <article class="article-page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">국내여행 문제 해결형 가이드</p>
     <h1>국내여행 악천후 발생 시 즉시 복구 가이드</h1>
     <SourceBadge />
@@ -76,6 +82,25 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <li>변경 이유를 시간/비용/안전 기준 3개로 고정 문구화</li>
       <li>식사 예약 및 현장권 변경은 변경 직후 즉시 처리</li>
     </ul>
+
+    <h2>숙소 권역이 대체 코스의 폭을 정합니다</h2>
+    <p>
+      같은 비 예보라도 회복 가능성은 숙소를 어느 권역에 잡았느냐로 갈립니다.
+      실내 대체 코스는 새로 찾는 것이 아니라 숙소 반경 안에 이미 몇 개가 있는지의 문제이기 때문입니다.
+      아래 세 가지를 기준으로 지금 숙소 권역이 우천에 강한지 판단합니다.
+    </p>
+    <ul>
+      <li><strong>도보 10분 안의 실내 선택지 개수</strong> — 전시, 상가, 카페, 식당을 합쳐 3곳 미만이면 이동이 강제됩니다.</li>
+      <li><strong>주차장이나 정류장에서 입구까지 걷는 거리</strong> — 비에 젖는 구간은 거리보다 이 구간에서 결정됩니다.</li>
+      <li><strong>식사 대기 길이</strong> — 비 오는 날에는 인기 식당 대기가 늘어나므로, 대기 짧은 후보를 함께 두어야 합니다.</li>
+    </ul>
+    <p>
+      부산 해운대·센텀처럼 숙소 반경에 실내 코스가 몰려 있는 권역은 해변 일정을 짧은 선택 코스로 내리고
+      나머지를 실내로 옮기는 것만으로 회복됩니다. 반대로 실내 선택지가 적은 권역이라면
+      대체 코스를 찾기보다 이동 자체를 줄이고 숙소 체류 시간을 늘리는 편이 피로가 적습니다.
+      권역별 판단 기준은 <a href="/domestic/busan/rainy-day-family-route/">부산 비 오는 날 가족여행 코스</a>에서
+      해운대, 센텀, 부산역 권역을 나눠 비교했습니다.
+    </p>
 
     <h2>Before/After로 보는 복구 효과</h2>
     <table>

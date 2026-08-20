@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const heroImage = {
@@ -70,15 +71,17 @@ const gallery = [
     caption: '섬과 섬 사이 바다를 크게 볼 수 있어 이동 중 쉬어 가기 좋습니다.'
   }
 ];
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '여수 장도·웅천·낭도 낮 코스와 야경 숙소 동선', href: '/domestic/yeosu/night-view-hotel-route-guide/' }
+];
 ---
 <BaseLayout title="여수 여행 코스 가이드 - 장도·웅천·낭도와 야경 동선 - Tourpick360" description="여수 여행에서 여수예술의섬 장도, 웅천 해변, 낭도 드라이브, 돌산 야경과 숙소 권역을 하루 동선 기준으로 정리합니다.">
   <article class="article-page longform yeosu-course-page">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>여수</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">여수 여행 코스</p>
     <h1>여수 장도·웅천·낭도 낮 코스와 야경 숙소 동선</h1>
-    <SourceBadge />
+    <SourceBadge type="visited" visitedOn="2026년 5월 31일" />
     <p class="lead">여수는 바다를 보는 낮 일정과 야경을 보는 저녁 일정의 성격이 다릅니다. 사진 속 코스를 기준으로 장도와 웅천을 가볍게 걷고, 시간이 있으면 낭도까지 넓힌 뒤, 저녁에는 숙소 권역에 맞춰 야경 동선을 짧게 잡는 흐름이 좋습니다.</p>
 
     <figure class="article-hero-image">

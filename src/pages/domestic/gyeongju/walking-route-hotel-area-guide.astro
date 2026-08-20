@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -8,12 +9,14 @@ const heroImage = getTourApiImage('gyeongju', {
   alt: '경주 대릉원 고분과 산책로 풍경',
   caption: '경주는 대릉원, 황리단길, 첨성대처럼 가까워 보이는 지점도 실제 걷는 피로를 함께 봐야 합니다. 사진: Bernard Gagnon, Wikimedia Commons, CC0'
 });
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '경주 도보 여행 코스와 숙소 위치 고르는 법', href: '/domestic/gyeongju/walking-route-hotel-area-guide/' }
+];
 ---
 <BaseLayout title="경주 도보 여행 코스와 숙소 위치 고르는 법 - Tourpick360" description="경주 여행에서 황리단길, 대릉원, 첨성대, 월정교 권역을 도보 거리와 숙소 위치 기준으로 정리합니다.">
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>경주</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">경주 도보여행</p>
     <h1>경주 도보 여행 코스와 숙소 위치 고르는 법</h1>
     <SourceBadge />
