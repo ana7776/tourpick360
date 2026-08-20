@@ -1,4 +1,5 @@
 ---
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const modes = [
@@ -153,9 +154,13 @@ const modes = [
     ]
   }
 ];
+const breadcrumbItems = [
+  { name: '비교 도구', href: '/tools/itinerary-comparison/' }
+];
 ---
 <BaseLayout title="기본 vs 개선 여행 일정 비교 도구 - Tourpick360" description="여행 유형을 선택하면 무리한 기본 일정과 더 안정적인 개선 일정을 비교하고, 왜 개선안이 나은지 확인할 수 있는 Tourpick360 도구입니다.">
   <section class="tool-page">
+    <Breadcrumb items={breadcrumbItems} />
     <div class="section-heading">
       <p class="eyebrow">Comparison Tool</p>
       <h1>기본 vs 개선 여행 일정 비교 도구</h1>

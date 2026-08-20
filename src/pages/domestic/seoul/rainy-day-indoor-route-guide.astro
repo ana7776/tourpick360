@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -35,12 +36,14 @@ const travelerRows = [
   ['커플 여행', '전시와 카페를 묶되 사진 명소를 여러 곳 넣기보다 비가 약한 시간대에 한 권역만 깊게 보는 편이 좋습니다.'],
   ['친구 여행', '쇼핑과 맛집을 넓게 흩뿌리면 우산 이동 시간이 길어집니다. 같은 지하철 라인이나 같은 권역 안에서 선택지를 좁힙니다.']
 ];
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: article.title, href: '/domestic/seoul/rainy-day-indoor-route-guide/' }
+];
 ---
 <BaseLayout title={`${article.title} - Tourpick360`} description={article.description}>
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>서울</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">서울 우천 여행</p>
     <h1>{article.title}</h1>

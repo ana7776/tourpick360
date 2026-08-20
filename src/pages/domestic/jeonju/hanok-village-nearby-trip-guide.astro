@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { naverMapSearchUrl } from '../../../utils/naverMapLinks.js';
 
@@ -172,18 +173,16 @@ const faqJsonLd = {
     }
   ]
 };
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: article.title, href: '/domestic/jeonju/hanok-village-nearby-trip-guide/' }
+];
 ---
 <BaseLayout title={`${article.title} - Tourpick360`} description={article.description}>
   <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a>
-      <span>/</span>
-      <a href="/domestic/">국내여행</a>
-      <span>/</span>
-      <span>전주</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">전주 한옥마을 확장 코스</p>
     <h1>{article.title}</h1>

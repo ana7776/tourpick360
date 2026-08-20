@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const title = '곡성 세계장미축제 방문 가이드 - 기간, 장소, 동선, 사진 포인트';
@@ -26,18 +27,17 @@ const jsonLd = {
   mainEntityOfPage: pageUrl,
   inLanguage: 'ko-KR'
 };
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '축제 여행', href: '/domestic/festivals/' },
+  { name: '곡성 세계장미축제 방문 가이드', href: '/domestic/festivals/gokseong-rose-festival-guide/' }
+];
 ---
 <BaseLayout title={title} description={description} image={heroImage}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a>
-      <span>/</span>
-      <a href="/domestic/">국내여행</a>
-      <span>/</span>
-      <a href="/domestic/festivals/">축제 여행</a>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">Gokseong Rose Festival</p>
     <h1>곡성 세계장미축제 방문 가이드</h1>

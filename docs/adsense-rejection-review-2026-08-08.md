@@ -102,3 +102,41 @@ Both `/case-studies/` and `/templates/` — two fully-built hub pages (1,000+ wo
 ### Lower-priority structural gap (not fixed this pass)
 
 About half of individual article pages have a visual breadcrumb (`<nav class="breadcrumb">`) but no matching `BreadcrumbList` JSON-LD, and hub pages (`/domestic/`, `/domestic/jeju/`, `/travel-tips/`, `/templates/`, `/case-studies/`, homepage) have no breadcrumb at all, visual or structured. This affects how cleanly Google can render breadcrumb trails in search results and understand page hierarchy programmatically — real, but secondary to the nav-destination bugs above, and touches enough files that it's a separate, deliberate pass rather than a quick fix. Worth doing before the next reapplication, not blocking it.
+
+## Breadcrumb Pass (2026-08-20)
+
+This closes the "lower-priority structural gap" flagged at the end of the 2026-08-08 second pass — breadcrumbs were half-implemented and hub pages had none at all.
+
+### What was wrong
+
+- **Visual breadcrumbs and structured data were separate code.** The three shared article components (`ApprovalArticle`, `FestivalArticle`, `ProblemSolvingArticle`) each hand-wrote a `<nav class="breadcrumb">` *and*, independently, a `buildBreadcrumbJsonLd([...])` call listing the same trail. Nothing kept the two in sync — the same shape of duplication that caused the header-nav mismatch fixed on 2026-08-08.
+- **That duplication had already drifted into a real defect.** `ProblemSolvingArticle`'s JSON-LD listed `https://tourpick360.com/travel-tips/problems/` as an intermediate crumb. There is no such page — `src/pages/travel-tips/problems/` only contains `[slug].astro`, so that URL 404s. All 15 problem-solving pages were shipping a `BreadcrumbList` pointing at a non-existent page, which is worse than having no breadcrumb markup at all.
+- **18 standalone region/festival article pages** had a visual breadcrumb and no `BreadcrumbList` whatsoever.
+- **21 pages had neither**, including every hub (`/domestic/`, `/domestic/festivals/`, `/domestic/jeju/`, `/travel-tips/`, `/case-studies/`, `/templates/`, `/tools/itinerary-comparison/`), all six legal/info pages, and six `/travel-tips/` articles.
+- The trailing crumb was also semantically wrong on the region pages: it read `홈 / 국내여행 / 부산`, where `부산` is not a page — there are no region hubs — and the article itself never appeared in its own trail.
+
+### What changed
+
+A single `src/components/Breadcrumb.astro` now renders the visible `<nav>` and the `BreadcrumbList` JSON-LD from one `items` array, so the two cannot diverge again. `홈` is prepended automatically; the final item renders as `aria-current="page"` text but still carries its URL in the structured data, which is what Google reads.
+
+Applied to 73 of 75 pages. The two exclusions are deliberate: `/` is the breadcrumb root and has nothing to show, and `/search/` is `noindex`. Region article trails are now `홈 / 국내여행 / {글 제목}` — every crumb resolves to a real page, and the region stays legible because the region name is already in each title.
+
+### Verified
+
+- 76 pages build; `npm run check:seo` passes.
+- 73 `BreadcrumbList` blocks, one per page, no page emitting two.
+- Every `item` URL in every crumb resolves to a page that exists in `dist/` — **0 broken crumb targets** (this is the check that would have caught the `/travel-tips/problems/` bug, and it is worth re-running whenever a page is renamed or merged).
+- `position` values are contiguous from 1 on every list.
+- Full internal-link and image scan across the build: 0 broken links, 0 missing images.
+
+### Also fixed in this pass
+
+`/domestic/festivals/imsil-n-rose-festival-guide/` was displaying the `공식자료 기반 가이드` badge while its own headline read "5월 29일 방문기", its lead described arriving at 임실치즈테마파크 that afternoon in the first person, and its figcaptions dated the author's own photos. The 2026-08-16 badge pass classified it from `visitType` in the data files and missed it because this article is a standalone `.astro` page with no data-file entry. A badge that contradicts the headline directly above it is a credibility problem on the exact article type the site is strongest at, so it now carries `type="visited"` with the 2026년 5월 29일 visit date, and its `Article` author changed from `Organization` to the named `Person` used elsewhere on the site. Live visit reviews: 6, not 5.
+
+`/domestic/festivals/gokseong-rose-festival-guide/` was checked the same way and correctly stays a desk guide — no first-person visit narrative, no dated photos.
+
+### Indexing URL list rebuilt
+
+`docs/indexing-priority-urls.md` was stale enough to be actively harmful: it claimed the sitemap held 102 URLs (it holds 74) and listed **9 URLs that no longer exist** as manual indexing targets, including the removed bicycle content and four `/templates/` sub-pages. All 9 do have 301s in `public/_redirects`, so nothing 404s — but submitting redirect-only URLs for indexing wastes a limited daily quota and muddies the Search Console coverage report.
+
+The document is now generated against `dist/sitemap-0.xml`: 74 URLs in five priority tiers, cross-checked so the tiers contain every sitemap URL exactly once and nothing else. Retired URLs moved to a "do not request indexing" section with their redirect targets, and the file ends with the command to re-derive the list after any page change.

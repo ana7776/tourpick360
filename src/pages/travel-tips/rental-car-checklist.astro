@@ -1,9 +1,15 @@
 ---
 import SourceBadge from '../../components/SourceBadge.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '여행 준비', href: '/travel-tips/' },
+  { name: '렌터카 예약 전 확인해야 할 10가지', href: '/travel-tips/rental-car-checklist/' }
+];
 ---
 <BaseLayout title="렌터카 예약 전 확인해야 할 10가지 - Tourpick360" description="제주와 국내 여행 렌터카 예약 전 보험, 인수 위치, 반납 시간, 주차 동선을 확인하는 체크리스트입니다.">
   <article class="article-page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">렌터카 예약</p>
     <h1>렌터카 예약 전 확인해야 할 10가지</h1>
     <SourceBadge />

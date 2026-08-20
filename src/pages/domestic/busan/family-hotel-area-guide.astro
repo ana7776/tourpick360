@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -8,12 +9,14 @@ const heroImage = getTourApiImage('busan', {
   alt: '부산 해운대 해변과 도심 스카이라인',
   caption: '해운대는 바다 산책과 숙소 선택지가 넓어 가족여행의 기준 권역으로 보기 좋습니다. 사진: StephNurnberg, Wikimedia Commons, CC BY 2.0'
 });
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '부산 가족여행 숙소 권역 고르는 법', href: '/domestic/busan/family-hotel-area-guide/' }
+];
 ---
 <BaseLayout title="부산 가족여행 숙소 권역 고르는 법 - Tourpick360" description="부산 가족여행에서 해운대, 광안리, 부산역 권역을 숙소 위치, 대중교통, 식사 접근성 기준으로 비교합니다.">
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>부산</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">부산 숙소</p>
     <h1>부산 가족여행 숙소 권역 고르는 법</h1>
     <SourceBadge />

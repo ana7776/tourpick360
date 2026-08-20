@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -8,12 +9,14 @@ const heroImage = getTourApiImage('seoul', {
   alt: '서울 경복궁 향원정과 연못 풍경',
   caption: '서울 여행은 궁궐, 전시, 쇼핑, 공연 목적에 따라 숙소 권역과 대중교통 동선이 달라집니다. 사진: Basile Morin, Wikimedia Commons, CC BY-SA 4.0'
 });
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '서울 여행 목적별 숙소 권역 선택 가이드', href: '/domestic/seoul/purpose-area-hotel-guide/' }
+];
 ---
 <BaseLayout title="서울 여행 목적별 숙소 권역 선택 가이드 - Tourpick360" description="서울 여행에서 전시, 공연, 쇼핑, 가족 일정 목적에 맞춰 숙소 권역과 대중교통 동선을 정하는 기준을 정리합니다.">
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>서울</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">서울 목적별 여행</p>
     <h1>서울 여행 목적별 숙소 권역 선택 가이드</h1>
     <SourceBadge />

@@ -1,8 +1,13 @@
 ---
+import Breadcrumb from '../components/Breadcrumb.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '이용약관', href: '/terms/' }
+];
 ---
 <BaseLayout title="이용약관 - Tourpick360" description="Tourpick360 여행 정보 콘텐츠 이용 범위, 외부 링크 확인 책임, 요금과 운영 조건 변동 가능성에 대한 이용 기준입니다.">
   <section class="page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">Terms</p>
     <h1>이용약관</h1>
     <p>Tourpick360의 콘텐츠는 여행 정보 제공을 목적으로 하며, 요금과 운영 조건은 현장 및 공식 안내에 따라 변경될 수 있습니다.</p>

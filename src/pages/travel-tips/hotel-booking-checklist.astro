@@ -1,9 +1,15 @@
 ﻿---
 import SourceBadge from '../../components/SourceBadge.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '여행 준비', href: '/travel-tips/' },
+  { name: '숙박 예약 체크리스트: 문제 해결형 12가지 핵심 점검', href: '/travel-tips/hotel-booking-checklist/' }
+];
 ---
 <BaseLayout title="숙박 예약 체크리스트 - Tourpick360" description="숙박 예약 전·중·후 점검 항목을 정리해 체크인 실패, 추가 요금, 취소 손해를 줄이는 실전 체크리스트입니다.">
   <article class="article-page">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">국내숙박 체크리스트</p>
     <h1>숙박 예약 체크리스트: 문제 해결형 12가지 핵심 점검</h1>
     <SourceBadge />

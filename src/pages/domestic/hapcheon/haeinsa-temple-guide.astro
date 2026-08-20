@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 const title = '합천 해인사 방문 가이드 - 가야산 숲길과 팔만대장경 하루 코스';
@@ -66,18 +67,16 @@ const gallery = [
   ['/images/hapcheon-haeinsa/old-tree-wishes.jpg', '오래된 나무 주변에 노란 소원지가 걸린 해인사 경내', '고목과 소원지는 해인사의 차분한 분위기를 보여줍니다.'],
   ['/images/hapcheon-haeinsa/daejeokgwangjeon-detail.jpg', '해인사 대적광전 지붕과 단청을 가까이서 본 모습', '전각의 지붕선과 단청 무늬를 살펴보기 좋은 사진입니다.']
 ];
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '합천 해인사 방문 가이드', href: '/domestic/hapcheon/haeinsa-temple-guide/' }
+];
 ---
 <BaseLayout title={title} description={description} image={heroImage}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a>
-      <span>/</span>
-      <a href="/domestic/">국내여행</a>
-      <span>/</span>
-      <span>합천</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">Hapcheon Temple Course</p>
     <h1>합천 해인사 방문 가이드</h1>

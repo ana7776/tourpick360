@@ -1,0 +1,26 @@
+---
+import { buildBreadcrumbJsonLd } from '../utils/searchSnippets.js';
+
+// items: [{ name, href }] — 홈을 제외한 경로. 마지막 항목이 현재 페이지이며
+// 링크 대신 텍스트로 표시되지만 구조화 데이터에는 URL이 포함된다.
+const { items = [] } = Astro.props;
+
+const trail = [{ name: '홈', href: '/' }, ...items];
+const jsonLd = buildBreadcrumbJsonLd(
+  trail.map((item) => ({
+    name: item.name,
+    url: new URL(item.href, 'https://tourpick360.com').toString()
+  }))
+);
+---
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<nav class="breadcrumb" aria-label="현재 위치">
+  {trail.map((item, index) => (
+    <>
+      {index > 0 && <span aria-hidden="true">/</span>}
+      {index === trail.length - 1
+        ? <span aria-current="page">{item.name}</span>
+        : <a href={item.href}>{item.name}</a>}
+    </>
+  ))}
+</nav>

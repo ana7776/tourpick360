@@ -1,4 +1,5 @@
 ---
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../data/tourApiImages.js';
 
@@ -232,10 +233,14 @@ const checklist = [
   ['동행 유형', '아이, 부모님, 커플 여행은 걷는 거리와 휴식 시간이 달라집니다.'],
   ['날씨 변수', '비나 강풍이 있어도 바꿀 수 있는 실내 코스와 식사 동선을 준비합니다.']
 ];
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' }
+];
 ---
 <BaseLayout title="국내여행 지역별 계절별 가이드 - Tourpick360" description="국내 여행지를 지역별, 계절별, 여행 목적별로 나누고 숙소 위치와 이동 동선을 비교하는 Tourpick360 국내여행 허브입니다.">
   <section class="domestic-hero atlas-hero">
     <div>
+      <Breadcrumb items={breadcrumbItems} />
       <p class="eyebrow">Domestic Travel 360</p>
       <h1>국내여행을 지역과 계절 기준으로 다시 고르기</h1>
       <p>

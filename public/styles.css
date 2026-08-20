@@ -274,6 +274,11 @@ h2 {
   font-size: 14px;
 }
 
+.breadcrumb [aria-current='page'] {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
 .longform h1 {
   margin: 0 0 18px;
   font-size: 46px;

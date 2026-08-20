@@ -1,5 +1,6 @@
 ---
 import SourceBadge from '../../../components/SourceBadge.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../../data/tourApiImages.js';
 
@@ -76,6 +77,10 @@ const sourceLinks = [
   ['대한민국 구석구석 강릉 헌화로 여행기사', 'https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=ffff1046-c005-4dc1-8b71-3dcf1a2e3cbe'],
   ['대한민국 구석구석 선교장·경포가시연습지 코스', 'https://korean.visitkorea.or.kr/detail/rem_detail.do?cotid=6492f78e-079c-4d7f-9aad-4b261401534f']
 ];
+const breadcrumbItems = [
+  { name: '국내여행', href: '/domestic/' },
+  { name: '강릉 여행지 권역별 추천 코스와 동선 가이드', href: '/domestic/gangneung/attraction-area-guide/' }
+];
 ---
 <BaseLayout
   title="강릉 여행지 권역별 추천 코스와 동선 가이드 - Tourpick360"
@@ -83,9 +88,7 @@ const sourceLinks = [
   image={heroImage.src}
 >
   <article class="article-page longform">
-    <nav class="breadcrumb" aria-label="현재 위치">
-      <a href="/">홈</a><span>/</span><a href="/domestic/">국내여행</a><span>/</span><span>강릉</span>
-    </nav>
+    <Breadcrumb items={breadcrumbItems} />
 
     <p class="eyebrow">강릉 여행지 보강 가이드</p>
     <h1>강릉 여행지 권역별 추천 코스와 동선 가이드</h1>

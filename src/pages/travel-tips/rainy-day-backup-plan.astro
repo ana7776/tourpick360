@@ -1,12 +1,18 @@
 ﻿---
 import SourceBadge from '../../components/SourceBadge.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '여행 준비', href: '/travel-tips/' },
+  { name: '국내여행 악천후 발생 시 즉시 복구 가이드', href: '/travel-tips/rainy-day-backup-plan/' }
+];
 ---
 <BaseLayout
   title="국내여행 악천후 당일 계획 복구 가이드 - Tourpick360"
   description="집중 호우·태풍·폭염 등 돌발 기상 변화 발생 시 국내여행 일정이 무너지는 문제를 해결하기 위한 실전 체크리스트와 대체 동선 프레임"
 >
   <article class="article-page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">국내여행 문제 해결형 가이드</p>
     <h1>국내여행 악천후 발생 시 즉시 복구 가이드</h1>
     <SourceBadge />

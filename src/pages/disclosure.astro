@@ -1,8 +1,13 @@
 ---
+import Breadcrumb from '../components/Breadcrumb.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '정보 제공 원칙', href: '/disclosure/' }
+];
 ---
 <BaseLayout title="정보 제공 원칙 - Tourpick360" description="Tourpick360 콘텐츠가 여행자의 판단을 돕기 위해 어떤 기준으로 작성되고 수정되는지 안내합니다.">
   <section class="page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">Reader First</p>
     <h1>정보 제공 원칙</h1>
     <p>Tourpick360은 여행자가 출발 전에 필요한 기준을 빠르게 확인할 수 있도록 글을 구성합니다.</p>

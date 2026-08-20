@@ -1,12 +1,18 @@
 ---
 import SourceBadge from '../../components/SourceBadge.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+const breadcrumbItems = [
+  { name: '여행 준비', href: '/travel-tips/' },
+  { name: '국내여행 예산 초과를 막는 문제 해결 가이드', href: '/travel-tips/travel-budget-plan/' }
+];
 ---
 <BaseLayout
   title="국내여행 예산 초과를 막는 문제 해결 가이드 - Tourpick360"
   description="국내여행 예산을 이동·숙박·식사·체험·예비비로 나눠 1,200자 이상으로 검증한 실전형 체크리스트를 제공합니다."
 >
   <article class="article-page longform">
+    <Breadcrumb items={breadcrumbItems} />
     <p class="eyebrow">국내여행 예산</p>
     <h1>국내여행 예산 초과를 막는 문제 해결 가이드</h1>
     <SourceBadge />
