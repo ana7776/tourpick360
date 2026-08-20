@@ -1,6 +1,6 @@
 # Tourpick360 색인 신청 정리
 
-업데이트: 2026-08-20 (3차 · 중복 통합 및 방문 후기 재분류 반영)
+업데이트: 2026-08-20 (최종 · 중복 통합, 방문 후기 재분류, 방문일 표기 반영)
 기준: `npm run build` 결과의 `dist/sitemap-0.xml` (색인 대상 68개 URL)
 
 이 문서는 Google Search Console, Naver Search Advisor, Bing Webmaster Tools에 제출할 sitemap과 수동 색인 요청 우선순위를 정리한 체크리스트입니다. 아래 URL은 전부 빌드 결과에 실제로 존재하는 페이지이며, 삭제·통합된 주소는 7번 항목으로 따로 분리했습니다.
@@ -34,7 +34,8 @@ www / http: https://tourpick360.com 으로 301 통일
 내부 링크 깨짐 0건, 이미지 누락 0건
 BreadcrumbList 구조화 데이터: 67개 페이지 (홈, /search/ 제외)
 개인정보처리방침: 제3자 광고 쿠키 고지 포함
-실제 방문 후기: 12편 (사진 전량 직접 촬영), 공식자료 기반: 42편
+실제 방문 후기: 12편 (전부 방문일 표기, 사진 전량 직접 촬영), 공식자료 기반: 42편
+사진 저작권: CC BY·CC BY-SA 사용분 저작자 표시 완료
 ```
 
 ## 2. 1순위 - 사이트 구조와 신뢰 신호 (14개)
@@ -60,9 +61,11 @@ https://tourpick360.com/disclosure/
 
 ## 3. 2순위 - 직접 방문 후기 (12개)
 
-운영자가 실제로 다녀온 뒤 작성한 글이며, 본문 사진은 전부 현장에서 직접 촬영한 것입니다. 사이트에서 대체 불가능한 1차 자료라 가장 먼저 색인되어야 합니다. 각 페이지 제목 아래 `실제 방문 후기` 배지가 표시됩니다.
+운영자가 실제로 다녀온 뒤 작성한 글이며, 본문 사진은 전부 현장에서 직접 촬영한 것입니다. 사이트에서 대체 불가능한 1차 자료라 가장 먼저 색인되어야 합니다. 각 페이지 제목 아래 `실제 방문 후기` 배지에 방문일이 함께 표시됩니다.
 
-모임 회비를 걷어 함께 정산한 여행 4편은 총 입금액과 항목별 지출, 1인 부담액까지 본문에 공개되어 있어 증거 밀도가 가장 높습니다. 색인 요청도 이 4편부터 넣습니다.
+### 3-1. 정산표까지 공개한 단체 여행 4편 (최우선)
+
+총 입금액, 항목별 지출, 1인 부담액이 본문에 그대로 실려 있어 증거 밀도가 가장 높습니다. 색인 요청은 이 4편부터 넣습니다.
 
 ```text
 https://tourpick360.com/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/
@@ -71,7 +74,14 @@ https://tourpick360.com/domestic/festivals/geoje-hydrangea-windhill-sinseondae-c
 https://tourpick360.com/domestic/festivals/gochang-bluefarm-lavender-yeonggwang-drive/
 ```
 
-각자 계산했거나 공동 정산을 하지 않은 방문 후기 8편입니다.
+| 글 | 방문일 | 규모 |
+|---|---|---|
+| 무주 머루와인동굴·적상산 | 2026-07-12 (일) | 14명 |
+| 부여 궁남지·칠갑산 출렁다리 | 2026-07-05 (일) | 10명 |
+| 거제 수국공원·바람의언덕 | 2026-06-28 (일) | 15명 |
+| 고창 청농원·영광 백수해안도로 | 2026-06-21 (일) | 15명 |
+
+### 3-2. 정산 없이 다녀온 8편
 
 ```text
 https://tourpick360.com/domestic/festivals/jeonju-veteran-kalguksu-chutan1438-deokjin-park-night-course/
@@ -83,6 +93,17 @@ https://tourpick360.com/domestic/hapcheon/haeinsa-temple-guide/
 https://tourpick360.com/domestic/goheung/ssookseom-walking-course-guide/
 https://tourpick360.com/domestic/yeosu/night-view-hotel-route-guide/
 ```
+
+| 글 | 방문일 | 비고 |
+|---|---|---|
+| 전주 베테랑칼국수·덕진공원 야경 | 2026-07-22 / 07-17 | 7명, 각자 계산 |
+| 임실N장미축제 | 2026-05-29 (금) | 사진 EXIF로 확인된 날짜 |
+| 곡성 세계장미축제 | 2026-05-17 (일) | 축제 개막 전 장미정원 방문 (본문에 명시) |
+| 거창 Y자형 출렁다리 | 2026-04-26 (일) | 합천과 같은 날 |
+| 전주 한옥마을 도보 | 2026-06-16 (화) | 지인 동행 |
+| 합천 해인사 | 2026-04-26 (일) | 거창과 같은 날 |
+| 고흥 쑥섬 | 2026-06-07 (일) | |
+| 여수 장도·웅천·낭도 | 2026-05-31 (일) | |
 
 ## 4. 3순위 - 축제 여행 가이드 (13개)
 
