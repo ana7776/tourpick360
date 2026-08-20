@@ -241,3 +241,44 @@ The 부여 and 무주 settlement tables stated 총무는 회비 면제. The owne
 ### Verified
 
 70 pages build; `npm run check:seo` passes; 67 `BreadcrumbList` with 0 broken crumb targets; 2,674 internal links with 0 broken; 0 missing images; 0 credit-requiring images without attribution; badge distribution 4 / 8 / 42 with none unclassified.
+
+## Visit Dates Added (2026-08-20, fourth pass)
+
+All 12 visit reviews now carry a visit date in their badge. Two things are worth recording about how the dates were obtained, because both were near-misses.
+
+### EXIF was recoverable on exactly one article
+
+A deep scan (EXIF APP1, XMP, and raw date-string search across every byte) found capture dates in **only** `imsil-n-rose-festival` — 12 photos, all `2026-05-29`, matching the date already set from the article's own text. The other six directories returned 0 EXIF, 0 XMP, 0 embedded date strings: the image pipeline (`sharp`) strips metadata on resize, so the published files cannot yield capture dates. The originals on the owner's own devices still hold them.
+
+This matters procedurally: the owner initially said "the photo dates you gave me are correct, put those in." But no photo dates had been derived for those six — what had been presented was a table of *clues* (본문 작성일 / 최종 확인일 / 축제 기간) plus a **fill-in-the-blank example block containing invented placeholder dates** (거창 6/20, 합천 6/14, 곡성 5/30). Treating that example as data would have published fabricated visit dates on articles claiming first-hand visits — the exact failure mode this whole workstream exists to prevent, and one that would have been invisible afterwards. The dates below came from the owner checking their own records instead.
+
+### One date contradicted the article and had to be resolved, not just entered
+
+The owner's date for 곡성 was **5월 17일**, but that article states the festival ran **5월 22일 ~ 6월 7일**. Entering the date as-is would have put "2026년 5월 17일에 직접 다녀왔다" on a page titled 곡성 세계장미축제 방문 가이드 that simultaneously says the festival opened five days later — a contradiction visible to any reviewer reading the page top to bottom, and worse than having no date at all.
+
+Confirmed with the owner: the visit was to 섬진강기차마을 장미공원 **before the festival opened**. The article now says so explicitly in the lead — that the photos predate the festival, that the garden is open outside the festival period so the visit is useful for planning the route in advance, and that the photos therefore do **not** show the festival-only stages, booths, or crowds, so readers should re-scale their expectation of congestion. Two figcaptions were amended for the same reason. The date and the festival period now reinforce each other instead of colliding.
+
+### Dates as entered
+
+| 글 | 방문일 | 요일 | 근거 |
+|---|---|---|---|
+| 부여 궁남지·칠갑산 | 2026-07-05 | 일 | 본문 정산표 |
+| 무주 머루와인동굴·적상산 | 2026-07-12 | 일 | 본문 정산표 |
+| 거제 수국공원·바람의언덕 | 2026-06-28 | 일 | 본문 정산표 |
+| 고창 청농원·영광 | 2026-06-21 | 일 | 본문 정산표 |
+| 전주 베테랑칼국수·덕진공원 | 2026-07-22 / 07-17 | 수/금 | 본문 서술 |
+| 임실N장미축제 | 2026-05-29 | 금 | **사진 EXIF** |
+| 거창 Y자형 출렁다리 | 2026-04-26 | 일 | 운영자 확인 |
+| 합천 해인사 | 2026-04-26 | 일 | 운영자 확인 (거창과 같은 날) |
+| 여수 장도·웅천·낭도 | 2026-05-31 | 일 | 운영자 확인 |
+| 고흥 쑥섬 | 2026-06-07 | 일 | 운영자 확인 |
+| 전주 한옥마을 | 2026-06-16 | 화 | 운영자 확인 (지인 동행) |
+| 곡성 세계장미축제 | 2026-05-17 | 일 | 운영자 확인 (축제 개막 전 장미정원) |
+
+Nine of the twelve fall on a Sunday, consistent with the group's travel pattern; the three that do not (전주 야경 수/금, 전주 한옥 화) are both local Jeonju outings where a weekday is expected. All twelve predate the date each photo directory was first committed. No date failed a consistency check after the 곡성 resolution.
+
+Note on 전주 한옥마을: visited with an acquaintance rather than the group. The badge for non-settlement visits reads "운영자가 …에 직접 다녀온 뒤 작성했습니다" and never claims 모임, so it is already correct — the 모임과 함께 wording appears only on the four settlement articles, which are all genuine group trips.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; 12 visit badges (4 settlement / 8 photo-only), all dated; 67 `BreadcrumbList` with 0 broken crumb targets; 0 broken internal links; 0 missing images.
