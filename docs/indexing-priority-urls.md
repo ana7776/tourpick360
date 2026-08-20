@@ -1,6 +1,6 @@
 # Tourpick360 색인 신청 정리
 
-업데이트: 2026-08-20 (2차 · 중복 글 통합 반영)
+업데이트: 2026-08-20 (3차 · 중복 통합 및 방문 후기 재분류 반영)
 기준: `npm run build` 결과의 `dist/sitemap-0.xml` (색인 대상 68개 URL)
 
 이 문서는 Google Search Console, Naver Search Advisor, Bing Webmaster Tools에 제출할 sitemap과 수동 색인 요청 우선순위를 정리한 체크리스트입니다. 아래 URL은 전부 빌드 결과에 실제로 존재하는 페이지이며, 삭제·통합된 주소는 7번 항목으로 따로 분리했습니다.
@@ -34,6 +34,7 @@ www / http: https://tourpick360.com 으로 301 통일
 내부 링크 깨짐 0건, 이미지 누락 0건
 BreadcrumbList 구조화 데이터: 67개 페이지 (홈, /search/ 제외)
 개인정보처리방침: 제3자 광고 쿠키 고지 포함
+실제 방문 후기: 12편 (사진 전량 직접 촬영), 공식자료 기반: 42편
 ```
 
 ## 2. 1순위 - 사이트 구조와 신뢰 신호 (14개)
@@ -57,20 +58,33 @@ https://tourpick360.com/terms/
 https://tourpick360.com/disclosure/
 ```
 
-## 3. 2순위 - 직접 방문 후기 (6개)
+## 3. 2순위 - 직접 방문 후기 (12개)
 
-운영자가 실제로 다녀온 뒤 방문일, 인원, 지출, 직접 촬영한 사진을 함께 실은 글입니다. 사이트에서 대체 불가능한 1차 자료라 가장 먼저 색인되어야 합니다. 각 페이지 제목 아래 `실제 방문 후기` 배지가 표시됩니다.
+운영자가 실제로 다녀온 뒤 작성한 글이며, 본문 사진은 전부 현장에서 직접 촬영한 것입니다. 사이트에서 대체 불가능한 1차 자료라 가장 먼저 색인되어야 합니다. 각 페이지 제목 아래 `실제 방문 후기` 배지가 표시됩니다.
+
+모임 회비를 걷어 함께 정산한 여행 4편은 총 입금액과 항목별 지출, 1인 부담액까지 본문에 공개되어 있어 증거 밀도가 가장 높습니다. 색인 요청도 이 4편부터 넣습니다.
 
 ```text
-https://tourpick360.com/domestic/festivals/imsil-n-rose-festival-guide/
-https://tourpick360.com/domestic/festivals/gochang-bluefarm-lavender-yeonggwang-drive/
-https://tourpick360.com/domestic/festivals/geoje-hydrangea-windhill-sinseondae-course/
-https://tourpick360.com/domestic/festivals/buyeo-lotus-chilgapsan-group-trip-review/
 https://tourpick360.com/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/
-https://tourpick360.com/domestic/festivals/jeonju-veteran-kalguksu-chutan1438-deokjin-park-night-course/
+https://tourpick360.com/domestic/festivals/buyeo-lotus-chilgapsan-group-trip-review/
+https://tourpick360.com/domestic/festivals/geoje-hydrangea-windhill-sinseondae-course/
+https://tourpick360.com/domestic/festivals/gochang-bluefarm-lavender-yeonggwang-drive/
 ```
 
-## 4. 3순위 - 축제 여행 가이드 (14개)
+각자 계산했거나 공동 정산을 하지 않은 방문 후기 8편입니다.
+
+```text
+https://tourpick360.com/domestic/festivals/jeonju-veteran-kalguksu-chutan1438-deokjin-park-night-course/
+https://tourpick360.com/domestic/festivals/imsil-n-rose-festival-guide/
+https://tourpick360.com/domestic/festivals/gokseong-rose-festival-guide/
+https://tourpick360.com/domestic/geochang/y-shaped-suspension-bridge-guide/
+https://tourpick360.com/domestic/jeonju/hanok-village-walking-guide/
+https://tourpick360.com/domestic/hapcheon/haeinsa-temple-guide/
+https://tourpick360.com/domestic/goheung/ssookseom-walking-course-guide/
+https://tourpick360.com/domestic/yeosu/night-view-hotel-route-guide/
+```
+
+## 4. 3순위 - 축제 여행 가이드 (13개)
 
 핵심 니치인 국내 계절 축제 클러스터입니다. 위 방문 후기와 같은 허브(`/domestic/festivals/`) 아래 묶여 있습니다.
 
@@ -78,7 +92,6 @@ https://tourpick360.com/domestic/festivals/jeonju-veteran-kalguksu-chutan1438-de
 https://tourpick360.com/domestic/festivals/seasonal-festival-travel-guide/
 https://tourpick360.com/domestic/festivals/festival-travel-by-companion/
 https://tourpick360.com/domestic/festivals/festival-booking-budget-guide/
-https://tourpick360.com/domestic/festivals/gokseong-rose-festival-guide/
 https://tourpick360.com/domestic/festivals/rainy-season-festival-travel-plan/
 https://tourpick360.com/domestic/festivals/early-summer-night-festival-heat-plan/
 https://tourpick360.com/domestic/festivals/summer-family-festival-rest-plan/
@@ -91,7 +104,7 @@ https://tourpick360.com/domestic/festivals/train-arrival-luggage-festival-route/
 https://tourpick360.com/domestic/festivals/pet-friendly-festival-travel-checklist/
 ```
 
-## 5. 4순위 - 지역 가이드 (19개)
+## 5. 4순위 - 지역 가이드 (14개)
 
 지역별 숙소 권역과 동선 비교 글입니다. 제주는 통합 가이드 3개로 유지합니다.
 
@@ -108,13 +121,8 @@ https://tourpick360.com/domestic/gangneung/attraction-area-guide/
 https://tourpick360.com/domestic/seoul/purpose-area-hotel-guide/
 https://tourpick360.com/domestic/seoul/rainy-day-indoor-route-guide/
 https://tourpick360.com/domestic/gyeongju/walking-route-hotel-area-guide/
-https://tourpick360.com/domestic/jeonju/hanok-village-walking-guide/
 https://tourpick360.com/domestic/jeonju/hanok-village-nearby-trip-guide/
-https://tourpick360.com/domestic/yeosu/night-view-hotel-route-guide/
 https://tourpick360.com/domestic/geoje/attraction-area-guide/
-https://tourpick360.com/domestic/geochang/y-shaped-suspension-bridge-guide/
-https://tourpick360.com/domestic/goheung/ssookseom-walking-course-guide/
-https://tourpick360.com/domestic/hapcheon/haeinsa-temple-guide/
 ```
 
 ## 6. 5순위 - 여행 준비와 문제 해결 (15개)
@@ -207,7 +215,7 @@ https://tourpick360.com/sitemap-0.xml
 1. Google Search Console에서 `https://tourpick360.com/sitemap-index.xml` 제출
 2. Naver Search Advisor, Bing Webmaster Tools에 사이트 소유 확인 후 같은 sitemap 제출
 3. Google URL 검사에서 1순위 14개 수동 색인 요청
-4. 2순위 방문 후기 6개 요청
+4. 2순위 방문 후기 12개 요청 (정산표 있는 4편 우선)
 5. 하루 요청 한도가 남으면 3순위 → 4순위 → 5순위 순서로 요청
 6. 3일 뒤 `site:tourpick360.com` 검색과 Search Console 페이지 색인 보고서 확인
 7. 보고서의 "찾을 수 없음(404)" 항목이 0건인지 확인한다. 7-1의 주소는 "리디렉션이 있음"으로 잡혀야 정상이며, 404로 잡히면 `public/_redirects` 배포가 누락된 것이다

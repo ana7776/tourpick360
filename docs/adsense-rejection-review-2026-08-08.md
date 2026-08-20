@@ -193,3 +193,51 @@ Every one of the 15 remaining problem-solving checklists was rewritten to be spe
 - 68 sitemap URLs, all resolving to real pages; 67 `BreadcrumbList` blocks with 0 broken crumb targets.
 - All 6 merged URLs return 301 to their absorbing page (added to `public/_redirects`); none remain in the sitemap; every internal link that pointed at them was repointed, including the comparison tool's 문제 해결 links and the 전주 야경 글.
 - Indexing document rebuilt against the new sitemap: five tiers totalling exactly 68, cross-checked for duplicates and omissions.
+
+## Visit Reclassification and Image Licensing (2026-08-20, third pass)
+
+Prompted by a direct question about whether image sourcing matters for approval. Short answer recorded here so it is not re-litigated: image *attribution* is a license obligation and a policy-surface risk, but it is not what "낮은 가치의 콘텐츠" refers to. What image provenance genuinely affects for this site is the **originality signal** — and auditing it surfaced a much larger problem than the licensing gap.
+
+### Copyright: 3 uses fixed
+
+`public/images/domestic-places/ATTRIBUTION.json` records six Wikimedia photos with author and license. Three of those uses rendered with no visible credit:
+
+| 페이지 | 이미지 | 라이선스 |
+|---|---|---|
+| `/` | `busan-haeundae-beach.jpg` | CC BY 2.0 (StephNurnberg) |
+| `/` | `gangneung-anmok-beach.jpg` | CC BY-SA 4.0 (Mobius6) |
+| `/case-studies/` | `gangneung-anmok-beach-hero.jpg` | CC BY-SA 4.0 (Mobius6) |
+
+CC BY and CC BY-SA both require attribution, so these were license violations regardless of AdSense. The homepage 인기 여행지 grid has no per-card caption slot, so a `sky-photo-credit` line was added under the grid crediting all six destination photos by source; the case-studies hero credit went into its existing `figcaption`. The CC0 photos (경주, 전주 한옥) need no credit and were left alone. Verified: 0 uses of a credit-requiring image without its author named on the same page.
+
+The trap here is structural and worth remembering: several pages pass a Wikimedia image as the *fallback* to `getTourApiImage(...)`, with the credit written into the fallback caption. When the TourAPI image exists the fallback never renders — so the credit only appears when the fallback does. Checking source code alone would have missed which uses actually needed a credit; the check has to run against `dist/`.
+
+### The real finding: 6 more articles were understating themselves
+
+While tracing image provenance, six articles turned out to carry 58 photos with filenames that read unmistakably as on-site photography (`bridge-info-sign`, `hanok-village-map-sign`, `lantern-courtyard`, `ssookseom-harbor-view`, `rose-photo-zone`) while displaying the `공식자료 기반 가이드` badge — the badge that says "직접 방문하지 않고". The site owner confirmed all six were real visits made with their group, photographed themselves: 거창 Y자형 출렁다리, 여수 장도·웅천·낭도, 전주 한옥마을, 합천 해인사, 곡성 세계장미축제, 고흥 쑥섬.
+
+This is the same class of defect as the 임실 badge fixed earlier in the day, at six times the scale, and it runs in the most damaging possible direction for a site rejected for low-value content: **the strongest originality evidence the site has was labelled as desk research.** Live visit reviews were not 6 but **12**; own photography in use is 169 images, not 111.
+
+### Badge honesty in both directions
+
+Flipping the six to `visited` with the existing copy would have introduced the opposite error — that copy promised "방문일, 인원, 실제 지출" and these articles have none of it. Per the owner's instruction (지출목록이 없는 것은 없는 대로), `SourceBadge` now takes an explicit `settlement` flag rather than inferring from `visitedOn`:
+
+- **방문 + 정산표 (4편)** — 부여, 무주, 고창, 거제. 총 입금액, 항목별 지출, 1인 부담액이 본문에 있음.
+- **방문, 정산 없음 (8편)** — 전주 야경(각자 계산), 임실, 곡성, 거창, 전주 한옥, 합천, 고흥, 여수. 방문 사실과 직접 촬영 사진까지만 약속.
+- **공식자료 기반 (42편)** — 변동 없음.
+
+`visitedOn` and `settlement` are now independent, because 전주 야경 has a visit date but no settlement — inferring one from the other would have made the badge overclaim on exactly that article.
+
+### Settlement fact corrected
+
+The 부여 and 무주 settlement tables stated 총무는 회비 면제. The owner corrected this: it was the **리더** whose fee was waived. Ten occurrences across the two data files were changed. The generic 총무 advice in `festivalBookingBudgetGuide.js` is reader-facing guidance, not a claim about this site's trips, and was left as is. Worth noting that these articles already disclose the waiver in their own settlement tables rather than hiding it — that transparency is a trust signal, and the correction preserves it while making it accurate.
+
+### Also updated
+
+- `/editorial-policy/` gained a 사진 출처와 저작권 section (직접 촬영 / TourAPI / Wikimedia, with the licenses named and a statement that unverifiable-license, other-blog, booking-platform and press photos are not used), and its visit/desk section now explains the settlement distinction — "본문에 없는 내용을 배지가 앞질러 말하지 않는 것이 기준입니다."
+- The homepage visit-review section now states that direct-visit articles total 12 and that all photos are the operator's own.
+- `docs/indexing-priority-urls.md` moved the six reclassified articles into 2순위 (방문 후기 12개, 정산표 있는 4편 우선), leaving 3순위 13 and 4순위 14. Tier total re-verified at exactly 68.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; 67 `BreadcrumbList` with 0 broken crumb targets; 2,674 internal links with 0 broken; 0 missing images; 0 credit-requiring images without attribution; badge distribution 4 / 8 / 42 with none unclassified.

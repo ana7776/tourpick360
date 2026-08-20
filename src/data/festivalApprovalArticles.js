@@ -368,6 +368,7 @@ export const festivalApprovalArticles = [
 
 const gochangYeonggwangVisitArticle = {
   visitType: 'visited',
+  hasSettlement: true,
   visitedOn: '2026년 6월 21일',
   slug: 'gochang-bluefarm-lavender-yeonggwang-drive',
   title: '고창 청농원 라벤더와 영광 백수해안도로 단체 여행 코스',
@@ -638,6 +639,7 @@ if (!festivalApprovalArticles.some((article) => article.slug === gochangYeonggwa
 
 const geojeHydrangeaWindhillArticle = {
   visitType: 'visited',
+  hasSettlement: true,
   visitedOn: '2026년 6월 28일',
   slug: 'geoje-hydrangea-windhill-sinseondae-course',
   title: '거제남부수국공원 바람의언덕 신선대 당일 코스와 거제도 가볼만한곳',

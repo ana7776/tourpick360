@@ -7308,3 +7308,10 @@ body {
     width: min(100% - 28px, 640px);
   }
 }
+
+.sky-photo-credit {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
