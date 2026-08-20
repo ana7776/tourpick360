@@ -7067,14 +7067,70 @@ body {
   font-weight: 600;
 }
 
+.sky-flagship-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.sky-flagship-card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 22px;
+  border: 1px solid #cfe2fb;
+  border-radius: 14px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+
+.sky-flagship-role {
+  justify-self: start;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #e8f2ff;
+  color: #14538f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sky-flagship-note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.sky-flagship-card strong {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.sky-flagship-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.sky-flagship-result {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid #e8eef5;
+  color: #14538f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
-  .sky-review-grid {
+  .sky-review-grid,
+  .sky-flagship-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .sky-review-grid {
+  .sky-review-grid,
+  .sky-flagship-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }

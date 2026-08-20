@@ -184,6 +184,35 @@ const websiteJsonLd = {
   description: '국내 여행, 축제, 숙소 위치, 이동 동선을 함께 정리하는 여행 정보 사이트',
   inLanguage: 'ko-KR'
 };
+// 지침서 2.4: 대표 글 3개는 조회수가 아니라 사이트의 목적과 설명 깊이를
+// 가장 잘 보여주는 글로 고르고, 입문·실전·문제 해결로 역할을 나눈다.
+const flagshipArticles = [
+  {
+    role: '입문',
+    roleNote: '전체 흐름을 먼저 이해하는 글',
+    title: '계절별 축제 여행 가이드',
+    summary: '봄꽃, 여름 바다, 가을 미식, 겨울 빛 축제를 계절별로 나누고 숙소 권역과 준비 순서를 정리했습니다.',
+    result: '어느 계절에 어떤 기준으로 축제를 고를지 판단할 수 있습니다.',
+    href: '/domestic/festivals/seasonal-festival-travel-guide/'
+  },
+  {
+    role: '실전',
+    roleNote: '직접 다녀온 기록으로 확인하는 글',
+    title: '무주 머루와인동굴과 적상산 14명 단체 여행 후기',
+    summary: '2026년 7월 12일에 14명이 함께 다녀온 하루 일정입니다. 이동 시간, 실제 지출, 현장 대기 상황을 그대로 적었습니다.',
+    result: '단체 여행의 시간과 비용이 실제로 어떻게 흘러가는지 볼 수 있습니다.',
+    href: '/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/'
+  },
+  {
+    role: '문제 해결',
+    roleNote: '일정이 틀어졌을 때 쓰는 글',
+    title: '국내여행 악천후 발생 시 즉시 복구 가이드',
+    summary: '비나 태풍으로 일정이 무너졌을 때 무엇을 버리고 무엇으로 대체할지 60분 안에 정하는 순서입니다.',
+    result: '현장에서 일정을 다시 짤 판단 기준과 입력표를 얻습니다.',
+    href: '/travel-tips/rainy-day-backup-plan/'
+  }
+];
+
 ---
 <BaseLayout
   title="TourPick360 - 국내 여행 가이드와 여행 준비 정보"
@@ -218,6 +247,28 @@ const websiteJsonLd = {
         <small>{card.summary}</small>
       </a>
     ))}
+  </section>
+
+  <section class="sky-content-section">
+    <div class="sky-title-row">
+      <h2>먼저 읽으면 좋은 글 3편</h2>
+      <a href="/domestic/">전체 보기</a>
+    </div>
+    <p class="sky-section-note">
+      Tourpick360이 어떤 기준으로 여행 정보를 정리하는지 가장 잘 보여주는 세 편입니다.
+      전체 흐름을 잡는 입문 글, 직접 다녀온 실전 기록, 일정이 틀어졌을 때 쓰는 문제 해결 글로 역할을 나눴습니다.
+    </p>
+    <div class="sky-flagship-grid">
+      {flagshipArticles.map((article) => (
+        <a href={article.href} class="sky-flagship-card">
+          <span class="sky-flagship-role">{article.role}</span>
+          <span class="sky-flagship-note">{article.roleNote}</span>
+          <strong>{article.title}</strong>
+          <p>{article.summary}</p>
+          <span class="sky-flagship-result">읽고 나면: {article.result}</span>
+        </a>
+      ))}
+    </div>
   </section>
 
   <section class="sky-content-section">

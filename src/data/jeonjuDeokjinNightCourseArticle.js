@@ -421,7 +421,7 @@ export const jeonjuDeokjinNightCourseArticle = {
     ['이 코스의 예산은 얼마나 드나요?', '이번에는 각자 계산해 총액을 정산하지 않았습니다. 식당 메뉴판 기준으로 만두 7,000원, 칼국수와 쫄면이 각 10,000원이었으니 인원수에 맞춰 계산하시면 대략적인 감을 잡을 수 있습니다.']
   ],
   internalLinks: [
-    { label: '전주 여행', title: '전주 한옥마을 주차 대체 동선', href: '/travel-tips/problems/jeonju-hanok-parking-alternative-route/' },
+    { label: '주차 대응', title: '관광지 주차장이 만차일 때 일정 바꾸는 법', href: '/travel-tips/problems/parking-full-travel-route-fix/' },
     { label: '단체 후기', title: '무주 머루와인동굴과 적상산 14명 단체 여행 후기', href: '/domestic/festivals/muju-wine-cave-jeoksangsan-valley-group-trip-review/' },
     { label: '예산 관리', title: '축제 여행 숙소 예약과 예산 관리', href: '/domestic/festivals/festival-booking-budget-guide/' },
     { label: '비 오는 날', title: '비 오는 날 대체 일정 짜는 법', href: '/travel-tips/rainy-day-backup-plan/' }

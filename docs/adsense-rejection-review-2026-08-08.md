@@ -140,3 +140,56 @@ Applied to 73 of 75 pages. The two exclusions are deliberate: `/` is the breadcr
 `docs/indexing-priority-urls.md` was stale enough to be actively harmful: it claimed the sitemap held 102 URLs (it holds 74) and listed **9 URLs that no longer exist** as manual indexing targets, including the removed bicycle content and four `/templates/` sub-pages. All 9 do have 301s in `public/_redirects`, so nothing 404s — but submitting redirect-only URLs for indexing wastes a limited daily quota and muddies the Search Console coverage report.
 
 The document is now generated against `dist/sitemap-0.xml`: 74 URLs in five priority tiers, cross-checked so the tiers contain every sitemap URL exactly once and nothing else. Retired URLs moved to a "do not request indexing" section with their redirect targets, and the file ends with the command to re-derive the list after any page change.
+
+## Duplicate Consolidation and Guideline Audit (2026-08-20)
+
+Run against the operations manual `애드센스 승인 실전 지침서` (rev. 2026-08-15) supplied by the site owner. Relevant clauses: 2.3 ("제목만 바꾼 중복 글은 통합합니다"), 2.4 (대표 글 3개의 역할 분리), 3.2 (개인정보처리방침은 실제 수집·처리를 반영), 8.3 ("다른 글과 결론과 역할이 겹치지 않는다"), 5.2 (보장 암시 표현 금지).
+
+### Measuring the duplication before acting on it
+
+The 2026-08-08 review flagged 33 template-shaped articles as a plausible rejection contributor but could not quantify it. Two measurements were run this pass, and the second corrected the first:
+
+1. **Rendered-page comparison** put every pair of the 15 problem-solving pages at **47–51% identical**. Taken at face value this looks like mass-produced content.
+2. **Source-prose comparison, excluding shared chrome and the checklist**, put the same pairs at **0–8.7%**. The prose is genuinely distinct.
+
+The gap between the two numbers was itself the finding: **all 15 problem-solving articles shipped a byte-identical 5-item checklist** (`baseChecklist` in `problemSolvingArticles.js`, applied by the `makeArticle` factory). That single shared block, not copied prose, produced most of the apparent duplication — and it is exactly what guideline 8.3 describes as "의미 없는 정의·FAQ·반복으로 분량만 늘리지 않았다". Acting on measurement (1) alone would have meant deleting well-written articles to fix a factory default.
+
+The festival cluster was measured the same way and came in at **max 3.6%** overlap with unique checklists and FAQs throughout — no consolidation was warranted there, and none was done.
+
+### What was merged (6 pages, on role duplication)
+
+Guideline 8.3's test is overlapping *conclusion and role*, not copied text. Six problem-solving articles restated a conclusion another page already owned:
+
+| 통합된 글 | 흡수한 글 | 근거 |
+|---|---|---|
+| `problems/rainy-trip-route-change` | `/travel-tips/rainy-day-backup-plan/` | 같은 결론, 후자가 60분 복구 플랜·템플릿까지 포함 |
+| `problems/busan-rainy-day-indoor-family-course` | `/domestic/busan/rainy-day-family-route/` | 부산 우천 코스를 이미 3,151자로 전담 (해운대·센텀·부산역 권역 비교) |
+| `problems/late-arrival-first-day-plan` | `/travel-tips/late-checkin-plan/` | 같은 결론("첫날은 회복일"), 후자가 30분 복구 플랜·원인별 분류표 포함 |
+| `problems/gangneung-late-ktx-hotel-area` | `/domestic/gangneung/ktx-weekend-trip-guide/` | 이미 "도착 시간별 1박 2일 예시"와 강릉역·경포·안목 선택 기준 보유 |
+| `problems/trip-budget-overrun-fix` | `/travel-tips/travel-budget-plan/` | 같은 주제, 후자가 항목 6분할·2인 2박 3일 실계산 포함 |
+| `problems/jeonju-hanok-parking-alternative-route` | `problems/parking-full-travel-route-fix` | 본문 8.7% 중복에 결론 동일. 전주는 지역 변형판 |
+
+`summer-beach-hotel-area-alternative` was **kept**, though its conclusion resembles `festival-hotel-sold-out-alternative`. Its decision inputs differ (오션뷰 프리미엄 계산 vs 마감·셔틀), text overlap is negligible, and merging it would have been trimming rather than deduplicating.
+
+Consolidation is not deletion (guideline 10.2 asks what new value appeared). The two region articles already contained everything their problem-solving twins had, so those were clean supersessions. The three `/travel-tips/` longforms did not carry the 숙소 권역 angle at all (`권역` appeared 0 times in each), so each absorbed a new section: 우천 대체 코스의 폭을 정하는 숙소 권역 3기준, 늦은 도착 시 권역이 첫날을 결정하는 이유와 강릉 예시, 예산은 항목을 깎기 전에 이동 권역을 좁히는 순서. `parking-full-travel-route-fix` absorbed the 전주 article's 도보 루트 순환 구성, 경사·계단 확인, 식사 우선 전환 as new steps and an FAQ.
+
+Every one of the 15 remaining problem-solving checklists was rewritten to be specific to its own problem. Result: **9 articles, 9 unique checklists, max pairwise overlap 2.1%** (was 21.2% with an identical checklist on all 15).
+
+### Guideline gaps found and fixed
+
+**개인정보처리방침에 광고·쿠키 고지 없음 (지침서 3.2, 10.1-9).** Every page on the site loads the Google AdSense script and the site ships `ads.txt` with a valid seller line, yet `/privacy/` mentioned 쿠키 four times and never mentioned 광고, AdSense, Google, or 개인 맞춤 광고. For an AdSense application this is the most consequential gap of the pass — disclosing third-party ad cookies is a publisher requirement, not a nicety. Added a 광고와 제3자 쿠키 section (Google 및 파트너의 쿠키 사용, 광고 설정·aboutads.info 옵트아웃 경로, 파트너 사이트 정책 링크, 개인 식별 정보 미제공 명시) and an 접속 분석 section covering Search Console / 서치어드바이저 등록. Written for this site rather than copied, per guideline 3.2's warning against pasting another site's legal text.
+
+**대표 글 3개가 사이트에 드러나지 않음 (지침서 2.4, 10.1-3, 10.1-6).** The homepage had no representative-article section with defined roles. Added 먼저 읽으면 좋은 글 3편 — 입문 (계절별 축제 여행 가이드), 실전 (무주 14명 단체 여행 후기), 문제 해결 (악천후 즉시 복구 가이드) — each card stating its role and what the reader ends up with.
+
+### Checked and found already compliant
+
+- **보장 암시 표현 (5.2).** `무조건` appears on 9 pages, but every occurrence is a question or negation that *rejects* the absolute claim ("행사장과 가까운 숙소가 무조건 좋은가요?" → "아닙니다", "특정 숙소나 상품을 무조건 추천하지 않고"). That is the nuance the guideline asks for, not a violation. No change made — checking the context rather than pattern-replacing was the difference between a fix and a regression.
+- **이용약관 샘플 문구 (10.1-10)**, **문의 실제 작동 (10.1-8)**, **정보 제공 원칙** — all site-specific, no boilerplate.
+- **빈 카테고리·404 (3.3, 10.1-17)** — 0 broken links across 2,674 internal links, 0 missing images.
+
+### Verified
+
+- 70 pages build; `npm run check:seo` passes.
+- 68 sitemap URLs, all resolving to real pages; 67 `BreadcrumbList` blocks with 0 broken crumb targets.
+- All 6 merged URLs return 301 to their absorbing page (added to `public/_redirects`); none remain in the sitemap; every internal link that pointed at them was repointed, including the comparison tool's 문제 해결 links and the 전주 야경 글.
+- Indexing document rebuilt against the new sitemap: five tiers totalling exactly 68, cross-checked for duplicates and omissions.

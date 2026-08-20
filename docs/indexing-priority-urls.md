@@ -1,7 +1,7 @@
 # Tourpick360 색인 신청 정리
 
-업데이트: 2026-08-20
-기준: `npm run build` 결과의 `dist/sitemap-0.xml` (색인 대상 74개 URL)
+업데이트: 2026-08-20 (2차 · 중복 글 통합 반영)
+기준: `npm run build` 결과의 `dist/sitemap-0.xml` (색인 대상 68개 URL)
 
 이 문서는 Google Search Console, Naver Search Advisor, Bing Webmaster Tools에 제출할 sitemap과 수동 색인 요청 우선순위를 정리한 체크리스트입니다. 아래 URL은 전부 빌드 결과에 실제로 존재하는 페이지이며, 삭제·통합된 주소는 7번 항목으로 따로 분리했습니다.
 
@@ -25,14 +25,15 @@ https://tourpick360.com/ads.txt
 빌드 기준 상태입니다.
 
 ```text
-빌드 페이지: 76개 (색인 대상 74개 + /search/ noindex + 404)
-sitemap-0.xml: URL 74개, 전부 실제 빌드 페이지와 일치
+빌드 페이지: 70개 (색인 대상 68개 + /search/ noindex + 404)
+sitemap-0.xml: URL 68개, 전부 실제 빌드 페이지와 일치
 robots.txt: User-agent: * Allow: /, sitemap 경로 명시
 ads.txt: pub-5804969457082424
 canonical host: https://tourpick360.com
 www / http: https://tourpick360.com 으로 301 통일
 내부 링크 깨짐 0건, 이미지 누락 0건
-BreadcrumbList 구조화 데이터: 73개 페이지 (홈, /search/ 제외)
+BreadcrumbList 구조화 데이터: 67개 페이지 (홈, /search/ 제외)
+개인정보처리방침: 제3자 광고 쿠키 고지 포함
 ```
 
 ## 2. 1순위 - 사이트 구조와 신뢰 신호 (14개)
@@ -116,39 +117,33 @@ https://tourpick360.com/domestic/goheung/ssookseom-walking-course-guide/
 https://tourpick360.com/domestic/hapcheon/haeinsa-temple-guide/
 ```
 
-## 6. 5순위 - 여행 준비와 문제 해결 (21개)
+## 6. 5순위 - 여행 준비와 문제 해결 (15개)
 
-sitemap 발견을 기다려도 되지만, 하루 요청 한도가 남으면 아래 순서로 넣습니다.
+sitemap 발견을 기다려도 되지만, 하루 요청 한도가 남으면 아래 순서로 넣습니다. 아래 6개 준비 가이드는 2026-08-20 통합에서 문제 해결 글의 내용을 흡수해 더 깊어졌으므로, 통합 전 색인된 상태라면 다시 요청해 갱신본이 반영되게 합니다.
 
 ```text
-https://tourpick360.com/travel-tips/hotel-booking-checklist/
-https://tourpick360.com/travel-tips/rental-car-checklist/
-https://tourpick360.com/travel-tips/travel-budget-plan/
 https://tourpick360.com/travel-tips/rainy-day-backup-plan/
 https://tourpick360.com/travel-tips/late-checkin-plan/
+https://tourpick360.com/travel-tips/travel-budget-plan/
+https://tourpick360.com/travel-tips/hotel-booking-checklist/
+https://tourpick360.com/travel-tips/rental-car-checklist/
 https://tourpick360.com/travel-tips/child-travel-fatigue-solution/
-https://tourpick360.com/travel-tips/problems/rainy-trip-route-change/
 https://tourpick360.com/travel-tips/problems/parking-full-travel-route-fix/
-https://tourpick360.com/travel-tips/problems/jeju-rental-car-return-last-day-plan/
-https://tourpick360.com/travel-tips/problems/busan-rainy-day-indoor-family-course/
-https://tourpick360.com/travel-tips/problems/gangneung-late-ktx-hotel-area/
-https://tourpick360.com/travel-tips/problems/jeonju-hanok-parking-alternative-route/
+https://tourpick360.com/travel-tips/problems/festival-hotel-sold-out-alternative/
+https://tourpick360.com/travel-tips/problems/hotel-cancellation-policy-check/
 https://tourpick360.com/travel-tips/problems/no-car-trip-hotel-area-choice/
 https://tourpick360.com/travel-tips/problems/summer-beach-hotel-area-alternative/
-https://tourpick360.com/travel-tips/problems/family-trip-schedule-delays/
-https://tourpick360.com/travel-tips/problems/hotel-cancellation-policy-check/
-https://tourpick360.com/travel-tips/problems/late-arrival-first-day-plan/
-https://tourpick360.com/travel-tips/problems/festival-hotel-sold-out-alternative/
-https://tourpick360.com/travel-tips/problems/trip-budget-overrun-fix/
-https://tourpick360.com/travel-tips/problems/luggage-before-checkin-plan/
+https://tourpick360.com/travel-tips/problems/jeju-rental-car-return-last-day-plan/
 https://tourpick360.com/travel-tips/problems/parents-trip-walking-distance-reduction/
+https://tourpick360.com/travel-tips/problems/luggage-before-checkin-plan/
+https://tourpick360.com/travel-tips/problems/family-trip-schedule-delays/
 ```
 
 ## 7. 색인 요청하면 안 되는 URL
 
 ### 7-1. 통합·삭제되어 301 리디렉션만 남은 주소
 
-아래 주소는 현재 페이지가 없고 301로만 응답합니다. **색인 요청 대상이 아닙니다.** Search Console 페이지 색인 보고서에서 "페이지에 리디렉션이 있음"으로 잡히는 것이 정상 상태입니다. 이전 버전 문서(2026-07-01)에는 이 중 9개가 색인 요청 목록에 들어가 있었으므로, 그 목록을 그대로 쓰면 안 됩니다.
+아래 주소는 현재 페이지가 없고 301로만 응답합니다. **색인 요청 대상이 아닙니다.** Search Console 페이지 색인 보고서에서 "페이지에 리디렉션이 있음"으로 잡히는 것이 정상 상태입니다. 이전 버전 문서(2026-07-01)에는 이 중 9개가 색인 요청 목록에 들어가 있었으므로, 그 목록을 그대로 쓰면 안 됩니다. 목록 아래쪽 6건은 2026-08-20 중복 통합으로 사라진 문제 해결 글이며, 내용은 각 리디렉션 대상 글에 흡수되어 있습니다.
 
 ```text
 /domestic/bicycle/                                    -> /domestic/
@@ -186,6 +181,12 @@ https://tourpick360.com/travel-tips/problems/parents-trip-walking-distance-reduc
 /templates/rainy-day-itinerary-template/              -> /templates/
 /templates/travel-budget-template/                    -> /templates/
 /travel-tips/itinerary-before-after/                  -> /case-studies/
+/travel-tips/problems/rainy-trip-route-change/                -> /travel-tips/rainy-day-backup-plan/
+/travel-tips/problems/busan-rainy-day-indoor-family-course/   -> /domestic/busan/rainy-day-family-route/
+/travel-tips/problems/late-arrival-first-day-plan/            -> /travel-tips/late-checkin-plan/
+/travel-tips/problems/gangneung-late-ktx-hotel-area/          -> /domestic/gangneung/ktx-weekend-trip-guide/
+/travel-tips/problems/trip-budget-overrun-fix/                -> /travel-tips/travel-budget-plan/
+/travel-tips/problems/jeonju-hanok-parking-alternative-route/ -> /travel-tips/problems/parking-full-travel-route-fix/
 /en/ , /ja/ , /es/ , /zh-CN/ 및 하위 bicycle-routes 8건  -> / 또는 /domestic/
 ```
 
@@ -211,6 +212,7 @@ https://tourpick360.com/sitemap-0.xml
 6. 3일 뒤 `site:tourpick360.com` 검색과 Search Console 페이지 색인 보고서 확인
 7. 보고서의 "찾을 수 없음(404)" 항목이 0건인지 확인한다. 7-1의 주소는 "리디렉션이 있음"으로 잡혀야 정상이며, 404로 잡히면 `public/_redirects` 배포가 누락된 것이다
 8. "발견됨 - 현재 색인되지 않음"이 많으면 해당 URL의 본문 분량, 내부 링크 수, canonical을 다시 점검
+9. 2026-08-20 통합으로 사라진 6개 URL이 색인에 남아 있다면 강제로 삭제 요청하지 말고 301이 반영될 때까지 둔다. 리디렉션은 색인 신호를 통합 대상 글로 넘기므로, 삭제 요청은 그 신호까지 함께 버리게 된다
 
 ## 9. 빠른 복사용 묶음 (하루 10개 한도)
 
