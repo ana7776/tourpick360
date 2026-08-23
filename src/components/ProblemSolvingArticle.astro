@@ -92,6 +92,23 @@ const faqJsonLd = buildFaqJsonLd(article.faqs);
     </section>
   )}
 
+  {article.decisionTable && (
+    <section>
+      <h2>{article.decisionTable.heading}</h2>
+      {article.decisionTable.intro && <p>{article.decisionTable.intro}</p>}
+      <table>
+        <thead>
+          <tr>{article.decisionTable.head.map((cell) => <th>{cell}</th>)}</tr>
+        </thead>
+        <tbody>
+          {article.decisionTable.rows.map((row) => (
+            <tr>{row.map((cell, index) => (index === 0 ? <td><strong>{cell}</strong></td> : <td>{cell}</td>))}</tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  )}
+
   {article.steps.map(([heading, body]) => (
     <section>
       <h2>{heading}</h2>
@@ -108,11 +125,13 @@ const faqJsonLd = buildFaqJsonLd(article.faqs);
 
   <section class="closing-summary-box">
     <h2>마무리 요약</h2>
-    <p>{article.title} 문제는 여행지 자체보다 시간표, 이동 순서, 대체 장소를 얼마나 현실적으로 잡았는지에 따라 결과가 달라집니다.</p>
+    <p>{article.closing?.lead ?? `${article.title} 문제는 여행지 자체보다 시간표, 이동 순서, 대체 장소를 얼마나 현실적으로 잡았는지에 따라 결과가 달라집니다.`}</p>
     <ul>
-      <li>주말 오후, 비 예보, 체크인 전후 시간처럼 실제로 일정이 흔들리는 구간을 먼저 비워 두는 것이 좋습니다.</li>
-      <li>예약 조건과 운영 시간은 바뀔 수 있으므로 출발 전 공식 안내를 다시 확인해야 합니다.</li>
-      <li>동행자의 체력과 짐 보관 여부를 일정표에 같이 넣으면 현장 수정이 훨씬 쉬워집니다.</li>
+      {(article.closing?.points ?? [
+        '주말 오후, 비 예보, 체크인 전후 시간처럼 실제로 일정이 흔들리는 구간을 먼저 비워 두는 것이 좋습니다.',
+        '예약 조건과 운영 시간은 바뀔 수 있으므로 출발 전 공식 안내를 다시 확인해야 합니다.',
+        '동행자의 체력과 짐 보관 여부를 일정표에 같이 넣으면 현장 수정이 훨씬 쉬워집니다.'
+      ]).map((point) => <li>{point}</li>)}
     </ul>
   </section>
 
