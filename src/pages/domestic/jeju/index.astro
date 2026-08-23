@@ -33,6 +33,22 @@ const travelerGuides = [
   ['렌터카 없는 여행', '제주시와 서귀포 시내는 대중교통으로 다닐 만하지만, 동부·서부 이동은 투어나 택시 비용을 함께 계산해야 합니다.']
 ];
 
+const driveTimes = [
+  ['제주공항 → 애월(한담)', '30~40분', '주말 오후 해안도로는 정체가 잦습니다.'],
+  ['제주공항 → 중문', '60~70분', '평화로 이용 시 비교적 일정한 편입니다.'],
+  ['제주공항 → 성산', '70~80분', '일출 일정이면 새벽 출발 시간을 역산해야 합니다.'],
+  ['애월 → 중문', '40~50분', '중산간 도로는 안개가 끼는 날이 있습니다.'],
+  ['중문 → 성산', '60~70분', '남쪽 해안 일주는 경치는 좋지만 시간이 더 걸립니다.'],
+  ['성산 → 제주공항', '70~80분', '마지막 날에는 렌터카 반납 시간까지 더해야 합니다.']
+];
+
+const seasonNotes = [
+  ['봄', '유채와 벚꽃 시기에 서부와 중산간 도로가 붐빕니다.', '사진 명소는 오전에 넣고 오후에는 실내나 숙소 권역으로 돌아옵니다.'],
+  ['여름', '장마와 태풍 시기에는 항공편과 배편이 함께 흔들립니다.', '야외 일정 하나마다 실내 대체 코스를 미리 정해 둡니다.'],
+  ['가을', '날씨가 가장 안정적이지만 숙소 요금과 예약 경쟁이 높습니다.', '숙소를 먼저 확보하고 코스를 뒤에 맞추는 순서가 낫습니다.'],
+  ['겨울', '바람이 강하고 한라산 방향 도로는 결빙·통제가 생길 수 있습니다.', '해안 산책 대신 실내 일정을 늘리고 이동 거리를 줄입니다.']
+];
+
 const bookingSteps = [
   ['1단계', '가장 멀리 가고 싶은 관광지 한두 곳을 먼저 정합니다.'],
   ['2단계', '그 관광지까지 이동 시간을 기준으로 숙소 권역 후보를 2곳으로 좁힙니다.'],
@@ -64,7 +80,7 @@ const breadcrumbItems = [
         <span>숙소 권역 비교</span>
       </div>
       <div>
-        <strong>2026.08.08</strong>
+        <strong>2026.08.23</strong>
         <span>최종 구조 점검일</span>
       </div>
     </div>
@@ -97,6 +113,43 @@ const breadcrumbItems = [
         </a>
       ))}
     </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Drive Time</p>
+      <h2>권역 사이 이동 시간부터 계산합니다</h2>
+      <p class="muted">제주 일정이 무너지는 가장 큰 이유는 관광지가 부족해서가 아니라 하루에 넣은 권역이 많기 때문입니다. 제주는 지도상으로는 작아 보여도 동서 이동에 한 시간 이상이 걸리고, 여기에 주차와 식사 대기가 더해집니다. 숙소를 정하기 전에 아래 이동 시간을 먼저 확인하세요.</p>
+    </div>
+    <table>
+      <thead>
+        <tr><th>구간</th><th>예상 차량 이동</th><th>메모</th></tr>
+      </thead>
+      <tbody>
+        {driveTimes.map(([section, time, memo]) => (
+          <tr><td><strong>{section}</strong></td><td>{time}</td><td>{memo}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="muted">표의 시간은 정체가 없을 때를 기준으로 한 참고값입니다. 실제 소요 시간은 요일, 날씨, 행사 유무에 따라 달라지므로 출발 전 실시간 안내를 확인하고, 하루 일정에는 구간마다 20분 정도의 여유를 더해 두는 편이 안전합니다. 3박 이상이면 숙소를 동부와 서부로 나누는 방법이 왕복 이동을 크게 줄여 줍니다.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Season</p>
+      <h2>계절이 일정의 절반을 결정합니다</h2>
+      <p class="muted">제주는 같은 코스라도 계절에 따라 난이도가 달라집니다. 특히 바람과 항공편은 다른 지역보다 변수가 큽니다.</p>
+    </div>
+    <table>
+      <thead>
+        <tr><th>계절</th><th>변수</th><th>대응</th></tr>
+      </thead>
+      <tbody>
+        {seasonNotes.map(([season, risk, plan]) => (
+          <tr><td><strong>{season}</strong></td><td>{risk}</td><td>{plan}</td></tr>
+        ))}
+      </tbody>
+    </table>
   </section>
 
   <section class="domestic-routes">
@@ -139,5 +192,7 @@ const breadcrumbItems = [
         <li><strong>{step}</strong><span>{body}</span></li>
       ))}
     </ol>
+    <p class="muted">예약을 마친 뒤에는 렌터카 반납 시각을 항공편 출발 시각에서 역산해 일정표에 적어두세요. 마지막 날 일정이 어디까지 가능한지가 그 시각 하나로 정해집니다. 자세한 계산 방법은 <a href="/travel-tips/rental-car-checklist/">렌터카 예약 전 확인해야 할 10가지</a>와 <a href="/travel-tips/problems/jeju-rental-car-return-last-day-plan/">마지막 날 렌터카 반납 일정 조정법</a>에 정리해 두었습니다.</p>
+    <p class="muted">이 허브의 제주 글은 직접 방문하지 않고 공식 안내와 공개 자료를 정리한 준비용 가이드입니다. 요금, 운영 시간, 도로 통제와 항공편 운항은 시점에 따라 달라지므로 출발 전 공식 채널에서 다시 확인하세요. 최종 확인일: 2026년 8월 23일.</p>
   </section>
 </BaseLayout>

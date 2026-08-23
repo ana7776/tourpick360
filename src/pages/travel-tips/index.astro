@@ -12,6 +12,19 @@ const coreGuides = [
   ['아이 동반 여행 피로 줄이는 법', '/travel-tips/child-travel-fatigue-solution/'],
   ['무리한 여행 일정 Before / After', '/case-studies/']
 ];
+const stageRows = [
+  ['1. 지역과 날짜 정하기', '출발 3~6주 전', '계절, 동행 구성, 이동 수단을 먼저 확정합니다.', ['국내여행 예산표 짜는 법', '/travel-tips/travel-budget-plan/']],
+  ['2. 숙소 권역 정하기', '출발 2~4주 전', '숙소는 건물이 아니라 권역을 먼저 고르는 편이 실패가 적습니다.', ['숙소 예약 전 확인해야 할 12가지', '/travel-tips/hotel-booking-checklist/']],
+  ['3. 이동 수단 확정', '출발 1~3주 전', '렌터카와 대중교통 중 무엇이 유리한지 총비용으로 비교합니다.', ['렌터카 예약 전 확인해야 할 10가지', '/travel-tips/rental-car-checklist/']],
+  ['4. 변수 대비', '출발 3일 전~당일', '비 예보, 늦은 도착, 짐 보관처럼 흔들리는 조건에 대비합니다.', ['비 오는 날 대체 일정 준비법', '/travel-tips/rainy-day-backup-plan/']]
+];
+
+const failurePoints = [
+  ['숙소 위치', '관광지에서 멀거나 식사 선택지가 없는 곳을 요금만 보고 고른 경우', '숙소를 정하기 전에 아침·저녁에 무엇을 할지부터 적어봅니다.'],
+  ['이동 시간 과소 계산', '지도 소요 시간만 믿고 주차, 환승, 대기 시간을 넣지 않은 경우', '구간마다 20분씩 더해 보고 그래도 성립하는지 확인합니다.'],
+  ['날씨와 컨디션', '비 예보나 아이·부모님의 피로를 계획에 반영하지 않은 경우', '하루에 반드시 지킬 일정 하나만 남기고 나머지는 교체 가능하게 둡니다.']
+];
+
 const breadcrumbItems = [
   { name: '여행 준비', href: '/travel-tips/' }
 ];
@@ -26,6 +39,48 @@ const breadcrumbItems = [
       <img src="/images/tourapi/family_trip.jpg" alt="여행 준비 안내 참고 이미지" width="1200" height="675" loading="eager" />
       <figcaption>예약 전 확인 사항과 동선 조정, 날씨 대비, 일정이 밀렸을 때 회복하는 방법을 다룹니다.</figcaption>
     </figure>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">How to use</p>
+      <h2>여행 준비는 네 단계로 나눕니다</h2>
+      <p class="muted">준비가 어려운 이유는 항목이 많아서가 아니라 결정 순서가 뒤섞이기 때문입니다. 숙소를 먼저 잡고 동선을 맞추면 이동 시간이 늘어나고, 반대로 코스를 다 짠 뒤 숙소를 찾으면 남은 선택지가 없습니다. 아래 순서대로 결정하면 되돌아가는 일이 줄어듭니다.</p>
+    </div>
+    <table>
+      <thead>
+        <tr><th>단계</th><th>시점</th><th>이때 정할 것</th><th>참고 글</th></tr>
+      </thead>
+      <tbody>
+        {stageRows.map(([stage, when, decide, [label, href]]) => (
+          <tr>
+            <td><strong>{stage}</strong></td>
+            <td>{when}</td>
+            <td>{decide}</td>
+            <td><a href={href}>{label}</a></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Common failures</p>
+      <h2>국내여행 일정이 가장 자주 무너지는 지점</h2>
+      <p class="muted">Tourpick360의 문제 해결 글은 아래 세 가지 상황에서 출발합니다. 어떤 지역을 가든 반복해서 나타나는 패턴입니다.</p>
+    </div>
+    <table>
+      <thead>
+        <tr><th>지점</th><th>어떤 상황인가</th><th>먼저 할 일</th></tr>
+      </thead>
+      <tbody>
+        {failurePoints.map(([point, situation, action]) => (
+          <tr><td><strong>{point}</strong></td><td>{situation}</td><td>{action}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    <p>세 가지 모두 여행 중에 해결하려 하면 이미 늦습니다. 준비 단계에서 <strong>바꿀 수 있는 일정과 바꿀 수 없는 일정</strong>을 구분해 두는 것이 핵심이고, 아래 문제 해결 글들은 그 구분을 상황별로 나눠 정리한 것입니다.</p>
   </section>
 
   <section class="section">
@@ -55,5 +110,14 @@ const breadcrumbItems = [
         <a href={href}>{title}</a>
       ))}
     </div>
+    <p class="muted">처음 방문했다면 숙소 예약 체크리스트를 먼저 읽고, 이동 수단을 정한 뒤 비 오는 날 대체 일정까지 준비하는 순서를 권합니다. 실제 일정을 어떻게 줄였는지 보고 싶다면 사례 모음을, 표로 바로 쓰고 싶다면 템플릿을 이용하세요.</p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Editorial note</p>
+      <h2>이 허브의 작성 기준</h2>
+    </div>
+    <p class="muted">여행 준비 글은 직접 방문하지 않고 공식 안내와 공개 자료를 정리한 준비용 가이드입니다. 요금, 운영 시간, 예약 약관은 업체와 날짜에 따라 달라지므로 결제 전에 공식 채널에서 다시 확인해야 합니다. 실제 방문 후기와 준비용 가이드를 어떻게 구분해 표시하는지는 <a href="/editorial-policy/">편집 방침</a>에 정리되어 있습니다. 최종 확인일: 2026년 8월 23일.</p>
   </section>
 </BaseLayout>
