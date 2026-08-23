@@ -79,6 +79,20 @@ const gallery = [
   ['/images/geochang-y-bridge/healing-land-sculpture.jpg', '산림치유랜드 소나무 숲 안의 흰 조형물', '입구 주변 산책 구간에서 만나는 포토 포인트입니다.'],
   ['/images/geochang-y-bridge/majangjae-sign-close.jpg', '마장재와 우두산 철쭉군락지 방향 표지판', '마장재까지 이어 걷는다면 거리감을 확인해두면 좋습니다.']
 ];
+const effortRows = [
+  ['주차장에서 다리 입구까지', '오르막과 계단', '가장 힘든 구간이라 여기서 속도를 정해야 합니다.'],
+  ['출렁다리 통과', '흔들림과 높이', '고소공포가 있으면 중앙에서 멈추지 않는 편이 낫습니다.'],
+  ['견암폭포 방향', '완만한 숲길', '다리만 보고 돌아가기 아쉬울 때 더하기 좋습니다.'],
+  ['마장재 방향', '본격적인 등산 구간', '시간과 체력을 따로 계산해야 하는 코스입니다.']
+];
+
+const companionRows = [
+  ['부모님 동반', '다리까지만 보고 돌아오는 코스로 잡고 계단 구간에서 쉬어 갑니다.'],
+  ['아이 동반', '난간 사이 간격과 흔들림을 미리 이야기하고 손을 잡고 건넙니다.'],
+  ['사진 중심', '다리 위보다 능선에서 내려다보는 각도가 구조를 잘 보여줍니다.'],
+  ['등산 목적', '마장재 방향까지 넣고 하산 시간을 해 지기 전으로 잡습니다.']
+];
+
 const breadcrumbItems = [
   { name: '국내여행', href: '/domestic/' },
   { name: '거창 Y자형 출렁다리 방문 가이드', href: '/domestic/geochang/y-shaped-suspension-bridge-guide/' }
@@ -184,6 +198,69 @@ const breadcrumbItems = [
         <li>고소공포가 있다면 다리 중앙에 오래 머무르지 않는 동선으로 잡습니다.</li>
         <li>주말에는 사진 포인트가 붐빌 수 있어 오전 시간대가 더 여유롭습니다.</li>
       </ul>
+    </section>
+
+    <section>
+      <h2>구간마다 힘든 정도가 다릅니다</h2>
+      <p>
+        이 코스에서 사람들이 예상과 다르다고 느끼는 지점은 출렁다리가 아니라 그 앞까지 올라가는 길입니다.
+        다리 자체는 금방 건너지만 주차장에서 다리 입구까지 오르막과 계단이 이어져, 여기서 체력을 다 쓰면 이후 숲길이 부담스러워집니다.
+        어디까지 갈지는 아래 구간을 보고 미리 정하는 편이 좋습니다.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>구간</th><th>성격</th><th>메모</th></tr>
+          </thead>
+          <tbody>
+            {effortRows.map(([section, kind, memo]) => (
+              <tr><td><strong>{section}</strong></td><td>{kind}</td><td>{memo}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        다리까지만 보고 돌아오는 일정이라면 여유 있게 잡아도 두 시간 안쪽으로 정리됩니다.
+        마장재 방향까지 넣는다면 성격이 다른 등산 일정이 되므로 같은 날 다른 관광지를 붙이지 않는 편이 안전합니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>동행 유형에 따라 어디까지 갈지 정합니다</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>동행</th><th>이렇게 잡습니다</th></tr>
+          </thead>
+          <tbody>
+            {companionRows.map(([who, how]) => (
+              <tr><td><strong>{who}</strong></td><td>{how}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>자주 묻는 질문</h2>
+      <div class="faq-list">
+        <details>
+          <summary>출렁다리까지 얼마나 걸리나요?</summary>
+          <p>주차장에서 다리까지 오르막과 계단 구간을 올라가야 합니다. 천천히 걷는 기준으로 왕복과 관람을 합쳐 두 시간 안팎을 잡으면 무리가 없습니다.</p>
+        </details>
+        <details>
+          <summary>고소공포가 있어도 건널 수 있나요?</summary>
+          <p>바닥이 뚫려 있어 아래가 보이는 구간에서 부담을 느끼는 경우가 많습니다. 중앙에서 멈추지 말고 앞사람 등을 보며 일정한 속도로 건너면 한결 낫습니다.</p>
+        </details>
+        <details>
+          <summary>비가 오거나 바람이 강하면 어떻게 되나요?</summary>
+          <p>기상 상황에 따라 통제될 수 있습니다. 방문 직전 거창군 안내와 현장 표지를 확인하고, 대체할 실내 일정을 하나 준비해 두는 편이 안전합니다.</p>
+        </details>
+        <details>
+          <summary>해인사와 같은 날 볼 수 있나요?</summary>
+          <p>차량으로 이동하면 하루에 두 곳이 가능합니다. 더운 날에는 계단 구간이 있는 거창을 오전에 보고 오후에 해인사 숲길을 걷는 순서가 편합니다.</p>
+        </details>
+      </div>
     </section>
 
     <section class="source-note">

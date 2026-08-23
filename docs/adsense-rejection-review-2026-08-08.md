@@ -282,3 +282,43 @@ Note on 전주 한옥마을: visited with an acquaintance rather than the group.
 ### Verified
 
 70 pages build; `npm run check:seo` passes; 12 visit badges (4 settlement / 8 photo-only), all dated; 67 `BreadcrumbList` with 0 broken crumb targets; 0 broken internal links; 0 missing images.
+
+## Thin Pages and Unsupported Claims (2026-08-23, fifth pass)
+
+This pass started from the owner's request to reinforce thin pages ahead of reapplication, and turned up a second problem class that mattered more than thinness.
+
+### Thin pages, measured from `dist/` rather than from source
+
+Body text was measured inside `<main>` on the built HTML (nav/footer excluded), which is the only measurement that reflects what a reviewer actually reads. Before this pass, nine content pages sat under the site's own 1,500-character guideline once boilerplate was excluded; the thinnest were `/travel-tips/rental-car-checklist/` (1,133), `/domestic/seoul/purpose-area-hotel-guide/` (1,184) and `/domestic/gyeongju/walking-route-hotel-area-guide/` (1,285).
+
+Reinforcement was written as decision criteria — comparison tables, time-budget tables computed backwards from a fixed constraint (flight departure, last train, tour closing), companion-type and season tables, FAQs — not as prose padding. Nothing that requires on-site verification (prices, opening hours, specific businesses) was added to desk-research articles.
+
+After the pass no content page is below 2,300 characters; the lowest are the problem-solving cluster at 2,366–2,859. Utility and legal pages (`/search/`, `/contact/`, `/disclosure/`, `/terms/`, `/privacy/`, `/about/`) were deliberately left as they are.
+
+### The problem-solving cluster shared one closing paragraph
+
+All nine problem-solving articles rendered the same "마무리 요약" block — identical lead sentence and three identical bullets — because it was hardcoded in `ProblemSolvingArticle.astro`. Nine pages ending in the same three sentences is duplicate content on the exact axis a scaled-content review looks at. `article.closing` is now per-article (the old text remains as a fallback), and an optional `article.decisionTable` gives four of the nine a structural element the others don't have, so the cluster no longer renders one shape nine times.
+
+### The real finding: invented statistics on a desk-research page
+
+`/travel-tips/child-travel-fatigue-solution/` carried a Before/After table claiming **만족도 +35%, 울음/분노 빈도 -40%, 체력 회복까지 시간 -30%** on a page badged 공식자료 기반 가이드 — that is, a page whose own badge says nobody went anywhere or measured anything. The numbers had no source and could not have had one. For a site rejected for low-value content, a fabricated effectiveness table is worse than a thin page: it is the kind of thing that, once noticed, casts doubt on every other number on the site.
+
+Grepping the rest of the site for the same pattern found three more:
+
+- `/travel-tips/travel-budget-plan/` — "실제로 비용을 20~30% 복원할 수 있는"
+- `/travel-tips/late-checkin-plan/` — "하루 방문지 수를 40~60% 축소", "휴식 빈도를 20~30% 늘리고"
+- `/travel-tips/rainy-day-backup-plan/` — "피로도 -40%, 분쟁 -70%"
+
+All four were rewritten as plain statements. The budget page's allocation table (이동 25~35%, 숙박 35~45% 등) was **kept**: it is labelled 1차 상한 가이드 and is a planning heuristic, not a claim about measured outcomes. The distinction worth recording is that a number describing what the reader should do is fine; a number describing a result the site never measured is not.
+
+The child-travel page was rewritten around that removal — 연령대별 기준, 지치는 신호 세 가지, 일정을 줄이는 순서 — and now states explicitly that it covers itinerary design and not medical judgement, with a line telling readers to check the location of nearby medical facilities before leaving. The URL is unchanged because eight pages link to it.
+
+### Structural audit
+
+A full audit script was run against `dist/` (kept in the scratchpad, not committed): 69 pages, sitemap lists 68 (only `/search/` excluded, which is `noindex` and intentionally form-only), 2,688 internal links with 0 broken, 0 orphan pages other than `/search/`, 0 duplicate titles, 0 duplicate meta descriptions, 67 `BreadcrumbList` with 0 broken crumb targets, 32 `FAQPage`, 34 `Article`, 0 missing image files, 0 images without alt text, and `robots.txt` / `ads.txt` / `sitemap-index.xml` / `rss.xml` / `404.html` all present.
+
+Two defects surfaced from it and were fixed. `/travel-tips/hotel-booking-checklist/` used a Wikimedia photo of 경주 대릉원 with alt text describing "지도와 날짜를 함께 확인하는 노트" — a description of a picture that does not exist; the alt now describes the actual photograph and names the source. And the site's header nav appeared empty to a first pass of the audit script only because the regex missed `aria-label`; the nav itself has all seven links and is fine. Worth remembering that an audit script's null result needs to be verified against the markup before it is reported as a finding.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; 2,688 internal links with 0 broken; 0 duplicate titles or descriptions; 0 licensed photos without attribution; no content page under 2,300 characters of body text.
