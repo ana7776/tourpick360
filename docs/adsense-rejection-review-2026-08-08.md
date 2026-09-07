@@ -282,3 +282,25 @@ Note on 전주 한옥마을: visited with an acquaintance rather than the group.
 ### Verified
 
 70 pages build; `npm run check:seo` passes; 12 visit badges (4 settlement / 8 photo-only), all dated; 67 `BreadcrumbList` with 0 broken crumb targets; 0 broken internal links; 0 missing images.
+
+## AI Search Visibility Pass (2026-09-07)
+
+Prompted by a third-party "AI 성적표" scan (SEO 98 / AEO 63 / GEO 51, overall 72) flagging three gaps: no `Organization`/`Person` entity schema, no `llms.txt`, and AI answer-engine crawlers (ChatGPT-User, Claude-SearchBot, PerplexityBot) reading as blocked.
+
+### Entity schema was missing everywhere except individual articles
+
+Per-article pages (`ApprovalArticle`, `FestivalArticle`, `ProblemSolvingArticle`) already emit `Article` JSON-LD with a `Person` author and `Organization` publisher. But the homepage only had `WebSite` schema, and every hub page (`/domestic/`, `/domestic/jeju/`, `/travel-tips/`, legal pages, About/Contact) had no entity schema at all — exactly the pages an automated scanner samples first. Added a site-wide `Organization` JSON-LD block to `BaseLayout.astro` (name, url, logo, `founder`/`employee` Person 김안나, `contactPoint`) so it renders on all 70 pages, not just articles.
+
+### `llms.txt` added
+
+`public/llms.txt` now describes the site's purpose, operator, sourcing method (weekly direct visits + TourAPI/지자체 공식 자료), links to the core hub pages and sitemap/RSS, and a note asking AI systems to check the per-article 최종 확인일 before citing prices or hours.
+
+### AI crawler block: not reproducible in this repo
+
+`public/robots.txt` already shipped `User-agent: * / Allow: /` with no bot-specific block, and `functions/_middleware.js` only handles the `www` → apex redirect — neither blocks any crawler. Added explicit `Allow: /` blocks for named AI crawlers (GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, Claude-SearchBot, anthropic-ai, PerplexityBot, Perplexity-User, Google-Extended, Applebot-Extended, Amazonbot, Bytespider, CCBot) so no automated robots.txt parser can misread the wildcard rule as ambiguous.
+
+If a scanner's live request still comes back blocked after this, the cause is outside this repository: Cloudflare Pages projects commonly ship with **Security → Bots → Super Bot Fight Mode / "Block AI Scrapers and Crawlers"** enabled by default, which blocks these exact user agents at the edge before the request ever reaches this code. That toggle lives in the Cloudflare dashboard for this zone and needs to be turned off (or set to "Allow" for verified AI bots) by whoever has account access — it cannot be changed from the repo.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; `Organization` JSON-LD present on all 70 pages (spot-checked homepage and `/about/`); `llms.txt` and `robots.txt` both present in `dist/` with the expected content.
