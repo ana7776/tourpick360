@@ -304,3 +304,18 @@ If a scanner's live request still comes back blocked after this, the cause is ou
 ### Verified
 
 70 pages build; `npm run check:seo` passes; `Organization` JSON-LD present on all 70 pages (spot-checked homepage and `/about/`); `llms.txt` and `robots.txt` both present in `dist/` with the expected content.
+
+## Search Console "Page with Redirect" Coverage Check (2026-09-07)
+
+The site owner exported Search Console's Page Indexing coverage drilldown for the "페이지가 리디렉션을 포함함" (Page with redirect) reason — 52 non-indexed URLs as of 2026-09-04, grown from 0 on 2026-06-12.
+
+This is a non-indexed *reason*, not an *error*, in Search Console's own taxonomy — a URL that 301s somewhere is correctly excluded from the index under its own address while its destination is indexed separately. But since it landed alongside the low-value-content rejection, it was worth checking that the reason is accurate and not masking something broken (a redirect to a dead page, a loop, or a long chain).
+
+All 52 URLs were resolved programmatically against `public/_redirects` and the live `dist/` build (host normalization for `www.`/`http://` first, then path rules, iterated to a fixed point):
+
+- **52/52 resolve to a real, currently-built page.** No missing destination, no redirect loop.
+- **Every chain is at most 2 hops**: host normalization (`www.tourpick360.com` → `tourpick360.com`, or `http://` → `https://`) plus, where relevant, one content redirect from `_redirects`. No 3+ hop chains.
+- The URLs break down into exactly the categories `_redirects`' own comments describe: `www`/`http` variants of live pages, the consolidated Jeju/festival/case-study/template articles (already documented above), and the removed multi-language (`/en/`, `/ja/`, `/es/`, `/zh-CN/`) and bicycle-routes pages.
+- None of the 52 source URLs appear anywhere in current internal links, the sitemap, or an `hreflang` tag (the site has none) — Search Console is simply still holding onto addresses it indexed before those consolidations and periodically re-checking that they still redirect, which is expected long-tail crawl behavior, not something this site is currently doing to cause it.
+
+No code change followed from this check — there was nothing to fix. Recorded here so a future re-run of this same Search Console export isn't mistaken for a new problem.
