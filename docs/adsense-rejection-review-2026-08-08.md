@@ -319,3 +319,49 @@ All 52 URLs were resolved programmatically against `public/_redirects` and the l
 - None of the 52 source URLs appear anywhere in current internal links, the sitemap, or an `hreflang` tag (the site has none) — Search Console is simply still holding onto addresses it indexed before those consolidations and periodically re-checking that they still redirect, which is expected long-tail crawl behavior, not something this site is currently doing to cause it.
 
 No code change followed from this check — there was nothing to fix. Recorded here so a future re-run of this same Search Console export isn't mistaken for a new problem.
+
+## AI Search Visibility Pass, Round 2 (2026-09-07)
+
+A re-run of the same third-party "AI 성적표" scan (score moved 72 → 73) confirmed `llms.txt` is now detected, but kept three findings from the first pass and added one:
+
+- **AI search crawler still reads as blocked (critical)** — unchanged despite the robots.txt allow-lines added in the first pass.
+- **Author/date trust signal still missing (high)**
+- **Stats/primary-source citations still 0 (high)**
+- **New: Organization `sameAs` missing (medium)** — the scan now sees the `Organization` schema added in round 1, but wants external profile links (Wikipedia, social, a business listing) on it.
+
+### AI crawler block — root cause identified, still not fixable from this repo
+
+The site owner supplied a live bot-access table (from Cloudflare's own AI Crawler Control dashboard, not from this scanner) that pins down exactly what's happening:
+
+| Bot | Category | Configured | Live test |
+|---|---|---|---|
+| OAI-SearchBot, Googlebot, bingbot | 검색·인용 | 허용 | **OK** |
+| ChatGPT-User, Claude-SearchBot, PerplexityBot | 검색·인용 | 허용 | **차단** |
+| GPTBot, ClaudeBot, Google-Extended, CCBot | 학습·수집 | 차단 | 미실행 (blocked by design) |
+
+The training/scraping bots (GPTBot, ClaudeBot, Google-Extended, CCBot) are *intentionally* blocked — that's a legitimate, common choice (allow AI answer engines to cite the site, don't feed it wholesale to model training) and not a bug. The real problem is narrower than "AI crawlers are blocked": three specific search/citation bots are configured "Allow" in Cloudflare's AI Crawler Control but still get blocked on the live request, while other bots in the same "Allow" category (OAI-SearchBot) pass fine. Since `robots.txt` already allows all of these (verified again this pass) and `functions/_middleware.js` still only does the `www` redirect, the block is happening at the Cloudflare edge, upstream of this code, and AI Crawler Control's own toggle isn't the thing overriding it. The likely cause is a second, independent layer:
+
+- **Super Bot Fight Mode** (Security → Bots) can challenge or block traffic that fails Cloudflare's bot-verification check, *regardless* of what AI Crawler Control says, if it doesn't recognize the requester as a "verified bot" — newer crawlers (Claude-SearchBot, PerplexityBot) are more likely to hit this than long-established ones.
+- A **WAF custom rule** matching on User-Agent could be blocking these three strings specifically.
+
+Neither is visible or changeable from this repository. Recommended next step for whoever has Cloudflare dashboard access: check Security → WAF → Custom rules for a User-Agent rule, and check whether Super Bot Fight Mode is enabled and what its "definitely automated" action is set to — if it's "Block," add a Skip/Allow WAF exception for these three user agents so AI Crawler Control's per-bot setting actually takes effect.
+
+### Author signal: added a `<meta name="author">` tag site-wide
+
+The site already had a visible author byline in the footer (`작성자 및 관리자: 김안나`) and per-article `Person` JSON-LD, but the scanner's judge model only reads a fixed token budget per sampled page — a signal at the very bottom of a long page can fall outside that window, and none of it reaches pages that aren't articles (the homepage, hubs, legal pages). Added `<meta name="author" content="김안나" />` to `BaseLayout.astro`'s `<head>`, which is cheap, always true (there is exactly one person who writes and runs this site), and — being in `<head>` — immune to content-length truncation. Renders on all 70 pages now (spot-checked homepage, `/about/`, `/domestic/`, `/domestic/jeju/`, `/travel-tips/`, `/case-studies/`, `/templates/`).
+
+Deliberately did **not** add a sitewide `dateModified` claim. Individual articles already carry real `datePublished`/`dateModified` values plus a visible "최종 확인일" line — those are accurate because they're tied to actual content review dates. Hub/index pages don't have an equivalent real per-page edit date available at build time (many share templates driven by data files, so a template's last git-commit date wouldn't describe when a given page's *content* last changed), and given how much of this project's prior work was specifically about not putting a plausible-looking but unverified date on a page (see the visit-date sections above), fabricating a "last updated today" timestamp for hubs was rejected as the wrong trade — a missing date signal is a smaller problem than a false one.
+
+### Stats/citation gap: added a real numbers-and-sources strip to the homepage
+
+The homepage had no numeric claims and no outbound link to an authoritative source — exactly what the scan measures. Some individual articles already do this well (`/domestic/geoje/attraction-area-guide/` has a "참고한 여행 정보" section linking real `korean.visitkorea.or.kr` detail pages), but the homepage, the page most scanners sample first, had none.
+
+Added a `sky-fact-strip` section right after the hero (high enough on the page to survive a token-budget truncation, unlike the trust strip near the bottom): `정보 페이지 70개 이상 · 실제 방문 후기 12편 · 작성·운영 김안나`, plus outbound links to `korean.visitkorea.or.kr` (대한민국 구석구석, already used and verified elsewhere in this codebase) and `apis.data.go.kr/B551011/KorService2` (the TourAPI base URL this site's own image pipeline calls — `scripts/fetch-tourapi-images.mjs`). Both numbers are real counts from this pass's own build output and the documented visit-badge count, not estimates.
+
+### `sameAs`: not added — no real profile exists to cite
+
+Schema.org `sameAs` is for linking an entity to its *own* other public profiles (a Wikipedia page, a verified social account, a Google Business listing). This site has none of those today. Fabricating a `sameAs` link to something that isn't actually this site's presence would be a false trust signal — worse than the missing field the scanner flagged. Left for the site owner: if a real profile (Naver 블로그/포스트, Instagram, a Google Business Profile for the operator) exists or gets created, it can be added to `organizationJsonLd.sameAs` in `BaseLayout.astro` as an array of URLs.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; `<meta name="author">` present on all 70 pages; homepage fact strip renders with the real stats and both outbound links resolving to already-verified domains.
