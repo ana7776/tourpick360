@@ -362,6 +362,26 @@ Added a `sky-fact-strip` section right after the hero (high enough on the page t
 
 Schema.org `sameAs` is for linking an entity to its *own* other public profiles (a Wikipedia page, a verified social account, a Google Business listing). This site has none of those today. Fabricating a `sameAs` link to something that isn't actually this site's presence would be a false trust signal — worse than the missing field the scanner flagged. Left for the site owner: if a real profile (Naver 블로그/포스트, Instagram, a Google Business Profile for the operator) exists or gets created, it can be added to `organizationJsonLd.sameAs` in `BaseLayout.astro` as an array of URLs.
 
+## Pre-Reapplication Content Audit (2026-09-07)
+
+Before the site owner reapplies for AdSense, ran a fresh pass against the roadmap's own "본문 길이: 1,500자 이상" / "1,200자 이상" targets (`docs/adsense-approval-plan.md`, `docs/adsense-pass-roadmap.md`) — the last such audit was 2026-08-08 and several articles have been merged or edited since.
+
+Measured visible body text (`<main>`, tags stripped, whitespace collapsed) across all 68 non-search built pages. Five pages under 1,200 characters are legal/utility pages (`/contact/` 196, `/disclosure/` 254, `/terms/` 376, `/about/` 728, `/privacy/` 949) and one is a hub/index page (`/travel-tips/` 940) — none of these are "articles" under the roadmap's own definition, so they're not counted against the target.
+
+Three real guide articles were genuinely thin and got expanded with real content (not padding) — a 3-question FAQ section per page (matching the `faq-list`/`<details>` pattern already used by every data-driven article component) plus, where the page lacked one, a related-articles section per the article-structure spec ("관련 글 3개 이상"):
+
+| Page | Before | After | Added |
+|---|---|---|---|
+| `/travel-tips/rental-car-checklist/` | 837자 | 1,491자 | Vehicle-size/luggage guidance, one-way vs round-trip rental cost comparison, 3-question FAQ, 3-link related section (page had no FAQ or related section at all) |
+| `/domestic/seoul/purpose-area-hotel-guide/` | 871자 | 1,250자 | 3-question FAQ (first-visit area choice, missing the last subway train, splitting two districts in one day) |
+| `/domestic/gyeongju/walking-route-hotel-area-guide/` | 952자 | 1,274자 | 3-question FAQ (summer heat and walking routes, public-transit-only feasibility, best area for kids) |
+
+All three FAQs stick to the same discipline as the rest of the site: no invented specific numbers (walking minutes, exact fees) that can't be verified — answers stay qualitative where the source data doesn't support a hard figure, consistent with how the existing checklist items in these same pages were already written.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; 0 pages under 1,200 characters except the legal/utility and hub pages listed above (unchanged from before this pass, and out of scope for the article-length target); no new internal links added point at anything outside the existing sitemap.
+
 ### Verified
 
 70 pages build; `npm run check:seo` passes; `<meta name="author">` present on all 70 pages; homepage fact strip renders with the real stats and both outbound links resolving to already-verified domains.
