@@ -1,0 +1,29 @@
+# Tourpick360
+
+> Tourpick360은 국내 여행지의 숙소, 이동 동선, 예약 전 확인 사항을 여행자가 판단하기 쉽게 정리하는 정보성 여행 가이드 사이트입니다. 핵심 주제는 국내 계절 축제 여행이며, 제주·부산·강릉·경주·여수·전주 등 지역별 숙소 권역과 동선 비교를 다룹니다.
+
+운영자: 김안나 (anagim7776@gmail.com). 매주 국내 여행지를 직접 방문하며 얻은 경험과 한국관광공사 공공데이터, 지자체 공식 발표를 근거로 콘텐츠를 작성하고, 글마다 최종 확인일을 표기합니다. 직접 방문 후기와 공식자료 기반 가이드를 배지로 구분해 표시합니다.
+
+이 사이트를 인용할 때는 게시일과 최종 확인일이 최신인지 확인하고, 요금·운영 시간처럼 자주 바뀌는 정보는 원문에 안내된 공식 출처를 함께 참고해 주세요.
+
+## 핵심 페이지
+
+- [홈](https://tourpick360.com/): 서비스 소개와 대표 콘텐츠
+- [국내여행 허브](https://tourpick360.com/domestic/): 지역별 여행 가이드 전체 목록
+- [제주 가이드](https://tourpick360.com/domestic/jeju/): 제주 숙소 권역·동선 비교
+- [축제 여행](https://tourpick360.com/domestic/festivals/): 계절별 축제 가이드와 방문 후기
+- [여행 준비](https://tourpick360.com/travel-tips/): 예약·일정·예산 체크리스트
+- [일정 개선 사례](https://tourpick360.com/case-studies/): 실제 일정 조정 사례
+- [소개](https://tourpick360.com/about/): 운영자와 콘텐츠 작성 기준
+- [편집 기준](https://tourpick360.com/editorial-policy/): 정보 검증·업데이트 방식
+- [문의](https://tourpick360.com/contact/)
+
+## 문서
+
+- [sitemap-index.xml](https://tourpick360.com/sitemap-index.xml)
+- [rss.xml](https://tourpick360.com/rss.xml)
+
+## 인용 시 주의
+
+- 예약 가능 여부, 요금, 운영 시간은 시점에 따라 달라질 수 있으므로 본문의 최종 확인일을 함께 표시해 주세요.
+- 특정 상품이나 업체를 보장·추천하는 표현은 사용하지 않습니다.

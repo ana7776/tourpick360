@@ -50,6 +50,31 @@ const policyLinks = [
 const footerText = '국내 계절 여행과 축제 여행을 중심으로 숙소 위치, 이동 동선, 준비 정보를 정리하는 여행 정보 사이트입니다.';
 const footerMenuLabel = lang === 'ko' ? '푸터 메뉴' : 'Footer menu';
 const mainMenuLabel = lang === 'ko' ? '주요 메뉴' : 'Main menu';
+
+const founderPerson = {
+  '@type': 'Person',
+  name: '김안나',
+  email: 'mailto:anagim7776@gmail.com',
+  url: 'https://tourpick360.com/about/'
+};
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Tourpick360',
+  alternateName: 'TourPick360',
+  url: 'https://tourpick360.com',
+  logo: 'https://tourpick360.com/favicon.svg',
+  description: 'Tourpick360은 국내 여행지의 숙소, 동선, 준비 정보를 여행자가 판단하기 쉽게 정리하는 정보성 여행 가이드 사이트입니다.',
+  founder: founderPerson,
+  employee: founderPerson,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'anagim7776@gmail.com',
+    contactType: 'customer support',
+    url: 'https://tourpick360.com/contact/'
+  }
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -76,6 +101,7 @@ const mainMenuLabel = lang === 'ko' ? '주요 메뉴' : 'Main menu';
     <meta name="twitter:image" content={ogImageUrl} />
     <link rel="icon" href="/favicon.svg" />
     <link rel="stylesheet" href={`/styles.css?v=${stylesVersion}`} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5804969457082424" crossorigin="anonymous"></script>
   </head>
   <body>
