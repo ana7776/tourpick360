@@ -1,5 +1,6 @@
 ﻿---
 import SourceBadge from '../../components/SourceBadge.astro';
+import ArticleMeta from '../../components/ArticleMeta.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getTourApiImage } from '../../data/tourApiImages.js';
@@ -23,6 +24,7 @@ const breadcrumbItems = [
     <p class="eyebrow">문제 해결형 여행 가이드</p>
     <h1>국내여행 첫날 늦은 도착 대처 가이드: 일정 회복 30분 플랜</h1>
     <SourceBadge />
+    <ArticleMeta title="국내여행 첫날 늦은 도착 대처 가이드 - Tourpick360" description="늦은 도착으로 틀어진 국내여행 첫날 일정을 실전 단계별로 회복하는 방법을 문제 원인, 우선순위, 템플릿까지 정리했습니다." datePublished="2026-06-13" image={heroImage.src} />
     <p class="lead">
       “KTX 20분, 항공 1시간만 밀려도 첫날 계획이 무너집니다.” 이 문장은 실제 국내여행자들이 가장 자주 묻는 질문 중 하나입니다.
       특히 가족여행, 단체여행, 차량 이동이 포함된 코스에서는 단순히 지각이 아니라 동선의 연쇄 지연이 생겨 전체 일정이 뒤틀립니다.

@@ -1,0 +1,51 @@
+---
+// 정보성 가이드 글의 작성 주체(E-E-A-T) 신호를 통일한다.
+//   - 화면에 보이는 작성자 바이라인(소개 페이지로 연결)
+//   - Article 구조화 데이터(author·publisher·게시일·수정일)
+//
+// 이미 ApprovalArticle / FestivalArticle / BlogPosting 스키마가 author를 넣는 글에는
+// 사용하지 않는다. 손으로 작성한 정적 지역·준비 가이드에서 작성자 신호가 빠지지 않게 하는 것이 목적이다.
+const {
+  title,
+  description,
+  path = Astro.url.pathname,
+  datePublished,
+  dateModified = datePublished,
+  image = '/images/domestic-places/busan-haeundae-beach-hero.jpg'
+} = Astro.props;
+
+const pageUrl = new URL(path, 'https://tourpick360.com').toString();
+const imageUrl = new URL(image, 'https://tourpick360.com').toString();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  image: imageUrl,
+  author: {
+    '@type': 'Person',
+    name: '김안나',
+    url: 'https://tourpick360.com/about/',
+    email: 'anagim7776@gmail.com'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Tourpick360',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://tourpick360.com/favicon.svg'
+    }
+  },
+  datePublished,
+  dateModified,
+  mainEntityOfPage: pageUrl,
+  inLanguage: 'ko-KR'
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<div class="author-info-box" aria-label="작성자 정보">
+  <span>작성자</span>
+  <strong><a href="/about/">김안나</a></strong>
+  <a href="mailto:anagim7776@gmail.com">anagim7776@gmail.com</a>
+</div>
