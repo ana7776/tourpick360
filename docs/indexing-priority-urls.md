@@ -1,6 +1,6 @@
 # Tourpick360 색인 신청 정리
 
-업데이트: 2026-08-20 (최종 · 중복 통합, 방문 후기 재분류, 방문일 표기 반영)
+업데이트: 2026-09-07 (URL 구조 변경 없음 재검증 · 아래 10번 절차로 sitemap과 68개 전수 대조 완료)
 기준: `npm run build` 결과의 `dist/sitemap-0.xml` (색인 대상 68개 URL)
 
 이 문서는 Google Search Console, Naver Search Advisor, Bing Webmaster Tools에 제출할 sitemap과 수동 색인 요청 우선순위를 정리한 체크리스트입니다. 아래 URL은 전부 빌드 결과에 실제로 존재하는 페이지이며, 삭제·통합된 주소는 7번 항목으로 따로 분리했습니다.
@@ -231,7 +231,17 @@ https://tourpick360.com/sitemap-index.xml
 https://tourpick360.com/sitemap-0.xml
 ```
 
-## 8. 신청 순서
+## 8. 재크롤링 우선 요청 (2026-09-07 본문 보강)
+
+아래 3개는 URL은 그대로지만 본문이 1,200자 미만이라 이번에 FAQ·관련 글을 보강했습니다. 이미 이전 버전으로 색인되어 있을 수 있으므로, Search Console URL 검사에서 개별적으로 "색인 생성 요청"을 넣어 갱신된 본문이 먼저 반영되게 합니다.
+
+```text
+https://tourpick360.com/travel-tips/rental-car-checklist/
+https://tourpick360.com/domestic/seoul/purpose-area-hotel-guide/
+https://tourpick360.com/domestic/gyeongju/walking-route-hotel-area-guide/
+```
+
+## 9. 신청 순서
 
 1. Google Search Console에서 `https://tourpick360.com/sitemap-index.xml` 제출
 2. Naver Search Advisor, Bing Webmaster Tools에 사이트 소유 확인 후 같은 sitemap 제출
@@ -243,7 +253,7 @@ https://tourpick360.com/sitemap-0.xml
 8. "발견됨 - 현재 색인되지 않음"이 많으면 해당 URL의 본문 분량, 내부 링크 수, canonical을 다시 점검
 9. 2026-08-20 통합으로 사라진 6개 URL이 색인에 남아 있다면 강제로 삭제 요청하지 말고 301이 반영될 때까지 둔다. 리디렉션은 색인 신호를 통합 대상 글로 넘기므로, 삭제 요청은 그 신호까지 함께 버리게 된다
 
-## 9. 빠른 복사용 묶음 (하루 10개 한도)
+## 10. 빠른 복사용 묶음 (하루 10개 한도)
 
 ```text
 https://tourpick360.com/
@@ -258,7 +268,7 @@ https://tourpick360.com/domestic/festivals/muju-wine-cave-jeoksangsan-valley-gro
 https://tourpick360.com/domestic/festivals/jeonju-veteran-kalguksu-chutan1438-deokjin-park-night-course/
 ```
 
-## 10. 이 문서 갱신 방법
+## 11. 이 문서 갱신 방법
 
 URL이 바뀌면 문서를 손으로 고치지 말고 아래 순서로 대조한다.
 

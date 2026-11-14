@@ -304,3 +304,84 @@ If a scanner's live request still comes back blocked after this, the cause is ou
 ### Verified
 
 70 pages build; `npm run check:seo` passes; `Organization` JSON-LD present on all 70 pages (spot-checked homepage and `/about/`); `llms.txt` and `robots.txt` both present in `dist/` with the expected content.
+
+## Search Console "Page with Redirect" Coverage Check (2026-09-07)
+
+The site owner exported Search Console's Page Indexing coverage drilldown for the "페이지가 리디렉션을 포함함" (Page with redirect) reason — 52 non-indexed URLs as of 2026-09-04, grown from 0 on 2026-06-12.
+
+This is a non-indexed *reason*, not an *error*, in Search Console's own taxonomy — a URL that 301s somewhere is correctly excluded from the index under its own address while its destination is indexed separately. But since it landed alongside the low-value-content rejection, it was worth checking that the reason is accurate and not masking something broken (a redirect to a dead page, a loop, or a long chain).
+
+All 52 URLs were resolved programmatically against `public/_redirects` and the live `dist/` build (host normalization for `www.`/`http://` first, then path rules, iterated to a fixed point):
+
+- **52/52 resolve to a real, currently-built page.** No missing destination, no redirect loop.
+- **Every chain is at most 2 hops**: host normalization (`www.tourpick360.com` → `tourpick360.com`, or `http://` → `https://`) plus, where relevant, one content redirect from `_redirects`. No 3+ hop chains.
+- The URLs break down into exactly the categories `_redirects`' own comments describe: `www`/`http` variants of live pages, the consolidated Jeju/festival/case-study/template articles (already documented above), and the removed multi-language (`/en/`, `/ja/`, `/es/`, `/zh-CN/`) and bicycle-routes pages.
+- None of the 52 source URLs appear anywhere in current internal links, the sitemap, or an `hreflang` tag (the site has none) — Search Console is simply still holding onto addresses it indexed before those consolidations and periodically re-checking that they still redirect, which is expected long-tail crawl behavior, not something this site is currently doing to cause it.
+
+No code change followed from this check — there was nothing to fix. Recorded here so a future re-run of this same Search Console export isn't mistaken for a new problem.
+
+## AI Search Visibility Pass, Round 2 (2026-09-07)
+
+A re-run of the same third-party "AI 성적표" scan (score moved 72 → 73) confirmed `llms.txt` is now detected, but kept three findings from the first pass and added one:
+
+- **AI search crawler still reads as blocked (critical)** — unchanged despite the robots.txt allow-lines added in the first pass.
+- **Author/date trust signal still missing (high)**
+- **Stats/primary-source citations still 0 (high)**
+- **New: Organization `sameAs` missing (medium)** — the scan now sees the `Organization` schema added in round 1, but wants external profile links (Wikipedia, social, a business listing) on it.
+
+### AI crawler block — root cause identified, still not fixable from this repo
+
+The site owner supplied a live bot-access table (from Cloudflare's own AI Crawler Control dashboard, not from this scanner) that pins down exactly what's happening:
+
+| Bot | Category | Configured | Live test |
+|---|---|---|---|
+| OAI-SearchBot, Googlebot, bingbot | 검색·인용 | 허용 | **OK** |
+| ChatGPT-User, Claude-SearchBot, PerplexityBot | 검색·인용 | 허용 | **차단** |
+| GPTBot, ClaudeBot, Google-Extended, CCBot | 학습·수집 | 차단 | 미실행 (blocked by design) |
+
+The training/scraping bots (GPTBot, ClaudeBot, Google-Extended, CCBot) are *intentionally* blocked — that's a legitimate, common choice (allow AI answer engines to cite the site, don't feed it wholesale to model training) and not a bug. The real problem is narrower than "AI crawlers are blocked": three specific search/citation bots are configured "Allow" in Cloudflare's AI Crawler Control but still get blocked on the live request, while other bots in the same "Allow" category (OAI-SearchBot) pass fine. Since `robots.txt` already allows all of these (verified again this pass) and `functions/_middleware.js` still only does the `www` redirect, the block is happening at the Cloudflare edge, upstream of this code, and AI Crawler Control's own toggle isn't the thing overriding it. The likely cause is a second, independent layer:
+
+- **Super Bot Fight Mode** (Security → Bots) can challenge or block traffic that fails Cloudflare's bot-verification check, *regardless* of what AI Crawler Control says, if it doesn't recognize the requester as a "verified bot" — newer crawlers (Claude-SearchBot, PerplexityBot) are more likely to hit this than long-established ones.
+- A **WAF custom rule** matching on User-Agent could be blocking these three strings specifically.
+
+Neither is visible or changeable from this repository. Recommended next step for whoever has Cloudflare dashboard access: check Security → WAF → Custom rules for a User-Agent rule, and check whether Super Bot Fight Mode is enabled and what its "definitely automated" action is set to — if it's "Block," add a Skip/Allow WAF exception for these three user agents so AI Crawler Control's per-bot setting actually takes effect.
+
+### Author signal: added a `<meta name="author">` tag site-wide
+
+The site already had a visible author byline in the footer (`작성자 및 관리자: 김안나`) and per-article `Person` JSON-LD, but the scanner's judge model only reads a fixed token budget per sampled page — a signal at the very bottom of a long page can fall outside that window, and none of it reaches pages that aren't articles (the homepage, hubs, legal pages). Added `<meta name="author" content="김안나" />` to `BaseLayout.astro`'s `<head>`, which is cheap, always true (there is exactly one person who writes and runs this site), and — being in `<head>` — immune to content-length truncation. Renders on all 70 pages now (spot-checked homepage, `/about/`, `/domestic/`, `/domestic/jeju/`, `/travel-tips/`, `/case-studies/`, `/templates/`).
+
+Deliberately did **not** add a sitewide `dateModified` claim. Individual articles already carry real `datePublished`/`dateModified` values plus a visible "최종 확인일" line — those are accurate because they're tied to actual content review dates. Hub/index pages don't have an equivalent real per-page edit date available at build time (many share templates driven by data files, so a template's last git-commit date wouldn't describe when a given page's *content* last changed), and given how much of this project's prior work was specifically about not putting a plausible-looking but unverified date on a page (see the visit-date sections above), fabricating a "last updated today" timestamp for hubs was rejected as the wrong trade — a missing date signal is a smaller problem than a false one.
+
+### Stats/citation gap: added a real numbers-and-sources strip to the homepage
+
+The homepage had no numeric claims and no outbound link to an authoritative source — exactly what the scan measures. Some individual articles already do this well (`/domestic/geoje/attraction-area-guide/` has a "참고한 여행 정보" section linking real `korean.visitkorea.or.kr` detail pages), but the homepage, the page most scanners sample first, had none.
+
+Added a `sky-fact-strip` section right after the hero (high enough on the page to survive a token-budget truncation, unlike the trust strip near the bottom): `정보 페이지 70개 이상 · 실제 방문 후기 12편 · 작성·운영 김안나`, plus outbound links to `korean.visitkorea.or.kr` (대한민국 구석구석, already used and verified elsewhere in this codebase) and `apis.data.go.kr/B551011/KorService2` (the TourAPI base URL this site's own image pipeline calls — `scripts/fetch-tourapi-images.mjs`). Both numbers are real counts from this pass's own build output and the documented visit-badge count, not estimates.
+
+### `sameAs`: not added — no real profile exists to cite
+
+Schema.org `sameAs` is for linking an entity to its *own* other public profiles (a Wikipedia page, a verified social account, a Google Business listing). This site has none of those today. Fabricating a `sameAs` link to something that isn't actually this site's presence would be a false trust signal — worse than the missing field the scanner flagged. Left for the site owner: if a real profile (Naver 블로그/포스트, Instagram, a Google Business Profile for the operator) exists or gets created, it can be added to `organizationJsonLd.sameAs` in `BaseLayout.astro` as an array of URLs.
+
+## Pre-Reapplication Content Audit (2026-09-07)
+
+Before the site owner reapplies for AdSense, ran a fresh pass against the roadmap's own "본문 길이: 1,500자 이상" / "1,200자 이상" targets (`docs/adsense-approval-plan.md`, `docs/adsense-pass-roadmap.md`) — the last such audit was 2026-08-08 and several articles have been merged or edited since.
+
+Measured visible body text (`<main>`, tags stripped, whitespace collapsed) across all 68 non-search built pages. Five pages under 1,200 characters are legal/utility pages (`/contact/` 196, `/disclosure/` 254, `/terms/` 376, `/about/` 728, `/privacy/` 949) and one is a hub/index page (`/travel-tips/` 940) — none of these are "articles" under the roadmap's own definition, so they're not counted against the target.
+
+Three real guide articles were genuinely thin and got expanded with real content (not padding) — a 3-question FAQ section per page (matching the `faq-list`/`<details>` pattern already used by every data-driven article component) plus, where the page lacked one, a related-articles section per the article-structure spec ("관련 글 3개 이상"):
+
+| Page | Before | After | Added |
+|---|---|---|---|
+| `/travel-tips/rental-car-checklist/` | 837자 | 1,491자 | Vehicle-size/luggage guidance, one-way vs round-trip rental cost comparison, 3-question FAQ, 3-link related section (page had no FAQ or related section at all) |
+| `/domestic/seoul/purpose-area-hotel-guide/` | 871자 | 1,250자 | 3-question FAQ (first-visit area choice, missing the last subway train, splitting two districts in one day) |
+| `/domestic/gyeongju/walking-route-hotel-area-guide/` | 952자 | 1,274자 | 3-question FAQ (summer heat and walking routes, public-transit-only feasibility, best area for kids) |
+
+All three FAQs stick to the same discipline as the rest of the site: no invented specific numbers (walking minutes, exact fees) that can't be verified — answers stay qualitative where the source data doesn't support a hard figure, consistent with how the existing checklist items in these same pages were already written.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; 0 pages under 1,200 characters except the legal/utility and hub pages listed above (unchanged from before this pass, and out of scope for the article-length target); no new internal links added point at anything outside the existing sitemap.
+
+### Verified
+
+70 pages build; `npm run check:seo` passes; `<meta name="author">` present on all 70 pages; homepage fact strip renders with the real stats and both outbound links resolving to already-verified domains.
